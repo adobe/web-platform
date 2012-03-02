@@ -1,0 +1,107 @@
+/**
+ * @author Vincent Hardy
+ */
+
+
+/*********************************************
+ * SPECIFIC ELEMENTS STYLE
+ *********************************************/
+#chiseled, #shadows {
+    border-radius: 0.25em;
+    box-shadow: 0px 0px 0.5em 0.5em rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: url(../img/texture.png);
+}
+
+#shadows {
+    background: url(../img/texture3.png);
+}
+
+#more-examples {
+    width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+#more-examples img {
+    width: 150px;
+    position: relative;
+    -webkit-transition: -webkit-transform 0.5 linear;
+    margin-top: 10px;
+    vertical-align: middle;
+}
+
+#more-examples img:hover {
+    z-index: 100;
+}
+
+
+#more-examples img:nth-child(odd):hover {
+    -webkit-transform: scale(2) rotateZ(6deg);
+}
+
+#more-examples img:nth-child(even):hover {
+    -webkit-transform: scale(2) rotateZ(-6deg);
+}
+
+
+#more-examples img:nth-child(n+2) {
+    -webkit-transform: scale(1) rotateZ(-12deg);
+}
+
+#more-examples img:nth-child(n+3) {
+    -webkit-transform: scale(1) rotateZ(10deg);
+}
+
+#more-examples #egg {
+    width: 75px;
+    position: absolute;
+    left: -75px;
+    -webkit-transform: scale(1) rotateZ(-12deg);
+    -moz-transform: rotateZ(-12deg);
+    z-index: 100;
+}
+
+#i-want-you {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    -webkit-transform: rotateZ(-6deg);
+}
+
+#zoom-blur {
+    border: 0.25em solid white;
+    box-shadow: 0px 0px 0.5em 0.5em rgba(0, 0, 0, 0.2);
+}
+
+#shader-model:hover {
+    -webkit-transform: scaleX(2) scaleY(2);
+}
+
+#filter-model, #graphic-models, #filter-graph {
+    background: url(../img/texture.png);
+    box-shadow: 0px 0px 0.5em 0.5em rgba(0, 0, 0, 0.2);
+    border-radius: 0.25em;
+    overflow: hidden;
+}
+
+#css-shaders-studio, #shader-model {
+    box-shadow: 0px 0px 0.5em 0.5em rgba(0, 0, 0, 0.2);
+    border-radius: 0.25em;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#filter-shorthands {
+    list-style: none;
+    margin-top: 1em;
+    font-size: 1em;
+    text-shadow: 0em 0em 0.5em black;
+}
+
+#filter-shorthands li {
+    display: inline;
+}
+
+#filter-shorthands li:nth-child(odd) {
+    color: #a0a0a0;
+}
+
