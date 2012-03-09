@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+body {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.background {
+    background: #1B1B1B url("background.jpg") 0px 0px repeat;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#textured-text {
+    font-family: 'Capture it';
+    font-size: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 1em;
+    color: #f00;
+    -webkit-blend-mode: color-dodge;
+    -webkit-transition: color 0.5s;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 1);
+}
+
+#textured-text:hover {
+    color: #00f000;
+    -webkit-blend-mode: color-dodge;
+}
+
+
+.mode-display {
+    border-radius: 10px;
+    width: 20ex;
+    font-size: 50px;
+    font-family: "Myriad Pro";
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: center;
+    margin-top: 0.5ex;
+    -webkit-blend-mode: normal;
+}
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Textured Text With Compositing</title>
+</head>
+
+<body style="-webkit-transform:translateX(0)">
+    <div class="background">
+    <p id="textured-text">Compositing<br />Now</p>
+    </div>
+    <div class="mode-display" id="trace" style="-webkit-transform:translateX(0)">test</div> 
+</body>
+
+<script>
+var background = document.querySelector('.background');
+var width = window.innerWidth;
+var height = window.innerHeight;
+var trace = document.getElementById('trace');
+var texturedText = document.getElementById('textured-text');
+
+var blendModes= [
+    "normal",
+    "plus",
+    "multiply",
+    "screen",
+    "overlay",
+    "darken",
+    "lighten",
+    "color-dodge",
+    "color-burn",
+    "hard-light",
+    "soft-light",
+    "difference",
+    "exclusion",
+    "hue",
+    "saturation"
+    ];
+    
+var curMode = 0;
+
+function applyMode (index) {
+    var mode = blendModes[index];
+    console.log('applying mode ' + mode);
+    trace.innerHTML = mode;
+    texturedText.style.webkitBlendMode = mode;
+}
+
+applyMode(curMode);
+
+background.addEventListener('click', function () {
+    curMode++;
+    if (curMode > blendModes.length - 1) {
+        curMode = 0;
+    }
+    applyMode(curMode);
+}, false);
+
+</script>
+
+</html>
