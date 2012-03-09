@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+
+body {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.background {
+    background: #431360; /* Old browsers */
+    background: -moz-linear-gradient(left, #431360 0%, #29b5d8 29%, #d300d3 68%, #9b000f 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#431360), color-stop(29%,#29b5d8), color-stop(68%,#d300d3), color-stop(100%,#9b000f)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, #431360 0%,#29b5d8 29%,#d300d3 68%,#9b000f 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, #431360 0%,#29b5d8 29%,#d300d3 68%,#9b000f 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, #431360 0%,#29b5d8 29%,#d300d3 68%,#9b000f 100%); /* IE10+ */
+    background: linear-gradient(left, #431360 0%,#29b5d8 29%,#d300d3 68%,#9b000f 100%); /* W3C */}
+
+.circle {
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 50px;
+    height: 50px;
+    -webkit-blend-mode: overlay;
+    opacity: 0.15;
+    border-radius: 70px;
+    position: absolute;
+    /* border: 3px solid rgba(255, 255, 255, 0.5);*/
+    background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, rgba(255, 255, 255, 0) 100%); /* Chrome10+,Safari5.1+ */
+    x-webkit-filter: drop-shadow(0px 0px 20px white);
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1px;
+}
+
+.mode-display {
+    border-radius: 10px;
+    width: 20ex;
+    margin-top: 0.5ex;
+    margin-left: -10ex;
+    font-size: 50px;
+    font-family: "Myriad Pro";
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    vertical-align: center;
+    -webkit-blend-mode: normal;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Composite circles</title>
+</head>
+
+
+<body style="-webkit-transform: translate3d(0, 0, 0)" class="background">
+<div id="canvas" style="width:2048px;height:2048px; position:absolute; background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(0, 0, 0, 0)), color-stop(100%,black)); /* Chrome,Safari4+ */"></div>
+<div class="center">
+    <div class="mode-display" id="trace"></div>
+</div>
+
+<script>
+var nCircles = 30;
+var canvas = document.getElementById('canvas');
+var width = window.innerWidth;
+var height = window.innerHeight;
+var minRadius = width / 10;
+var deltaRadius = width / 3;
+var trace = document.getElementById('trace');
+var pageX = 0, pageY = 0;
+
+var circles = [];
+
+for (var i = 0; i < nCircles; i++) {
+    var c = document.createElement('div'),
+        radius = Math.round(Math.random() * deltaRadius + minRadius) / 2
+        x = Math.round(-radius + Math.random() * (innerHeight + 2 * radius)),
+        y = Math.round(-radius + Math.random() * (innerWidth + 2 * radius));
+    c.className = 'circle';
+    c.style.webkitTransform = "translate3d(" + x + "px, " + y + "px, 0px)";
+    c.style.width =  (2 * radius) + 'px';
+    c.style.height = c.style.width;
+    c.style.borderRadius = radius + 'px';
+    canvas.appendChild(c)
+    circles.push({
+        element: c,
+        x: x,
+        y: y,
+        direction: 2 * Math.random() * Math.PI,
+        speed: Math.random() * 2,
+        radius: radius
+    });
+}
+
+var blendModes= [
+    "normal",
+    "plus",
+    "multiply",
+    "screen",
+    "overlay",
+    "darken",
+    "lighten",
+    "color-dodge",
+    "color-burn",
+    "hard-light",
+    "soft-light",
+    "difference",
+    "exclusion",
+    "hue",
+    "saturation"
+    ];
+    
+var curMode = 0;
+
+function applyMode (index) {
+    var mode = blendModes[index];
+    console.log('applying mode ' + mode);
+    trace.innerHTML = mode;
+    for (var i = 0; i < circles.length; i++) {
+        circles[i].element.style.webkitBlendMode = mode;
+    }
+}
+
+applyMode(curMode);
+
+canvas.addEventListener('click', function () {
+    curMode++;
+    if (curMode > blendModes.length - 1) {
+        curMode = 0;
+    }
+    
+    applyMode(curMode);
+}, false);
+
+function newPosition(r, max, pos) {
+    var r3 = r * 3,
+        r2 = r * 2;
+    if (pos < -r3)
+        return max + r;
+    if (pos > max + r3)
+        return -r;
+    return pos;
+}
+
+function nextFrame() {
+    var maxW = window.width,
+        maxH = window.height;
+    for (var i = 0; i < circles.length; ++i) {
+        var c = circles[i],
+            distance = Math.sqrt((c.x - pageX) * (c.x - pageX) + (c.y - pageY) * (c.y - pageY)),
+            direction = Math.atan2(pageY - c.y, pageX - c.x),
+            newDirection = c.direction * direction,
+            newSpeed = c.speed + (2000 - Math.min(distance, 2000)) / 800;
+        c.x = newPosition(c.radius, maxW, c.x + Math.sin(newDirection) * newSpeed);
+        c.y = newPosition(c.radius, maxH, c.y + Math.cos(newDirection) * newSpeed);
+        c.element.style.webkitTransform = "translate3d(" + c.x + "px, " + c.y + "px, 0px)";
+        c.speed = Math.max(0.2, c.speed - 0.001);
+    }
+    window.webkitRequestAnimationFrame(nextFrame);
+}
+window.webkitRequestAnimationFrame(nextFrame);
+
+function onMouseMove(ev) {
+    pageX = ev.pageX; 
+    pageY = ev.pageY;
+}
+window.addEventListener("mousemove", onMouseMove);
+</script>
+</body>
+</html>
