@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+
+body {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.background {
+    background: #431360; /* Old browsers */
+    background: -moz-linear-gradient(left, #431360 0%, #29b5d8 29%, #d300d3 68%, #9b000f 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#431360), color-stop(29%,#29b5d8), color-stop(68%,#d300d3), color-stop(100%,#9b000f)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, #431360 0%,#29b5d8 29%,#d300d3 68%,#9b000f 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, #431360 0%,#29b5d8 29%,#d300d3 68%,#9b000f 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, #431360 0%,#29b5d8 29%,#d300d3 68%,#9b000f 100%); /* IE10+ */
+    background: linear-gradient(left, #431360 0%,#29b5d8 29%,#d300d3 68%,#9b000f 100%); /* W3C */}
+
+.circle {
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 50px;
+    height: 50px;
+    -webkit-blend-mode: overlay;
+    opacity: 0.15;
+    border-radius: 70px;
+    position: absolute;
+    /* border: 3px solid rgba(255, 255, 255, 0.5);*/
+    background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, rgba(255, 255, 255, 0) 100%); /* Chrome10+,Safari5.1+ */
+}
+
+.mode-display {
+    border-radius: 10px;
+    width: 20ex;
+    font-size: 50px;
+    font-family: "Myriad Pro";
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: center;
+    margin-top: 0.5ex;
+    -webkit-blend-mode: normal;
+}
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Composite circles</title>
+</head>
+
+
+<body style="-webkit-transform: translate3d(0, 0, 0)" class="background">
+<div id="canvas" style="width:100%;height:100%;position:absolute;background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(0, 0, 0, 0)), color-stop(100%,black)); /* Chrome,Safari4+ */"></div>
+<div class="mode-display" id="trace"></div>
+
+<script>
+var nCircles = 30;
+var canvas = document.getElementById('canvas');
+var width = window.innerWidth;
+var height = window.innerHeight;
+var minRadius = width / 10;
+var deltaRadius = width / 3;
+var radius;
+var trace = document.getElementById('trace');
+
+var circles = [];
+
+for (var i = 0; i < nCircles; i++) {
+    var c = document.createElement('div');
+    c.className = 'circle';
+    radius = Math.round(Math.random() * deltaRadius + minRadius) / 2;
+    
+    c.style.top = Math.round(-radius + Math.random() * (innerHeight + 2 * radius)) + 'px';
+    c.style.left = Math.round(-radius + Math.random() * (innerWidth + 2 * radius)) + 'px';
+    c.style.width =  (2 * radius) + 'px';
+    c.style.height = c.style.width;
+    c.style.borderRadius = radius + 'px';
+    canvas.appendChild(c)
+    circles.push(c);
+}
+
+var blendModes= [
+    "normal",
+    "plus",
+    "multiply",
+    "screen",
+    "overlay",
+    "darken",
+    "lighten",
+    "color-dodge",
+    "color-burn",
+    "hard-light",
+    "soft-light",
+    "difference",
+    "exclusion",
+    "hue",
+    "saturation"
+    ];
+    
+var curMode = 0;
+
+function applyMode (index) {
+    var mode = blendModes[index];
+    console.log('applying mode ' + mode);
+    trace.innerHTML = mode;
+    for (var i = 0; i < circles.length; i++) {
+        circles[i].style.webkitBlendMode = mode;
+    }
+}
+
+applyMode(curMode);
+
+canvas.addEventListener('click', function () {
+    curMode++;
+    if (curMode > blendModes.length - 1) {
+        curMode = 0;
+    }
+    
+    applyMode(curMode);
+}, false);
+
+</script>
+</body>
+</html>
