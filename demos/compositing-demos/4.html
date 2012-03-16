@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+img {
+	-webkit-transition-property: opacity;  
+  	-webkit-transition-duration: 4s;
+	opacity:1;
+}
+img:hover {
+	-webkit-transition-property: opacity;  
+  	-webkit-transition-duration: 4s;
+	opacity:0;
+}
+	
+  .blendelement {
+    position: fixed;
+    top:0;
+      font-family: 'Capture it';
+      font-size: 180px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      line-height: 1em;
+      color: #f00;
+      -webkit-blend-mode: normal;
+      text-shadow: 3px 3px 3px rgba(0, 0, 0, 1);
+      -webkit-filter: blur(6px);
+      -webkit-transition: opacity 0.5s;
+  }
+
+  .blendelement:hover {
+      color: yellow;
+      opacity: 0;
+      -webkit-transition: opacity 0.5s;
+  }
+
+video {
+  
+  position: absolute;
+  top:0;
+  left:0;
+}
+</style>
+<script src='http://code.jquery.com/jquery-1.7.1.min.js'></script>
+<script src='picker.js'></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body style="-webkit-transform: translate3d(0, 0, 0)">
+
+<video class="video-stream" x-webkit-airplay="allow" src="3.mp4" autoplay style="-webkit-transform: translate3d(0, 0, 0)"></video>
+<video class="blendelement" x-webkit-airplay="allow" src="3.mp4" autoplay></video>
+<p style="top: 600px;position: absolute;">
+Blend mode: 
+<select class="picker">
+  <option value="normal">normal</option>
+  <option value="plus">plus</option>
+  <option value="multiply">multiply</option>
+  <option value="screen">screen</option>
+  <option value="overlay">overlay</option>
+  <option value="darken">darken</option>
+  <option value="lighten">lighten</option>
+  <option value="color-dodge">color-dodge</option>
+  <option value="color-burn">color-burn</option>
+  <option value="hard-light">hard-light</option>
+  <option value="soft-light">soft-light</option>
+  <option value="difference">difference</option>
+  <option value="exclusion">exclusion</option>
+  <option value="hue">hue</option>
+  <option value="saturation">saturation</option>
+</select>
+</div>
+</body>
+</html>
