@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+body {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.background {
+    background: #1B1B1B url("background.png") 0px 0px repeat;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
+#texture, #original-img {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 100px;
+    display: block;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+}
+
+#thumbnails {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 580px;
+    display: block;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    width: 420px;
+}
+
+
+.mode-display {
+    border-radius: 10px;
+    width: 20ex;
+    font-size: 50px;
+    font-family: "Myriad Pro";
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: center;
+    margin-top: 0.5ex;
+    -webkit-blend-mode: normal;
+}
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Textured Text With Compositing</title>
+</head>
+
+<body style="-webkit-transform:translateX(0)">
+    <div class="background">
+        <img id="original-img" src="drums.jpg" width="561" />
+        
+        <!-- Texture from http://www.slrlounge.com/post-production-how-to-apply-textures-to-images-using-photoshop -->
+        <img id="texture" src="texture.jpg" width="561" style="-webkit-blend-mode: overlay;"/>
+        
+        <div id="thumbnails">
+            <img src="texture.jpg" width="200" />
+            <img src="drums.jpg" width="200" />
+        </div>
+    </div>
+    <div class="mode-display" id="trace" style="-webkit-transform:translateX(0)">overlay</div> 
+</body>
+
+</html>

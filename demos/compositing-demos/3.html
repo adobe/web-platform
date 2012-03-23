@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+img {
+	-webkit-transition-property: opacity;  
+  	-webkit-transition-duration: 4s;
+	opacity:1;
+}
+img:hover {
+	-webkit-transition-property: opacity;  
+  	-webkit-transition-duration: 4s;
+	opacity:0;
+}
+	
+  .blendelement {
+    position: fixed;
+    top:0;
+      font-family: 'Capture it';
+      font-size: 180px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      line-height: 1em;
+      color: #f00;
+      -webkit-blend-mode: normal;
+      text-shadow: 3px 3px 3px rgba(0, 0, 0, 1);
+      -webkit-filter: blur(6px);
+      -webkit-transition: opacity 0.5s;
+  }
+
+  .blendelement:hover {
+      color: yellow;
+      opacity: 0;
+      -webkit-transition: opacity 0.5s;
+  }
+
+video {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 100px;
+    display: block;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+}
+
+.picker {
+    font-family: 'Myriad Pro';
+    font-size: 14px;
+}
+
+
+h1 {
+    font-family: 'Myriad Pro';
+    font-size: 60px;
+    color: white;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    margin-top: -0.2ex;
+}
+</style>
+<script src='http://code.jquery.com/jquery-1.7.1.min.js'></script>
+<script src='picker.js'></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body style="-webkit-transform: translate3d(0, 0, 0);background: #1B1B1B url(background.jpg) 0px 0px repeat;">
+    <h1>video compositing</h1>
+
+<video class="video-stream" x-webkit-airplay="allow" src="2.mp4" autoplay style="-webkit-transform: translate3d(0, 0, 0)" width="800"></video>
+<video class="blendelement" x-webkit-airplay="allow" src="2.mp4" autoplay width="800"></video>
+<p style="top: 2ex;position: absolute;font-family: 'Myriad Pro';color: white; font-weight: bold;">
+Blend mode: 
+<select class="picker">
+  <option value="normal">normal</option>
+  <option value="plus">plus</option>
+  <option value="multiply">multiply</option>
+  <option value="screen">screen</option>
+  <option value="overlay">overlay</option>
+  <option value="darken">darken</option>
+  <option value="lighten">lighten</option>
+  <option value="color-dodge">color-dodge</option>
+  <option value="color-burn">color-burn</option>
+  <option value="hard-light">hard-light</option>
+  <option value="soft-light">soft-light</option>
+  <option value="difference">difference</option>
+  <option value="exclusion">exclusion</option>
+  <option value="hue">hue</option>
+  <option value="saturation">saturation</option>
+</select>
+</div>
+</body>
+</html>
