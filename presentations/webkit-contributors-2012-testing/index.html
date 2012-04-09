@@ -1,0 +1,236 @@
+<!doctype html>  
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		
+    	<title>W3C-WebKit Test Suite Integration</title>
+    	<meta name="description" content="W3C - WebKit Test Suite Integration">
+    	<meta name="author" content="Jacob Goldstein">
+
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/adobe.css">
+		<link rel="stylesheet" href="lib/zenburn.css">
+	</head>
+	
+	<body>
+		
+		<div id="reveal">
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+			
+                <section id="title-slide">
+                	<h1>W3C - WebKit Test Suite Integration</h1>
+                </section>
+
+                <section id="how-to-overview">
+                	<h2>The current way of doing things</h2>
+                	<ul>
+                		<li>Two test repositories using unique test frameworks</li>
+                        <li>JavaScript tests use either testharness.js/testharnessreport.js (in W3C) OR js-test-pre.js/js-test-post.js (WebKit)</li>
+                        <li>Both provide an API for making test assertions and output formatted test results</li>		    
+                	</ul>   
+                	<img src="images/before.png" alt="Before">           	
+                </section>
+
+                <section id="pros/cons">
+                    <h2>W3C Test Suites Pros/Cons</h2>
+                        <ul>
+                            <li><h3>Pros</h3>
+                                <ul>
+                                    
+                                    <li>Compatible with multiple browser engines</li>
+                                    <li>Numerous W3C tests exist that are not covered in WebKit
+                                        <ul>
+                                            <li>Example: Aryeh Gegor's 2D/3D transform tests use testharness.js. There are currently 9,827 tests - all of which could be imported to WebKit to increase test coverage</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><h3>Cons</h3>
+                                <ul>
+                                    <li>Format requirements different from WebKit
+                                        <ul>
+                                            <li>W3C tests require the following metadata:</li>
+                                            <pre><code>
+&lt;head&gt;
+    &lt;title&gt;CSS Test: DESCRIPTION OF TEST&lt;/title&gt;
+    &lt;link rel="author" title="NAME_OF_AUTHOR" href="mailto:EMAIL OR http://CONTACT_PAGE"/&gt;
+    &lt;link rel="help" href="RELEVANT_SPEC_SECTION"/&gt;
+    &lt;meta name="flags" content="TOKENS" /&gt;
+    &lt;meta name="assert" content="TEST ASSERTION"/&gt;
+    &lt;style type="text/css"&gt;&lt;![CDATA[
+                        CSS FOR TEST
+    ]]&gt;&lt;/style&gt;
+&lt;/head&gt;
+                                            </code></pre>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                </section> 
+
+                <section id="bug">
+                    <h2>WebKit Bug 80709</h2>
+                    <ul>
+                        <li>Patch included testharness.js and customizations to output in testharnessreport.js
+                            <ul>
+                                <li>Customization to testharnessreport.js modified default test output formatted in HTML table to plain text - required for use with dumpAsText()</li>
+                                <li>testharness.js remains unchanged</li>
+                                <li>Scripts located at .../LayoutTests/resources/</li>
+                            </ul>
+                        </li>
+                        <li>Patch included a Regions parsing test that previously used js-test-pre.js, converted to use testharness.js</li>
+                        <li>Test authors now have the option of using either framework for assertions within their WebKit tests</li>
+ 
+                        <li>With the inclusion of testharness.js into the WebKit test suite:
+                            <ul>
+                                <li>New tests can be authored that will work in both suites</li>
+                                <li>W3C JavaScript tests will now run in WebKit test suite
+                                    <ul>
+                                        <li>Only required update is to the path for testharness.js</li>
+                                        <ul>
+                                            <li>In the W3C suite, testharness.js/testharnessreport.js are located under /resources/</li>
+                                            <li>In the WebKit suite, testharness.js/testharnessreport.js are located under .../LayoutTests/resources/</li>            
+                                        </ul>                    
+                                    </ul>      
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="now">
+                    <h2>Patch Landed for Bug 80709</h2>
+                    <img src="images/after.png" alt="After">
+                </section>
+
+                <section id="bug">
+
+                    <h2>Our Philosophy</h2>
+                    <ul>
+                        <li>We believe W3C tests are a common set of tests that promote consistent implementation</li> 
+                        <li>We want to make it as easy as possible for developers implementing features in browser engines to test against W3C tests</li>
+                        <li>Approach we recommend:
+                            <ul>
+                                <li>If you are going to write a JavaScript test, consider using testharness.js</li>
+                                <li>Don't worry about including all the required W3C formatting in tests that will only be in WebKit</li>
+                                <li>The Adobe Web Platform team will make it a practice to submit tests to both the WebKit and W3C test suites going forward</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </section>
+
+                <section id="open">
+                    <h2>Pending Considerations</h2>
+                    <ul>
+                        <li>Should we recommend the usage of testharness.js for all new WebKit JavaScript tests?
+                            <ul>
+                                <li>Adobe recommendation: testharness.js should be considered for all new JavaScript tests and used when appropriate</li>
+                            </ul>
+                        </li>
+                        <li>Should we import W3C tests to WebKit on some regular frequency?
+                            <ul>
+                                 <li>Adobe recommendation: Yes, tests such as Aryeh Gregor's 2D/3D transforms, and others, should be imported</li>
+                            </ul>
+                        </li>
+                        <li>How should imported tests be identified?
+                            <ul>
+                                <li>Adobe recommendation: Imported tests should live under a new directory beneath LayoutTests</li>
+                            </ul>
+                        </li>
+                        <li>Should any needed test updates (e.g. to paths, metadata, etc.) be automated with a script?
+                            <ul>
+                                <li>Adobe recommendation: Scripts should be implement to help facilitate the import/update process, some manual steps will still be required</li>
+                            </ul>
+                        </li>
+                        <li>Can the approval process for previously reviewed W3C test be streamlined?
+                            <ul>
+                                <li>Adobe recommendation: WebKit reviewers should "rubber-stamp" tests that have already passed W3C review
+                            </ul>
+                        </li>
+                        <li>Should other tests (from Mozilla, Microsoft, etc.) continue to be imported?
+                            <ul>
+                                <li>Adobe recommendation: Yes, this change should not prevent import of other tests, and may facilitate the reuse of additional tests from browser vendors</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+
+                <section id="final">
+                    <h2>Next Steps</h2>
+                    <ul>
+                        <li>We need help with this effort - please contact if us if you want to contribute
+                            <ul>
+                                <li>email: jacobg@adobe.com</li>
+                            </ul>
+                        </li>
+                        <li>Adobe will be holding a hackathon in June focusing on W3C test infrastructure improvement
+                            <ul>
+                                <li>June XX - June XX</li>
+                                <li>The hackathon will be hosted at Adobe in San Francisco</li>
+                                <li>Open to the public</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>			
+			
+			
+			
+			
+			</div> <!-- End div class="slides" -->
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+		
+		<script src="js/reveal.js"></script>
+		<script src="lib/highlight.js"></script>
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls:true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: true,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'default', // default/neon
+
+				// Transition style
+				transition: query.transition || 'concave' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+		</script>
+
+	</body>
+</html>
