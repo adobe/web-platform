@@ -433,9 +433,10 @@ html {
 	height: 600px;
 	
 	left: 50%;
-	top: 50%;
+	/*top: 50%;*/
 	margin-left: -450px;
-	margin-top: -320px;
+	/*margin-top: -320px;*/
+	margin-top: 50px;	
 	padding: 20px 0px;
 
 	text-align: center;

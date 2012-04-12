@@ -21,57 +21,93 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 			
-                <section id="title-slide">
+                <section id="title">
                 	<h1>W3C - WebKit Test Suite Integration</h1>
                 </section>
 
-                <section id="how-to-overview">
-                	<h2>The current way of doing things</h2>
-                	<ul>
-                		<li>Two test repositories using unique test frameworks</li>
-                        <li>JavaScript tests use either testharness.js/testharnessreport.js (in W3C) OR js-test-pre.js/js-test-post.js (WebKit)</li>
-                        <li>Both provide an API for making test assertions and output formatted test results</li>		    
-                	</ul>   
-                	<img src="images/before.png" alt="Before">           	
+
+                <section id="Agenda">
+                    <h2>Agenda</h2>
+                    <ul>
+                        <li>Overview</li>
+                        <li>Current Way of Doing Things</li>
+                        <li>Pros/Cons</li>
+                        <li>Recent changes - Bug 80709</li>
+                        <li>Pending Considerations</li>
+                        <li>Next Steps</li>
                 </section>
 
-                <section id="pros/cons">
-                    <h2>W3C Test Suites Pros/Cons</h2>
+                <section id="overview">
+                	<h2>The current way of doing things</h2>
+                	<ul>
+                		<li>Two test repositories, W3C and WebKit, using unique test frameworks</li>
+                		<li>Three types of tests
+                		    <ol>
+                		        <li>RefTests</li>
+                		        <li>JavaScript Tests</li>
+                		        <li>Pixel Tests</li>
+                		    </ol>
+                		</li>
+                		<li>Some W3C test suites have been copied to the WebKit repository (only RefTests)</li>
+                		<li>Currently no formal process for integration between the two test repositories</li>
+                	</ul>
+                </section>
+             
+    
+                <section id="integrationBenefits">
+                    <h2>Integration Benefits</h2>
                         <ul>
-                            <li><h3>Pros</h3>
+                            <li>Increase test coverage in WebKit by incorporating tests from W3C
                                 <ul>
-                                    
-                                    <li>Compatible with multiple browser engines</li>
-                                    <li>Numerous W3C tests exist that are not covered in WebKit
-                                        <ul>
-                                            <li>Example: Aryeh Gegor's 2D/3D transform tests use testharness.js. There are currently 9,827 tests - all of which could be imported to WebKit to increase test coverage</li>
-                                        </ul>
-                                    </li>
+                                    <li>Example: Aryeh Gegor's 2D/3D transform tests in W3C repository. There are currently 9,827 JavaScript tests - all of which could be imported to WebKit to increase test coverage</li>
                                 </ul>
                             </li>
-                            <li><h3>Cons</h3>
-                                <ul>
-                                    <li>Format requirements different from WebKit
-                                        <ul>
-                                            <li>W3C tests require the following metadata:</li>
-                                            <pre><code>
+                            <li>Ensure compliance with specifications as captured by W3C tests</li>
+                            <li>Reduce the effort currently required to write the same test for each repository</li> 
+                        </ul>
+                </section>
+                
+                <section id="integrationChallenges">
+                    <h2>Integration Challenges</h2>
+                    <ul>
+                        <li>Unique challenges exists for different test type</li>
+                        <li>RefTests can be copied over and run in their current form</li>
+                        <li>With the recent landing of WebKit bug 80709, W3C-style JavaScript tests can now run in WebKit repository
+                            <ul>
+                                <li>Minor change required to script path</lu>
+                            </ul>
+                        </li>
+                        <li>Currently no formal process around integration, approval, formatting differences, etc.</li>
+                        <li>Formatting requirements differ between W3C and WebKit tests
+                            <ul>
+                               <li>For example: W3C JavaScript tests require the following metadata:</li>
+                                        <pre><code>
 &lt;head&gt;
-    &lt;title&gt;CSS Test: DESCRIPTION OF TEST&lt;/title&gt;
-    &lt;link rel="author" title="NAME_OF_AUTHOR" href="mailto:EMAIL OR http://CONTACT_PAGE"/&gt;
-    &lt;link rel="help" href="RELEVANT_SPEC_SECTION"/&gt;
-    &lt;meta name="flags" content="TOKENS" /&gt;
-    &lt;meta name="assert" content="TEST ASSERTION"/&gt;
-    &lt;style type="text/css"&gt;&lt;![CDATA[
-                        CSS FOR TEST
-    ]]&gt;&lt;/style&gt;
+&lt;title&gt;CSS Test: DESCRIPTION OF TEST&lt;/title&gt;
+&lt;link rel="author" title="NAME_OF_AUTHOR" href="mailto:EMAIL OR http://CONTACT_PAGE"/&gt;
+&lt;link rel="help" href="RELEVANT_SPEC_SECTION"/&gt;
+&lt;meta name="flags" content="TOKENS" /&gt;
+&lt;meta name="assert" content="TEST ASSERTION"/&gt;
+&lt;style type="text/css"&gt;&lt;![CDATA[
+                    CSS FOR TEST
+]]&gt;&lt;/style&gt;
 &lt;/head&gt;
-                                            </code></pre>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                </section> 
-
+                                        </code></pre>
+                                </li>
+                            </ul>                            
+                        </li>
+                    </ul>
+                </section>
+                		
+                <section id="jsTests">
+                		<h2>JavaScript Tests</h2>            
+                		<ul>    		
+                            <li>JavaScript tests currently use either testharness.js/testharnessreport.js (W3C) OR js-test-pre.js/js-test-post.js (WebKit)</li>
+                            <li>Both provide an API for making test assertions and output formatted test results</li>		    
+                	    </ul>   
+                	<img src="images/before.png" alt="Before" height="75%" width="75%">           	
+                </section>
+                
                 <section id="bug">
                     <h2>WebKit Bug 80709</h2>
                     <ul>
@@ -84,45 +120,45 @@
                         </li>
                         <li>Patch included a Regions parsing test that previously used js-test-pre.js, converted to use testharness.js</li>
                         <li>Test authors now have the option of using either framework for assertions within their WebKit tests</li>
- 
-                        <li>With the inclusion of testharness.js into the WebKit test suite:
-                            <ul>
-                                <li>New tests can be authored that will work in both suites</li>
-                                <li>W3C JavaScript tests will now run in WebKit test suite
-                                    <ul>
-                                        <li>Only required update is to the path for testharness.js</li>
-                                        <ul>
-                                            <li>In the W3C suite, testharness.js/testharnessreport.js are located under /resources/</li>
-                                            <li>In the WebKit suite, testharness.js/testharnessreport.js are located under .../LayoutTests/resources/</li>            
-                                        </ul>                    
-                                    </ul>      
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </section>
 
                 <section id="now">
                     <h2>Patch Landed for Bug 80709</h2>
-                    <img src="images/after.png" alt="After">
+                    <ul>
+                        <li>With the inclusion of testharness.js into the WebKit test suite:
+                            <ul>
+                                <li>New tests can be authored that will work in both suites</li>
+                                <li>W3C JavaScript tests will now run in WebKit test repository
+                                    <ul>
+                                        <li>Only required update is to the path for testharness.js</li>                
+                                    </ul>      
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <img src="images/after.png" alt="After" height="75%" width="75%">
                 </section>
 
-                <section id="bug">
-
+ 
+                
+                <section id="philosophy">
                     <h2>Our Philosophy</h2>
                     <ul>
                         <li>We believe W3C tests are a common set of tests that promote consistent implementation</li> 
                         <li>We want to make it as easy as possible for developers implementing features in browser engines to test against W3C tests</li>
-                        <li>Approach we recommend:
+                        <li>Approach we recommend for new tests:
                             <ul>
                                 <li>If you are going to write a JavaScript test, consider using testharness.js</li>
                                 <li>Don't worry about including all the required W3C formatting in tests that will only be in WebKit</li>
-                                <li>The Adobe Web Platform team will make it a practice to submit tests to both the WebKit and W3C test suites going forward</li>
+                                <li>The Adobe Web Platform team will make it a practice to submit new tests to both the WebKit and W3C test suites going forward</li>
                             </ul>
                         </li>
                     </ul>
 
                 </section>
+
+
 
                 <section id="open">
                     <h2>Pending Considerations</h2>
@@ -139,7 +175,7 @@
                         </li>
                         <li>How should imported tests be identified?
                             <ul>
-                                <li>Adobe recommendation: Imported tests should live under a new directory beneath LayoutTests</li>
+                                <li>Adobe recommendation: Imported tests should live under a new directory structure beneath LayoutTests</li>
                             </ul>
                         </li>
                         <li>Should any needed test updates (e.g. to paths, metadata, etc.) be automated with a script?
@@ -157,6 +193,11 @@
                                 <li>Adobe recommendation: Yes, this change should not prevent import of other tests, and may facilitate the reuse of additional tests from browser vendors</li>
                             </ul>
                         </li>
+                        <li>Should W3C Pixel tests be imported into WebKit?
+                            <ul>
+                                <li>Adobe recommendation: No, we should not add pixel tests to WebKit</li>
+                            </ul>                        
+                        </li>
                     </ul>
                 </section>
 
@@ -164,7 +205,7 @@
                 <section id="final">
                     <h2>Next Steps</h2>
                     <ul>
-                        <li>We need help with this effort - please contact if us if you want to contribute
+                        <li>We need help with this effort - please contact us if you want to contribute
                             <ul>
                                 <li>email: jacobg@adobe.com</li>
                             </ul>
