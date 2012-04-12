@@ -22,8 +22,11 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h2>WebKit Contributors Meeting</h2>
-					<h3 class="inverted">New CSS Layout Features</h3>
+					<h2>2012 WebKit Contributors Meeting</h2>
+					<h3 class="inverted">CSSRegions - magazine layout for the Web</h3>
+					<p>Mihnea Ovidenie</p>
+					<p><a href="mailto:mihnea@adobe.com">mihnea@adobe.com</a></p>
+					<p><a href="http://twitter.com/omihnea">@omihnea</a></p>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
@@ -32,12 +35,43 @@
 				</section>
 				
 				<section>
-					<h2>Slide Title</h2>
-			  <ul>
-			    <li>Point A</li>
-			  </ul>
-			  </section>
-				
+					<h2>who/mihnea</h2>
+					<ul>
+						<li>@Adobe since July '08</li>
+						<li>Bucharest, Romania</li>
+						<li>Webkit/Adobe AIR</li>
+						<li>CSSRegions/CSSShaders prototypes</li>
+						<li>CSSRegions in WebKit since June '11</li>
+						<li>Webkit committer since September '11</li>
+					</ul>
+			  	</section>
+			
+				<section>
+					<section>
+						<h2>Introducing CSSRegions</h2>
+						<ul>
+							<li>Create appealing digital magazines/newspapers</li>
+							<li>Define and arbitrarily assign flows of content between disjoint containers</li>
+							<li>More than one flow of content in the document -> multiple named flows</li>
+							<li>containers = regions -> don’t need to have the same dimensions, don’t need to have the same positioning scheme, can be styled separately</li>
+						</ul>
+					</section>
+					<section>
+						<img width="800px" height="600px" src="assets/images/IntoTheGreatWideOpen.png"></img>
+					</section>
+				</section>
+				<section>
+					<h2>CSSRegions concepts: named flows</h2>
+					<ul>
+						<li>Flow: gather conceptually related content</li>
+						<li>Named flow: identify the flow by name</li>
+						<img width="400px" height="400px" src="assets/images/Separate-content-in-flows.png" style="float:left"></img>
+						<!-- Code snippet illustrating how content is moved to a flow -->
+						<pre style="float:right">
+							<h1 style="-webkit-flow-into: titleFlow">Lorem ipsum...</h1>
+						</pre>
+					</ul>
+				</section>
 			</div>
 
 			<!-- The navigational controls UI -->
