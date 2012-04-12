@@ -21,6 +21,7 @@
 			
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+				<!-- Slide 1 -->
 				<section>
 					<h2>2012 WebKit Contributors Meeting</h2>
 					<h3 class="inverted">CSSRegions - magazine layout for the Web</h3>
@@ -33,7 +34,7 @@
 						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
 					</script>
 				</section>
-				
+				<!-- Slide 2 -->
 				<section>
 					<h2>who/mihnea</h2>
 					<ul>
@@ -44,8 +45,8 @@
 						<li>CSSRegions in WebKit since June '11</li>
 						<li>Webkit committer since September '11</li>
 					</ul>
-			  	</section>
-			
+				</section>
+				<!-- Slide 3 -->
 				<section>
 					<section>
 						<h2>Introducing CSSRegions</h2>
@@ -60,6 +61,7 @@
 						<img width="800px" height="600px" src="assets/images/IntoTheGreatWideOpen.png"></img>
 					</section>
 				</section>
+				<!-- Slide 4 -->
 				<section>
 					<h2>CSSRegions concepts: named flows</h2>
 					<ul>
@@ -71,6 +73,87 @@
 							<h1 style="-webkit-flow-into: titleFlow">Lorem ipsum...</h1>
 						</pre>
 					</ul>
+				</section>
+				<!-- Slide 5 -->
+				<section>
+					<h2>CSSRegions concepts: regions</h2>
+					<ul>
+						<li>Region: container that renders content from a named flow</li>
+						<li>Region content is replaced by named flow content</li>
+						<li>Not necessary a DOM element</li>
+						<img width="400px" height="400px" src="assets/images/Separate-content-in-flows.png" style="float:left"></img>
+					</ul>
+				</section>
+				<!-- Slide 6 -->
+				<section>
+					<section>
+						<h2>CSSRegions concepts: region styling</h2>
+						<ul>
+							<li>Style the content based on the region in which the content is flown</li>
+							<li>Only a subset of properties can be styled</li>
+						</ul>
+					</section>
+					<section>
+						<!-- add here image from region styling demo -->
+						<img width="800px" height="600px" src="assets/images/RegionStylingSample.png"></img>
+					</section>
+				</section>
+				<!-- Slide 7 -->
+				<section>
+					<h2>CSSRegions CSSOM</h2>
+					<ul>
+						<li>Expose CSSRegions concepts to scripting</li>
+					</ul>
+				</section>
+				<!-- Slide 8 -->
+				<section>
+					<h2>CSSRegions implementation in WebKit</h2>
+					<ul>
+						<li>Follows <a href="http://www.w3.org/TR/2011/WD-css3-regions-20111129">last WD revision of spec</a></li>
+						<li>Runtime flag: WebKitCSSRegionsEnabled</li>
+						<!-- comments for above
+						<li>Enabled on Mac port of WebKit</li>
+						<li>Can be enabled in Chrome using chrome://flags</li>
+						-->
+						<li>Parsing of CSS properties: DONE</li>
+						<li>Collecting the elements into a flow: DONE</li>
+						<li>Display the content of flow using regions: DONE</li>
+						<li>Region styling: only background-color</li>
+						<li>CSSOM: almost DONE</li>
+					</ul>
+				</section>
+				<!-- Slide 9 -->
+				<section>
+					<h2>Layout and rendering overview</h2>
+					<h3>Layout phase</h3>
+					<ul>
+						<li>Phase1: content is collected into named flows</li>
+						<li>Phase2: regions are laid out</li>
+						<li>Phase3: named flows are laid out</li>
+					</ul>
+					<h3>Rendering phase</h3>
+					<ul>
+						<li>Regions "paint" the associated part of the named flow</li>
+					</ul>
+				</section>
+				<!-- Slide 10 -->
+				<section>
+					<h2>Future developement for CSSRegions</h2>
+					<ul>
+						<li>New editor draft in the works</li>
+						<li>Auto-size algorithm</li>
+						<li>Improved CSSOM model</li>
+						<li>Prototype for auto-sizing in WebKit</li>
+						<li>Resume working on region styling</li>
+					</ul>
+				</section>
+				<!-- Slide 11 -->
+				<section>
+					<h2>References</h2>
+				</section>
+				<!-- Slide 12 -->
+				<section>
+					<h2>Thank you</h2>
 				</section>
 			</div>
 
