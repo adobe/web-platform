@@ -195,7 +195,7 @@ html {
 	font-family: monospace;
 	line-height: 1.1em;
 
-	word-wrap: break-word;
+    word-wrap: break-word;
 
 	box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
 }

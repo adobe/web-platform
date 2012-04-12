@@ -57,32 +57,90 @@
 							<li>containers = regions -> don’t need to have the same dimensions, don’t need to have the same positioning scheme, can be styled separately</li>
 						</ul>
 					</section>
-					<section>
-						<img width="800px" height="600px" src="assets/images/IntoTheGreatWideOpen.png"></img>
+					<section>               
+                        <img src="assets/images/road-trip-front.png"  style="width: 100%" />
 					</section>
+					<section>               
+                        <img src="assets/images/road-trip-content.png"  style="width: 100%" />
+					</section>
+					<section>               
+                        <img src="assets/images/road-trip-portrait-front.png"  style="height: 100%" />
+					</section>
+					<section>               
+                        <img src="assets/images/road-trip-portrait-content.png"  style="height: 100%" />
+					</section>
+					
 				</section>
 				<!-- Slide 4 -->
-				<section>
-					<h2>CSSRegions concepts: named flows</h2>
-					<ul>
-						<li>Flow: gather conceptually related content</li>
-						<li>Named flow: identify the flow by name</li>
-						<img width="400px" height="400px" src="assets/images/Separate-content-in-flows.png" style="float:left"></img>
-						<!-- Code snippet illustrating how content is moved to a flow -->
-						<pre style="float:right">
-							<h1 style="-webkit-flow-into: titleFlow">Lorem ipsum...</h1>
-						</pre>
-					</ul>
-				</section>
+                <section>
+                    <section>
+                        <h2>CSSRegions concepts: named flows</h2>
+                        <ul>
+                            <li>Flow: gather conceptually related content</li>
+                            <img src="assets/images/flow-example.png" style="width: 500px;" />
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>CSSRegions concepts: named flows</h2>
+                        <ul>
+                            <li>Named flow: identify the flow by name</li>
+                            <!-- Code snippet illustrating how content is moved to a flow -->
+                        </ul>
+<pre><code class="css">
+    h1, 
+    #subtitle {
+      -webkit-flow-into: title-flow;
+    }       
+
+    article {
+      -webkit-flow-into: article-flow;
+    }    
+
+    aside {
+      -webkit-flow-into: sidebar-flow;
+    }
+
+</code></pre>
+                        
+                    </section>
+                    
+                </section>
 				<!-- Slide 5 -->
-				<section>
-					<h2>CSSRegions concepts: regions</h2>
-					<ul>
-						<li>Region: container that renders content from a named flow</li>
-						<li>Region content is replaced by named flow content</li>
-						<li>Not necessary a DOM element</li>
-						<img width="400px" height="400px" src="assets/images/Separate-content-in-flows.png" style="float:left"></img>
-					</ul>
+				<section> 
+                    <section>
+                    <h2>CSSRegions concepts: regions</h2>
+                    <ul>
+                        <li>Region: container that renders content from a named flow</li>
+                        <li>Region content is replaced by named flow content</li>
+                        <li>Not necessary a DOM element</li> 
+                    </ul>    
+                    </section>
+                    
+                    <section>
+                    <h2>CSSRegions concepts: regions</h2>
+                    <ul>
+                    <li>Region: container that renders content from a named flow</li>
+                    <li>Region content is replaced by named flow content</li>
+                    <li>Not necessary a DOM element</li> 
+                    </ul>
+<pre><code class="css">
+    #title{
+        -webkit-flow-from: title-flow;    
+    }
+
+    #article{
+        -webkit-flow-from: article-flow;    
+    }       
+
+    /* Experimental */
+    #article::after{
+        -webkit-flow-from: sidebar-flow;    
+    }
+
+</code></pre>
+   
+                    </section>
+					
 				</section>
 				<!-- Slide 6 -->
 				<section>
@@ -99,11 +157,51 @@
 					</section>
 				</section>
 				<!-- Slide 7 -->
-				<section>
-					<h2>CSSRegions CSSOM</h2>
-					<ul>
-						<li>Expose CSSRegions concepts to scripting</li>
-					</ul>
+                <section>
+                    <section>
+                        <h2>CSSRegions CSSOM</h2>
+                        <ul>
+                            <li>Expose CSSRegions concepts to scripting</li>
+                            <li>NamedFlow interface</li>
+                        </ul>
+<pre><code class="javascript">
+    var flow = document.webkitGetFlowByName("article-flow")
+        flow.overflow
+        // Boolean 
+        // true if the flow content didn't fit in the regions
+        // false if the content fully fits in the regions
+
+
+    var firstParagraph = document.querySelector("p")    
+        flow.getRegionsByContentNode(firstParagraph) 
+        // NodeList 
+        // regions where the paragraph is rendered
+
+</code></pre>
+                    </section>
+                    <section>
+                        <h2>CSSRegions CSSOM</h2>
+                        <ul>
+                            <li>Events on regions</li>
+                        </ul>
+<pre><code class="css">    /* CSS */    
+    .region{
+        -webkit-flow-from: article-flow
+    }
+</code></pre>    
+<pre><code class="javascript">
+    var region = document.querySelector(".region")
+        region.addEventListener("webkitLayoutChange", function(e){
+
+            e.target.webkitRegionOverflow
+            // String
+            // 'fit' - content fits in the region
+            // 'overflow' - content overflows into the next region
+            // 'empty' - no content in this region
+        })
+
+</code></pre>
+                    </section>
 				</section>
 				<!-- Slide 8 -->
 				<section>

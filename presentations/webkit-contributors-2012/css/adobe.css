@@ -107,4 +107,11 @@ section .chartTitle {
 table.minimal-style { margin-left:auto; margin-right:auto; border-collapse: collapse; font-size: 16px; text-align: left; min-width: 1000px; margin-bottom:25px; line-height: 1.2em;}
 table.minimal-style th { border-bottom: 2px solid #ffffff; color: #ffffff; font-size: 18px; font-weight: normal; padding: 5px; }
 table.minimal-style td { border-bottom: 1px solid #CCCCCC; color: #999; padding: 4px 6px; }
-table.minimal-style tbody tr:hover td {color:#ffffff;}
+table.minimal-style tbody tr:hover td {color:#ffffff;}  
+     
+
+/* CODE SYNTAX TWEAKS */    
+#reveal code{
+    font-size:1.35em;
+    line-height:1.5em;
+}
