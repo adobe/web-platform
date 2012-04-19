@@ -1,0 +1,319 @@
+<!--
+Copyright 2011 Adobe Systems, incorporated
+This work is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License <http://creativecommons.org/licenses/by-nc-sa/3.0/> . 
+Permissions beyond the scope of this license, pertaining to the examples of code included within this work are available at Adobe <http://www.adobe.com/communities/guidelines/ccplus/commercialcode_plus_permission.html> .
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Adobe CSS Exclusions Prototype</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+		
+		#nav,
+		#nav li{
+			padding:0;
+			margin:0;
+		}
+		
+		#nav{
+			padding:5px 20px;
+			list-style:none;
+		}
+		
+		#nav li{
+			display:inline-block;
+			margin-right:20px;
+		}
+		
+		#nav a{
+			color:#ff2705;
+		}
+		
+		#nav a:hover;{
+			text-decoration:none;
+		}
+		
+		#footer{
+			margin:80px 0 50px;
+		}
+	
+		body{
+			margin:0 auto;
+			width:600px;
+			font-size:18px;
+			font-family: Helvetica, Arial, serif;
+			overflow-x:hidden;
+		}
+		
+		code{
+			line-break:none;
+		}
+		
+		a{
+			color:#ff2705;
+			text-decoration:none;
+		} 
+		
+		a:hover{
+			color:#333;
+			text-decoration:underline;
+		}
+		
+		h1{
+			background:#ff2705;
+			color:white;
+			padding:50px 20px 20px;
+			margin:0;
+			font-size:18pt;
+			text-shadow:1px 1px 2px black;
+		}
+		
+		h1 #common {
+			display: inline-block;
+		}
+		
+		h1 span {
+			display: block;
+			font-size: 12pt;
+		}
+		
+		h1 em{
+			font-size:28px;
+			display:block;
+			font-weight:lighter;
+			font-style:normal;
+		}
+		
+		h2{
+			font-size:42px;
+			letter-spacing:-2px;
+			border-bottom:3px solid black;
+			color:black;
+			padding:40px 0 5px;
+		}
+		
+		h3{
+			color:#444;
+			font-size:32px;
+		}
+		
+		h4{
+			margin-bottom:10px;
+		}
+		
+		h4 a{
+			font-size: 28px;
+		}
+		
+		h4 a:hover{
+			color:#333;    
+			text-decoration:none;
+		}
+		
+		ul.samples{
+			list-style:none;
+		}
+		
+		ul.samples,
+		ul.samples li{
+			margin:0;                                                                   
+			padding:0;
+		}
+		
+		ul.samples li{
+			padding-bottom:40px;
+		}  
+		
+		a img{
+			border:1px solid #ccc;     
+			padding:9px;
+		}    
+		
+		a:hover img{
+			border:1px solid #999;     
+			padding:9px;    
+			background:#ebebeb;
+		}
+		
+	</style>
+</head>
+<body>
+	
+	<a href="Home"></a>
+	<h1><div id="common">CSS Exclusions Prototype <span>by Adobe Web Platform</span></div></h1>
+	
+	<ul id="nav">
+		<li>
+			<strong>Home</strong>
+		</li>
+		<li>
+			<a href="../Documentation.html">Documentation</a>
+		</li>
+		<li>
+			<a href="viewer.html">Samples</a>
+		</li>
+	</ul>
+	
+	<h2>Contents</h2>
+	<ul id="toc">
+		<li>
+			<a href="#about">About</a>
+		</li>
+		<li>
+			<a href="#runs">Runs In</a>
+		</li>
+		<li>
+			<a href="#benefits">Why use CSS Exclusions</a>
+		</li>	
+		<li>
+			<a href="#samples_basic">Basic Samples</a>
+		</li>
+		<li>
+			<a href="#documentation">Documentation</a>
+		</li>
+		<li>
+			<a href="#feedback">Feedback</a>
+		</li>
+	</ul>
+	
+	<h2 id="about">About</h2>
+	<p><a href="http://dev.w3.org/csswg/css3-exclusions/">CSS Exclusions</a> brings new properties to <abbr title="Cascading Style Sheets">CSS</abbr> 
+	(<a href="http://www.w3.org/TR/CSS21/">Cascading Style Sheets</a>) in order to provide exclusions shapes which text will wrap around.</p> 
+	
+	<p>We have put together a set of simple demos for you that show off these capabilities. Be sure to check back here regularly as we post more samples regularly.</p>
+
+	<p>The current set provide basic samples that demonstrate individual CSS Exclusions properties. </p>
+	
+	<h2 id="runs">Runs In</h2>
+	<p>Currently CSS Exclusions is not fully implemented in any browsers though we are starting to contribute the early parsing and geometry pieces to WebKit.</p> 
+	
+	<p>Check back for details on implementation progress.</p>
+	
+	<p>In the meantime, to run the samples shared here, you will need to use a mini-browser which uses a specifically modified version of WebKit that includes support for 
+	CSS Exclusions. This experimental mini-browser will allow you to experiment with the samples, and are a way for us to explore the implementation options for these features.<p>
+	
+	<p>To run this mini-browser, please see the readme.txt file section titled "Usage Instructions". </p>
+	
+	<h2 id="benefits">Why use CSS Exclusions</h2>
+	
+	<p>CSS Exclusions provides a great benefit to both web designers as well as developers.</p>
+	
+	<p>With CSS Exclusions, you can take advantage of new CSS properties that let you build rich interfaces with custom text exclusions. Custom text exclusions allow text 
+	to be excluded by shapes or images</p>
+	
+	<p>CSS Exclusions is easy to pick up. They build upon familiar CSS properties and structures. Additionally, CSS Exclusions are often used in conjunction with 
+	<a href="http://html.adobe.com/webstandards/cssregions/">CSS Regions</a>, a feature that lets you control how text flows across different regions in a layout </p>
+	
+	<div class="grid">
+			<a href="#samples_basic" class="callout prominent">See the basic samples</a><br />
+			<a href="../Documentation.html" class="callout">Read the documentation</a>
+
+	</div>
+
+	<h2 id="samples_basic">Basic samples</h2>
+	<ul class="samples">
+		
+		<li>
+			<h4>
+				<a href="viewer.html?url=simple_shape.html">Content shape</a>
+			</h4>
+				<img src="images/screenshots/simple_shape.png" alt="" />		
+			<p>
+				<strong>Demonstrates:</strong> custom shape for text container.
+			</p>
+			<p>
+				<strong>CSS Exclusions properties used:</strong> 
+				<code>-webkit-wrap-shape</code>, <code>-webkit-wrap-shape-mode</code>
+			</p>
+		</li>
+		
+		<li>
+			<h4>
+				<a href="viewer.html?url=simple_exclusion.html">Text exclusion</a>
+			</h4>
+			
+			<img src="images/screenshots/simple_exclusion.png" alt="" />
+			
+			<p>
+				<strong>Demonstrates:</strong> exclusion shape affecting text layout.
+			</p>
+			<p>
+				<strong>CSS Exclusions properties used:</strong> 
+				<code>-webkit-wrap-shape</code>, <code>-webkit-wrap-shape-mode</code>
+			</p>
+		</li>
+		
+		<li>
+			<h4>
+				<a href="viewer.html?url=simple_interactive.html">Dynamic exclusion</a>
+			</h4>
+			
+			<img src="images/screenshots/simple_interactive.png" alt="" />
+			
+			<p>
+				<strong>Demonstrates:</strong> text flowing around an exclusion.
+			</p>
+			<p>
+				<strong>CSS Exclusion properties used:</strong> 
+				<code>-webkit-wrap-shape</code>, <code>-webkit-wrap-shape-mode</code>
+			</p>
+		</li>
+		
+		<li>
+			<h4>
+				<a href="viewer.html?url=simple_shape-order.html">Shape order</a>
+			</h4>
+			
+			<img src="images/screenshots/simple_shape-order.png" alt="" />
+			
+			<p>
+				<strong>Demonstrates:</strong> shapes affecting each other
+			</p>
+			<p>
+				<strong>CSS Exclusions properties used:</strong> 
+				<code>-webkit-wrap-shape</code>, <code>-webkit-wrap-shape-mode</code>, <code>-webkit-wrap-shape-order</code>
+			</p>
+		</li>
+	
+	</ul>
+
+	
+	<h2 id="documentation">Documentation</h2>
+	<p>
+		Are you ready to roll up your sleeves and experiment with CSS Exclusions? The 
+		<a href="../Documentation.html">documentation</a> covers the properties that 
+		have been prototyped so far.
+	</p>
+	<p>
+		Using this documentation, you'll learn how to render text inside or around custom shapes using only CSS. 
+	</p>	
+		
+	</p>
+	
+	<h2 id="feedback">Feedback</h2>
+	<p>
+		Please keep in mind that the CSS Exclusions prototype is a work in progress. 
+	</p>
+	<p>
+		The development so far has been done following the <a href="http://dev.w3.org/csswg/css3-exclusions/">CSS Exclusions</a>  editor's draft.
+		Comments and suggestions for these documents are very welcome! 
+	</p>
+	
+	<ul>
+		<li>
+			For comments on the <a href="http://dev.w3.org/csswg/css3-exclusions/">CSS Exclusions editor's draft</a> proposal please use the <a href="http://lists.w3.org/Archives/Public/www-style/">www-style@w3.org</a> mailing list on the W3C website. Please use an identifier such as "[CSS Exclusions]" in the subject of your email.
+		</li>
+		<li>
+			If you have any questions or comments about the current prototype or the samples please drop us a message on the <a href="http://www.adobe.com/go/cssregions_forum">CSS Regions & Exclusions Forum</a>.
+		</li>
+	</ul>
+	
+	<p>Any feedback on the proposals is very welcome. It helps us provide a feature that's both fun and useful in the modern web landscape.</p>
+	
+	<p id="footer">
+		Thanks! <br />
+		Adobe Web Platform Team 
+	</p>
+</body>
+</html>
