@@ -1,0 +1,170 @@
+<!--
+Copyright 2011 Adobe Systems, incorporated
+This work is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License <http://creativecommons.org/licenses/by-nc-sa/3.0/> . 
+Permissions beyond the scope of this license, pertaining to the examples of code included within this work are available at Adobe <http://www.adobe.com/communities/guidelines/ccplus/commercialcode_plus_permission.html> .
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Regions - Simple Template Demo</title>
+	<script src="modernizr.js" type="text/javascript"></script>
+	<script src="css-regions.js" type="text/javascript"></script>
+	<style type="text/css">
+	
+	/* 
+		Colors
+		
+		#C5DFF0 - light blue
+		#D3ECB5 - light green
+		#919789 - dark green
+		#C34150 - desaturated pink
+	*/
+	
+	body,
+	html{
+		height:100%;
+		width:100%;
+		overflow:hidden;
+	}
+	
+	body{
+		margin:0;
+		font-family: Helvetica, Arial, sans-serif;
+		color:#222;
+		font-size:15px;
+		line-height:20px;
+	}
+	
+	#instructions{
+		font-size:13px;
+		padding:5px 25px;
+		background:#ffc;
+		border-bottom:1px solid #fc0;
+	}
+	
+	#source{
+		-webkit-flow-into: main-thread;
+		text-align:justify;
+		-webkit-hyphens:auto;
+	}
+	
+	#secondary-source{
+		-webkit-flow-into: secondary-thread;
+		text-align:justify;
+		-webkit-hyphens:auto;
+	}
+	
+	.region{
+		width:100%;
+		height:100%;
+	}
+	
+	#region1,
+	#region3{
+		-webkit-flow-from: main-thread;
+	}
+	
+	#region2,
+	#region4{
+		-webkit-flow-from: secondary-thread;
+	}
+	
+	.container{
+		margin:0 25px 25px 0;
+		padding:15px;
+		width:15%;
+		height:50%;
+		float:left;		
+		position:relative;
+	}
+	
+		.container em{
+			position:absolute;
+			display:block;
+			font-style:normal;
+			font-size:12px;
+			color:#333;
+			bottom:-25px;
+			right:0;
+		}
+		
+	
+	#container4{
+		margin-right:0;
+	}
+	
+	#container1,
+	#container3{
+		background:#C5DFF0;
+	}
+	
+	#container2,
+	#container4{
+		background:#D3ECB5;
+	}
+	
+	#workspace{
+		position:relative;
+		padding:25px;
+	}
+
+	.warning {
+		border: 1px solid black;
+		color: red;
+		margin: 5px;
+		padding: 2px;
+		font-size: 1.2em;
+		display: none;
+	}
+	
+	.no-regions .warning {
+		display:block;
+	}
+	
+	</style>
+</head>
+<body>
+	<div id="regionsNotSupportedMsg" class="warning">
+		Your browser does not appear to support CSS Regions, which is required by this demo. Try it in <a href="http://nightly.webkit.org/">WebKit nightly</a> or Chrome 16+ with CSS Regions flag enabled.
+	</div>
+	
+	<div id="instructions">
+		<strong>Tip:</strong> resize the browser window to see how text from multiple threads flows through regions. 
+	</div>
+	
+	<div id="source">
+		<p>This is a some&shy;what con&shy;trived ex&shy;am&shy;ple that shows how mul&shy;ti&shy;ple ar&shy;bi&shy;trary col&shy;umns al&shy;low for paged con&shy;tent styl&shy;ing. Con&shy;tent can be in&shy;ter&shy;rupt&shy;ed and re&shy;sume lat&shy;er with some nav&shy;i&shy;ga&shy;tion aid to point the read&shy;er where to go. In this case the in&shy;ter&shy;rup&shy;tion is a sep&shy;a&shy;rate ar&shy;ti&shy;cle of text, but in a more com&shy;plex ex&shy;am&shy;ple there may be a paged dis&shy;play where mul&shy;ti&shy;ple ar&shy;ti&shy;cles be&shy;gin on the first page and are each con&shy;tin&shy;ued on dif&shy;fer&shy;ent pag&shy;es.</p>
+		<p>Each col&shy;umn could have its own adorn&shy;ments. Here there are stat&shy;ic “con&shy;tin&shy;ued on” mark&shy;ers but with a bit of javas&shy;cript there could be foot&shy;notes for mark&shy;ers that fall in&shy;side the col&shy;umn or oth&shy;er such call&shy;outs.</p>
+		<p>This par&shy;a&shy;graph prob&shy;a&shy;bly falls in the third col&shy;umn, sand&shy;wiched be&shy;tween the fill&shy;er ar&shy;ti&shy;cle col&shy;umns, but in the HTML it’s con&shy;tig&shy;u&shy;ous with the rest of the blue back&shy;ground text.</p>
+	</div>
+	
+	<div id="secondary-source">
+		<p>This ar&shy;ti&shy;cle is fill&shy;er to show that the dis&shy;play of text can be in&shy;ter&shy;rupt&shy;ed by oth&shy;er con&shy;tent and re&shy;sume else&shy;where as your de&shy;sign re&shy;quires. This par&shy;tic&shy;u&shy;lar de&shy;sign is not that use&shy;ful, but it does show the in&shy;ter&shy;rup&shy;tion and re&shy;sump&shy;tion of text with&shy;in a sin&shy;gle screen, which may make for a demo that can be quick&shy;ly com&shy;pre&shy;hend&shy;ed.</p>
+		<p>This ar&shy;ti&shy;cle is fill&shy;er to show that the dis&shy;play of text can be in&shy;ter&shy;rupt&shy;ed by oth&shy;er con&shy;tent and re&shy;sume else&shy;where as your de&shy;sign re&shy;quires. This par&shy;tic&shy;u&shy;lar de&shy;sign is not that use&shy;ful, but it does show the in&shy;ter&shy;rup&shy;tion and re&shy;sump&shy;tion of text with&shy;in a sin&shy;gle screen, which may make for a demo that can be quick&shy;ly com&shy;pre&shy;hend&shy;ed.</p>
+		<p>This ar&shy;ti&shy;cle is fill&shy;er to show that the dis&shy;play of text can be in&shy;ter&shy;rupt&shy;ed by oth&shy;er con&shy;tent and re&shy;sume else&shy;where as your de&shy;sign re&shy;quires. This par&shy;tic&shy;u&shy;lar de&shy;sign is not that use&shy;ful, but it does show the in&shy;ter&shy;rup&shy;tion and re&shy;sump&shy;tion of text with&shy;in a sin&shy;gle screen, which may make for a demo that can be quick&shy;ly com&shy;pre&shy;hend&shy;ed.</p>
+	</div>
+	
+	<div id="workspace">
+		
+		<div id="container1" class="container">
+			<div id="region1" class="region"></div>
+			<em>continued in column 3</em>
+		</div>
+		
+		<div id="container2" class="container">
+			<div id="region2" class="region"></div>
+			<em>continued in column 4</em>
+		</div>
+
+		<div id="container3" class="container">
+			<div id="region3" class="region"></div>
+		</div>
+		
+		<div id="container4" class="container">
+			<div id="region4" class="region"></div>
+		</div>
+	</div>
+	
+</body>
+</html>
