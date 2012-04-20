@@ -118,13 +118,13 @@ written permission of Adobe.
 	
 	<ul id="nav">
 		<li>
-			<a href="samples/index.html">Home</a>
+			<a href="index.html">Home</a>
 		</li>
 		<li>
 			<strong>Documentation</strong>
 		</li>
 		<li>
-			<a href="samples/viewer.html">Samples</a>
+			<a href="index.html#samples_basic">Samples</a>
 		</li>
 	</ul>
 	
@@ -142,33 +142,12 @@ written permission of Adobe.
 				<li>
 					<a href="#dt_content-from">content</a>
 				</li>
-				<li>
-					<a href="#dt_content-order">-webkit-content-order</a>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<a href="#shapes">Shapes and exclusions</a>
-			<ul>
-				<li>
-					<a href="#dt_wrap-shape">-webkit-wrap-shape</a>
-				</li>
-				<li>
-					<a href="#dt_wrap-shape-mode">-webkit-wrap-shape-mode</a>
-				</li>
-				<li>
-					<a href="#dt_wrap-shape-order">-webkit-wrap-shape-order</a>
-				</li>
-				<li>
-					<a href="#dt_render-wrap-shape">-webkit-render-wrap-shape</a>
-				</li>
 			</ul>
 		</li>
 	</ul>
 	
 	<p>This document briefly describes the properties from the 
-		<a href="http://dev.w3.org/csswg/css3-regions/">CSS Regions</a> and the <a href="http://dev.w3.org/csswg/css3-exclusions/">CSS Exclusions</a>  editor's drafts that 
-		have been prototyped so far.</p>
+		<a href="http://dev.w3.org/csswg/css3-regions/">CSS Regions</a> Specification.</p>
 	
 	<h2 id="definitions">Definitions and concepts</h2>
 	
@@ -177,12 +156,6 @@ written permission of Adobe.
 	</p>
 	<p>
 		<strong>Region:</strong> an element that consumes content from a content thread.
-	</p>
-	<p>
-		<strong>Content shape:</strong> the interior of the shape defined by a wrap-shape, clipped by the content-box.
-	</p>
-	<p>
-		<strong>Exclusion:</strong> the exterior of the shape defined by a wrap-shape, not clipped by the content-box.
 	</p>
 	
 	<h2 id="threads">Content threads and regions</h2>
@@ -277,142 +250,9 @@ written permission of Adobe.
 &lt;/div&gt;
 </pre>			
 		</dd>
-		
-		<dt id="dt_content-order">-webkit-content-order</dt>
-		<dd>
-			<p>Content from a thread will flow into elements in the order defined by the <code>-webkit-content-order</code> property.</p>
-			<p>Regions with a lower <code>-webkit-content-order</code> get content first.</p>
-			<h3>Example</h3>
-<pre>
-&lt;style type=&quot;text/css&quot;&gt;
-    #article{
-        -webkit-flow: &quot;article-thread&quot;;
-    }
 	
-    #region1,
-    #region2{
-        content:from(article-thread);
-    }
-	
-    #region1{
-        <em>-webkit-content-order:2;</em>
-    }
-	
-    #region2{
-        <em>-webkit-content-order:1;</em>
-    }
-&lt;/style&gt;
-
-&lt;div id=&quot;region1&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;region2&quot;&gt;&lt;/div&gt;
-&lt;div id="article"&gt;
-	This content will flow first into #region2 then into #region1.
-&lt;/div&gt;
-</pre>
-		</dd>
 	</dl>
 	
-	<h2 id="shapes">Shapes and exclusions</h2>
-	
-	<dl>
-		<dt id="dt_wrap-shape">-webkit-wrap-shape</dt>
-		<dd>
-			<p>The <code>-webkit-wrap-shape</code> property is used to define the boundary in which to flow content.
-			 The <code>-webkit-wrap-shape</code> property is also used to define the area to be avoided when laying out content. Whether content flows inside or around the shape depends on the 
-			<code>wrap-shape-mode</code> property.</p>
-			<p>The prototype implementation lets you specify a wrap shape as a polygon in a series of x,y points in coordinates relative to the containing box.</p>
-			<h3>Example</h3>
-<pre>
-&lt;style type="text/css"&gt;
-#content-shape{
-    height:200px;
-    width:200px;
-    <em>-webkit-wrap-shape: polygon(0px,0px 200px,200px 0px,200px);</em>
-    -webkit-wrap-shape-mode: around;
-}		
-&lt;/style&gt;
-
-&lt;div id="content-shape"&gt;
-    &lt;p&gt;I do like triangles, don't you?&lt;/p&gt;
-&lt;/div&gt;
-</pre>
-		</dd>
-		
-		<dt id="dt_wrap-shape-mode">-webkit-wrap-shape-mode</dt>
-		<dd>
-			<p>The <code>-webkit-wrap-shape-mode</code> property can be set to <em>'content'</em>, 
-				<em>'around'</em> or <em>'none'</em> (the default). <em>'none'</em> means this element ignores all wrap shapes. If set to <em>'content'</em>, the content in the element will flow inside its own wrap shape and around any other wrap shapes, but that wrap shape will not affect any outside element. If set to <em>'around'</em>, then the wrap shape fully affects both inside and outside content.</p>
-			<h3>Example</h3>
-<pre>
-&lt;style type="text/css"&gt;
-#triangle-exclusion{
-    height:200px;
-    width:200px;
-    -webkit-wrap-shape: polygon(0px,0px 200px,200px 0px,200px);
-    <em>-webkit-wrap-shape-mode: around;</em>
-}
-#content{
-    <em>-webkit-wrap-shape-mode: content;</em>
-    width:40%;
-}
-&lt;/style&gt;
-
-&lt;div id="triangle-exclusion"&gt;&lt;/div&gt;
-&lt;div id="content"&gt;&lt;p&gt;The outside of a triangle provides a good slope for content to fall down.&lt;/p&gt;&lt;/div&gt;
-</pre>
-		</dd>
-
-		<dt id="dt_wrap-shape-order">-webkit-wrap-shape-order</dt>
-		<dd>
-			<p>Exclusions only affect the block elements that have an equal or smaller <code>-webkit-wrap-shape-order</code> number. The values can be both positive and negative. The default value is 0.</p>
-			<h3>Example</h3>
-<pre>
-&lt;style type="text/css"&gt;
-#triangle-exclusion{
-    height:200px;
-    width:200px;
-    -webkit-wrap-shape: polygon(0px,0px 200px,200px 0px,200px);
-    -webkit-wrap-shape-mode: around;
-}
-#defaultOrder{
-    -webkit-wrap-shape-mode: content;
-    width:40%;
-}
-#higherOrder{
-    -webkit-wrap-shape-mode: content;
-    <em>-webkit-wrap-shape-order: 1;</em>
-    width:40%;
-}
-&lt;/style&gt;
-
-&lt;div id="triangle-exclusion"&gt;&lt;/div&gt;
-&lt;div id="defaultOrder"&gt;
-  &lt;p&gt;This div will be affected by the wrap shape with a default wrap-shape-order of zero.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id="higherOrder"&gt;
-  &lt;p&gt;But this div will ignore the wrap shape, because its wrap-shape-order is higher.&lt;/p&gt;
-&lt;/div&gt;
-</pre>
-		</dd>	
-		
-		<dt id="dt_render-wrap-shape">-webkit-render-wrap-shape</dt>
-		<dd>
-			<p>Using <code>-webkit-render-wrap-shape: auto</code> shows the wrap shape for an element. This is for debugging purposes only and is not part of the <a href="http://dev.w3.org/csswg/css3-regions/">CSS Regions Editor's draft</a>.</p>
-			<h3>Example</h3>
-<pre>
-&lt;style type="text/css"&gt;
-#triangle-exclusion{
-    height:200px;
-    width:200px;
-    -webkit-wrap-shape: polygon(0px,0px 200px,200px 0px,200px);
-    <em>-webkit-render-wrap-shape: auto;</em>
-}
-&lt;/style&gt;
-
-&lt;div id="triangle-exclusion"&gt;&lt;/div&gt;
-</pre>
-		</dd>
-	</dl>
 
 </body>
 </html>

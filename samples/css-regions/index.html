@@ -148,10 +148,10 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 			<strong>Home</strong>
 		</li>
 		<li>
-			<a href="../Documentation.html">Documentation</a>
+			<a href="Documentation.html">Documentation</a>
 		</li>
 		<li>
-			<a href="viewer.html">Samples</a>
+			<a href="#samples_basic">Samples</a>
 		</li>
 	</ul>
 	
@@ -172,6 +172,9 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 			</ul>
 			
 		</li>	
+		<li>
+			<a href="#runs">Runs In</a>
+		</li>
 		<li>
 			<a href="#samples_basic">Basic Samples</a>
 		</li>
@@ -194,8 +197,6 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 	<p>We have put together a set of demos for you. They showcase some of the concepts we proposed to the W3C with 
 		<a href="http://dev.w3.org/csswg/css3-regions/">CSS Regions</a> like content threads and content shapes</p>
 
-	<p>The samples presented here require a mini-browser using a specially modified version of WebKit. This experimental version will allow you to experiment with the samples, and are a way for us to explore the implementation options for these features. Please see the readme.txt file for instructions on how to run this browser.</p>
-
 	<p>You'll find basic samples that demonstrate individual CSS properties, as well as more complex ideas that highlight how they work together. </p>
 	
 	<h2 id="benefits">Why use CSS Regions</h2>
@@ -208,7 +209,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 			</ul>
 			
 			<a href="#samples_basic" class="callout prominent">See the basic samples</a><br />
-			<a href="../Documentation.html" class="callout">Read the documentation</a>
+			<a href="Documentation.html" class="callout">Read the documentation</a>
 
 			<h3 id="benefits_biz">Print Designers</h3>
 			<ul>
@@ -216,11 +217,22 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 			</ul>
 	</div>
 
+	<h2 id="runs">Runs In</h2>
+	<p>Summary of where CSS Regions is available today:</p>
+	<ul>
+		<li>Canary: CSS Regions implemented but disabled by default. To enable, follow these <a href="http://peter.sh/experiments/chromium-command-line-switches/">instructions</a>.</li>
+		<li>Chrome 19: CSS Regions implemented but disabled by default.  To enable, follow these <a href="http://peter.sh/experiments/chromium-command-line-switches/">instructions</a></li>
+		<li>WebKit Nightlies: CSS Regions implemented and enabled by default</li>
+		<li>IE 10 Developer Preview: CSS Regions implemented and enabled by default</li>
+	</ul>
+	<p>Our CSS Regions samples user feature detection to run automatically if you are running in one of the supported browsers. You must
+	enable the feature if you are running in a browser where CSS Regions is disabled by default.</p>
+	
 	<h2 id="samples_basic">Basic samples</h2>
 	<ul class="samples">
 		<li>
 			<h4>
-				<a href="viewer.html?url=simple_single_thread.html">Simple content thread</a>
+				<a href="simple_single_thread.html">Simple content thread</a>
 			</h4>
 			
 			<img src="images/screenshots/simple_single_thread.png" alt="" />
@@ -236,7 +248,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 		
 		<li>
 			<h4>
-				<a href="viewer.html?url=simple_multiple_threads.html">Multiple content threads</a>
+				<a href="simple_multiple_threads.html">Multiple content threads</a>
 			</h4>
 		
 			<img src="images/screenshots/simple_multiple_threads.png" alt="" />
@@ -254,7 +266,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 	<h2 id="documentation">Documentation</h2>
 	<p>
 		Are you ready to roll up your sleeves and experiment with CSS Regions? The 
-		<a href="../Documentation.html">documentation</a> covers the properties that 
+		<a href="Documentation.html">documentation</a> covers the properties that 
 		have been prototyped so far.
 	</p>
 	<p>
