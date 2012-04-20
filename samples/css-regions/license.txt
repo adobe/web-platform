@@ -1,6 +1,5 @@
-Copyright 2012 (C) Adobe Systems, Incorporated. All rights reserved.
- 
-Unless associated with another license, all code included in this
-package is licensed under a Creative Commons
+Copyright 2012 (C) Adobe Systems Incorporated. All rights reserved.
+
+The contents of this package are subject to various licenses. You will find the license information either directly in the files or the directory will contain the appropriate license for the components of that directory. Otherwise, the code and content is licensed under the Creative Commons
 Attribution-Noncommercial-Share Alike 3.0 Unported License
 <http://creativecommons.org/licenses/by-nc-sa/3.0/> .
