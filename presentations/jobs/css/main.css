@@ -24,7 +24,8 @@ html, body {
 	margin: 0;
 	overflow: hidden;
 	
-	font-family: 'Vollkorn', Georgia, Times, serif;
+    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+    font-family: 'Vollkorn', Georgia, Times, serif; 
 	font-weight: normal;
 	font-size: 36px;
 	
@@ -449,10 +450,11 @@ p.more:not(.simple):before {
 /*********************************************
  * SPECIFIC ELEMENTS STYLE
  *********************************************/
+/*
 #main > section:first-child h1 {
     margin-top: 2em;
 }
-
+*/
 #author {
     text-shadow: none;position:absolute; 
     bottom: 2em;
