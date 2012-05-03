@@ -104,3 +104,15 @@ p{
 	bottom: -25px;
 	right: 20px;
 }
+
+.license{
+    width: 600px;
+    text-align: center;
+    font-size: 0.8em;
+    position: absolute;
+    bottom: 10px;
+}
+
+.license, .license a{
+    color: #BDBDBD;
+}

@@ -1,0 +1,276 @@
+<!--
+Copyright 2011 Adobe Systems, incorporated
+This work is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License http://creativecommons.org/licenses/by-nc-sa/3.0/ . 
+Permissions beyond the scope of this license, pertaining to the examples of code included within this work are available at Adobe http://www.adobe.com/communities/guidelines/ccplus/commercialcode_plus_permission.html .
+-->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Shaders</title>
+    <meta charset="UTF-8">
+    <style type="text/css">  
+    
+    /* Light CSS reset */
+    body, p, h1, h2, h3, div, ul, li, img, div, img, a{
+    	margin:0;
+    	padding:0;
+    }
+    
+    ul{
+        list-style:none;
+    }
+    
+    body{            
+        font-family:Helvetica, Arial, sans-serif;            
+        color:#fff; 
+        width:570px;  
+        margin:0 auto;
+        padding:60px 0 30px; 
+        background-color: #1f1f1f; 
+        position:relative;  
+        
+        background-image: -webkit-radial-gradient(bottom center, 50% 50%, #222, #1f1f1f 300px, #1f1f1f);
+        
+    } 
+    
+    .logo{ 
+        height:102px; 
+        width:60px;
+        background: url(resources/logo.svg) left top no-repeat;
+        -webkit-background-size:100%;
+        text-indent:-999em;
+        position:absolute;
+        top:0;
+        right:0;
+    }
+    
+    h1, h2, h3{
+      font-weight:bold;
+      text-shadow:1px 1px 2px black;
+    }
+    
+    h1{
+        font-size:42px;
+        margin:0 0 40px;
+    }
+    
+    h2{
+        font-size:36px;
+        margin:0 0 18px;     
+        color:#fff;
+    }
+    
+    h3{
+        font-size:28px;
+    }
+    
+    p{
+        color:#ccc;  
+        font-weight:lighter;
+        font-size:1em;
+        line-height:1.35em; 
+        margin-bottom:1.35em;
+    } 
+    
+    a{
+        color:#fff;
+    } 
+    
+    a:hover{
+        color:#999;
+        text-decoration:none;
+    } 
+    
+    a:visited{
+        color:#999;
+    }
+    
+    section{
+        margin:40px 0;
+    }  
+    
+    #content .col{
+        margin:80px 0;
+    }
+    
+    #content .col:first-child{
+        margin-top:0;
+    }
+    
+    #content .col .icon{
+        margin-left:-130px;
+    }
+    
+    #content .col::before{
+        display:block; 
+        content:"";  
+        position:absolute;   
+        left:-120px;
+        width:90px;
+        height:90px;
+        background-image: url(resources/icons_sprite.png);
+    } 
+    
+    
+    #content .col.studio::before{
+        background-position:0 0px;   
+    }
+    
+    #content .col.studio:hover::before{
+        background-position:0 -90px;   
+    }                   
+    
+    
+    #content .col.demos::before{
+        background-position:-90px 0px;   
+    }
+    
+    #content .col.demos:hover::before{
+        background-position:-90px -90px;   
+    }
+    
+    #content .col.showcase::before{
+        background-position:-180px 0px;
+    }
+    
+    #content .col.showcase:hover::before{
+         background-position:-180px -90px;  
+    }
+    
+    #content .col.help::before{
+        background-position:-270px 0px;   
+    }
+    
+    #content .col.help:hover::before{
+        background-position:-270px -90px;   
+    }
+    
+    li a{ 
+        display:inline-block;
+        padding:5px 0;
+        font-weight:lighter;
+    }
+    
+    li p{
+        margin:10px 0 5px;
+    }
+    
+    li.divider{   
+        color:#999;  
+        font-size:18px;
+        padding:0 0 4px;
+        margin:20px 0 10px;
+    }
+    
+    .screenshot{
+        margin:5px 0 40px;
+        height:354px;
+        border:10px solid #333;
+        padding:0; 
+    }
+    
+    .showcase li:last-child .screenshot{
+        margin-bottom:0;
+    }
+    
+    .screenshot:hover{
+        border:10px solid #444;
+    } 
+     
+    </style>
+</head>
+<body>
+    <a href="http://www.adobe.com" class="logo" target="_blank">Adobe</a>
+    
+    <h1>CSS Shaders</h1>
+     
+    <section id="about">
+        <h2>About</h2>
+        <p>CSS Shaders bring cinematic visual effects to HTML, using simple CSS syntax. 
+        They expand the visual effects and interactivity possible with Web content. 
+        We think CSS shaders can be both visually pleasing and, perhaps more importantly, 
+        provide enhanced user experience by offering very organic and natural user 
+        interaction feedback.
+        </p>
+
+        <p>With CSS shaders, you can twist, wave, curl, and color your content in any way 
+        you like to create effects such as flipping pages, curling corners, paper textures, 
+        curtain effects, magnifying glass, or anything else you can express in a shading language.</p>  
+       
+       
+        <p>We have put together a set of demos for you. They showcase some of the concepts
+        we <a href="https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html" target="_blank">propose with CSS Shaders</a>.
+        </p>  
+          
+        <p>
+        This prototype version will allow you to play with these samples, which are a way 
+        for us to explore the implementation options for these features.
+        You'll find basic samples that demonstrate individual CSS properties, as well as 
+        more complex ones that highlight the extent of effects possible with CSS shaders.
+        </p>
+    </section>
+    
+    
+    <section id="content">
+        <div class="col demos">
+            <h2>Demos</h2>
+            <ul>
+                <li class="divider">Simple</li>
+                <li>
+                    <a href="simple-fragment/index.html" target="_blank">Fragment Shader</a>
+                </li>
+                
+                <li>
+                    <a href="simple-vertex/index.html" target="_blank">Vertex Shader</a>
+                </li> 
+                
+                <li>
+                    <a href="simple-vertex-params/index.html" target="_blank">Vertex Shader with parameters from CSS</a>
+                </li>
+                
+                <li>
+                    <a href="simple-vertex-fragment/index.html" target="_blank">Vertex and fragment shaders</a>
+                </li> 
+                
+                <li>
+                    <a href="simple-vertex-transition/index.html" target="_blank">Vertex shader with CSS transition</a>
+                </li>
+                
+                <li>
+                    <a href="simple-vertex-animation/index.html" target="_blank">Vertex shader with CSS animation</a>
+                </li>
+
+                <li class="divider">Advanced</li>
+                <li>
+                     <a href="varyings/index.html" target="_blank">Passing values between vertex and fragment shader</a>
+                </li>
+                <li>
+                     <a href="detached_tiles/index.html" target="_blank">Vertex shader - using detached tiles</a>
+                </li>
+                <li>
+                     <a href="transforming_tiles/index.html" target="_blank">Vertex shader - tile dependent transforms</a>
+                </li>
+                <li>
+                     <a href="curtain/index.html" target="_blank">Using more filters on the same page</a>
+                </li>
+            </ul> 
+            
+        </div>
+        
+        <div class="col help">
+            <h2>Help</h2>
+            
+            <p>The <a href="https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html" target="_blank">CSS Shaders Proposal</a> should serve as the current instructions manual for getting started with shaders.</p>
+            
+            <p>The <a href="http://www.adobe.com/devnet/html5/articles/css-shaders.html" target="_blank">"Introducing CSS shaders"</a> article on Adobe Developer Connection is an overview of shaders and their capabilities.</p>
+            
+        </div>
+    </section> 
+    
+    <p>- The Adobe WebKit team</p>
+    
+    <p class="license">Unless otherwise noted, code and content is licensed under a <a href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain License</a>.</p>
+    
+</body>
+</html>
