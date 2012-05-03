@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+@font-face {
+    font-family: 'LeagueGothicRegular';
+    src: url('assets/League_Gothic-webfont.eot');
+    src: url('assets/League_Gothic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/League_Gothic-webfont.woff') format('woff'),
+         url('assets/League_Gothic-webfont.ttf') format('truetype'),
+         url('assets/League_Gothic-webfont.svg#LeagueGothicRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+  .box {
+    background: url(http://www.mikeswanson.com/wallpaper/images/MSwanson%20-%20Water%2006.jpg) no-repeat fixed;  
+    top: 3em;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: fixed;    
+}
+
+html {
+  background: #000;  
+}
+  
+  .blendelement {
+      font-family: 'LeagueGothicRegular';
+      font-size: 10em;
+      margin-left: 2em;
+      margin-right: 2em;
+      text-align: center;
+      line-height: 1em;
+      color: #000;
+      -webkit-transition: color 0.5s;
+      -moz-transition: color 0.5s;
+      text-transform: uppercase;
+      text-shadow: 0 5px 6px rgba(255, 255, 255, 0.5);
+  }
+
+  .blendelement:hover {
+    color: hotpink;      
+    -webkit-transition: color 0.5s;
+    -moz-transition: color 0.5s;
+  }
+
+img {  
+  position: absolute;
+}
+
+button {
+  background: transparent;
+  border: 0;  
+  cursor: pointer;  
+}
+
+.tool {
+  position: absolute;
+  top: 0;
+  right: 0;  
+  z-index: 2;
+  height: 4em;
+  left: 0;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 14px;  
+}
+
+.tool button:focus {
+  outline: 1px dotted white;
+}
+.block-blend-modes button {
+  color: hotpink;  
+  display: inline-block;
+  padding: 1em 0.5em;  
+  line-height: 2em;
+}
+
+.block-blend-modes button:hover,
+.block-blend-modes button.active {
+  background: #603;
+}
+
+
+.block-texture-change {
+  background: #999;
+  border: 0;
+  border-radius: 5px;
+  text-transform: uppercase;
+  float: right;
+  line-height: 2em;
+  margin: 1em 1em 1em 0;
+}
+
+</style>
+<script src='http://code.jquery.com/jquery-1.7.1.min.js'></script>
+<script src='picker2.js'></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Blend Mode in Text</title>
+</head>
+
+<body >
+<div class="tool">
+  <span class="block-blend-modes" id="blend-modes">Blend mode: 
+    <button value="normal">normal</button>
+    <button value="plus">plus</button>
+    <button value="multiply">multiply</button>
+    <button value="screen">screen</button>
+    <button value="overlay">overlay</button>
+    <button value="darken">darken</button>
+    <button value="lighten">lighten</button>
+    <button value="color-dodge">color-dodge</button>
+    <button value="color-burn">color-burn</button>
+    <button value="hard-light">hard-light</button>
+    <button value="soft-light">soft-light</button>
+    <button value="difference">difference</button>
+    <button value="exclusion">exclusion</button>
+    <button value="hue">hue</button>
+    <button value="saturation">saturation</button>
+  </span>
+  <button class="block-texture-change" id="action-change-texture">Change Texture</button>
+</div>
+  <div class="box">
+      <p class="blendelement">
+        The quick brown fox jumps over the lazy dog.
+      </p>
+  </div>
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>  
+</body>
+</html>
