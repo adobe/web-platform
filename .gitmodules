@@ -1,0 +1,3 @@
+[submodule "utilities/css-pagination-template"]
+	path = utilities/css-pagination-template
+	url = git@github.com:adobe/css-pagination-template.git
