@@ -1,0 +1,38 @@
+/*
+Copyright (C) 2012 Adobe Systems, Incorporated. All rights reserved.
+
+Unless otherwise noted, the code and content of these samples is
+licensed under a Public Domain License
+
+http://creativecommons.org/publicdomain/zero/1.0/
+*/
+body{
+    background: #eee;
+}
+
+article{
+    padding:5px 15px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.9em;
+    color: #222;
+}
+
+article p{
+    margin: 0 0 15px;
+}  
+
+h1{
+    margin: 5px 0 20px;
+    font-size: 1.3em;
+    color: black;
+}   
+h2{
+    color: #444;
+    font-size: 1.1em;
+    margin: 5px 0 10px;
+}
+
+[data-page-container]{
+    outline: 1px solid #d7d7d7;
+    margin: 10% auto 0;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head> 
+    <link rel="stylesheet" href="../../src/pagemanager.css" type="text/css" /> 
+    
+    <style type="text/experimental-css">  
+	
+    	body {
+    		overflow-style: paged-x;
+    		width: 100px;
+    		height: 100px;
+    		template-set: required, not-required, decoy;
+    	}  
+    	
+    	/* 
+    	    This is a decoy template. 
+    	    It has the highest score so the algorithm should pick it. 
+    	    
+    	    But it's ignored on first pass because of 'required-flow' 
+    	    on another template which gives that more importance
+    	*/
+    	@template decoy {
+			@slot left {
+				-webkit-flow-from: english-flow;
+				width: 40%;
+				height: 90%;
+				padding: 5%;
+				float: left;
+			}
+			@slot right {
+				-webkit-flow-from: french-flow;
+				width: 40%;
+				height: 90%;
+				padding: 5%;
+				float: right;
+			}
+		}
+    	
+        @template not-required{
+            @slot {
+            	-webkit-flow-from: french-flow;
+                width: 100px;
+                height: 100px;
+                background: red;               
+            }
+        }
+        
+        @template required{ 
+            required-flow: article-flow;
+			
+            @slot {
+                -webkit-flow-from: article-flow; 
+                width: 100px;
+                height: 100px;
+                background: green;
+            }
+        }
+        
+	</style>  
+	
+	<style type="text/css">
+		article {
+			-webkit-flow-into: article-flow;
+		}
+	</style>
+</head>
+<body>
+	<article>A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.</article>
+    <script type="text/javascript" src="../../src/cssparser.js"></script>
+    <script type="text/javascript" src="../../src/pagemanager.js"></script>       
+    <script type="text/javascript" src="../../src/pagetemplate.js"></script>
+</body>
+</html>

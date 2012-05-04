@@ -1,0 +1,177 @@
+<!--
+Copyright (C) 2012 Adobe Systems, Incorporated. All rights reserved.
+
+Unless otherwise noted, the code and content of these samples is
+licensed under a Public Domain License
+
+http://creativecommons.org/publicdomain/zero/1.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="../src/pagemanager.css" type="text/css" />
+    <meta charset="UTF-8">
+    <title>The Regional - CSS Page Template Demo</title>
+
+    <style type="text/experimental-css">
+        #newspaper {
+            overflow-style: paged-x;
+            template-set: newspaper, article, feature, dual-flow;
+        }
+
+        @template newspaper:first{
+            @slot header{
+                width: 90%;
+                margin: 0 auto;
+                padding-top: 30px;
+                height: 70px;
+                content: "The Regional";
+                font-size: 52px;
+                text-align: center;
+                border-bottom: 4px solid black;
+            }
+
+            @slot english {
+                width: 32.5%;
+                margin: 5% 5% 0 5%;
+                height: 65%;
+                padding: 5%;
+                background: papayawhip;
+                float: left;
+                -webkit-flow-from: english-flow;
+            }
+
+            @slot french {
+                width: 32.5%;
+                margin: 5% 0 0 0;
+                padding: 5%;
+                height: 65%;
+                background: lightblue;
+                float: left;
+
+                -webkit-flow-from: french-flow;
+            }
+
+        }
+
+        @template newspaper{
+            background: white;
+        }
+
+        @template feature{
+
+            required-flow: english-flow;
+
+            @slot col1 {
+                width: 24%;
+                height: 86%;
+                padding: 2%;
+                float: left;
+                margin: 5% 0 0 5%;
+                background: papayawhip;
+                -webkit-flow-from: english-flow;
+            }
+
+            @slot col2 {
+                width: 24%;
+                height: 86%;
+                padding: 2%;
+                float: left;
+                margin: 5% 0 0 3%;
+                background: papayawhip;
+                -webkit-flow-from: english-flow;
+            }
+
+            @slot col3 {
+                width: 24%;
+                height: 86%;
+                padding: 2%;
+                float: right;
+                margin: 5% 5% 0 0;
+                background: papayawhip;
+                -webkit-flow-from: english-flow;
+            }
+        }
+
+        @template article{
+            @slot top{
+                width: 80%;
+                margin: 5% auto 5%;
+                padding: 5%;
+                height: 80%;
+                background: lightgreen;
+
+                -webkit-flow-from: latin-flow;
+            }
+        }
+
+        @template dual-flow{
+
+            @slot french {
+                width: 32.5%;
+                margin: 5% 5% 0 5%;
+                height: 80%;
+                padding: 5%;
+                background: lightblue;
+                float: left;
+                -webkit-flow-from: french-flow;
+            }
+
+            @slot latin {
+                width: 32.5%;
+                margin: 5% 0 0 0;
+                padding: 5%;
+                height: 80%;
+                background: lightgreen;
+                float: left;
+
+                -webkit-flow-from: latin-flow;
+            }
+
+        }
+
+
+    </style>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #newspaper{
+            width: 60%;
+            height: 700px;
+            margin: 50px auto 0;
+        }
+        .english {
+            -webkit-flow-into: english-flow;
+        }
+        .french {
+            -webkit-flow-into: french-flow;
+        }
+        .latin {
+            -webkit-flow-into: latin-flow;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="newspaper"></div>
+
+    <article class='english'>A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint. A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint. A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint. A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint. A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. I contain paint.I contain paint.A little bit of text that is paginated because the page size is so small. My hovercraft is full of eels. </article>
+
+    <article class='french'>Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture.  Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture.  Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture. Un peu de texte qui est paginé parce que le format de page est si petit. Mon aéroglisseur est plein des anguilles. Je contenir de la peinture.   </article>
+
+    <article class="latin">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </article>
+    <script type="text/javascript" src="../src/cssparser.js"></script>
+    <script type="text/javascript" src="../src/pagemanager.js"></script>
+    <script type="text/javascript" src="../src/pagetemplate.js"></script>
+
+    <link rel="stylesheet" href="../src/demo-harness.css" type="text/css" />
+    <script type="text/javascript" src="../src/demo-harness.js"></script>
+</body>
+</html>
