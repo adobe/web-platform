@@ -2,14 +2,11 @@
 <html>
 <head>
 <style>
-  .box {
-  background-image: url(art/gradient.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
 
 html {
   background: #000;  
+  color: #fff;
+  font-family: sans-serif;
 }
 
 html, body {
@@ -30,7 +27,7 @@ button {
   position: absolute;
   top: 0;
   right: 0;  
-  z-index: 2;
+  z-index: 1;
   height: 4em;
   left: 0;
   color: #fff;
@@ -114,6 +111,26 @@ button {
     color: hotpink;
 }
 
+.thumbs {
+  text-align: center;
+}
+.thumbs b,
+.thumbs img {
+  vertical-align: middle;
+}
+
+.thumbs b {
+  padding: 0 1em; 
+  font-size: 1.2rem;
+}
+
+footer {
+  font-size: 0.7rem;
+  text-align: center;
+  color: #666;
+  margin: 2rem 0 1rem 0;
+}
+
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Blend Mode Demo: Chair</title>
@@ -148,10 +165,10 @@ button {
      
      <p>Select a blend mode above (such as multiply) to see the two images blended</p>
     <div class="thumbs">
-        <img src="assets/fore-image.jpg" >
+        <img src="assets/fore-image.jpg"> <b>+</b>
         <img src="assets/texture-1.png" class="blend-thumb">  
     </div>
-    <p style="position: absolute; bottom: 0;">Unless otherwise noted, code and content is licensed under a <a href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain License</a>.</p>  
+    <footer>Unless otherwise noted, code and content is licensed under a <a href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain License</a>.</footer>  
   </div>
 <script src='http://code.jquery.com/jquery-1.7.1.min.js'></script>
 <script src='picker.js'></script>  
