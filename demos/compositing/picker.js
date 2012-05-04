@@ -27,6 +27,7 @@ $(document).ready(function(){
 	$('#action-change-texture').click(function() {		
 		current++;
 		$('.blendelement').attr('src', bgs[current % bgs.length]);
+		$('.blend-thumb').attr('src', bgs[current % bgs.length]);
 	});
 
 });
