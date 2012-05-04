@@ -1,10 +1,8 @@
 var bgs = [
-'http://www.sxc.hu/pic/l/e/ex/exian/456692_89727447.jpg',
-'http://www.mikeswanson.com/wallpaper/images/MSwanson%20-%20Water%2006.jpg',
-'http://www.mikeswanson.com/wallpaper/images/MSwanson%20-%20Rock%2002.jpg',
-'http://www.mikeswanson.com/wallpaper/images/MSwanson%20-%20Leaf%2028.jpg',
-'http://www.mikeswanson.com/wallpaper/images/MSwanson%20-%20Wide%20-%20Grass%2001.jpg',
-'http://www.mikeswanson.com/wallpaper/images/MSwanson%20-%20Leaf%2010.jpg', 
+'assets/texture-1.png',
+'assets/texture-2.png',
+'assets/texture-3.png',
+'assets/texture-4.png'
 ];
 
 
@@ -28,6 +26,7 @@ $(document).ready(function(){
 		current++;
 		$('.blendelement').attr('src', bgs[current % bgs.length]);
 		$('.blend-thumb').attr('src', bgs[current % bgs.length]);
+		$(body).offsetWidth(); //hack to force reflow
 	});
 
 });
