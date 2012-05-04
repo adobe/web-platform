@@ -1,8 +1,15 @@
 var bgs = [
-'assets/texture-1.png',
-'assets/texture-2.png',
-'assets/texture-3.png',
-'assets/texture-4.png'
+'http://adobe.github.com/web-platform-assets/texture-1.png',
+'http://adobe.github.com/web-platform-assets/texture-2.png',
+'http://adobe.github.com/web-platform-assets/texture-3.png',
+'http://adobe.github.com/web-platform-assets/texture-4.png',
+'http://adobe.github.com/web-platform-assets/texture-5.jpg',
+'http://adobe.github.com/web-platform-assets/texture-6.jpg',
+'http://adobe.github.com/web-platform-assets/texture-7.jpg',
+'http://adobe.github.com/web-platform-assets/texture-8.jpg',
+'http://adobe.github.com/web-platform-assets/texture-9.jpg',
+'http://adobe.github.com/web-platform-assets/texture-10.jpg',
+'http://adobe.github.com/web-platform-assets/texture-11.jpg'
 ];
 
 
