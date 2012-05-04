@@ -1,0 +1,215 @@
+
+section ul strong, h2 strong {
+    color: red;
+}
+
+section ul {
+	line-height: 1em;
+}
+
+section li {
+	margin-bottom: 20px;
+}
+
+section#end img {
+border:none;
+position:fixed;
+background:none;
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+-o-box-shadow: none;
+box-shadow: none;
+
+-webkit-transition: 0;
+-moz-transition: 0;
+-ms-transition: 0;
+-o-transition: 0;
+transition: 0;
+}
+
+section#end img#html5 {
+    left:-80px;
+    top:-40px;
+}
+
+section#end img#css3 {
+    left:650px;
+    top:-30px;
+}
+
+section#end img#whatwg {
+    left:650px;
+    top:350px;
+}
+
+section#end img#w3c {
+    left:-80px;
+    top:400px;
+}
+
+section#end img#adobe {
+    width:150px;
+    left:375px;
+    top:250px;
+}
+
+li ul li .samesizesub {
+    font-size: 150%;
+}
+
+#focus {
+    font-size: 90%;
+}
+#focus hr {
+    margin-left: -30px;
+}
+
+#WEFstrategy {
+    font-size: 90%;
+}
+
+li ol li, li ul li {
+    font-size: 60%;
+    margin-bottom: 0px;
+    margin-left: 20px;
+    line-height: 1.3em;
+}
+
+section .chartTitle {
+    width: 302px;
+    font-size: 16px;
+}
+
+section .note, #reveal .slides section note .roll {
+	font-size: 14px;
+	line-height: 14px;
+}
+
+#events {
+    position: absolute;
+    top: 80px;
+}
+
+#blog {
+    position: absolute;
+    top: 490px;
+}
+
+#presence {
+    position: absolute;
+    left: 500px;
+    top: 80px;
+}
+
+#standards {
+    position: absolute;
+    top: 285px;
+}
+
+#webkit {
+    position: absolute;
+    left: 500px;
+    top: 285px;
+}
+
+#wef {
+    position: absolute;
+    left: 500px;
+    top: 490px;
+}
+
+section .editor { 
+	width: 49%;
+	height: 500px; 
+	background-color: black;
+	border-radius: 10px;
+	float: left;
+	vertical-align:middle;
+}
+
+section .editorText {
+	position:absolute;
+	top: 15%;
+	font-family: Courier;
+	text-align: left;
+	vertical-align: middle;
+	font-size: 12pt;
+	line-height: 10pt;
+}
+section .output { 
+	width: 48%;
+	background-color: black;
+	height: 500px; 
+	float: right;
+	border-radius: 10px;
+	
+}
+
+section .outputStretch { 
+	width: 100%;
+	background-color: black;
+	height: auto; 
+	border-radius: 10px;
+}
+
+section .process-vaxis {
+	position: absolute;
+	top: 100px;
+	left: 62%;
+	width: 2px;
+	height: 475px;
+	background: #5A5A5A;
+}
+
+section .process-haxis {
+	position: absolute;
+	top: 175px;
+	left: 53%;
+	width: 45%;
+	height: 2px;
+	background: #5A5A5A;
+}
+
+section .process-arrow-right {
+	position: absolute;
+	top: 170px;
+	left: 97%;
+	width: 0;
+	height: 0;
+	border-left: 15px solid #5A5A5A;
+	border-right: 7px solid transparent;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+}
+
+section .process-arrow-down {
+	position: absolute;
+	top: 94%;
+	left: 61.4%;
+	width: 0;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-top: 15px solid #5A5A5A;
+	border-bottom: 7px solid transparent;
+}
+
+section .svg-target {
+	
+	position: absolute;
+	top: 175px;
+	left: 62%;
+}
+
+
+section .tab1 { margin-left: 10px; }
+section .tab2 { margin-left: 40px; }
+section .tab3 { margin-left: 70px; }
+section .tab4 { margin-left: 100px; }
+section .tab5 { margin-left: 130px; }
+
+/*MINIMAL STYLE*/
+table.minimal-style { margin-left:auto; margin-right:auto; border-collapse: collapse; font-size: 16px; text-align: left; min-width: 1000px; margin-bottom:25px; line-height: 1.2em;}
+table.minimal-style th { border-bottom: 2px solid #ffffff; color: #ffffff; font-size: 18px; font-weight: normal; padding: 5px; }
+table.minimal-style td { border-bottom: 1px solid #CCCCCC; color: #999; padding: 4px 6px; }
+table.minimal-style tbody tr:hover td {color:#ffffff;}
