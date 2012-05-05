@@ -1,62 +1,48 @@
-
-h1 {
-	border-bottom: thick solid black;
-	padding-left: 0.2em;
-	margin-top: 0;
-    padding-top: 0.5em;
-    font-size: 2em;
-}
-
-h2 {
-	padding: 0.5em;
-}
-
-blockquote {
-	font-style: italic;
-	font-weight: bold;
-	font-family: Palatino, Georgia, serif;
-	text-align: right;
-	padding-left: 10%;
-	margin-right: 0;
-}
-p {
-	padding: .5em;
-	text-align: justify;
-}
-
-
-@-webkit-region #left-col {
-    article {
-        background-color: white;
-    }
-    
-	h1 {
-		border-color: #e0e0e0;
+@-webkit-region .left-region {
+	.region-style h2 {
+		background-color: white;
 	}
 	
-	h2 {
-		background-color: black;
-		color: white;
+	.region-style h1 {
+	    background-color: rgba(255, 255, 255, 0.5);
 	}
-	
-	p {
-		background-color: white;
-		color: black;
+	.region-style h1~p:nth-of-type(1) {
+		background-color: #c0c0c0;
+	}
+
+	.region-style {
+		background-color: #f0f0f0;
+	}
+}
+@-webkit-region .right-region {
+	.region-style h2 {
+		background-color: #46A4E9;
+		color: rgba(255, 255, 255, 0.7);
+	}
+	.region-style {
+		background-color: #e0e0e0
 	}
 }
 
-@-webkit-region #right-col {
-    article {
-        background: black;
-    }
-    
-	h2 {
-		background-color: white;
-		color: black;
-	}
-    
-	p {
-		background-color: black;
-		color: white;
-	}
+#regions-container {
+    display: block;
+    background: #fafafa;
+    box-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+article {
+    -webkit-flow-into: article;
+    -moz-flow-into: article;
+    -ms-flow-into: article;
+    -o-flow-into: article;
+    flow-into: article;
+}
+
+.region {
+	-webkit-flow-from: article;
+	-moz-flow-from: article;
+	-ms-flow-from: article;
+	-o-flow-from: article;
+	flow-from: article;
 }

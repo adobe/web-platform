@@ -6,130 +6,166 @@
 	<meta charset="UTF-8">
 	<title>CSS Regions: region styling with paint properties (simple demo)</title>
 	<style type="text/css">
-	html, body {
+	body {
 		width: 100%;
 		height: 100%;
-		font-family: Helvetica, Arial, sans-serif;
-		background-color: #c0c0c0;
-		border-left: 1px solid #a0a0a0;
-		border-right: 1px solid #a0a0a0;
+	}
+	
+	p {
+		margin: 0;
+	}
+	
+	h1, h2 {
+		margin-top: 0;
+		padding-top: .25em;
+	}
+	
+	#apply-region-styling {
+		position: absolute;
+		display: block;
+		z-index: 1000;
+		
+		background: rgb(232,4,53); /* Old browsers */
+        background: -moz-linear-gradient(-45deg,  rgba(232,4,53,1) 0%, rgba(109,0,25,1) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(232,4,53,1)), color-stop(100%,rgba(109,0,25,1))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(-45deg,  rgba(232,4,53,1) 0%,rgba(109,0,25,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(-45deg,  rgba(232,4,53,1) 0%,rgba(109,0,25,1) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(-45deg,  rgba(232,4,53,1) 0%,rgba(109,0,25,1) 100%); /* IE10+ */
+        background: linear-gradient(-45deg,  rgba(232,4,53,1) 0%,rgba(109,0,25,1) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e80435', endColorstr='#6d0019',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        
+        color: white;
+        font-family: sans-serif;
+        text-shadow: 1px -1px solid rgba(0, 0, 0, 0.5);
+        text-decoration: none;
+        padding: 1em;
+        text-align: center;
+        border-radius: 0.5em;
+        box-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        top: 0.5em;
+        -webkit-transform: rotate(-25deg);
+	}
+	
+	#apply-region-styling span{
+	    display: block;
+	    font-size: smaller;
+	    
+	}
+	
+	#apply-region-styling>img {
+		display: block;
+	}
+	
+	article p {
+		font-family: sans-serif;
+		padding-left: 1.3em;
+		padding-right: 1em;
+		margin-bottom: 1em;
+	}
+	
+	article ul {
+		padding-right: .5em;
+		font-family: sans-serif;
+	}
+	
+	article h1, article h2 {
+		font-family: sans-serif;
+		font-weight: bold;
+		padding-left: 0.5em;
+		padding-bottom: 0.3em;
+		font-variant: small-caps;
+		color: rgba(0, 0, 0, 0.7);
+		letter-spacing: -0.07em;
+	}
+
+	#regions-container {
+		margin-left: auto;
+		margin-right: auto;
+		width: 80%;
+		margin-top: 3em;
+		display: none;
+	}
+	.non-visible {
+		display: none;
+	}
+	
+	.region {
+		display: inline-block;
+		height: 30em;
+		box-sizing: border-box;
 		padding: 0;
 		margin: 0;
 	}
 	
-	body {
-	    width: 80%;
-	    margin-left: auto;
-	    margin-right: auto;
-	    background: white;
-	    margin-top: 1em;
-        box-shadow: 0px 0px 0.5em rgba(0, 0, 0, 0.5);
+	.left-region {
+		width: 50%;
 	}
-
-	.toggleBox {
-		position: fixed;
-		top: 0;
-		right: 0;
-		width: 14em;
-		height: 4em;
-		background-color: #666666;
-		color: #DADADA;
-		padding: .5em;
+	
+	.overset-region {
+	    height: auto;
+	    margin-top: 1.5em;
+	    padding-top: 1.5em;
+	    border-top: 1px solid #f0f0f0;
+	    width: 100%;
+	}
+	.right-region {
+		width: 50%;
+		
+		-webkit-region-overflow: break;
+		overflow: hidden;
+	}
+	.image-wrap {
 		text-align: center;
-		z-index: 100;
-		/*opacity: 0.9;*/
-		/*border: 1px solid #DADADA;*/
-	}
-	.toggleBox input[type='radio'] {
-		display: none;
-	}
-	.toggleBox input+label {
-		padding: 0.25em;
-		border-radius: 4px;
-		border: 1px solid #DADADA;
-	}
-	.toggleBox input:checked+label {
-		background-color: #999999;
-	}
-	.toggleBox .title {
 		display: block;
-		text-align: left;
-		border-bottom: medium solid #DADADA;
-		margin-bottom: 1em;
+		padding-bottom: 1em;
+	}
+	.image-wrap>img {
+		width: 30%;
 	}
 	</style>
 
-	<link rel="stylesheet" href="css/simple-region-no-style.css">
 	<link rel="stylesheet" href="css/simple-region-style.css" id='region-styles'>
 	<script type="text/javascript">
-	document.addEventListener("change", function(evt) {
-		if (evt.target.name == "stylesheet") {
-			var styleSheet = document.getElementById('region-styles');
-			if (evt.target.id == "styling-enabled") {
-				styleSheet.disabled = false;
-			} else if (evt.target.id == "styling-disabled") {
-				styleSheet.disabled = true;
-			}
-		}
-	});
-	</script>
+	function toggleRegionStyle () {
+	    var regionStyling = document.getElementById('region-styles');
+	    // regionStyling.parentNode.removeChild(regionStyling);
+	    regionStyling.disabled = !regionStyling.disabled;
+	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+		var button = document.getElementById('apply-region-styling');
+		button.addEventListener('click', function(e) {
+			toggleRegionStyle();
+		});
+		document.getElementById('region-styles').disabled = true;
+	});	</script>
 </head>
 <body>
-	<div class="toggleBox">
-		<span class="title">Region styling</span>
-		<input type="radio" name="stylesheet" id="styling-enabled" checked/>
-		<label for="styling-enabled">Enabled</label>
-		<input type="radio" name="stylesheet" id="styling-disabled">
-		<label for="styling-disabled">Disabled</label>
-	</div>
-	<article>
-	<h1>Chess</h1>
-	<blockquote>Combinations have always been the most intriguing aspect of Chess. The masters look for them, the public applauds them, the critics praise them. It is because combinations are possible that Chess is more than a lifeless mathematical exercise.</blockquote>
-	<h2>The Whites</h2>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat.</p>
-	<p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	
-	<h2>The Blacks</h2>
-	
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua.</p>
-	<p>Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<a href="#" id="apply-region-styling">toggle<span>region styling!</span></a>
+	<article class="region-style">
+		<h1>Filler text on the web</h1>
+		<span class='image-wrap'><img src='img/movable_type.jpg'/></span>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue velit, fringilla eu laoreet vel, blandit eu odio. Nam quis libero vel nibh viverra lacinia et hendrerit nibh. Donec orci ante, tristique quis vestibulum eu, varius nec tellus. Ut id mi turpis. Proin sed risus sed neque vehicula imperdiet.</p>
+		<h2>A little history</h2>
+		<p>Nunc lacus orci, consequat id faucibus ac, hendrerit ut eros. Mauris a dui non dolor ullamcorper molestie. Donec pulvinar diam sit amet mauris egestas dictum. Nunc vel mattis lorem. Cras elementum, libero at consequat lacinia, magna purus consequat elit, vitae eleifend arcu eros ac mi. Etiam eu nibh et ante tristique condimentum non id velit. Integer ipsum lectus, viverra eget tempus vel, placerat ac purus. Integer ac enim quis libero adipiscing varius nec at nunc.</p>
+		<h2>Why use it?</h2>
+		<p>Donec iaculis, ipsum id molestie eleifend, lectus mauris condimentum ligula, et dictum lacus arcu et elit. Sed sagittis nisi id quam mattis in pellentesque felis pretium. Sed id urna diam.</p>
+		<h2>How to use it?</h2>
+		<p>Pellentesque aliquet lorem a neque lacinia eu condimentum urna fermentum. Fusce eget elit et lacus rutrum faucibus non a sem. Praesent eu tortor non dui adipiscing ultricies viverra non mi. Sed non ante nec augue auctor blandit. Nunc cursus interdum scelerisque. Pellentesque id leo a elit molestie pellentesque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque pharetra sem et ipsum pellentesque sed gravida elit adipiscing. In elementum porttitor placerat. Aenean eget arcu aliquam turpis commodo eleifend non eu dolor.</p>
+		<h2>Variations</h2>
+		<p>Praesent vehicula, dolor a malesuada auctor, nisi enim molestie nulla, eget imperdiet erat dolor ac eros. Maecenas dictum pellentesque eleifend. Sed elit dui, ornare ac sagittis non, congue et ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie consectetur metus at rhoncus. Suspendisse potenti. Mauris porttitor, purus vel luctus pellentesque, ligula dolor elementum neque, eget viverra magna mi sed massa. Fusce viverra lobortis porttitor. Integer imperdiet tellus vel neque pretium rutrum. In hac habitasse platea dictumst. Aliquam nec mollis nisl</p>
+		<h2>Attributions</h2>
+		<p>
+			<ul>
+				<li>Image by <strong>Willi Heidelbach</strong> [GFDL, CC-BY-SA-3.0 or CC-BY-2.5] via Wikimedia Commons (<a href="http://commons.wikimedia.org/wiki/File:Metal_movable_type.jpg#Summary">Permission Info</a>)</li>
+				<li>Text created via <a href="http://www.lipsum.com/">www.lipsum.com</a></li>
+			</ul>
+		</p>
 	</article>
-		<div id="left-col" class="region"></div>
-		<div id="right-col" class="region"></div>
-		<div id="bottom-col" class="region"></div>
+    
+	<div id="regions-container">
+		<div class="region left-region"></div><div class="region right-region"></div><div class="region overset-region"></div>
+	</div>
 </body>
 </html>
