@@ -1,80 +1,97 @@
-<!doctype html>
-<html>
+<!-- Original image (C) Mihai Balan 2012 http://www.flickr.com/photos/mi-chou/6794649412/ - CC BY 2.0 -->
+<!-- Components extracted in Gimp -->
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
-	<title>CSS Regions styling</title>
-	<script type="text/javascript">
-	var phase = 0;
-	function toggleRegionLayout() {
-		var regionsContainer = document.getElementById('regions-container');
-		regionsContainer.classList.toggle('non-visible');
-		var regions = regionsContainer.querySelectorAll('.region');
-		for (var i = 0; i < regions.length; i++) {
-			regions[i].classList.toggle('flow-from');
-		}
-
-		var article = document.querySelector('article');
-		article.classList.toggle('flow-to');
-	}
-	function toggleRegionStyle() {
-		var article = document.querySelector('article');
-		article.classList.toggle('region-style');
-	}
-
-	document.addEventListener('DOMContentLoaded', function() {
-		var shuffleButton = document.getElementById('shuffle');
-		shuffleButton.addEventListener('click', function(e) {
-			toggleRegionStyle();
-			toggleRegionLayout();
-		});
-	});
-	</script>
-	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic|Russo+One' rel='stylesheet' type='text/css'/>
+	<meta charset="UTF-8">
+	<title>CSS Regions: region styling with paint properties (simple demo)</title>
 	<style type="text/css">
 	body {
 		width: 100%;
 		height: 100%;
-		/*background-color: #6A8BAB;*/
 	}
+	
 	p {
 		margin: 0;
 	}
+	
 	h1, h2 {
 		margin-top: 0;
 		padding-top: .25em;
 	}
-	#shuffle {
+	
+	#apply-region-styling {
 		position: absolute;
 		display: block;
-		width: 64px;
-		height: 64px;
-		top: 24px;
-		left: 24px;
 		z-index: 1000;
+		
+		background: rgb(232,4,53); /* Old browsers */
+        background: -moz-linear-gradient(-45deg,  rgba(232,4,53,1) 0%, rgba(109,0,25,1) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(232,4,53,1)), color-stop(100%,rgba(109,0,25,1))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(-45deg,  rgba(232,4,53,1) 0%,rgba(109,0,25,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(-45deg,  rgba(232,4,53,1) 0%,rgba(109,0,25,1) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(-45deg,  rgba(232,4,53,1) 0%,rgba(109,0,25,1) 100%); /* IE10+ */
+        background: linear-gradient(-45deg,  rgba(232,4,53,1) 0%,rgba(109,0,25,1) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e80435', endColorstr='#6d0019',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        
+        color: white;
+        font-family: sans-serif;
+        text-shadow: 1px -1px solid rgba(0, 0, 0, 0.5);
+        text-decoration: none;
+        padding: 1em;
+        text-align: center;
+        border-radius: 0.5em;
+        box-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        top: 0.5em;
+        -webkit-transform: rotate(-25deg);
 	}
-	#shuffle>img {
+	
+	#apply-region-styling span{
+	    display: block;
+	    font-size: smaller;
+	    
+	}
+	
+	#apply-region-styling>img {
 		display: block;
+	}
+	
+	article {
+	    -webkit-flow-into: article;
+	    -moz-flow-into: article;
+	    -ms-flow-into: article;
+	    -o-flow-into: article;
+	    flow-into: article;
 	}
 
 	article p {
-		font-family: 'Ubuntu', sans-serif;
-		padding-left: .5em;
-		padding-right: .5em;
+		font-family: sans-serif;
+		padding-left: 1.3em;
+		padding-right: 1em;
+		margin-bottom: 1em;
 	}
+	
 	article ul {
 		padding-right: .5em;
-		font-family: 'Ubuntu', sans-serif;
+		font-family: sans-serif;
 	}
+	
 	article h1, article h2 {
-		font-family: 'Russo One', cursive;
-		font-weight: normal;
-		padding-left: 1em;
+		font-family: sans-serif;
+		font-weight: bold;
+		padding-left: 0.5em;
+		padding-bottom: 0.3em;
+		font-variant: small-caps;
+		color: rgba(0, 0, 0, 0.7);
+		letter-spacing: -0.07em;
 	}
 
 	#regions-container {
 		margin-left: auto;
 		margin-right: auto;
 		width: 80%;
-		height: 90%;
+		margin-top: 3em;
 	}
 	.non-visible {
 		display: none;
@@ -87,45 +104,36 @@
 	}
 	
 	.region {
-		border: medium solid #BABDB6;
 
-		position: absolute;
-		height: 90%;
-		top: 5%;
+		display: inline-block;
+		height: 30em;
 
-		background-color: #FAFAFA;
+		-webkit-flow-from: article;
+		-moz-flow-from: article;
+		-ms-flow-from: article;
+		-o-flow-from: article;
+		flow-from: article;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;
 	}
 
-	@-webkit-region .left-region {
-		.region-style h2 {
-			background-color: #9CB7CF;
-		}
-		.region-style h1~p:nth-of-type(1) {
-			background-color: #BBD0E3;
-		}
-
-		.region-style {
-			background-color: #D7E8F7;
-		}
-	}
-	@-webkit-region .right-region {
-		.region-style h2 {
-			background-color: #CFA679; /*#9CB7CF;*/
-		}
-		.region-style {
-			background-color: #F2E7D5;
-		}
-	}
 	.region-style {
 	}
 	
 	.left-region {
-		width: 40%;
-		left: 8%;
+		width: 50%;
+	}
+	
+	.overset-region {
+	    height: auto;
+	    margin-top: 1.5em;
+	    padding-top: 1.5em;
+	    border-top: 1px solid #f0f0f0;
 	}
 	.right-region {
-		width: 40%;
-		left: 54%;
+		width: 50%;
 		
 		-webkit-region-overflow: break;
 		overflow: hidden;
@@ -133,16 +141,32 @@
 	.image-wrap {
 		text-align: center;
 		display: block;
+		padding-bottom: 1em;
 	}
 	.image-wrap>img {
-		width: 75%;
-		max-width: 35em;
+		width: 30%;
 	}
 	</style>
+
+	<link rel="stylesheet" href="css/basic-regions-style.css" id='region-styles'>
+	<script type="text/javascript">
+	function toggleRegionStyle () {
+	    var regionStyling = document.getElementById('region-styles');
+	    // regionStyling.parentNode.removeChild(regionStyling);
+	    regionStyling.disabled = !regionStyling.disabled;
+	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+		var button = document.getElementById('apply-region-styling');
+		button.addEventListener('click', function(e) {
+			toggleRegionStyle();
+		});
+		document.getElementById('region-styles').disabled = true;
+	});	</script>
 </head>
 <body>
-	<a href="#" id="shuffle"><img src="img/mix.png" alt=""/></a>
-	<article>
+	<a href="#" id="apply-region-styling">toggle<span>region styling!</span></a>
+	<article class="region-style">
 		<h1>Filler text on the web</h1>
 		<span class='image-wrap'><img src='img/movable_type.jpg'/></span>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue velit, fringilla eu laoreet vel, blandit eu odio. Nam quis libero vel nibh viverra lacinia et hendrerit nibh. Donec orci ante, tristique quis vestibulum eu, varius nec tellus. Ut id mi turpis. Proin sed risus sed neque vehicula imperdiet.</p>
@@ -159,13 +183,12 @@
 			<ul>
 				<li>Image by <strong>Willi Heidelbach</strong> [GFDL, CC-BY-SA-3.0 or CC-BY-2.5] via Wikimedia Commons (<a href="http://commons.wikimedia.org/wiki/File:Metal_movable_type.jpg#Summary">Permission Info</a>)</li>
 				<li>Text created via <a href="http://www.lipsum.com/">www.lipsum.com</a></li>
-				<li><strong>Ubuntu</strong> and <strong>Changa One</strong> fonts via <a href="http://www.google.com/webfonts">Google WebFonts</a></li>
 			</ul>
 		</p>
 	</article>
-	<div id="regions-container" class='non-visible'>
-		<div class="region left-region"></div>
-		<div class="region right-region"></div>
+    
+	<div id="regions-container">
+		<div class="region left-region"></div><div class="region right-region"></div><div class="region overset-region"></div>
 	</div>
 </body>
 </html>
