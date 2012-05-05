@@ -4,13 +4,13 @@
     <title>CSS Pagination Templates - JavaScript Prototype</title>
     <meta charset="UTF-8">
     <style type="text/css">
-    
-    body{  
+
+    body{
         margin: 0;
         font-size: 1.2em;
         font-family: Palatino, Georgia, serif;
-    }   
-    
+    }
+
     h1{
         color: white;
         margin: 0;
@@ -44,24 +44,24 @@
 
     a:visited{
         color: #8560A8;
-    } 
+    }
 
     header{
         background: #6F518F;
-    } 
+    }
 
     header .logo{
         height: 62px;
         width: 38px;
         display: block;
         position: absolute;
-        top: -1px; 
+        top: -1px;
         right: 32px;
         line-height: 200px;
         overflow: hidden;
         background: url("./src/adobe.gif") top left no-repeat;
         box-shadow: 0 2px 2px rgba(0, 0, 0, .35);
-    } 
+    }
 
     header .logo:hover{
         top: 0px;
@@ -109,16 +109,16 @@
          .wrapper{
              padding: 50px 0;
              width: 600px;
-         } 
-         
+         }
+
          header .logo{
              right: 52px;
          }
     }
     </style>
 </head>
-<body> 
-    <header> 
+<body>
+    <header>
         <a href="http://www.adobe.com/" target="_blank" class="logo">Adobe</a>
         <div class="wrapper">
             <h1>CSS Pagination Templates <em>JavaScript Prototype</em></h1>
@@ -177,25 +177,44 @@
                 <a href="demo/the-regional.html">"The Regional" Demo - the kitchen sink</a>
                 <p>A demo using all of the proposed functionality: first page, generated content, required named flow and multi-slot templates.</p>
             </li>
-        </ul>  
+        </ul>
 
         <h2>License information</h2>
         <p>The code in this repository implies and respects different licenses. This is a quick overview. For details check each folder's corresponding LICENSE.md file.</p>
         <p>The code for the prototype, located under the <code>src/</code> folder, is available under the MIT license.</p>
         <p>The samples code and content, test files and documentation, unless otherwise specified, are available under the Public Domain License.</p>
-        <p>Third party assets are licensed accordingly in their respective folders.</p> 
+        <p>Third party assets are licensed accordingly in their respective folders.</p>
     </div>
 
     <script type="text/javascript">
 
-    document.addEventListener("DOMContentLoaded", function(){ 
-        var el = document.querySelector("#check_support"),
-            style = window.getComputedStyle(el, null),
-            isSupported = (style['webkitFlowInto'] && style['webkitFlowFrom'])
+    document.addEventListener("DOMContentLoaded", function(){
+        var message = [],
+            test = document.createElement('div'),
+            el = document.querySelector('#check_support'),
+            isSupported = (function(){
 
-        if (!isSupported){ 
-            el.className = "false" 
-            el.innerHTML = "Sorry, your browser does not support these demos. <br />Please use a <a href='http://nightly.webkit.org/'>WebKit nightly</a> build."
+                if (typeof document.webkitGetFlowByName !== 'function'){
+                    return false
+                }
+
+                test.style['webkitFlowInto'] = 'test'
+                return document.webkitGetFlowByName('test')
+            })()
+
+        if (!isSupported){
+
+            el.className = 'false'
+            message.push('Sorry, your browser does not support these demos.')
+            message.push('Please use a <a href="http://nightly.webkit.org/">WebKit nightly</a> build.')
+            
+            if (navigator.vendor && navigator.vendor.indexOf("Google") > -1){
+                message.push('')
+                message.push('<strong>On a dev build of Google Chrome?</strong>')
+                message.push('Type <code>about://flags</code> in the addres bar and enable CSS Regions, then relaunch the browser.')
+            }
+            
+            el.innerHTML = message.join('<br />')
         }
     })
 
