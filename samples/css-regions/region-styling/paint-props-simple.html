@@ -1,0 +1,135 @@
+<!-- Original image (C) Mihai Balan 2012 http://www.flickr.com/photos/mi-chou/6794649412/ - CC BY 2.0 -->
+<!-- Components extracted in Gimp -->
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Regions: region styling with paint properties (simple demo)</title>
+	<style type="text/css">
+	html, body {
+		width: 100%;
+		height: 100%;
+		font-family: Helvetica, Arial, sans-serif;
+		background-color: #c0c0c0;
+		border-left: 1px solid #a0a0a0;
+		border-right: 1px solid #a0a0a0;
+		padding: 0;
+		margin: 0;
+	}
+	
+	body {
+	    width: 80%;
+	    margin-left: auto;
+	    margin-right: auto;
+	    background: white;
+	    margin-top: 1em;
+        box-shadow: 0px 0px 0.5em rgba(0, 0, 0, 0.5);
+	}
+
+	.toggleBox {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 14em;
+		height: 4em;
+		background-color: #666666;
+		color: #DADADA;
+		padding: .5em;
+		text-align: center;
+		z-index: 100;
+		/*opacity: 0.9;*/
+		/*border: 1px solid #DADADA;*/
+	}
+	.toggleBox input[type='radio'] {
+		display: none;
+	}
+	.toggleBox input+label {
+		padding: 0.25em;
+		border-radius: 4px;
+		border: 1px solid #DADADA;
+	}
+	.toggleBox input:checked+label {
+		background-color: #999999;
+	}
+	.toggleBox .title {
+		display: block;
+		text-align: left;
+		border-bottom: medium solid #DADADA;
+		margin-bottom: 1em;
+	}
+	</style>
+
+	<link rel="stylesheet" href="css/simple-region-no-style.css">
+	<link rel="stylesheet" href="css/simple-region-style.css" id='region-styles'>
+	<script type="text/javascript">
+	document.addEventListener("change", function(evt) {
+		if (evt.target.name == "stylesheet") {
+			var styleSheet = document.getElementById('region-styles');
+			if (evt.target.id == "styling-enabled") {
+				styleSheet.disabled = false;
+			} else if (evt.target.id == "styling-disabled") {
+				styleSheet.disabled = true;
+			}
+		}
+	});
+	</script>
+</head>
+<body>
+	<div class="toggleBox">
+		<span class="title">Region styling</span>
+		<input type="radio" name="stylesheet" id="styling-enabled" checked/>
+		<label for="styling-enabled">Enabled</label>
+		<input type="radio" name="stylesheet" id="styling-disabled">
+		<label for="styling-disabled">Disabled</label>
+	</div>
+	<article>
+	<h1>Chess</h1>
+	<blockquote>Combinations have always been the most intriguing aspect of Chess. The masters look for them, the public applauds them, the critics praise them. It is because combinations are possible that Chess is more than a lifeless mathematical exercise.</blockquote>
+	<h2>The Whites</h2>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat.</p>
+	<p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	
+	<h2>The Blacks</h2>
+	
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua.</p>
+	<p>Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</article>
+		<div id="left-col" class="region"></div>
+		<div id="right-col" class="region"></div>
+		<div id="bottom-col" class="region"></div>
+</body>
+</html>

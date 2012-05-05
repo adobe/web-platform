@@ -1,0 +1,62 @@
+
+h1 {
+	border-bottom: thick solid black;
+	padding-left: 0.2em;
+	margin-top: 0;
+    padding-top: 0.5em;
+    font-size: 2em;
+}
+
+h2 {
+	padding: 0.5em;
+}
+
+blockquote {
+	font-style: italic;
+	font-weight: bold;
+	font-family: Palatino, Georgia, serif;
+	text-align: right;
+	padding-left: 10%;
+	margin-right: 0;
+}
+p {
+	padding: .5em;
+	text-align: justify;
+}
+
+
+@-webkit-region #left-col {
+    article {
+        background-color: white;
+    }
+    
+	h1 {
+		border-color: #e0e0e0;
+	}
+	
+	h2 {
+		background-color: black;
+		color: white;
+	}
+	
+	p {
+		background-color: white;
+		color: black;
+	}
+}
+
+@-webkit-region #right-col {
+    article {
+        background: black;
+    }
+    
+	h2 {
+		background-color: white;
+		color: black;
+	}
+    
+	p {
+		background-color: black;
+		color: white;
+	}
+}

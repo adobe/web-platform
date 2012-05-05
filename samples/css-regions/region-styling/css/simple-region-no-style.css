@@ -1,0 +1,38 @@
+article {
+	-webkit-flow-into: content;
+}
+
+article p, article blockquote {
+	padding: 0.75em;
+}
+
+#left-col, #right-col, #bottom-col {
+	-webkit-flow-from: content;  
+	height: auto;
+	box-sizing: border-box;
+}
+
+#left-col {
+    float: left;
+	width: 50%;
+	height: 400px;
+	padding-bottom: 0.5em;
+	background: white;
+	box-shadow: 0 0.5em 0.5em rgba(0, 0, 0, 0.5);
+}
+
+#right-col {
+    float: right;
+	width: 50%;
+	height: 400px;
+	padding-bottom: 0.5em;
+	background: black;
+	box-shadow: 0 0.5em 0.5em rgba(0, 0, 0, 0.5);
+}
+
+#bottom-col {
+    margin-top: 3em;
+    float:left;
+    background: white;
+}
+
