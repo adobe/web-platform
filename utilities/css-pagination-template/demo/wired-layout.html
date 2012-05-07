@@ -1,0 +1,499 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <link rel="stylesheet" href="../src/pagemanager.css" type="text/css" /> 
+  <meta charset="UTF-8">
+  <title>Mockup layout from Wired magazine article</title>
+  
+  <style type="text/experimental-css">
+    #wired {
+      overflow-style: paged-x;
+    } 
+    
+
+    @template wired-layout{
+
+      @slot left{  
+        width: 35%;
+        -background: lightgreen;
+        float:left;
+        -webkit-flow-from: article-flow;
+      }
+      
+      @slot facts {  
+        width: 25%;
+        -background: papayawhip;
+        float: left;
+        -webkit-flow-from: timeline;
+      } 
+      
+      @slot right {
+        width: 35%;
+        -background: lightgreen;
+        float: left;
+        -webkit-flow-from: article-flow;
+      }
+        
+    }  
+  </style>
+
+  <style>  
+    html,
+    body {
+      width: 100%;
+      height: 100%; 
+    }   
+    
+    #wired{   
+      width: 80%;
+      height: 70%;
+      margin: 50px auto 0;
+      -border: solid thin black;
+    }
+    .english {
+      text-align: justify;
+      -webkit-flow-into: article-flow;
+    }
+    .german {
+      padding: 2em;
+      -webkit-flow-into: timeline;
+    }
+    .redbox {
+      margin-left: -2em;
+      margin-right: -2em;
+      height: 3em;
+      background-color: red;
+      display:block;
+    }
+    .box {
+      margin-left: -2em;
+      margin-right: -2em;
+      height: 3em;
+      background-color: lightblue;
+      display:block;
+    }
+    .blackbox {
+      margin-left: -2em;
+      margin-right: -2em;
+      margin-top: -2em;
+      background: black;
+      padding: 2em;
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+    .date-header {
+      color: white;
+      font-size: 200%;
+
+    }
+    .date {
+      margin-left: -20px;
+      font-size: 240%;
+      line-height: 100%;
+      display:block;
+    }
+    h3 {display:none;}
+    p {margin:0;}
+  </style>
+</head>
+<body>                  
+    
+  <div id="wired"></div>
+    
+  <article class='english'>
+    <p> Whereas recognition of the inherent dignity and of the equal and
+  inalienable rights of all members of the human family is the 
+foundation  of freedom, justice and peace in the world, </p>
+    <p> Whereas disregard and contempt for human rights have resulted in
+  barbarous acts which have outraged the conscience of mankind, and the 
+ advent of a world in which human beings shall enjoy freedom of speech  
+and belief and freedom from fear and want has been proclaimed as the  
+highest aspiration of the common people, </p>
+    <p> Whereas it is essential, if man is not to be compelled to have  
+recourse, as a last resort, to rebellion against tyranny and  
+oppression, that human rights should be protected by the rule of law, </p>
+    <p> Whereas it is essential to promote the development of friendly relations between nations, </p>
+    <p> Whereas the peoples of the United Nations have in the Charter  
+reaffirmed their faith in fundamental human rights, in the dignity and  
+worth of the human person and in the equal rights of men and women and  
+have determined to promote social progress and better standards of life 
+ in larger freedom, </p>
+    <p> Whereas Member States have pledged themselves to achieve, in  
+co-operation with the United Nations, the promotion of universal  
+respect for and observance of human rights and fundamental freedoms, </p>
+    <p> Whereas a common understanding of these rights and freedoms is 
+of  the greatest importance for the full realization of this pledge,</p>
+    <p> <strong>Now, Therefore THE GENERAL ASSEMBLY proclaims THIS UNIVERSAL DECLARATION OF HUMAN RIGHTS</strong>
+ as a common standard of achievement for all peoples and all nations, to
+  the end that every individual and every organ of society, keeping this
+  Declaration constantly in mind, shall strive by teaching and education
+  to promote respect for these rights and freedoms and by progressive  
+measures, national and international, to secure their universal and  
+effective recognition and observance, both among the peoples of Member  
+States themselves and among the peoples of territories under their  
+jurisdiction.</p>
+    <p>&nbsp;</p>
+    <h3><a name="a1" id="a1"></a>Article 1.</h3>
+    <p>All human beings are born free and equal in dignity and 
+rights.They are   endowed with reason and conscience and should act 
+towards one another in a   spirit of brotherhood.</p>
+    <h3><a name="a2" id="a2"></a>Article 2.</h3>
+    <p>Everyone is entitled to all the rights and freedoms set forth 
+in this   Declaration, without distinction of any kind, such as race, 
+colour, sex,   language, religion, political or other opinion, national 
+or social origin,   property, birth or other status. Furthermore, no 
+distinction shall be made on   the basis of the political, 
+jurisdictional or international status of the   country or territory to 
+which a person belongs, whether it be independent,   trust, 
+non-self-governing or under any other limitation of sovereignty.</p>
+    <h3><a name="a3" id="a3"></a>Article 3.</h3>
+    <p>Everyone has the right to life, liberty and security of person.</p>
+    <h3><a name="a4" id="a4"></a>Article 4.</h3>
+    <p>No one shall be held in slavery or servitude; slavery and the slave trade   shall be prohibited in all their forms.</p>
+    <h3><a name="a5" id="a5"></a>Article 5.</h3>
+    <p>No one shall be subjected to torture or to cruel, inhuman or degrading   treatment or punishment.</p>
+    <h3><a name="a6" id="a6"></a>Article 6.</h3>
+    <p> Everyone has the right to recognition everywhere as a person before the   law.</p>
+    <h3><a name="a7" id="a7"></a>Article 7.</h3>
+    <p> All are equal before the law and are entitled without any 
+discrimination to   equal protection of the law. All are entitled to 
+equal protection against any   discrimination in violation of this 
+Declaration and against any incitement to   such discrimination.</p>
+    <h3><a name="a8" id="a8"></a>Article 8.</h3>
+    <p> Everyone has the right to an effective remedy by the 
+competent national   tribunals for acts violating the fundamental rights
+ granted him by the   constitution or by law.</p>
+    <h3><a name="a9" id="a9"></a>Article 9.</h3>
+    <p> No one shall be subjected to arbitrary arrest, detention or exile.</p>
+    <h3><a name="a10" id="a10"></a>Article 10.</h3>
+    <p> Everyone is entitled in full equality to a fair and public 
+hearing by an   independent and impartial tribunal, in the determination
+ of his rights and   obligations and of any criminal charge against him.</p>
+    <h3><a name="a11" id="a11"></a>Article 11.</h3>
+    <p> (1) Everyone charged with a penal offence has the right to be
+ presumed   innocent until proved guilty according to law in a public 
+trial at which he has   had all the guarantees necessary for his 
+defence.<p> (2) No one shall be held guilty of any penal offence on 
+account of any act or   omission which did not constitute a penal 
+offence, under national or   international law, at the time when it was 
+committed. Nor shall a heavier   penalty be imposed than the one that 
+was applicable at the time the penal   offence was committed.</p>
+    <h3><a name="a12" id="a12"></a>Article 12.</h3>
+    <p> No one shall be subjected to arbitrary interference with his 
+privacy, family,   home or correspondence, nor to attacks upon his 
+honour and reputation. Everyone   has the right to the protection of the
+ law against such interference or   attacks.</p>
+    <h3><a name="a13" id="a13"></a>Article 13.</h3>
+    <p> (1) Everyone has the right to freedom of movement and residence within the   borders of each state.<p> (2) Everyone has the right to leave any country, including his own, and to   return to his country.</p>
+    <h3><a name="a14" id="a14"></a>Article 14.</h3>
+    <p> (1) Everyone has the right to seek and to enjoy in other countries asylum   from persecution.<p> (2) This right may not be invoked in the case of prosecutions
+ genuinely   arising from non-political crimes or from acts contrary to 
+the purposes and   principles of the United Nations.</p>
+    <h3><a name="a15" id="a15"></a>Article 15.</h3>
+    <p> (1) Everyone has the right to a nationality.<p> (2) No one shall be arbitrarily deprived of his nationality nor denied the   right to change his nationality.</p>
+    <h3><a name="a16" id="a16"></a>Article 16.</h3>
+    <p> (1) Men and women of full age, without any limitation due to 
+race,   nationality or religion, have the right to marry and to found a 
+family. They are   entitled to equal rights as to marriage, during 
+marriage and at its   dissolution.<p> (2) Marriage shall be entered into only with the free and full consent of the   intending spouses.<p> (3) The family is the natural and fundamental group unit of society and is   entitled to protection by society and the State.</p>
+    <h3><a name="a17" id="a17"></a>Article 17.</h3>
+    <p> (1) Everyone has the right to own property alone as well as in association   with others.<p> (2) No one shall be arbitrarily deprived of his property.</p>
+    <h3><a name="a18" id="a18"></a>Article 18.</h3>
+    <p> Everyone has the right to freedom of thought, conscience and 
+religion; this   right includes freedom to change his religion or 
+belief, and freedom, either   alone or in community with others and in 
+public or private, to manifest his   religion or belief in teaching, 
+practice, worship and observance.</p>
+    <h3><a name="a19" id="a19"></a>Article 19.</h3>
+    <p> Everyone has the right to freedom of opinion and expression; 
+this right   includes freedom to hold opinions without interference and 
+to seek, receive and   impart information and ideas through any media 
+and regardless of   frontiers.</p>
+    <h3><a name="a20" id="a20"></a>Article 20.</h3>
+    <p> (1) Everyone has the right to freedom of peaceful assembly and   association.<p> (2) No one may be compelled to belong to an association.</p>
+    <h3><a name="a21" id="a21"></a>Article 21.</h3>
+    <p> (1) Everyone has the right to take part in the government of his country,   directly or through freely chosen representatives.<p> (2) Everyone has the right of equal access to public service in his   country.<p> (3) The will of the people shall be the basis of the 
+authority of government;   this will shall be expressed in periodic and 
+genuine elections which shall be by   universal and equal suffrage and 
+shall be held by secret vote or by equivalent   free voting procedures.</p>
+    <h3><a name="a22" id="a22"></a>Article 22.</h3>
+    <p> Everyone, as a member of society, has the right to social 
+security and is   entitled to realization, through national effort and 
+international co-operation   and in accordance with the organization and
+ resources of each State, of the   economic, social and cultural rights 
+indispensable for his dignity and the free   development of his 
+personality.</p>
+    <h3><a name="a23" id="a23"></a>Article 23.</h3>
+    <p> (1) Everyone has the right to work, to free choice of 
+employment, to just and   favourable conditions of work and to 
+protection against unemployment.<p> (2) Everyone, without any discrimination, has the right to equal pay for   equal work.<p> (3) Everyone who works has the right to just and favourable 
+remuneration   ensuring for himself and his family an existence worthy 
+of human dignity, and   supplemented, if necessary, by other means of 
+social protection.<p> (4) Everyone has the right to form and to join trade unions for the   protection of his interests.</p>
+    <h3><a name="a24" id="a24"></a>Article 24.</h3>
+    <p> Everyone has the right to rest and leisure, including reasonable limitation   of working hours and periodic holidays with pay.</p>
+    <h3><a name="a25" id="a25"></a>Article 25.</h3>
+    <p> (1) Everyone has the right to a standard of living adequate 
+for the health   and well-being of himself and of his family, including 
+food, clothing, housing   and medical care and necessary social 
+services, and the right to security in the   event of unemployment, 
+sickness, disability, widowhood, old age or other lack of   livelihood 
+in circumstances beyond his control.<p> (2) Motherhood and childhood are entitled to special care and
+ assistance. All   children, whether born in or out of wedlock, shall 
+enjoy the same social   protection.</p>
+    <h3><a name="a26" id="a26"></a>Article 26.</h3>
+    <p> (1) Everyone has the right to education. Education shall be 
+free, at least in   the elementary and fundamental stages. Elementary 
+education shall be compulsory.   Technical and professional education 
+shall be made generally available and   higher education shall be 
+equally accessible to all on the basis of merit.<p> (2) Education shall be directed to the full development of 
+the human   personality and to the strengthening of respect for human 
+rights and fundamental   freedoms. It shall promote understanding, 
+tolerance and friendship among all   nations, racial or religious 
+groups, and shall further the activities of the   United Nations for the
+ maintenance of peace.<p> (3) Parents have a prior right to choose the kind of education that shall be   given to their children.</p>
+    <h3><a name="a27" id="a27"></a>Article 27.</h3>
+    <p> (1) Everyone has the right freely to participate in the 
+cultural life of the   community, to enjoy the arts and to share in 
+scientific advancement and its   benefits.<p> (2) Everyone has the right to the protection of the moral and
+ material   interests resulting from any scientific, literary or 
+artistic production of   which he is the author.</p>
+    <h3><a name="a28" id="a28"></a>Article 28.</h3>
+    <p> Everyone is entitled to a social and international order in 
+which the rights   and freedoms set forth in this Declaration can be 
+fully realized.</p>
+
+    <h3><a name="a29" id="a29"></a>Article 29.</h3>
+    <p> (1) Everyone has duties to the community in which alone the free and full   development of his personality is possible.<p> (2) In the exercise of his rights and freedoms, everyone 
+shall be subject   only to such limitations as are determined by law 
+solely for the purpose of   securing due recognition and respect for the
+ rights and freedoms of others and   of meeting the just requirements of
+ morality, public order and the general   welfare in a democratic 
+society.<p> (3) These rights and freedoms may in no case be exercised contrary to the   purposes and principles of the United Nations.</p>
+    <h3><a name="a30" id="a30"></a>Article 30.</h3>
+    <p> Nothing in this Declaration may be interpreted as implying 
+for any State,   group or person any right to engage in any activity or 
+to perform any act aimed   at the destruction of any of the rights and 
+freedoms set forth herein.</p>
+    <p> Whereas recognition of the inherent dignity and of the equal and
+  inalienable rights of all members of the human family is the 
+foundation  of freedom, justice and peace in the world, </p>
+    <p> Whereas disregard and contempt for human rights have resulted in
+  barbarous acts which have outraged the conscience of mankind, and the 
+ advent of a world in which human beings shall enjoy freedom of speech  
+and belief and freedom from fear and want has been proclaimed as the  
+highest aspiration of the common people, </p>
+    <p> Whereas it is essential, if man is not to be compelled to have  
+recourse, as a last resort, to rebellion against tyranny and  
+oppression, that human rights should be protected by the rule of law, </p>
+    <p> Whereas it is essential to promote the development of friendly relations between nations, </p>
+    <p> Whereas the peoples of the United Nations have in the Charter  
+reaffirmed their faith in fundamental human rights, in the dignity and  
+worth of the human person and in the equal rights of men and women and  
+have determined to promote social progress and better standards of life 
+ in larger freedom, </p>
+    <p> Whereas Member States have pledged themselves to achieve, in  
+co-operation with the United Nations, the promotion of universal  
+respect for and observance of human rights and fundamental freedoms, </p>
+    <p> Whereas a common understanding of these rights and freedoms is 
+of  the greatest importance for the full realization of this pledge,</p>
+    <p> <strong>Now, Therefore THE GENERAL ASSEMBLY proclaims THIS UNIVERSAL DECLARATION OF HUMAN RIGHTS</strong>
+ as a common standard of achievement for all peoples and all nations, to
+  the end that every individual and every organ of society, keeping this
+  Declaration constantly in mind, shall strive by teaching and education
+  to promote respect for these rights and freedoms and by progressive  
+measures, national and international, to secure their universal and  
+effective recognition and observance, both among the peoples of Member  
+States themselves and among the peoples of territories under their  
+jurisdiction.</p>
+    <p>&nbsp;</p>
+    <h3><a name="a1" id="a1"></a>Article 1.</h3>
+    <p>All human beings are born free and equal in dignity and 
+rights.They are   endowed with reason and conscience and should act 
+towards one another in a   spirit of brotherhood.</p>
+    <h3><a name="a2" id="a2"></a>Article 2.</h3>
+    <p>Everyone is entitled to all the rights and freedoms set forth 
+in this   Declaration, without distinction of any kind, such as race, 
+colour, sex,   language, religion, political or other opinion, national 
+or social origin,   property, birth or other status. Furthermore, no 
+distinction shall be made on   the basis of the political, 
+jurisdictional or international status of the   country or territory to 
+which a person belongs, whether it be independent,   trust, 
+non-self-governing or under any other limitation of sovereignty.</p>
+    <h3><a name="a3" id="a3"></a>Article 3.</h3>
+    <p>Everyone has the right to life, liberty and security of person.</p>
+    <h3><a name="a4" id="a4"></a>Article 4.</h3>
+    <p>No one shall be held in slavery or servitude; slavery and the slave trade   shall be prohibited in all their forms.</p>
+    <h3><a name="a5" id="a5"></a>Article 5.</h3>
+    <p>No one shall be subjected to torture or to cruel, inhuman or degrading   treatment or punishment.</p>
+    <h3><a name="a6" id="a6"></a>Article 6.</h3>
+    <p> Everyone has the right to recognition everywhere as a person before the   law.</p>
+    <h3><a name="a7" id="a7"></a>Article 7.</h3>
+    <p> All are equal before the law and are entitled without any 
+discrimination to   equal protection of the law. All are entitled to 
+equal protection against any   discrimination in violation of this 
+Declaration and against any incitement to   such discrimination.</p>
+    <h3><a name="a8" id="a8"></a>Article 8.</h3>
+    <p> Everyone has the right to an effective remedy by the 
+competent national   tribunals for acts violating the fundamental rights
+ granted him by the   constitution or by law.</p>
+    <h3><a name="a9" id="a9"></a>Article 9.</h3>
+    <p> No one shall be subjected to arbitrary arrest, detention or exile.</p>
+    <h3><a name="a10" id="a10"></a>Article 10.</h3>
+    <p> Everyone is entitled in full equality to a fair and public 
+hearing by an   independent and impartial tribunal, in the determination
+ of his rights and   obligations and of any criminal charge against him.</p>
+    <h3><a name="a11" id="a11"></a>Article 11.</h3>
+    <p> (1) Everyone charged with a penal offence has the right to be
+ presumed   innocent until proved guilty according to law in a public 
+trial at which he has   had all the guarantees necessary for his 
+defence.<p> (2) No one shall be held guilty of any penal offence on 
+account of any act or   omission which did not constitute a penal 
+offence, under national or   international law, at the time when it was 
+committed. Nor shall a heavier   penalty be imposed than the one that 
+was applicable at the time the penal   offence was committed.</p>
+    <h3><a name="a12" id="a12"></a>Article 12.</h3>
+    <p> No one shall be subjected to arbitrary interference with his 
+privacy, family,   home or correspondence, nor to attacks upon his 
+honour and reputation. Everyone   has the right to the protection of the
+ law against such interference or   attacks.</p>
+    <h3><a name="a13" id="a13"></a>Article 13.</h3>
+    <p> (1) Everyone has the right to freedom of movement and residence within the   borders of each state.<p> (2) Everyone has the right to leave any country, including his own, and to   return to his country.</p>
+    <h3><a name="a14" id="a14"></a>Article 14.</h3>
+    <p> (1) Everyone has the right to seek and to enjoy in other countries asylum   from persecution.<p> (2) This right may not be invoked in the case of prosecutions
+ genuinely   arising from non-political crimes or from acts contrary to 
+the purposes and   principles of the United Nations.</p>
+    <h3><a name="a15" id="a15"></a>Article 15.</h3>
+    <p> (1) Everyone has the right to a nationality.<p> (2) No one shall be arbitrarily deprived of his nationality nor denied the   right to change his nationality.</p>
+    <h3><a name="a16" id="a16"></a>Article 16.</h3>
+    <p> (1) Men and women of full age, without any limitation due to 
+race,   nationality or religion, have the right to marry and to found a 
+family. They are   entitled to equal rights as to marriage, during 
+marriage and at its   dissolution.<p> (2) Marriage shall be entered into only with the free and full consent of the   intending spouses.<p> (3) The family is the natural and fundamental group unit of society and is   entitled to protection by society and the State.</p>
+    <h3><a name="a17" id="a17"></a>Article 17.</h3>
+    <p> (1) Everyone has the right to own property alone as well as in association   with others.<p> (2) No one shall be arbitrarily deprived of his property.</p>
+    <h3><a name="a18" id="a18"></a>Article 18.</h3>
+    <p> Everyone has the right to freedom of thought, conscience and 
+religion; this   right includes freedom to change his religion or 
+belief, and freedom, either   alone or in community with others and in 
+public or private, to manifest his   religion or belief in teaching, 
+practice, worship and observance.</p>
+    <h3><a name="a19" id="a19"></a>Article 19.</h3>
+    <p> Everyone has the right to freedom of opinion and expression; 
+this right   includes freedom to hold opinions without interference and 
+to seek, receive and   impart information and ideas through any media 
+and regardless of   frontiers.</p>
+    <h3><a name="a20" id="a20"></a>Article 20.</h3>
+    <p> (1) Everyone has the right to freedom of peaceful assembly and   association.<p> (2) No one may be compelled to belong to an association.</p>
+    <h3><a name="a21" id="a21"></a>Article 21.</h3>
+    <p> (1) Everyone has the right to take part in the government of his country,   directly or through freely chosen representatives.<p> (2) Everyone has the right of equal access to public service in his   country.<p> (3) The will of the people shall be the basis of the 
+authority of government;   this will shall be expressed in periodic and 
+genuine elections which shall be by   universal and equal suffrage and 
+shall be held by secret vote or by equivalent   free voting procedures.</p>
+    <h3><a name="a22" id="a22"></a>Article 22.</h3>
+    <p> Everyone, as a member of society, has the right to social 
+security and is   entitled to realization, through national effort and 
+international co-operation   and in accordance with the organization and
+ resources of each State, of the   economic, social and cultural rights 
+indispensable for his dignity and the free   development of his 
+personality.</p>
+    <h3><a name="a23" id="a23"></a>Article 23.</h3>
+    <p> (1) Everyone has the right to work, to free choice of 
+employment, to just and   favourable conditions of work and to 
+protection against unemployment.<p> (2) Everyone, without any discrimination, has the right to equal pay for   equal work.<p> (3) Everyone who works has the right to just and favourable 
+remuneration   ensuring for himself and his family an existence worthy 
+of human dignity, and   supplemented, if necessary, by other means of 
+social protection.<p> (4) Everyone has the right to form and to join trade unions for the   protection of his interests.</p>
+    <h3><a name="a24" id="a24"></a>Article 24.</h3>
+    <p> Everyone has the right to rest and leisure, including reasonable limitation   of working hours and periodic holidays with pay.</p>
+    <h3><a name="a25" id="a25"></a>Article 25.</h3>
+    <p> (1) Everyone has the right to a standard of living adequate 
+for the health   and well-being of himself and of his family, including 
+food, clothing, housing   and medical care and necessary social 
+services, and the right to security in the   event of unemployment, 
+sickness, disability, widowhood, old age or other lack of   livelihood 
+in circumstances beyond his control.<p> (2) Motherhood and childhood are entitled to special care and
+ assistance. All   children, whether born in or out of wedlock, shall 
+enjoy the same social   protection.</p>
+    <h3><a name="a26" id="a26"></a>Article 26.</h3>
+    <p> (1) Everyone has the right to education. Education shall be 
+free, at least in   the elementary and fundamental stages. Elementary 
+education shall be compulsory.   Technical and professional education 
+shall be made generally available and   higher education shall be 
+equally accessible to all on the basis of merit.<p> (2) Education shall be directed to the full development of 
+the human   personality and to the strengthening of respect for human 
+rights and fundamental   freedoms. It shall promote understanding, 
+tolerance and friendship among all   nations, racial or religious 
+groups, and shall further the activities of the   United Nations for the
+ maintenance of peace.<p> (3) Parents have a prior right to choose the kind of education that shall be   given to their children.</p>
+    <h3><a name="a27" id="a27"></a>Article 27.</h3>
+    <p> (1) Everyone has the right freely to participate in the 
+cultural life of the   community, to enjoy the arts and to share in 
+scientific advancement and its   benefits.<p> (2) Everyone has the right to the protection of the moral and
+ material   interests resulting from any scientific, literary or 
+artistic production of   which he is the author.</p>
+    <h3><a name="a28" id="a28"></a>Article 28.</h3>
+    <p> Everyone is entitled to a social and international order in 
+which the rights   and freedoms set forth in this Declaration can be 
+fully realized.</p>
+
+    <h3><a name="a29" id="a29"></a>Article 29.</h3>
+    <p> (1) Everyone has duties to the community in which alone the free and full   development of his personality is possible.<p> (2) In the exercise of his rights and freedoms, everyone 
+shall be subject   only to such limitations as are determined by law 
+solely for the purpose of   securing due recognition and respect for the
+ rights and freedoms of others and   of meeting the just requirements of
+ morality, public order and the general   welfare in a democratic 
+society.<p> (3) These rights and freedoms may in no case be exercised contrary to the   purposes and principles of the United Nations.</p>
+    <h3><a name="a30" id="a30"></a>Article 30.</h3>
+    <p> Nothing in this Declaration may be interpreted as implying 
+for any State,   group or person any right to engage in any activity or 
+to perform any act aimed   at the destruction of any of the rights and 
+freedoms set forth herein.</p>
+</article>
+  
+  <article class='german'>
+<div class="blackbox"><p class="date-header">Some Random Dates</p></div>
+<span class="date">1600s</span> der allen Mitgliedern der menschlichen Familie innewohnenden W&#252;rde und ihrer gleichen und nver&#228;u&#223;erlichen Rechte die Grundlage der Freiheit, der Gerechtigkeit und des Friedens in aller Welt bildet, 
+<div class="box"></div>
+<span class="date">1721</span> und Mi&#223;achtung der Menschenrechte zu Akten der Barberei f&#252;hrten, die das Gewissen der Menschheit tief verletzt haben, und da die Schaffung einer Welt, in der den Menschen, frei von Furcht und Not, Rede- und Glaubensfreiheit zuteil wird, als das h&#246;chste Bestreben der Menschheit verk&#252;ndet worden ist, 
+<div class="redbox"></div>
+<span class="date">1774</span>, die Menschenrechte durch die Herrschaft des Rechts zu sch&#252;tzen, damit der Mensch nicht zum Aufstand gegen Tyrannei und Unterdr&#252;ckung als letztem Mittel gezwungen wird, 
+<div class="box"></div>
+<span class="date">1798</span>, die Entwicklung freundschaftlicher Beziehungen zwischen den Nationen zu f&#246;rdern, 
+<div class="redbox"></div>
+<span class="date">1885</span> der Vereinten Nationen in der Satzung ihren Glauben an die grundlegenden Menschenrechte, an die W&#252;rde und den Wert der menschlichen Person und an die Gleichberechtigung von Mann und Frau erneut bekr&#228;ftigt und beschlossen haben, den sozialen Fortschritt und bessere Lebensbedingungen bei gr&#246;&#223;erer Freiheit zu f&#246;rdern, 
+<div class="box"></div>
+<span class="date">1898</span> sich verpflichtet haben, in Zusammenarbeit mit den Vereinten Nationen die allgemeine Achtung und Verwirklichtung der Menschenrechte und Grundfreiheiten durchzusetzen, 
+<div class="redbox"></div>
+<span class="date">1939</span>da die gemeinsame Auffassung &#252;ber diese Rechte von gr&#246;&#223;ter Wichtigkeit f&#252;r die volle Erf&#252;llung dieser Verpflichtung ist verk&#252;ndet die Generalversammlung die vorliegende Allgemeine Erkl&#228;rung der Menschenrechte als das von allen V&#246;lkern und Nationen zu erreichende gemeinsame Ideal, damit jeder einzelne und alle Organe der Gesellschaft sich diese Erkl&#228;rung stets gegenw&#228;rtig halten <Br>
+<div class="box"></div>
+<span class="date">1944</span>und sich bem&#252;hen, durch Unterricht <Br>
+und Erziehung die Achtung dieser Rechte <Br>
+und Freiheiten zu f&#246;rdern und durch fortschreitende Ma&#223;nahmen im nationalen <Br>
+und internationalen Bereiche ihre allgemeine <Br>
+und tats&#228;chliche Anerkennung <Br>
+und Verwirklichung bei der Bev&#246;lkerung sowohl der Mitgliedsstaaten wie der ihrer Oberhoheit unterstehenden Gebiete zu gew&#228;hrleisten</B>. 
+<div class="redbox"></div>
+<span class="date">1957</span> <Br>
+Alle Menschen sind frei und gleich an W&#252;rde und Rechten geboren. Sie sind mit Vernunft und Gewissen begabt und sollen einander im Geiste der Br&#252;derlichkeit begegnen. 
+<div class="box"></div>
+<span class="date">1959</span> <Br>
+Jeder Mensch hat Anspruch auf die in dieser Erkl&#228;rung verk&#252;ndeten Rechte und Freiheiten ohne irgendeine Unterscheidung, wie etwa nach Rasse, Farbe, Geschlecht, Sprache, Religion, politischer oder sonstiger &#220;berzeugung, nationaler oder sozialer Herkunft, nach Eigentum, Geburt oder sonstigen Umst&#228;nden. Weiters darf keine Unterscheidung gemacht werden auf Grund der politischen, rechtlichen oder internationalen Stellung des landes oder Gebietes, dem eine person angeh&#246;rt, ohne R&#252;cksicht darauf, ob es unabh&#228;ngig ist, unter Treuhandschaft steht, keine Selbstregierung besitzt oder irgendeiner anderen Beschr&#228;nkung seiner Souver&#228;nit&#228;t unterworfen ist.
+<div class="redbox"></div>
+<span class="date">1968</span> <Br>
+Jeder Mensch hat das Recht auf Leben, Freiheit und Sicherheit der Person. 
+<div class="box"></div>
+<span class="date">1986</span> <Br>
+Niemand darf in Sklaverei oder Leibeigenschaft gehalten werden; Sklaverei und Sklavenhandel sind in allen Formen verboten. 
+<div class="redbox"></div>
+<span class="date">1992</span> <Br>
+Niemand darf der Folter oder grausamer, unmenschlicher oder erniedrigender Behandlung oder Strafe unterworfen werden. 
+</article>            
+  <script type="text/javascript" src="../src/cssparser.js"></script>
+  <script type="text/javascript" src="../src/pagemanager.js"></script>       
+  <script type="text/javascript" src="../src/pagetemplate.js"></script>    
+  
+  <link rel="stylesheet" href="../src/demo-harness.css" type="text/css" />
+  <script type="text/javascript" src="../src/demo-harness.js"></script>   
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!--
+Copyright (C) 2012 Adobe Systems, Incorporated. All rights reserved.
+
+Unless otherwise noted, the code and content of these samples is
+licensed under a Public Domain License
+
+http://creativecommons.org/publicdomain/zero/1.0/
+-->  
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="../../src/pagemanager.css" type="text/css" /> 
+    <link rel="stylesheet" href="demo-style.css" type="text/css" /> 
+    <meta charset="UTF-8">
+
+    <style type="text/experimental-css">
+
+        body {
+            width: 300px;
+            height: 150px;
+            overflow-style: paged-x;
+            template-set: article-page;
+        }
+
+        @template article-page{
+            background: lightblue;
+
+            @slot article-flow {
+                -webkit-flow-from: article-flow;
+            } 
+        }
+
+        @template article-page:first{
+            background: lightgreen;
+        }
+
+    </style>
+    <style>
+        article {
+            -webkit-flow-into: article-flow;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <h1>Demo using :first</h1>
+        <p>The first page should have a lightgreen background, and the remaining pages should have a lightblue background.</p>
+        <p>The first page should have a lightgreen background, and the remaining pages should have a lightblue background.</p>
+        <p>The first page should have a lightgreen background, and the remaining pages should have a lightblue background.</p>
+    </article>
+    <script type="text/javascript" src="../../src/cssparser.js"></script>
+    <script type="text/javascript" src="../../src/pagemanager.js"></script>
+    <script type="text/javascript" src="../../src/pagetemplate.js"></script>
+
+    <link rel="stylesheet" href="../../src/demo-harness.css" type="text/css" />
+    <script type="text/javascript" src="../../src/demo-harness.js"></script>
+</body>
+</html>

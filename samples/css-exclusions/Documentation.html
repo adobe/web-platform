@@ -1,0 +1,267 @@
+<!--
+ADOBE SYSTEMS INCORPORATED
+Copyright 2011 Adobe Systems Incorporated
+All Rights Reserved.
+ 
+NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance with the
+terms of the Adobe license agreement accompanying it.  If you have received this file from a
+source other than Adobe, then your use, modification, or distribution of it requires the prior
+written permission of Adobe.
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Adobe CSS Exclusions Prototype - Documentation</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+	body{
+		margin:0 auto;
+		width:600px;
+		font-size:18px;
+		font-family: Helvetica, Arial, serif;
+		overflow-x:hidden;
+	}
+	
+	a{
+		color:#ff2705;
+		text-decoration:none;
+	}
+	a:hover{
+		color:#333;
+		text-decoration:underline;
+	}
+	
+	h1{
+		background:#ff2705;
+		color:white;
+		padding:50px 20px 20px;
+		margin:0;
+		font-size:18pt;
+		text-shadow:1px 1px 2px black;
+	}	
+	
+	h1 #common {
+		display: inline-block;
+	}
+		
+	h1 span {
+		display: block;
+		font-size: 12pt;
+	}
+	
+	h1 em{
+		font-size: 22pt;
+		display:block;
+		font-style:normal;
+		float: right;
+	}
+	
+	h2{
+		font-size:42px;
+		letter-spacing:-2px;
+		border-bottom:3px solid black;
+		color:black;
+		padding:40px 0 5px;
+	}
+	
+	dl,dt,dd{
+		margin:0;
+	}
+	
+	dt{
+		font-size:28px;
+		margin:50px 0 0;
+		font-weight:bold;
+		color:#444;
+	}
+
+	pre{
+		padding:20px;
+		background:#C5DFF0;
+		font-size:15px;
+		white-space: pre-wrap;
+		border:2px dashed #ccc;
+		border-left:none;
+		border-right:none;
+	}
+	
+	pre em{
+		font-style:normal;
+		font-weight:bold;
+		color:#ff2705;
+	}
+	
+	#nav,
+	#nav li{
+		padding:0;
+		margin:0;
+	}
+	
+	#nav{
+		padding:5px 20px;
+		list-style:none;
+	}
+	
+	#nav li{
+		display:inline-block;
+		margin-right:20px;
+	}
+	
+	#nav a{
+		color:#ff2705;
+	}
+	
+	</style>
+</head>
+<body>
+	<h1><div id="common">CSS Exclusions Prototype <span>by Adobe Web Platform</span></div></h1>
+	
+	<ul id="nav">
+		<li>
+			<a href="index.html">Home</a>
+		</li>
+		<li>
+			<strong>Documentation</strong>
+		</li>
+	</ul>
+	
+	<h2>Contents</h2>
+	<ul id="toc">
+		<li>
+			<a href="#definitions">Definitions and concepts</a>
+		</li>
+		<li>
+			<a href="#shapes">Shapes and exclusions</a>
+			<ul>
+				<li>
+					<a href="#dt_wrap-shape">-webkit-wrap-shape</a>
+				</li>
+				<li>
+					<a href="#dt_wrap-shape-mode">-webkit-wrap-shape-mode</a>
+				</li>
+				<li>
+					<a href="#dt_wrap-shape-order">-webkit-wrap-shape-order</a>
+				</li>
+				<li>
+					<a href="#dt_render-wrap-shape">-webkit-render-wrap-shape</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	
+	<p>This document briefly describes the properties from the 
+			the <a href="http://dev.w3.org/csswg/css3-exclusions/">CSS Exclusions</a>  editor's draft that has been prototyped so far.</p>
+	
+	<h2 id="definitions">Definitions and concepts</h2>
+	
+	<p>
+		<strong>Content shape:</strong> the interior of the shape defined by a wrap-shape, clipped by the content-box.
+	</p>
+	<p>
+		<strong>Exclusion:</strong> the exterior of the shape defined by a wrap-shape, not clipped by the content-box.
+	</p>
+	
+	<h2 id="shapes">Shapes and exclusions</h2>
+	
+	<dl>
+		<dt id="dt_wrap-shape">-webkit-wrap-shape</dt>
+		<dd>
+			<p>The <code>-webkit-wrap-shape</code> property is used to define the boundary in which to flow content.
+			 The <code>-webkit-wrap-shape</code> property is also used to define the area to be avoided when laying out content. Whether content flows inside or around the shape depends on the 
+			<code>wrap-shape-mode</code> property.</p>
+			<p>The prototype implementation lets you specify a wrap shape as a polygon in a series of x,y points in coordinates relative to the containing box.</p>
+			<h3>Example</h3>
+<pre>
+&lt;style type="text/css"&gt;
+#content-shape{
+    height:200px;
+    width:200px;
+    <em>-webkit-wrap-shape: polygon(0px,0px 200px,200px 0px,200px);</em>
+    -webkit-wrap-shape-mode: around;
+}		
+&lt;/style&gt;
+
+&lt;div id="content-shape"&gt;
+    &lt;p&gt;I do like triangles, don't you?&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+		</dd>
+		
+		<dt id="dt_wrap-shape-mode">-webkit-wrap-shape-mode</dt>
+		<dd>
+			<p>The <code>-webkit-wrap-shape-mode</code> property can be set to <em>'content'</em>, 
+				<em>'around'</em> or <em>'none'</em> (the default). <em>'none'</em> means this element ignores all wrap shapes. If set to <em>'content'</em>, the content in the element will flow inside its own wrap shape and around any other wrap shapes, but that wrap shape will not affect any outside element. If set to <em>'around'</em>, then the wrap shape fully affects both inside and outside content.</p>
+			<h3>Example</h3>
+<pre>
+&lt;style type="text/css"&gt;
+#triangle-exclusion{
+    height:200px;
+    width:200px;
+    -webkit-wrap-shape: polygon(0px,0px 200px,200px 0px,200px);
+    <em>-webkit-wrap-shape-mode: around;</em>
+}
+#content{
+    <em>-webkit-wrap-shape-mode: content;</em>
+    width:40%;
+}
+&lt;/style&gt;
+
+&lt;div id="triangle-exclusion"&gt;&lt;/div&gt;
+&lt;div id="content"&gt;&lt;p&gt;The outside of a triangle provides a good slope for content to fall down.&lt;/p&gt;&lt;/div&gt;
+</pre>
+		</dd>
+
+		<dt id="dt_wrap-shape-order">-webkit-wrap-shape-order</dt>
+		<dd>
+			<p>Exclusions only affect the block elements that have an equal or smaller <code>-webkit-wrap-shape-order</code> number. The values can be both positive and negative. The default value is 0.</p>
+			<h3>Example</h3>
+<pre>
+&lt;style type="text/css"&gt;
+#triangle-exclusion{
+    height:200px;
+    width:200px;
+    -webkit-wrap-shape: polygon(0px,0px 200px,200px 0px,200px);
+    -webkit-wrap-shape-mode: around;
+}
+#defaultOrder{
+    -webkit-wrap-shape-mode: content;
+    width:40%;
+}
+#higherOrder{
+    -webkit-wrap-shape-mode: content;
+    <em>-webkit-wrap-shape-order: 1;</em>
+    width:40%;
+}
+&lt;/style&gt;
+
+&lt;div id="triangle-exclusion"&gt;&lt;/div&gt;
+&lt;div id="defaultOrder"&gt;
+  &lt;p&gt;This div will be affected by the wrap shape with a default wrap-shape-order of zero.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="higherOrder"&gt;
+  &lt;p&gt;But this div will ignore the wrap shape, because its wrap-shape-order is higher.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+		</dd>	
+		
+		<dt id="dt_render-wrap-shape">-webkit-render-wrap-shape</dt>
+		<dd>
+			<p>Using <code>-webkit-render-wrap-shape: auto</code> shows the wrap shape for an element. This is for debugging purposes only and is not part of the <a href="http://dev.w3.org/csswg/css3-regions/">CSS Regions Editor's draft</a>.</p>
+			<h3>Example</h3>
+<pre>
+&lt;style type="text/css"&gt;
+#triangle-exclusion{
+    height:200px;
+    width:200px;
+    -webkit-wrap-shape: polygon(0px,0px 200px,200px 0px,200px);
+    <em>-webkit-render-wrap-shape: auto;</em>
+}
+&lt;/style&gt;
+
+&lt;div id="triangle-exclusion"&gt;&lt;/div&gt;
+</pre>
+		</dd>
+	</dl>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+@-webkit-region .left-region {
+	.region-style h2 {
+		background-color: white;
+	}
+	
+	.region-style h1 {
+	    background-color: rgba(255, 255, 255, 0.5);
+	}
+	.region-style h1~p:nth-of-type(1) {
+		background-color: #c0c0c0;
+	}
+
+	.region-style {
+		background-color: #f0f0f0;
+	}
+}
+@-webkit-region .right-region {
+	.region-style h2 {
+		background-color: #46A4E9;
+	}
+	.region-style {
+		background-color: #e0e0e0
+	}
+}
+
+#regions-container {
+    background: #fafafa;
+    box-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}

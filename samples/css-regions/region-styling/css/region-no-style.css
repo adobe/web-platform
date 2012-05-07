@@ -1,0 +1,47 @@
+h2, p {
+	-webkit-flow-into: content;
+}
+h2 {
+	-webkit-region-break-before: always;
+}
+
+h2.firstHeading {
+	-webkit-region-break-before: auto;
+}
+
+.region {
+	-webkit-flow-from: content;
+	width: 45%;
+	height: 45%;
+	position: absolute;
+
+}
+.page {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+#region1 {
+	top: 0%;
+	left: 4%;
+	background-color: #DAFFFF;
+}
+
+#region2 {
+	top: 0%;
+	left: 51%;
+	background-color: #FFFFDA;
+}
+
+#region3 {
+	top: 46%;
+	left: 4%;
+	background-color: #FFDAFF;
+}
+
+#region4 {
+	top: 46%;
+	left: 51%;
+	background-color: #DADADA;
+}

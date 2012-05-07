@@ -1,0 +1,258 @@
+<!--
+ADOBE SYSTEMS INCORPORATED
+Copyright 2011 Adobe Systems Incorporated
+All Rights Reserved.
+ 
+NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance with the
+terms of the Adobe license agreement accompanying it.  If you have received this file from a
+source other than Adobe, then your use, modification, or distribution of it requires the prior
+written permission of Adobe.
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Adobe CSS Regions - Documentation</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+	body{
+		margin:0 auto;
+		width:600px;
+		font-size:18px;
+		font-family: Helvetica, Arial, serif;
+		overflow-x:hidden;
+	}
+	
+	a{
+		color:#ff2705;
+		text-decoration:none;
+	}
+	a:hover{
+		color:#333;
+		text-decoration:underline;
+	}
+	
+	h1{
+		background:#ff2705;
+		color:white;
+		padding:50px 20px 20px;
+		margin:0;
+		font-size:18pt;
+		text-shadow:1px 1px 2px black;
+	}	
+	
+	h1 #common {
+		display: inline-block;
+	}
+		
+	h1 span {
+		display: block;
+		font-size: 12pt;
+	}
+	
+	h1 em{
+		font-size: 22pt;
+		display:block;
+		font-style:normal;
+		float: right;
+	}
+	
+	h2{
+		font-size:42px;
+		letter-spacing:-2px;
+		border-bottom:3px solid black;
+		color:black;
+		padding:40px 0 5px;
+	}
+	
+	dl,dt,dd{
+		margin:0;
+	}
+	
+	dt{
+		font-size:28px;
+		margin:50px 0 0;
+		font-weight:bold;
+		color:#444;
+	}
+
+	pre{
+		padding:20px;
+		background:#C5DFF0;
+		font-size:15px;
+		white-space: pre-wrap;
+		border:2px dashed #ccc;
+		border-left:none;
+		border-right:none;
+	}
+	
+	pre em{
+		font-style:normal;
+		font-weight:bold;
+		color:#ff2705;
+	}
+	
+	#nav,
+	#nav li{
+		padding:0;
+		margin:0;
+	}
+	
+	#nav{
+		padding:5px 20px;
+		list-style:none;
+	}
+	
+	#nav li{
+		display:inline-block;
+		margin-right:20px;
+	}
+	
+	#nav a{
+		color:#ff2705;
+	}
+	
+	</style>
+</head>
+<body>
+	<h1><div id="common">CSS Regions <span>by Adobe</span></div></h1>
+	
+	<ul id="nav">
+		<li>
+			<a href="index.html">Home</a>
+		</li>
+		<li>
+			<a href="index.html#samples_basic">Samples</a>
+		</li>
+		<li>
+			<strong>Documentation</strong>
+		</li>
+	</ul>
+	
+	<h2>Contents</h2>
+	<ul id="toc">
+		<li>
+			<a href="#definitions">Definitions and concepts</a>
+		</li>
+		<li>
+			<a href="#threads">Content threads and regions</a>
+			<ul>
+				<li>
+					<a href="#dt_flow">-webkit-flow</a>
+				</li>
+				<li>
+					<a href="#dt_content-from">content</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	
+	<p>This document briefly describes the properties from the 
+		<a href="http://dev.w3.org/csswg/css3-regions/">CSS Regions</a> Specification.</p>
+	
+	<h2 id="definitions">Definitions and concepts</h2>
+	
+	<p>
+		<strong>Content thread:</strong> a set of elements extracted from the normal content flow into a named flow. 
+	</p>
+	<p>
+		<strong>Region:</strong> an element that consumes content from a content thread.
+	</p>
+	
+	<h2 id="threads">Content threads and regions</h2>
+	<dl>
+		<dt id="dt_flow">-webkit-flow: "name"</dt>
+		<dd>
+			
+			<p>
+				Takes the content of the element out of the normal document flow and moves it into a content thread identified by a string. 
+			</p>
+			<p>
+				The content will not be rendered unless explicitly consumed by a region with <a href="#dt_content-from"><var>content: from("name")</var></a> on the region
+			</p> 
+		
+			<h3>Example</h3>
+<pre>
+&lt;style type=&quot;text/css&quot;&gt;
+    #article{
+        <em>-webkit-flow: &quot;article-thread&quot;;</em>
+    }
+&lt;/style&gt;
+
+&lt;div id=&quot;article&quot;&gt;
+    This content will be associated with "article-thread".
+&lt;/div&gt;
+</pre>
+			<p>Multiple threads can be created using different flow names. One thread can consume content from the source of another thread. The content will be subtracted, not duplicated.</p>
+			
+			<h3>Example</h3>
+<pre>
+&lt;style type=&quot;text/css&quot;&gt;
+    #article{
+        -webkit-flow: &quot;article-thread&quot;
+<em>
+    blockquote{
+        -webkit-flow: &quot;quotes-thread&quot;;
+    }
+</em>
+&lt;/style&gt;
+
+&lt;div id=&quot;article&quot;&gt;
+    This content will be associated with &quot;article-thread&quot;.
+<em>	&lt;blockquote&gt;
+        But this will appear only in &quot;quotes-thread&quot;.
+    &lt;/blockquote&gt;</em>
+&lt;/div&gt;
+</pre>
+
+		</dd>
+		
+		
+		<dt id="dt_content-from">content: from("name")</dt>
+		<dd>
+			<p>Inserts content from the "name" thread into the current element. The element's original content will be replaced by the one from the thread.</p>
+			
+			<h3>Example</h3>
+<pre>
+&lt;style type="text/css"&gt;
+    #article{
+        -webkit-flow: "article-thread";
+    }
+    #region{
+        <em>content:from(article-thread);</em>
+        width:100%;
+    }
+&lt;/style&gt;
+
+&lt;div id="container"&gt;&lt;/div&gt;
+&lt;div id="article"&gt;
+    This content will be associated with "article-thread" and will replace the region's content, if any.
+&lt;/div&gt;
+</pre>			
+			<p>Multiple elements can consume content from the same thread.</p>
+			<h3>Example</h3>
+<pre>
+&lt;style type="text/css"&gt;
+    #article{
+        -webkit-flow: "article-thread";
+    }
+    #region1,
+    #region2{
+        <em>content:from(article-thread);</em>
+        width:20%;
+        height:4em;
+    }
+&lt;/style&gt;
+
+&lt;div id="region1"&gt;&lt;/div&gt;
+&lt;div id="region2"&gt;&lt;/div&gt;
+&lt;div id="article"&gt;
+    This content will be associated with "article-thread" and will flow from #region1 to #region2.
+&lt;/div&gt;
+</pre>			
+		</dd>
+	
+	</dl>
+	
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Pagination Templates - JavaScript Prototype</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+
+    body{
+        margin: 0;
+        font-size: 1.2em;
+        font-family: Palatino, Georgia, serif;
+    }
+
+    h1{
+        color: white;
+        margin: 0;
+        padding-right: 60px;
+        text-shadow: rgba(0, 0, 0, 0.347656) 0px 1px 2px;
+    }
+
+    h1 em{
+        display: block;
+        font: 0.55em / 1.5em normal;
+        color: #ccc;
+    }
+
+    h2{
+        margin: 60px 0 20px;
+        letter-spacing: -1px;
+    }
+
+    p{
+        color: #333;
+        line-height: 1.4em;
+    }
+
+    a{
+        color: purple;
+    }
+
+    a:hover{
+        color: black;
+    }
+
+    a:visited{
+        color: #8560A8;
+    }
+
+    header{
+        background: #6F518F;
+    }
+
+    header .logo{
+        height: 62px;
+        width: 38px;
+        display: block;
+        position: absolute;
+        top: -1px;
+        right: 32px;
+        line-height: 200px;
+        overflow: hidden;
+        background: url("./src/adobe.gif") top left no-repeat;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .35);
+    }
+
+    header .logo:hover{
+        top: 0px;
+    }
+
+    .wrapper{
+        width: 90%;
+        margin: 0 auto;
+        padding: 25px 0;
+    }
+
+    header + .wrapper{
+        padding: 0 0 50px;
+
+    }
+
+    code{
+        background: #eee;
+        border: 1px solid #d7d7d7;
+        padding: 0 3px;
+    }
+
+    #check_support.false{
+        background: #ffc;
+        border: 1px solid yellow;
+        padding: 10px 20px;
+    }
+
+    .demos{
+        padding: 0;
+        list-style: none;
+    }
+
+    .demos li{
+        padding: 0 0 5px;
+        margin: 0 0 30px;
+        border-bottom: 1px dashed #d7d7d7;
+    }
+    .demos li:last-child{
+        border: none;
+        margin: 0;
+    }
+
+    @media all and (min-width: 640px){
+         .wrapper{
+             padding: 50px 0;
+             width: 600px;
+         }
+
+         header .logo{
+             right: 52px;
+         }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="http://www.adobe.com/" target="_blank" class="logo">Adobe</a>
+        <div class="wrapper">
+            <h1>CSS Pagination Templates <em>JavaScript Prototype</em></h1>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <h2>About</h2>
+        <p>
+            <a href="http://dev.w3.org/csswg/css3-page-template/">CSS Pagination Templates Module</a> is a new proposal by Adobe to the <a href="http://www.w3.org/"><abbr title="The World Wide Web Consortium">W3C</abbr></a> that brings template and pagination capabilities to HTML elements.
+        </p>
+
+        <p>
+            Pagination Templates aim to work well with <a href="http://www.w3.org/TR/css3-regions/">CSS Regions</a> in order to support the use case of overflowing named flow content from one page to another. Pages based on templates are generated as many times as necessary until the content of a named flow is fully rendered.
+        </p>
+
+        <p>
+            This is a prototype JavaScript implementation to give you a feel for how the code will look like and behave. Please keep in mind that this is just experimental stuff and treat it accordingly.
+        </p>
+
+        <h2>Requirements</h2>
+        <p>The code and demos are expected to work in a <a href="http://nightly.webkit.org/">WebKit nightly</a> build.</p>
+        <p id="check_support">Your browser supports these demos. Enjoy!</p>
+
+        <h2>Demos</h2>
+        <ul class="demos">
+            <li>
+                <a href="demo/basic/one-slot.html">Single slot template</a>
+                <p>This demo shows the basic behavior when paginating an element using a simple template.</p>
+            </li>
+            <li>
+                <a href="demo/basic/select-implicit-template.html">Implicit template</a>
+                <p>This demo highlights that the last template defined in the stylesheet is used, in the absence of a <code>template-set</code> property.</p>
+            </li>
+            <li>
+                <a href="demo/basic/first-page-template.html">First page template</a>
+                <p>This demo shows how you can target styling for the first page of an element using the <code>:first</code> pseudo-class.</p>
+            </li>
+            <li>
+                <a href="demo/basic/two-slots-two-flows.html">Two slots template and named flows</a>
+                <p>This demo shows how multiple named flows (from <a href="http://www.w3.org/TR/css3-regions/">CSS Regions</a>) can be rendered in the same template.</p>
+            </li>
+            <li>
+                <a href="demo/basic/required-flow-selection.html">Required named flow</a>
+                <p>This demo highlights how a template can be designated to render a specific named flow.</p>
+            </li>
+            <li>
+                <a href="demo/basic/generated-content.html">Generated content</a>
+                <p>This demo shows a basic implementation of generated content from CSS.</p>
+            </li>
+            <li>
+                <a href="demo/basic/vertical-pages.html">Vertical pages</a>
+                <p>This demo shows the vertical direction of pages with <code>overflow-style: paged-y</code>.</p>
+            </li>
+            <li>
+                <a href="demo/the-regional.html">"The Regional" Demo - the kitchen sink</a>
+                <p>A demo using all of the proposed functionality: first page, generated content, required named flow and multi-slot templates.</p>
+            </li>
+        </ul>
+
+        <h2>License information</h2>
+        <p>The code in this repository implies and respects different licenses. This is a quick overview. For details check each folder's corresponding LICENSE.md file.</p>
+        <p>The code for the prototype, located under the <code>src/</code> folder, is available under the MIT license.</p>
+        <p>The samples code and content, test files and documentation, unless otherwise specified, are available under the Public Domain License.</p>
+        <p>Third party assets are licensed accordingly in their respective folders.</p>
+    </div>
+
+    <script type="text/javascript">
+
+    document.addEventListener("DOMContentLoaded", function(){
+        var message = [],
+            test = document.createElement('div'),
+            el = document.querySelector('#check_support'),
+            isSupported = (function(){
+
+                if (typeof document.webkitGetFlowByName !== 'function'){
+                    return false
+                }
+
+                test.style['webkitFlowInto'] = 'test'
+                return document.webkitGetFlowByName('test')
+            })()
+
+        if (!isSupported){
+
+            el.className = 'false'
+            message.push('Sorry, your browser does not support these demos.')
+            message.push('Please use a <a href="http://nightly.webkit.org/">WebKit nightly</a> build.')
+            
+            if (navigator.vendor && navigator.vendor.indexOf("Google") > -1){
+                message.push('')
+                message.push('<strong>On a dev build of Google Chrome?</strong>')
+                message.push('Type <code>about://flags</code> in the addres bar and enable CSS Regions, then relaunch the browser.')
+            }
+            
+            el.innerHTML = message.join('<br />')
+        }
+    })
+
+    </script>
+</body>
+</html>
