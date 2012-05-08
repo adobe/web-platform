@@ -1,0 +1,152 @@
+<!--
+Copyright 2012 Adobe Systems, Incorporated
+This work is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License http://creativecommons.org/licenses/by-nc-sa/3.0/ . 
+Permissions beyond the scope of this license, pertaining to the examples of code included within this work are available at Adobe http://www.adobe.com/communities/guidelines/ccplus/commercialcode_plus_permission.html .
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <style>
+            body {
+                background: #ccc;
+            }
+        
+            .container {
+                float: left;
+                position: relative;
+                width: 120px;
+                height: 140px;
+                margin: 20px;
+                -webkit-isolation: isolate;
+            }
+            
+            .box {
+                position: absolute;
+                left: 5px;
+                top: 5px;
+                width: 75px;
+                height: 75px;
+                background: red;
+            }
+            
+            .circle {
+                position: absolute;
+                left: 30px;
+                top: 30px;
+                width: 75px;
+                height: 75px;
+                background: yellow;
+                border-radius: 150px;
+            }
+            
+            .caption {
+                position: absolute;
+                left: 0px;
+                top: 120px;
+                width: 120px;
+                height: 20px;
+                text-align: center;
+            }
+            
+            br.clear {
+                clear: left;
+            }
+        </style>
+        
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: clear"></div>
+            <div class="caption">clear</div>
+        </div>
+        
+        <br class="clear" />
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: src"></div>
+            <div class="caption">src</div>
+        </div>
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: dst"></div>
+            <div class="caption">dst</div>
+        </div>
+        
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: src-over"></div>
+            <div class="caption">src-over</div>
+        </div>
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: dst-over"></div>
+            <div class="caption">dst-over</div>
+        </div>
+        
+        <br class="clear" />
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: src-in"></div>
+            <div class="caption">src-in</div>
+        </div>
+
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: dst-in"></div>
+            <div class="caption">dst-in</div>
+        </div>
+        
+        
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: src-out"></div>
+            <div class="caption">src-out</div>
+        </div>
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: dst-out"></div>
+            <div class="caption">dst-out</div>
+        </div>
+        
+        <br class="clear" />
+
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: src-atop"></div>
+            <div class="caption">src-atop</div>
+        </div>
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: dst-atop"></div>
+            <div class="caption">dst-atop</div>
+        </div>
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: xor"></div>
+            <div class="caption">xor</div>
+        </div>
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="circle" style="-webkit-alpha-compositing: plus"></div>
+            <div class="caption">plus</div>
+        </div>
+        
+        <br class="clear" />
+        <p class="license">Unless otherwise noted, code and content is licensed under a <a href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain License</a>.</p>
+    </body>
+</html>
