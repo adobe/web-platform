@@ -21,10 +21,6 @@
 			
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<!--
-				Slide 1:
-				Comments:
-				-->
 				<section>
 					<h2>Introduction to CSS Regions</h2>
 					<br/><br/><br/>
@@ -38,29 +34,21 @@
 					</script>
 				</section>
 
-				<!--
-				Slide 2: Whoami
-				Comments:
-				-->
 				<section>
 					<h2>who/mihnea</h2>
 					<ul>
 						<li>@Adobe since July '08</li>
 						<li>Bucharest, Romania</li>
 						<li>WebKit/Adobe AIR</li>
-						<li>Regions/Shaders prototypes</li>
+						<li>Regions and Shaders prototypes</li>
 						<li>CSS Regions in WebKit since June '11</li>
 						<li>WebKit committer since September '11</li>
 					</ul>
 				</section>
 
-				<!--
-				Slide 3: Very short introduction for regions
-				Comments:
-				-->
 				<section>
 					<section>
-						<h2>CSS Regions - magazine layout for the web</h2>
+						<h2>CSS Regions - magazine layouts for the web</h2>
 						<ul>
 							<li>Digital magazines/newspapers</li>
 							<li>Collect content in flows</li>
@@ -70,23 +58,23 @@
 						</ul>
 					</section>
 					<section>               
-                        <img src="assets/images/road-trip-front.png"  style="width: 100%" />
+                        <img src="assets/images/road-trip-front.png"  
+                            style="width: 80%" />
 					</section>
 					<section>               
-                        <img src="assets/images/road-trip-content.png"  style="width: 100%" />
+                        <img src="assets/images/road-trip-content.png"  
+                            style="width: 80%" />
 					</section>
 					<section>               
-                        <img src="assets/images/road-trip-portrait-front.png"  style="height: 100%" />
+                        <img src="assets/images/road-trip-portrait-front.png"  
+                            style="height: 80%" />
 					</section>
 					<section>               
-                        <img src="assets/images/road-trip-portrait-content.png"  style="height: 100%" />
+                        <img src="assets/images/road-trip-portrait-content.png"  
+                            style="height: 80%" />
 					</section>
 				</section>
 
-				<!--
-				Slide 4: Named flows
-				Comments:
-				-->
                 <section>
                     <section>
                         <h2>Collecting the content: named flows</h2>
@@ -94,69 +82,65 @@
                             <li>Gather conceptually related content</li>
                             <li>Identified by name</li>
                             <li>Any element can be collected</li>
-                            <img src="assets/images/flow-example.png" style="width: 500px;" />
+                            <img src="assets/images/flow-example.png" 
+                                style="width: 350px;" />
                         </ul>
                     </section>
                     <section>
                         <h2>Collecting the content: named flows</h2>
-<pre><code class="css">
-    h1, 
-    #subtitle {
-      -webkit-flow-into: title-flow;
-    }       
+<pre><code class="css" style="font-size: 22px;">
+  /* h1 and #subtitle become siblings */
+  h1, 
+  #subtitle {
+    -webkit-flow-into: title-flow;
+  }       
 
-    article {
-      -webkit-flow-into: article-flow;
-    }    
+  .article {
+    -webkit-flow-into: article-flow;
+  }    
 
-    aside {
-      -webkit-flow-into: sidebar-flow;
-    }
+  .aside {
+    -webkit-flow-into: sidebar-flow;
+  }
 
 </code></pre>
                         
                     </section>
                 </section>
 
-				<!--
-				Slide 5: Regions
-				Comments:
-				-->
 				<section> 
                     <section>
                     <h2>Displaying the content: regions</h2>
                     <ul>
                         <li>Block container box</li>
-                        <li>Drops its content</li>
                         <li>Renders content from a named flow</li>
-                        <li>Not necessary a DOM element</li>
+                        <li>Future: can be pseudo-elements</li>
+                        <img src="assets/images/flow-example.png" 
+                            style="width: 350px;" />
                     </ul>    
                     </section>
                     
                     <section>
                     <h2>Displaying the content: regions</h2>
-<pre><code class="css">
-    #title{
-        -webkit-flow-from: title-flow;    
-    }
+<pre><code class="css" style="font-size: 22px;">
+  /* Replace #title-region content with 
+  content from 'title-flow'*/
+  #title-region {
+    -webkit-flow-from: title-flow;    
+  }
 
-    #article{
-        -webkit-flow-from: article-flow;    
-    }       
+  #article-region {
+    -webkit-flow-from: article-flow;    
+  }       
 
-    /* Experimental */
-    #article::after{
-        -webkit-flow-from: sidebar-flow;    
-    }
-
+  /* Experimental */
+  #article-region::after {
+    -webkit-flow-from: sidebar-flow;    
+  }
 </code></pre>
                     </section>
 				</section>
 
-				<!--
-				Slide 6: Region styling
-				Comments:
-				-->
 				<section>
 					<section>
 						<h2>Styling the collected content: region styling</h2>
@@ -164,40 +148,45 @@
 						Only a subset of css properties
 						</p>
 						<ul style="padding-left: 100px">
-							<li>font properties</li>
-							<li>color/background/shadow properties</li>
+							<li>font/color/background/shadow properties</li>
 							<li>margin/padding</li>
  						</ul>
+<pre><code class="css" style="font-size: 22px;">
+  /* set bkg => red for h1 displayed in #title */
+  @-webkit-region #title-region {
+    h1 { background-color: red; }
+  }
+  /* set bkg => blue for h1 displayed in #article */
+  @-webkit-region #article-region {
+    h1 { background-color: blue; }
+  }
+</code></pre>
 					</section>
 					<section>               
-                        <img src="assets/images/RegionStylingSample.png"  style="width: 100%" />
+                        <img src="assets/images/RegionStylingSample.png" 
+                            style="width: 80%" />
 					</section>
 				</section>
 
-				<!--
-				Slide 7: CSSOM
-				Comments:
-				-->
                 <section>
                     <section>
                         <h2>Scripting the content: cssom</h2>
                         <ul>
-                            <li>Expose css regions concepts to scripting</li>
+                            <li>Expose CSS regions concepts to scripting</li>
                             <li>NamedFlow interface</li>
                         </ul>
-<pre><code class="javascript">
-    var flow = document.webkitGetFlowByName("article-flow")
-        flow.overflow
-        // Boolean 
-        // true if the flow content didn't fit in the regions
-        // false if the content fully fits in the regions
+<pre><code class="javascript" style="font-size: 22px;">
+  var flow = document.webkitGetFlowByName("article-flow")
+    flow.overflow
+    // true => flow content didn't fit in the regions
 
+  var firstParagraph = document.querySelector("p")    
+    flow.getRegionsByContentNode(firstParagraph) 
+    // static NodeList of regions "rendering" firstParagraph
 
-    var firstParagraph = document.querySelector("p")    
-        flow.getRegionsByContentNode(firstParagraph) 
-        // NodeList 
-        // regions where the paragraph is rendered
-
+  var contentNodes = flow.contentNodes;
+    // static NodeList of elements 
+    // -webkit-flow-into: article-flow (also display:none)
 </code></pre>
                     </section>
                     <section>
@@ -225,62 +214,47 @@
                     </section>
 				</section>
 
-				<!--
-				Slide 8: Implementation status
-				Comments:
-					Parsing of CSS properties: DONE
-					Collecting the elements into a flow: DONE
-					Display the content of flow using regions: DONE
-					Region styling: only background-color
-					CSSOM: almost DONE
-					Can be enabled in Chrome using chrome://flags
-				-->
 				<section>
 					<h2>Implementation in WebKit</h2>
 					<ul>
 						<li>Follows <a href="http://www.w3.org/TR/css3-regions/">working draft</a></li>
 						<li>Runtime flag: WebKitCSSRegionsEnabled</li>
-						<li>Enabled on Mac port of WebKit</li>
+						<li>Enabled on Mac/Win port of WebKit</li>
 						<li>Disabled on other WebKit ports</li>
 					<ul>
 				</section>
 
-				<!--
-				Slide 9: Overview layout and rendering
-				Comments:
-				-->
 				<section>
 					<section>
 						<h2>Layout and rendering overview</h2>
+                        <br/>
 						<h3>Layout phase</h3>
 						<ul>
 							<li>Phase1: content is collected into named flows</li>
 							<li>Phase2: regions are laid out</li>
 							<li>Phase3: content is "paginated" by regions</li>
 						</ul>
+                        <br/>
 						<h3>Rendering phase</h3>
 						<ul>
 							<li>Regions "paint" the associated part of the named flow</li>
 						</ul>
 					</section>
 					<section>
-						<img src="assets/images/flow-regions.png" style="width: 100%" />
+						<img src="assets/images/flow-regions.png" 
+                            style="width: 80%" />
 					</section>
 				</section>
 
-				<!--
-				Slide 10: Future development
-				Comments:
-				-->
 				<section>
-					<h2>Future development for css regions</h2>
+					<h2>Future development for CSS regions</h2>
 					<p style="text-align:left">
 						Evolving the spec
 					</p>
 					<ul style="padding-left:100px">
-						<li><a href="http://dev.w3.org/csswg/css3-regions/">Editors draft</a></li>
+						<li><a href="http://dev.w3.org/csswg/css3-regions/">Editor's draft</a></li>
 						<li>Auto-size regions computing model</li>
-						<li>Improved cssom model</li>
+						<li>Improved CSSOM</li>
 					</ul>
 					<p style="text-align:left">
 						Moving forward with the implementation
@@ -291,22 +265,15 @@
 					</ul>
 				</section>
 
-				<!--
-				Slide 11: References
-				Comments:
-				-->
 				<section>
 					<h2>References</h2>
 					<ul>
 						<li><a href="http://www.w3.org/TR/css3-regions/">CSS Regions working draft</a></li>
 						<li><a href="http://dev.w3.org/csswg/css3-regions/">CSS Regions editors draft</a></li>
+						<li><a href="https://bugs.webkit.org/show_bug.cgi?id=57312">CSS Regions master bug</a></li>
 					</ul>
 				</section>
 
-				<!--
-				Slide 12: The end
-				Comment:
-				-->
 				<section>
 					<h2>Thank you</h2>
 					<p>Mihnea Ovidenie</p>
