@@ -1,4 +1,4 @@
-﻿Adobe CSS Regions prototype, Copyright (c) 2011 Adobe Systems Incorporated 
+﻿Adobe CSS Regions prototype, Copyright (c) 2011, 2012 Adobe Systems Incorporated 
 
 About
 -----
@@ -20,59 +20,17 @@ that highlight how they work together.
 Usage instructions
 ------------------
 
-Double-click on MiniBrowser.app that can be found in the bin\ folder of this package
+simple_single_thread.html, simple_multiple_threads.html, and region-styling.* should be run in a nightly build of WebKit or a Canary build of Chrome.
 
-
-Supported platforms 
--------------------
-
-Mac OS X Snow Leopard (10.6)
-
-
-Changelog
----------
-
-v0.1
-	This is the first public build. 
-	For a complete description of the features supported, check the landing page of the browser 
-	distributed with this package - see "Usage instructions" section below.
-
-
-Release identification
-----------------------
-
-The version of this package is 0.1. 
-The version can be identified using navigator.useragent property, which contains "AdobeCSSRegionsPrototype/0.1"
-This package is distributed via http://www.adobe.com/go/cssregions
-
+spec-intro-example.html should be run in the prototype browser built from 
+https://github.com/adobe/webkit/tree/may2012-f2f-prototype
+or downloaded from 
+https://github.com/adobe/webkit/downloads (May 2012 Builds)
 
 Copyright information
 ---------------------
 
-This package is provided under the MIT License specified in LICENSING.txt file that accompanies this package.
-
-Important note: 
-This release uses several copyrighted libraries. See section "Libraries used by this release" for details 
-on permissions and warranty for these libraries.
-Majority of these libraries have not been modified by Adobe for this release. 
-The only library that has been modified is the WebKit library with the intention to accommodate 
-CSSRegions features this release aims to demonstrate.
-Source code of the modified WebKit is available at http://sourceforge.net/adobe/adobe-webkit/ and 
-files modified have their header properly marked.
-
-
-Libraries used by this release
-------------------------------
-
-This release uses the following libraries, either statically or dynamically linked, as mentioned below.
-Note that this package uses also other libraries available from the operating system.
-All libraries linked dynamically are included in the release package.
-Details on permissions and warranty and a copy of each license are distributed with this release 
-in a file called LICENSING.txt.
-
-1. WebKit version 82111 (dynamically linked) 
-This library has been modified by Adobe to add CSSRegions features and modified source code is made 
-available by Adobe - see "Copyright information" section.
-
+Copyright (C) 2012 Adobe Systems Incorporated. All rights reserved.
+Unless otherwise noted, the code and content is licensed under a Public Domain License <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 End of document
