@@ -5,4 +5,5 @@ These demos show prototype work on CSS Compositing.
 
 Requirements
 ------------
-There is no publicly available build for running these demos.
+
+compositing.html and image-blend-modes.html in this folder can be displayed with [Adobe's prototype build](https://github.com/adobe/webkit/tree/may2012-f2f-prototype). The code required to use the other samples have not yet been implemented.
