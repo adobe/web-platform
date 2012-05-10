@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Shaders</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+
+    body{
+        margin: 0;
+        font-size: 1.2em;
+        font-family: Palatino, Georgia, serif;
+    }
+
+    h1{
+        color: white;
+        margin: 0;
+        padding-right: 60px;
+        text-shadow: rgba(0, 0, 0, 0.347656) 0px 1px 2px;
+    }
+
+    h1 em{
+        display: block;
+        font: 0.55em / 1.5em normal;
+        color: #ccc;
+    }
+
+    h2{
+        margin: 60px 0 20px;
+        letter-spacing: -1px;
+    }
+
+    p{
+        color: #333;
+        line-height: 1.4em;
+    }
+
+    a{
+        color: purple;
+    }
+
+    a:hover{
+        color: black;
+    }
+
+    a:visited{
+        color: #8560A8;
+    }
+
+    header{
+        background: #6F518F;
+    }
+
+    header .logo{
+        height: 62px;
+        width: 38px;
+        display: block;
+        position: absolute;
+        top: -1px;
+        right: 32px;
+        line-height: 200px;
+        overflow: hidden;
+        background: url("http://adobe.github.com/web-platform-assets/images/adobe_small_logo.gif") top left no-repeat;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .35);
+    }
+
+    header .logo:hover{
+        top: 0px;
+    }
+
+    .wrapper{
+        width: 90%;
+        margin: 0 auto;
+        padding: 25px 0;
+    }
+
+    header + .wrapper{
+        padding: 0 0 50px;
+
+    }
+
+    code{
+        background: #eee;
+        border: 1px solid #d7d7d7;
+        padding: 0 3px;
+    }
+
+    #check_support.false{
+        background: #ffc;
+        border: 1px solid yellow;
+        padding: 10px 20px;
+    }
+
+    .demos{
+        padding: 0;
+        list-style: none;
+    }
+
+    .demos li{
+        padding: 0 0 5px;
+        margin: 0 0 30px;
+        border-bottom: 1px dashed #d7d7d7;
+    }
+    .demos li:last-child{
+        border: none;
+        margin: 0;
+    }
+
+    @media all and (min-width: 640px){
+         .wrapper{
+             padding: 50px 0;
+             width: 600px;
+         }
+
+         header .logo{
+             right: 52px;
+         }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="http://www.adobe.com/" target="_blank" class="logo">Adobe</a>
+        <div class="wrapper">
+            <h1>CSS Shaders</h1>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <h2>About</h2>
+
+        <p>CSS Shaders bring cinematic visual effects to HTML, using simple CSS syntax. 
+        They expand the visual effects and interactivity possible with Web content. 
+        We think CSS shaders can be both visually pleasing and, perhaps more importantly, 
+        provide enhanced user experience by offering very organic and natural user 
+        interaction feedback.
+        </p>
+
+        <p>With CSS shaders, you can twist, wave, curl, and color your content in any way 
+        you like to create effects such as flipping pages, curling corners, paper textures, 
+        curtain effects, or anything else you can express in a shading language.</p>  
+
+        <p>We have put together a set of demos for you. They showcase some of the concepts
+        we <a href="https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html" target="_blank">propose with CSS Shaders</a>.
+        </p>  
+
+        <p>
+        This prototype version will allow you to play with these samples, which are a way 
+        for us to explore the implementation options for these features.
+        You'll find basic samples that demonstrate individual CSS properties, as well as 
+        more complex ones that highlight the extent of effects possible with CSS shaders.
+        </p>
+        
+        <h2>Resources</h2>
+        
+        <ol>
+            <li><a href="https://github.com/adobe/webkit/tree/may2012-f2f-prototype">Prototype build source code and binaries</a></li>
+            <li><a href="https://github.com/adobe/web-platform/tree/may2012-f2f-prototype/samples/css-shaders">Samples</a></li>
+        </ol>
+
+        <h2>Help</h2>
+
+        <p>The <a href="https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html" target="_blank">CSS Shaders Proposal</a> should serve as the current instructions manual for getting started with shaders.</p>
+
+        <p>The <a href="http://www.adobe.com/devnet/html5/articles/css-shaders.html" target="_blank">"Introducing CSS shaders"</a> article on Adobe Developer Connection is an overview of shaders and their capabilities.</p>
+
+    </div>
+</body>
+</html>

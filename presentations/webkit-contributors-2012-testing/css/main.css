@@ -43,14 +43,7 @@ html, body {
 	min-height: 600px;
 }
 
-body:after {
-    content: url(../assets/images/logo.svg);
-    width: 74px;
-    height: 126px;
-    position: fixed;
-    top: 0px;
-    right: 2em;
-}
+
 
 html {
 	background: #1c1e20;
@@ -193,7 +186,7 @@ html {
 	text-align: left;
 	font-size: 14px;
 	font-family: monospace;
-	line-height: 1.1em;
+	line-height: 1.7em;
 
 	word-wrap: break-word;
 
@@ -484,7 +477,6 @@ html {
 	z-index: 11;
 	opacity: 1;
 }
-
 
 /*********************************************
  * DEFAULT TRANSITION
