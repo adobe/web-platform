@@ -1,0 +1,173 @@
+<!--
+Copyright 2012 Adobe Systems, Incorporated
+This work is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License http://creativecommons.org/licenses/by-nc-sa/3.0/ . 
+Permissions beyond the scope of this license, pertaining to the examples of code included within this work are available at Adobe http://www.adobe.com/communities/guidelines/ccplus/commercialcode_plus_permission.html .
+-->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Compositing</title>
+    <meta charset="UTF-8">
+    <style type="text/css">  
+    
+
+    body{
+        margin: 0;
+        font-size: 1.2em;
+        font-family: Palatino, Georgia, serif;
+    }
+
+    h1{
+        color: white;
+        margin: 0;
+        padding-right: 60px;
+        text-shadow: rgba(0, 0, 0, 0.347656) 0px 1px 2px;
+    }
+
+    h1 em{
+        display: block;
+        font: 0.55em / 1.5em normal;
+        color: #ccc;
+    }
+
+    h2{
+        margin: 60px 0 20px;
+        letter-spacing: -1px;
+    }
+
+    p{
+        color: #333;
+        line-height: 1.4em;
+    }
+
+    a{
+        color: purple;
+    }
+
+    a:hover{
+        color: black;
+    }
+
+    a:visited{
+        color: #8560A8;
+    }
+
+    header{
+        background: #6F518F;
+    }
+
+    header .logo{
+        height: 62px;
+        width: 38px;
+        display: block;
+        position: absolute;
+        top: -1px;
+        right: 32px;
+        line-height: 200px;
+        overflow: hidden;
+        background: url("http://adobe.github.com/web-platform-assets/images/adobe_small_logo.gif") top left no-repeat;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .35);
+    }
+
+    header .logo:hover{
+        top: 0px;
+    }
+
+    .wrapper{
+        width: 90%;
+        margin: 0 auto;
+        padding: 25px 0;
+    }
+
+    header + .wrapper{
+        padding: 0 0 50px;
+
+    }
+
+    code{
+        background: #eee;
+        border: 1px solid #d7d7d7;
+        padding: 0 3px;
+    }
+
+    #check_support.false{
+        background: #ffc;
+        border: 1px solid yellow;
+        padding: 10px 20px;
+    }
+
+    .demos{
+        padding: 0;
+        list-style: none;
+    }
+
+    .demos li{
+        padding: 0 0 5px;
+        margin: 0 0 30px;
+    }
+    .demos li.divider{ 
+        font-weight: bold;
+        list-style: none;
+    }
+    .demos li:last-child{
+        border: none;
+        margin: 0;
+    }
+
+    @media all and (min-width: 640px){
+         .wrapper{
+             padding: 50px 0;
+             width: 600px;
+         }
+
+         header .logo{
+             right: 52px;
+         }
+    }
+     
+    </style>
+    <script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
+</head>
+<body>
+    <header>
+        <a href="http://www.adobe.com/" target="_blank" class="logo">Adobe</a>
+        <div class="wrapper">
+            <h1>CSS Compositing &amp; Blending</h1>
+        </div>
+    </header>
+    
+    <section class="wrapper">
+        <h2>About</h2>
+        <p>TBD
+        </p>
+
+       
+        <p>We have put together a set of demos for you. They showcase some of the concepts
+        we <a href="https://dvcs.w3.org/hg/FXTF/rawfile/tip/compositing/index.html" target="_blank">propose with CSS Compositing and Blending</a>.
+        </p>  
+          
+        <p>
+        This prototype version will allow you to play with these samples, which are a way 
+        for us to explore the implementation options for these features.
+        </p>
+    
+        <div class="col demos">
+            <h2>Demos</h2>
+            <ul>
+                <li>
+                    <a href="image-blend-modes.html" target="_blank">Blending</a>
+                </li>
+                <li>
+                    <a href="compositing.html" target="_blank">Compositing</a>
+                </li>
+            </ul> 
+            
+        </div>
+    
+        <p>- The Adobe WebKit team</p>
+    
+        <p class="license">Unless otherwise noted, code and content is licensed under a <a href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain License</a>.</p>
+    </section> 
+</body>
+</html>
