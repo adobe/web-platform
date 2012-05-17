@@ -139,10 +139,25 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     
     <section class="wrapper">
         <h2>About</h2>
-        <p>TBD
+        <p>Compositing describes how shapes of different elements are combined
+           into a single image. Conceptually, each element is rendered into its own
+           buffer and is then merged with its 
+           <a href="https://dvcs.w3.org/hg/FXTF/rawfile/tip/compositing/index.html#backdrop">backdrop</a>. The
+           most widely used compositing operation is simple alpha compositing. (see
+           <a
+           href="http://www.w3.org/TR/SVGTiny12/painting.html#CompositingSimpleAlpha">Simple
+           Alpha Compositing</a>) This spec will introduce additional compositing
+           operators that will enable advanced graphical effects.</p>
+
+        <p> Blending describes how colors are "blended" together. Typically, the
+           color of an element and the color of its 
+           <a href="https://dvcs.w3.org/hg/FXTF/rawfile/tip/compositing/index.html#backdrop">backdrop</a>
+           are combined to create a new color. This new color replaces the old color
+           and is then composited with the 
+           <a href="https://dvcs.w3.org/hg/FXTF/rawfile/tip/compositing/index.html#backdrop">backdrop</a> using the
+           specified compositing mode.
         </p>
 
-       
         <p>We have put together a set of demos for you. They showcase some of the concepts
         we <a href="https://dvcs.w3.org/hg/FXTF/rawfile/tip/compositing/index.html" target="_blank">propose with CSS Compositing and Blending</a>.
         </p>  
