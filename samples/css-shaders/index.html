@@ -11,181 +11,130 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     <meta charset="UTF-8">
     <style type="text/css">  
     
-    /* Light CSS reset */
-    body, p, h1, h2, h3, div, ul, li, img, div, img, a{
-    	margin:0;
-    	padding:0;
+
+    body{
+        margin: 0;
+        font-size: 1.2em;
+        font-family: Palatino, Georgia, serif;
     }
-    
-    ul{
-        list-style:none;
-    }
-    
-    body{            
-        font-family:Helvetica, Arial, sans-serif;            
-        color:#fff; 
-        width:570px;  
-        margin:0 auto;
-        padding:60px 0 30px; 
-        background-color: #1f1f1f; 
-        position:relative;  
-        
-        background-image: -webkit-radial-gradient(bottom center, 50% 50%, #222, #1f1f1f 300px, #1f1f1f);
-        
-    } 
-    
-    .logo{ 
-        height:102px; 
-        width:60px;
-        background: url(resources/logo.svg) left top no-repeat;
-        -webkit-background-size:100%;
-        text-indent:-999em;
-        position:absolute;
-        top:0;
-        right:0;
-    }
-    
-    h1, h2, h3{
-      font-weight:bold;
-      text-shadow:1px 1px 2px black;
-    }
-    
+
     h1{
-        font-size:42px;
-        margin:0 0 40px;
+        color: white;
+        margin: 0;
+        padding-right: 60px;
+        text-shadow: rgba(0, 0, 0, 0.347656) 0px 1px 2px;
     }
-    
+
+    h1 em{
+        display: block;
+        font: 0.55em / 1.5em normal;
+        color: #ccc;
+    }
+
     h2{
-        font-size:36px;
-        margin:0 0 18px;     
-        color:#fff;
+        margin: 60px 0 20px;
+        letter-spacing: -1px;
     }
-    
-    h3{
-        font-size:28px;
-    }
-    
+
     p{
-        color:#ccc;  
-        font-weight:lighter;
-        font-size:1em;
-        line-height:1.35em; 
-        margin-bottom:1.35em;
-    } 
-    
+        color: #333;
+        line-height: 1.4em;
+    }
+
     a{
-        color:#fff;
-    } 
-    
+        color: purple;
+    }
+
     a:hover{
-        color:#999;
-        text-decoration:none;
-    } 
-    
+        color: black;
+    }
+
     a:visited{
-        color:#999;
+        color: #8560A8;
     }
-    
-    section{
-        margin:40px 0;
-    }  
-    
-    #content .col{
-        margin:80px 0;
+
+    header{
+        background: #6F518F;
     }
-    
-    #content .col:first-child{
-        margin-top:0;
+
+    header .logo{
+        height: 62px;
+        width: 38px;
+        display: block;
+        position: absolute;
+        top: -1px;
+        right: 32px;
+        line-height: 200px;
+        overflow: hidden;
+        background: url("http://adobe.github.com/web-platform-assets/images/adobe_small_logo.gif") top left no-repeat;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .35);
     }
-    
-    #content .col .icon{
-        margin-left:-130px;
+
+    header .logo:hover{
+        top: 0px;
     }
-    
-    #content .col::before{
-        display:block; 
-        content:"";  
-        position:absolute;   
-        left:-120px;
-        width:90px;
-        height:90px;
-        background-image: url(resources/icons_sprite.png);
-    } 
-    
-    
-    #content .col.studio::before{
-        background-position:0 0px;   
+
+    .wrapper{
+        width: 90%;
+        margin: 0 auto;
+        padding: 25px 0;
     }
-    
-    #content .col.studio:hover::before{
-        background-position:0 -90px;   
-    }                   
-    
-    
-    #content .col.demos::before{
-        background-position:-90px 0px;   
+
+    header + .wrapper{
+        padding: 0 0 50px;
+
     }
-    
-    #content .col.demos:hover::before{
-        background-position:-90px -90px;   
+
+    code{
+        background: #eee;
+        border: 1px solid #d7d7d7;
+        padding: 0 3px;
     }
-    
-    #content .col.showcase::before{
-        background-position:-180px 0px;
+
+    #check_support.false{
+        background: #ffc;
+        border: 1px solid yellow;
+        padding: 10px 20px;
     }
-    
-    #content .col.showcase:hover::before{
-         background-position:-180px -90px;  
+
+    .demos{
+        padding: 0;
+        list-style: none;
     }
-    
-    #content .col.help::before{
-        background-position:-270px 0px;   
+
+    .demos li{
+        padding: 0 0 5px;
+        margin: 0 0 30px;
+        border-bottom: 1px dashed #d7d7d7;
     }
-    
-    #content .col.help:hover::before{
-        background-position:-270px -90px;   
+    .demos li:last-child{
+        border: none;
+        margin: 0;
     }
-    
-    li a{ 
-        display:inline-block;
-        padding:5px 0;
-        font-weight:lighter;
+
+    @media all and (min-width: 640px){
+         .wrapper{
+             padding: 50px 0;
+             width: 600px;
+         }
+
+         header .logo{
+             right: 52px;
+         }
     }
-    
-    li p{
-        margin:10px 0 5px;
-    }
-    
-    li.divider{   
-        color:#999;  
-        font-size:18px;
-        padding:0 0 4px;
-        margin:20px 0 10px;
-    }
-    
-    .screenshot{
-        margin:5px 0 40px;
-        height:354px;
-        border:10px solid #333;
-        padding:0; 
-    }
-    
-    .showcase li:last-child .screenshot{
-        margin-bottom:0;
-    }
-    
-    .screenshot:hover{
-        border:10px solid #444;
-    } 
      
     </style>
+    <script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
 </head>
 <body>
-    <a href="http://www.adobe.com" class="logo" target="_blank">Adobe</a>
+    <header>
+        <a href="http://www.adobe.com/" target="_blank" class="logo">Adobe</a>
+        <div class="wrapper">
+            <h1>CSS Shaders</h1>
+        </div>
+    </header>
     
-    <h1>CSS Shaders</h1>
-     
-    <section id="about">
+    <section class="wrapper">
         <h2>About</h2>
         <p>CSS Shaders bring cinematic visual effects to HTML, using simple CSS syntax. 
         They expand the visual effects and interactivity possible with Web content. 
