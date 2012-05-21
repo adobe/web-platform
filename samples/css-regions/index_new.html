@@ -104,11 +104,17 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 
     .demos li{
         padding: 0 0 5px;
-        margin: 0 0 30px;
+        margin: 0 0 20px;
     }
     .demos li.divider{ 
         font-weight: bold;
+        font-size: 1.1em;
         list-style: none;
+    }
+    .demos li .build-note{
+        font-weight: 100;
+        font-size: 0.9em;
+        font-style: italic;
     }
     .demos li:last-child{
         border: none;
@@ -139,17 +145,14 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     
     <section class="wrapper">
         <h2 id="about">About</h2>
-        <p><a href="http://dev.w3.org/csswg/css3-regions/">CSS Regions</a> 
-        brings new properties to <abbr title="Cascading Style Sheets">CSS</abbr> (<a href="http://www.w3.org/TR/CSS21/">Cascading Style Sheets</a>) that provide:</p> 
-        <ul>
-            <li>text containers with custom shapes.</li>
-            <li>text that flows from one area into another.</li>
-        </ul>
+        <p>The <a href="http://dev.w3.org/csswg/css3-regions/">CSS Regions module</a> 
+        allows content to flow across multiple areas called regions. The CSS regions module provides an advanced content flow mechanism, 
+        which can be combined with positioning schemes as defined by other CSS modules.</p>
+        
         <h2 id="benefits">Why use CSS Regions</h2>
         <h3 id="benefits_dev">Web Designers and Developers</h3>
         <ul>
-            <li>Take advantage of new CSS properties that let you build rich interfaces with custom-shaped 
-            content boxes and multiple text flows. </li>
+            <li>Take advantage of new CSS properties that let you build rich interfaces with multiple text flows.</li>
             <li>CSS Regions are easy to pick up. They build upon familiar CSS properties and structure.</li>
         </ul>
         <h3 id="benefits_biz">Print Designers</h3>
@@ -158,8 +161,8 @@ Permissions beyond the scope of this license, pertaining to the examples of code
             with one highly adaptive layout.</li>
         </ul>
         
-        <p>We have put together a set of demos for you. They showcase some of the concepts we proposed to the W3C with 
-            <a href="http://dev.w3.org/csswg/css3-regions/">CSS Regions</a> like content threads and content shapes</p>
+        <p>We have put together a set of demos for you. They showcase some of the concepts of regions and content flows in 
+        the <a href="http://dev.w3.org/csswg/css3-regions/">CSS Regions module</a>.</p>
     
         <p>You'll find basic samples that demonstrate individual CSS properties, as well as more complex ideas 
         that highlight how they work together.</p>
@@ -168,7 +171,10 @@ Permissions beyond the scope of this license, pertaining to the examples of code
             <h2>Demos</h2>
             <ul>
                 <!-- Simple CSS Regions samples -->
-                <li class="divider">Simple</li>
+                <li class="divider">Simple
+                    <div class="build-note">These samples require <a href="https://www.google.com/chrome">latest Google Chrome</a> with <a href="#enable-regions">CSS Regions enabled</a>
+                    or <a href="http://nightly.webkit.org/">Nightly WebKit builds</a></div>
+                </li>
                 <li>
                     <a href="simple_single_thread.html" target="_blank">Simple content thread</a>
                 </li>
@@ -180,14 +186,25 @@ Permissions beyond the scope of this license, pertaining to the examples of code
                 </li>
                 
                 <!-- Advanced CSS Regions samples -->
-                <li class="divider">Advanced</li>
+                <li class="divider">Advanced
+                    <div id="custom-build-note" class="build-note use-plural"></div>
+                </li>
                 <li>
-                    <a href="region-styling/paint-props.html" target="_blank">Basic region styling (color && background-color)</a>
+                    <a href="region-styling/paint-props.html" target="_blank">Basic region styling (color &amp; background-color)</a>
                 </li>
                 <li>
                     <a href="spec-intro-example.html" target="_blank">Auto-size regions</a>
                 </li>
             </ul> 
+        </div>
+        
+        <div class="col chrome">
+            <h2>Enable CSS Regions in Google Chrome</h2>
+            <ol>
+                <li>Using the browser bar navigate to "chrome://flags/" or "about:flags".</li>
+                <li>Find the "Enable CSS Regions" option and enable it.</li>
+                <li>Restart your browser by clicking the "Relaunch Now" button on the lower left corner.</li>
+            </ol>
         </div>
         
         <div class="col help">
