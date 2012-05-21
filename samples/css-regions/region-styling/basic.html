@@ -8,6 +8,8 @@
 <html>
 <head>
 	<title>CSS Regions styling</title>
+    <script src="../modernizr.js" type="text/javascript"></script>
+    <script src="../css-regions.js" type="text/javascript"></script>
 	<script type="text/javascript">
 	var phase = 0;
 	function toggleRegionLayout() {
@@ -180,9 +182,29 @@
 		max-width: 35em;
 		margin-bottom: 1em;
 	}
+
+    .warning {
+		border: 1px solid black;
+		color: red;
+		margin: 5px;
+		padding: 2px;
+		font-size: 1.2em;
+		display: none;
+	}
+
+	.no-regions .warning {
+		display:block;
+	}
+
+    .no-regions #apply-region-styling {
+        display: none;
+    }
 	</style>
 </head>
 <body>
+    <div id="regionsNotSupportedMsg" class="warning">
+		Your browser does not appear to support CSS Regions, which is required by this demo. Try it in <a href="http://nightly.webkit.org/">WebKit nightly</a> or Chrome 16+ with CSS Regions flag enabled.
+	</div>
 	<a href="#" id="apply-region-styling">toggle<span>region styling!</span></a>
 	<article>
 		<h1>Filler text on the web</h1>

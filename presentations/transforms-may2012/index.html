@@ -1,0 +1,473 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>CSS Transforms</title>
+
+		<meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
+		<meta name="author" content="Hakim El Hattab">
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/adobe.css">
+		<link rel="stylesheet" href="lib/zenburn.css">
+		
+		<script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
+	</head>
+	
+	<body>
+		
+		<div id="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+			    <script type="text/javascript">
+  			    function computedStyle(element)
+          	{
+          	  document.getElementById("computedStyle").innerHTML = window.getComputedStyle(element).getPropertyValue("-webkit-transform");
+          	}
+
+            function runAnimation(id)
+          	{
+          	   var shape = document.getElementById(id);
+          	   var state = shape.style.webkitAnimationPlayState;
+          	   
+          	   if(state == "running")
+          	        shape.style.webkitAnimationPlayState = "paused";
+          	  else
+          	        shape.style.webkitAnimationPlayState = "running";
+          	   
+          	}
+          </script>
+				<section>
+					<h2>CSS3 Transforms</h2>
+					<h3 class="inverted">Demos</h3>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section>
+			    <h2>Table of content</h2>
+			    <ul>
+			      <li>CSS Transforms on HTML and SVG</li>
+			      <li>Transform-Origin</li>
+			      <li>CSS Transitions</li>
+			      <li>CSS Animations</li>
+			      <li>Presentation attribute</li>
+			    </ul>
+        </section>
+        
+        <section>
+			    <h2>CSS Transforms on HTML and SVG</h2>
+			    <br>
+  				<div class="editor">
+  				    <div class="editorText">
+  			            <br><br><br><br><br><br><br><br>
+  			            <p class="tab1">&lt;html&gt;</p>
+  			            <p class="tab2">&lt;style&gt;</p>
+                    <p class="tab3">.transform { </p>
+                    <p class="tab4">transform: rotate(45deg); </p>
+                    <p class="tab3">}</p>
+                    <p class="tab2">&lt;/style&gt;</p>
+                    <br>
+                    <p class="tab2">&lt;div class="transform"&gt;&lt;/div&gt;</p>
+                    <p class="tab2">&lt;svg&gt;</p>
+                    <p class="tab3">&lt;rect width="150" height="150"</p>
+                    <p class="tab4">class="transform" /&gt;</p>
+                    <p class="tab2">&lt;/svg&gt;</p>
+                    <p class="tab1">&lt;/html&gt;</p>
+  			        </div>
+  			    </div>
+  			    <div class="output">
+  			        <div style="padding:75px">
+                             <style>
+                                 .transform1 {
+                                     transform: rotate(45deg);
+                                 }
+                             </style>
+                             <div class="transform1" style="width: 150px; height:150px; background-color: green;border-radius: 15px;">DIV</div>
+                             <svg style>
+                               <g class="transform1">
+                                 <rect width="150" height="150" rx="15" ry="15" style="fill:green;"/>
+                                 <text x="35" y="35" style="fill: white; font: inherit;">RECT</text>
+                                </g>
+                             </svg>
+                    </div>
+              </div>
+        </section>
+        
+        <section>
+  				<h2>transform-origin (1)</h2>
+
+              <ul>
+                <li>Different defaults for 'transform-origin'</li>
+                <ul>
+                  <li>HTML: 'center center'</li>
+                  <li>SVG (without CSS layout box): '0 0'</li>
+                </ul>
+              </ul>
+              <div class="outputStretch">
+                Initial values on SVG and HTML
+                <svg style="width: 100%; height: 300px;">
+                  <rect x="50" y="60" width="100" height="100" rx="15" ry="15" style="fill:green;"/>
+                  <rect x="270" y="60" width="100" height="100" rx="15" ry="15" style="fill:green;" transform="rotate(45, 270, 60)"/>
+                  <circle fill="red" cx="50" cy="60" r="5"/>
+                  <circle fill="red" cx="270" cy="60" r="5"/>
+                  <text x="20" y="260" style="fill: white; font: inherit;">rotate(45deg) on SVG</text>
+                  
+                  <rect x="510" y="60" width="100" height="100" rx="15" ry="15" style="fill:green;"/>
+                  <rect x="680" y="60" width="100" height="100" rx="15" ry="15" style="fill:green;" transform="rotate(45, 730, 110)"/>
+                  <circle fill="red" cx="560" cy="110" r="5"/>
+                  <circle fill="red" cx="730" cy="110" r="5"/>
+                  <text x="470" y="260" style="fill: white; font: inherit;">rotate(45deg) on HTML</text>
+                  
+                <svg>
+              </div>
+        </section>
+        
+      	<section>
+  				<h2>transform-origin (2)</h2>
+			    	<div class="editor">
+              <div class="editorText">
+			    	  <!--<pre style="font: inherit">&lt;svg&gt;
+  &lt;style&gt;
+    rect {
+      transform-origin: bottom right;
+      transform: 
+            translate(50px,150px)
+            scale(1.5)
+            rotate(45deg);
+    }
+  &lt;/style&gt;
+  &lt;rect width="100" height="100"
+      fill="green"/&gt;
+&lt;/svg&gt;</pre>-->
+
+       				        <br>
+       				        <p class="tab1">&lt;svg&gt;</p>
+       			            <p class="tab2">&lt;style&gt;</p>
+                            <p class="tab3">rect {</p>
+                            <p class="tab4">transform-origin: bottom right;</p>
+                            <p class="tab5">transform: </p>
+                            <p class="tab5">&nbsp;&nbsp;&nbsp;translate(50px,150px)</p>
+                            <p class="tab5">&nbsp;&nbsp;&nbsp;scale(1.5)</p>
+                            <p class="tab5">&nbsp;&nbsp;&nbsp;rotate(45deg);</p>
+                            <p class="tab3">}</p>    
+                            <p class="tab2">&lt;/style&gt;</p>
+       			                <p class="tab2">&lt;rect width="100" height="100"</p>
+       			                <p class="tab5">&nbsp;fill="green"/&gt;</p>
+                            <p class="tab1">&lt;/svg&gt;</p>
+       			        </div>
+       			    </div>
+       			    <div class="output">
+       			        <svg class="svg-target">
+       			            <style>
+       			                @keyframes animateGroup {
+       			                    0% { }
+                                    33% {
+                                            transform: translate(50px,150px);
+                                        }
+       			                    34% { }
+                                    66% {
+                                            transform: translate(50px,150px) scale(1.5);
+                                    } 
+                                    67% { }
+                                    100% {
+                                            transform: translate(50px,150px) scale(1.5) rotate(45deg);
+                                    }
+                                }
+
+
+                                #rect1 {
+       			                    fill: green;
+       			                }
+       			                 #circle3 {
+           			                fill: red;
+           			            }
+
+       			                #group1 {
+       			                    animation-play-state: paused;
+       			                    animation-name: animateGroup;
+           			                transform-origin: bottom right;
+           			                animation-duration: 5s;
+       			                }
+
+                            </style>
+                            <g id="group1" onclick="runAnimation(this.id)">
+                                <rect id="rect1" x="0" y="0" width="100" height="100"/>
+                                <circle id="circle3" cx="99" cy="98" r="4" />
+                            </g>
+                        </svg>
+       			        <div class="process-arrow-right"></div>
+       			        <div class="process-arrow-down"></div>
+       			        <div class="process-haxis"></div>
+       			        <div class="process-vaxis"></div>
+       			   </div>
+			    </li>
+		  	</section>
+    
+				<section>
+					<h2>CSS Transitions</h2>
+				<br>
+				<div class="editor">
+				    <div class="editorText">
+			            <br><br><br><br><br><br><br><br>
+			            <p class="tab1">&lt;svg&gt;</p>
+			            <p class="tab2">&lt;style&gt;</p>
+                        <p class="tab3">circle { </p>
+                        <p class="tab4">transform: scale(1); </p>
+                        <p class="tab4">transform-origin: center; </p>
+                        <p class="tab3">}</p>
+                        <br> 
+                        <p class="tab3">circle:hover {</p>
+                        <p class="tab4">transform: scale(2);</p>
+                        <p class="tab4">transition-property: transform;</p>
+                        <p class="tab4">transition-duration: 3s;</p>
+                        <p class="tab3">}</p>
+                        <p class="tab2">&lt;/style&gt;</p>
+                        <br>
+                        <p class="tab2">&lt;circle cx="50%" cy="50%" r="100"/&gt;</p>
+                        <p class="tab1">&lt;/svg&gt;</p>
+			        </div>
+			    </div>
+			    <div class="output">
+			        <svg>
+                           <style>
+                               #circle1 {
+                                   fill: green;
+                                   transform: scale(1);
+                                   transform-origin: center;
+                                   transition-property: fill, transform;
+                                   transition-duration: 1s;
+                               }
+
+                               #circle1:hover {
+                                   fill: yellow;
+                                   transform: scale(2);
+                                   transition-property: fill, transform;
+                                   transition-duration: 1s;
+                               }
+                           </style>
+                           <circle id="circle1" cx="50%" cy="50%" r="100"/>
+                       </svg>
+			   </div>
+			  </section>
+
+			  <section>
+			  <h2>CSS Animations</h2>
+			   	<div class="editor">
+   				    <div class="editorText">
+   				        <br><br><br>
+   			            <p class="tab1">&lt;svg&gt;</p>
+   			            <p class="tab2">&lt;style&gt;</p>
+                        <p class="tab3">@keyframes transform {</p>
+                        <p class="tab4">from { }</p>
+                        <p class="tab4">to {</p>
+                        <p class="tab5">fill: yellow;</p>
+                        <p class="tab5">transform:</p>
+                        <p class="tab5">&nbsp;&nbsp;&nbsp;translate(120px, 140px);</p>
+                        <p class="tab4">}</p>
+                        <p class="tab3">}</p>
+                        <p class="tab3">circle {</p>
+                        <p class="tab4">fill: green;</p>
+                        <p class="tab4">animation-name: transform;</p>
+                        <p class="tab4">animation-duration: 3s;</p>
+                        <p class="tab3">}</p>    
+                        <p class="tab2">&lt;/style&gt;</p>
+                        <p class="tab2">&lt;circle cx="100" cy="100" r="100"/&gt;</p>
+                        <p class="tab1">&lt;/svg&gt;</p>
+   			        </div>
+   			    </div>
+   			    <div class="output">
+   			        <svg>
+   			           <style>
+                            @keyframes transform {
+                                from { }
+                                to {
+                                    fill: yellow;
+                                    transform: translate(120px,140px);
+                                }
+                            }
+
+                            #circle2 {
+                                fill: green;
+                                animation-name: transform;
+                                animation-duration: 3s;
+                                animation-play-state: paused;
+                                animation-fill-mode: both;
+                            }
+                            </style>
+       
+                            <circle id="circle2" cx="100" cy="100" r="100" onclick="runAnimation(this.id)"/>
+                    </svg>
+   			   </div>
+   			  </section>
+ <!--
+   			  <section>
+  			  <h2>SVG Animations</h2>
+  			   	<div class="editor">
+     				    <div class="editorText" style="font-size: 12pt; line-height: 12pt;">
+     				        <br><br><br><br><br>
+     			            <p class="tab1">&lt;svg&gt;</p>
+     			            <p class="tab2">&lt;circle cx="50%" cy="50% r="25%"&gt;
+                            <p class="tab3">&lt;animate</p>
+                            <p class="tab4">attributeName="fill" </p>
+                            <p class="tab4">from="green" to="yellow"</p>
+                            <p class="tab4">dur="3s" begin="mouseover"/&gt;</p>
+                            <p class="tab2">&lt;/circle&gt;
+                            <p class="tab1">&lt;/svg&gt;</p>
+     			        </div>
+     			    </div>
+     			    <div class="output">
+     			        <svg>
+     			            <circle cx="50%" cy="50%" r="25%">
+                                <animate attributeName="fill" from="green" to="yellow"
+                                         dur="3s" begin="mouseover" />
+                            </circle>
+                         </svg>
+     			   </div>
+     			  </section>
+     			  <section>
+        			  <h2>CSS + SVG Animations Combined</h2>
+        			   	<div class="editor" style="font-size: 12pt; line-height: 12pt">
+           				    <div class="editorText">
+           				        <p class="tab1">&lt;svg&gt;</p>
+           			            <p class="tab2">&lt;style&gt;</p>
+                                <p class="tab3">@keyframes fill {</p>
+                                <p class="tab4">from { fill: green; }</p>
+                                <p class="tab4">to { fill: yellow; }</p>
+                                <p class="tab3">}</p>
+                                <p class="tab3">circle {</p>
+                                <p class="tab4">fill: green;</p>
+                                <p class="tab4">animation-name: fill;</p>
+                                <p class="tab4">animation-duration: 3s;</p>
+                                <p class="tab3">}</p>    
+                                <p class="tab2">&lt;/style&gt;</p>
+           			            <p class="tab2">&lt;circle cx="50%" cy="50% r="25%"&gt;
+                                <p class="tab3">&lt;animate</p>
+                                <p class="tab4">attributeName="fill" dur="3s" </p>
+                                <p class="tab4">from="green" to="yellow"</p>
+                                <p class="tab4">repeatCount="indefinite"/&gt;</p>
+                                <p class="tab2">&lt;/circle&gt;
+                                <p class="tab1">&lt;/svg&gt;</p>
+           			        </div>
+           			    </div>
+           			    <div class="output">
+           			        <svg>
+           			            <style>
+                                      @keyframes fill {
+                                          from {
+                                              fill: green;
+                                          }
+                                          to {
+                                              fill: yellow;
+                                          }
+                                      }
+
+                                      circle {
+                                          fill: green;
+                                          animation-name: fill;
+                                          animation-duration: 3s;
+                                      }
+                                </style>
+           			            <circle cx="50%" cy="50%" r="25%">
+                                      <animate attributeName="fill" from="green" to="yellow"
+                                               dur="3s" repeatCount="indefinite" />
+                                  </circle>
+                               </svg>
+           			   </div>
+           			  </section>
+-->   			  
+<section>
+<h2>Presentation Attribute</h2>
+ 	<div class="editor">
+	    <div class="editorText">
+	        <br><br><br>
+            <p class="tab1">&lt;svg&gt;</p>
+            <p class="tab2">&lt;rect width="100" height="100"</p>
+            <p class="tab3">fill="green"</p>
+            <p class="tab3">transform="translate(100px, 100)</p>
+            <p class="tab3">rotate  (  45deg)  ,  scale( 1 )" /&gt;</p>
+            <p class="tab1">&lt;/svg&gt;</p>
+        </div>
+    </div>
+    <div class="output">
+        <svg style="width: 100%;height:300px">
+           <rect width="150" height="150" fill="green" onclick="computedStyle(this)"
+              transform="translate(100px, 100) rotate  (  45deg)  ,  scale( 1 )"/>
+        </svg>
+        <p id="computedStyle"></p>
+   </div>
+  </section>
+
+				<section id="end">
+			        <br>
+			        Dirk Schulze
+			        <br>
+			        <a href="mailto:dschulze@adobe.com">dschulze@adobe.com</a>
+			        <br>
+			        <br>
+			        Rebecca Hauck
+			        <br>
+			        <a href="mailto:rhauck@adobe.com">rhauck@adobe.com</a><br>
+			    <img id="adobe" src="assets/images/adobe.png">
+				</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+		
+		<script src="js/reveal.js"></script>
+		<script src="js/prefixfree.min.js"></script>
+		<script src="lib/highlight.js"></script>
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls:true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: true,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'default', // default/neon
+
+				// Transition style
+				transition: query.transition || 'concave' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+		</script>
+
+	</body>
+</html>

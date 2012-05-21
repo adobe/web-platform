@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+
+html {
+  background: #000;  
+  color: #fff;
+  font-family: sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+  
+img {  
+  position: absolute;
+}
+
+button {
+  background: transparent;
+  border: 0;  
+  cursor: pointer;  
+}
+
+.tool {
+  position: absolute;
+  top: 0;
+  right: 0;  
+  z-index: 1;
+  height: 4em;
+  left: 0;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 14px;  
+}
+
+.tool button:focus {
+  outline: 1px dotted white;
+}
+.block-blend-modes {
+    padding-left: 0.5em;
+}
+.block-blend-modes button {
+  color: hotpink;  
+  display: inline-block;
+  padding: 1em 0.5em;  
+  line-height: 2em;
+}
+
+.block-blend-modes button:hover,
+.block-blend-modes button.active {
+  background: #603;
+}
+
+
+.block-texture-change {
+  background: #999;
+  border: 0;
+  border-radius: 5px;
+  text-transform: uppercase;
+  float: right;
+  line-height: 2em;
+  margin: 1em 1em 1em 0;
+}
+
+.block-blend-elements {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    height: 100%;
+}
+
+.block-blend-elements .blended {
+    margin-top: 5em;
+    width: 600px;
+    height: 400px;
+}
+
+.block-blend-elements .blended img {
+    position: absolute;
+    top: 0px; left: 0px;
+    width: 600px;
+    height: 400px;
+    display: block;
+}
+
+
+.block-blend-elements .thumbs img {
+    position: static;
+    width: 150px;
+    height: 100px;
+    padding: 0;
+    margin: 0;
+}
+
+.block-blend-elements .thumbs {
+    margin-top: 3em;
+}
+
+.block-blend-elements p {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: sans-serif;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+}
+
+.block-blend-elements a {
+    color: hotpink;
+}
+
+.thumbs {
+  text-align: center;
+}
+.thumbs b,
+.thumbs img {
+  vertical-align: middle;
+}
+
+.thumbs b {
+  padding: 0 1em; 
+  font-size: 1.2rem;
+}
+
+footer {
+  margin: 2rem 0 1rem 0;
+}
+
+footer p {
+  font-size: 0.7rem;
+  text-align: center;
+  color: #666;  
+}
+
+.BrowserDetectorNote {
+    position: absolute;
+    left: 0px;
+    top: 50px;
+    width: 100%;
+    z-index: 100;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Blend Mode Demo: Chair</title>
+<script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
+</head>
+
+<body>
+<div class="tool">
+  <span class="block-blend-modes" id="blend-modes">Blend mode: 
+    <button class="active" value="normal">normal</button>
+    <button value="plus">plus</button>
+    <button value="multiply">multiply</button>
+    <button value="screen">screen</button>
+    <button value="overlay">overlay</button>
+    <button value="darken">darken</button>
+    <button value="lighten">lighten</button>
+    <button value="color-dodge">color-dodge</button>
+    <button value="color-burn">color-burn</button>
+    <button value="hard-light">hard-light</button>
+    <button value="soft-light">soft-light</button>
+    <button value="difference">difference</button>
+    <button value="exclusion">exclusion</button>
+    <button value="hue">hue</button>
+    <button value="saturation">saturation</button>
+    <button value="color">color</button>
+    <button value="luminosity">luminosity</button>
+  </span>
+  <button class="block-texture-change" id="action-change-texture">Change Texture</button>
+</div>
+  <div class="block-blend-elements">
+     <div class="blended">
+         <img src="http://adobe.github.com/web-platform-assets/armchair.jpg">
+         <img src="http://adobe.github.com/web-platform-assets/texture-1.png" class="blendelement">  
+     </div>
+     
+     <p>Select a blend mode above (such as multiply) to see the two images blended</p>
+    <div class="thumbs">
+        <img src="http://adobe.github.com/web-platform-assets/armchair.jpg"> <b>+</b>
+        <img src="http://adobe.github.com/web-platform-assets/texture-1.png" class="blend-thumb">  
+    </div>
+    <footer><p>Image credits: Armchair: <a href="http://www.sxc.hu/browse.phtml?f=download&id=456692">Source</a> | <a href="http://www.sxc.hu/txt/license.html">License</a>, Textures: <a href="http://arbent.net/blog/15-natural-grunge-textures">Source</a> | <a href="http://arbent.net/blog/15-natural-grunge-textures">License</a>. </p><p>Unless otherwise noted, code and content is licensed under a <a href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain License</a>.</p></footer>  
+  </div>
+<script src='http://code.jquery.com/jquery-1.7.1.min.js'></script>
+<script src='picker.js'></script>  
+</body>
+</html>

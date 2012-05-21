@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+
+body, html {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blending-sample {
+    position: relative;
+    height: 430px;
+    margin-bottom: 20px;
+}
+
+.blending-sample canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px solid gray;
+}
+
+.blend-op {
+    font-size: 60px;
+    line-height: 100px;
+    height: 100px;
+    position:absolute;
+}
+
+.blend-op img {
+    vertical-align: -35%;
+    width: 150px;
+}
+
+
+.blend-op span {
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    display: inline-block;
+    width: 74px;
+    text-align: center;
+}
+
+img, canvas {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+canvas {
+    margin-top: 30px;
+    z-index: 100;
+}
+</style>
+
+<script type="application/x-javascript">
+    var loadedImage = 0;
+    var expectedImages = 2;
+    var images = {
+        bkg: null,
+        fg: null
+    };
+    
+    function loadImage (url, nick) {
+        var img = new Image();
+        img.onload = function () {
+            console.log('image ' + url + ' loaded');
+            loadedImage++;
+            images[nick] = img;
+
+            if (loadedImage === expectedImages) {
+                draw();
+            }
+        }
+        img.src = url;
+        
+    }    
+    
+    loadImage('compositing-source.svg', 'bkg');
+    loadImage('http://adobe.github.com/web-platform-assets/texture-2.png', 'fg');
+    
+    function draw(){
+      var ctx = document.getElementById('multiply-canvas').getContext('2d');
+
+      // Draw background image
+      ctx.drawImage(images.bkg, 0, 0, 600, 400);
+
+      // set composite property
+      ctx.globalCompositeOperation = 'multiply';
+      ctx.drawImage(images.fg, 0, 0, 600, 400);
+    }
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Canvas with Blend Modes Experiment</title>
+</head>
+
+<body style="-webkit-transform:translateX(0)">
+    <div class="background">
+       <div class="blending-sample" >
+            <canvas id="multiply-canvas" width="600" height="400"/>
+        </div>
+        <div class="blend-op">
+            <img src="compositing-source.svg" width="150" /><span>+</span><img src="http://adobe.github.com/web-platform-assets/texture-2.png" width="150" height="100" /><span>=</span><img src="blend-multiply-sample.png" width="150" />
+        </div>
+    </div>
+</body>
+
+</html>
