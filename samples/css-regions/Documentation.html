@@ -145,7 +145,39 @@ written permission of Adobe.
          }
     }
      
-	
+    pre.example {
+		background-color: 
+		rgba(0, 0, 0, 0.04);
+		padding: 0.75em;
+		margin: 1em 0;
+		border-top: thin solid 
+		rgba(0, 0, 0, 0.2);
+		border-bottom: thin solid 
+		rgba(0, 0, 0, 0.2);
+		border-left: none;
+		position: relative;
+		clear: both;
+	}
+	pre.example::before {
+        font-family: Palatino, Georgia, serif;
+		color: gray;
+		background: none;
+		content: "Example";
+		min-width: 7.5em;
+		text-transform: uppercase;
+		font-weight: bold;
+		display: block;
+	}
+
+	div.example::before {
+color: gray;
+background: none;
+border: none;
+text-transform: none;
+font-weight: bold;
+width: 100%;
+display: block;
+}
 	</style>
 </head>
 <body>
@@ -207,11 +239,10 @@ written permission of Adobe.
 				Takes the content of the element out of the normal document flow and moves it into a named flow specified by an identifier.
 			</p>
 			<p>
-				The content will not be rendered unless explicitly consumed by a region with <a href="#dt_content-from"><var>-webkit-flow-from: name</var></a> on the region
+				The content will not be rendered unless explicitly consumed by a region with <a href="#dt_content-from"><var>-webkit-flow-from: name</var></a> on the region.
 			</p> 
 		
-			<h3>Example</h3>
-<pre>
+<pre class="example">
 &lt;style type=&quot;text/css&quot;&gt;
     #article{
         <em>-webkit-flow-into: article-flow;</em>
@@ -224,8 +255,7 @@ written permission of Adobe.
 </pre>
 			<p>Multiple flows can be created using different flow names. One flow can consume content from the source of another flow. The content will be subtracted, not duplicated.</p>
 			
-			<h3>Example</h3>
-<pre>
+<pre class="example">
 &lt;style type=&quot;text/css&quot;&gt;
     #article{
         -webkit-flow-into: article-flow;
@@ -239,7 +269,8 @@ written permission of Adobe.
 
 &lt;div id=&quot;article&quot;&gt;
     This content will be associated with <em>article-flow</em>.
-<em>	&lt;blockquote&gt;
+<em>
+    &lt;blockquote&gt;
         But this will appear only in quotes-flow.
     &lt;/blockquote&gt;</em>
 &lt;/div&gt;
@@ -252,8 +283,7 @@ written permission of Adobe.
 		<dd>
 			<p>Inserts content from the <em>name</em> flow into the current element. The element's original content will be replaced by the one from the flow.</p>
 			
-			<h3>Example</h3>
-<pre>
+<pre class="example">
 &lt;style type="text/css"&gt;
     #article{
         -webkit-flow-into: article-flow;
@@ -266,12 +296,12 @@ written permission of Adobe.
 
 &lt;div id="region"&gt;&lt;/div&gt;
 &lt;div id="article"&gt;
-    This content will be associated with <em>article-flow</em> and will replace the region's content, if any.
+    This content will be associated with <em>article-flow</em>
+    and will replace the region's content, if any.
 &lt;/div&gt;
 </pre>			
 			<p>Multiple elements can consume content from the same flow.</p>
-			<h3>Example</h3>
-<pre>
+<pre class="example">
 &lt;style type="text/css"&gt;
     #article{
         -webkit-flow-into: article-flow;
@@ -287,7 +317,8 @@ written permission of Adobe.
 &lt;div id="region1"&gt;&lt;/div&gt;
 &lt;div id="region2"&gt;&lt;/div&gt;
 &lt;div id="article"&gt;
-    This content will be associated with <em>article-flow</em> and will flow from #region1 to #region2.
+    This content will be associated with <em>article-flow</em>
+    and will flow from #region1 to #region2.
 &lt;/div&gt;
 </pre>			
 		</dd>
