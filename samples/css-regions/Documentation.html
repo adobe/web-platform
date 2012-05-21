@@ -129,6 +129,11 @@ written permission of Adobe.
         margin: 0;
     }
 
+    dl > dt.divider {
+    	font-weight: bold;
+    	font-style: italic;
+    }
+
     @media all and (min-width: 640px){
          .wrapper{
              padding: 50px 0;
@@ -195,26 +200,26 @@ written permission of Adobe.
 	
 	<h2 id="threads">Content threads and regions</h2>
 	<dl>
-		<dt id="dt_flow">-webkit-flow-into: "name"</dt>
+		<dt id="dt_flow" class="divider">-webkit-flow-into: name</dt>
 		<dd>
 			
 			<p>
-				Takes the content of the element out of the normal document flow and moves it into a content thread identified by a string. 
+				Takes the content of the element out of the normal document flow and moves it into a content thread specified by an identifier.
 			</p>
 			<p>
-				The content will not be rendered unless explicitly consumed by a region with <a href="#dt_content-from"><var>-webkit-flow-from: "name"</var></a> on the region
+				The content will not be rendered unless explicitly consumed by a region with <a href="#dt_content-from"><var>-webkit-flow-from: name</var></a> on the region
 			</p> 
 		
 			<h3>Example</h3>
 <pre>
 &lt;style type=&quot;text/css&quot;&gt;
     #article{
-        <em>-webkit-flow-into: &quot;article-thread&quot;;</em>
+        <em>-webkit-flow-into: article-thread;</em>
     }
 &lt;/style&gt;
 
 &lt;div id=&quot;article&quot;&gt;
-    This content will be associated with "article-thread".
+    This content will be associated with <em>article-thread</em>.
 &lt;/div&gt;
 </pre>
 			<p>Multiple threads can be created using different flow names. One thread can consume content from the source of another thread. The content will be subtracted, not duplicated.</p>
@@ -223,19 +228,19 @@ written permission of Adobe.
 <pre>
 &lt;style type=&quot;text/css&quot;&gt;
     #article{
-        -webkit-flow-into: &quot;article-thread&quot;
+        -webkit-flow-into: article-thread;
     }
 <em>
     blockquote{
-        -webkit-flow-into: &quot;quotes-thread&quot;;
+        -webkit-flow-into: quotes-thread;
     }
 </em>
 &lt;/style&gt;
 
 &lt;div id=&quot;article&quot;&gt;
-    This content will be associated with &quot;article-thread&quot;.
+    This content will be associated with <em>article-thread</em>.
 <em>	&lt;blockquote&gt;
-        But this will appear only in &quot;quotes-thread&quot;.
+        But this will appear only in quotes-thread.
     &lt;/blockquote&gt;</em>
 &lt;/div&gt;
 </pre>
@@ -243,25 +248,25 @@ written permission of Adobe.
 		</dd>
 		
 		
-		<dt id="dt_content-from">-webkit-flow-from: "name"</dt>
+		<dt id="dt_content-from" class="divider">-webkit-flow-from: name</dt>
 		<dd>
-			<p>Inserts content from the "name" thread into the current element. The element's original content will be replaced by the one from the thread.</p>
+			<p>Inserts content from the <em>name</em> thread into the current element. The element's original content will be replaced by the one from the thread.</p>
 			
 			<h3>Example</h3>
 <pre>
 &lt;style type="text/css"&gt;
     #article{
-        -webkit-flow-into: "article-thread";
+        -webkit-flow-into: article-thread;
     }
     #region{
-        <em>-webkit-flow-from: "article-thread";</em>
+        <em>-webkit-flow-from: article-thread;</em>
         width:100%;
     }
 &lt;/style&gt;
 
 &lt;div id="region"&gt;&lt;/div&gt;
 &lt;div id="article"&gt;
-    This content will be associated with "article-thread" and will replace the region's content, if any.
+    This content will be associated with <em>article-thread</em> and will replace the region's content, if any.
 &lt;/div&gt;
 </pre>			
 			<p>Multiple elements can consume content from the same thread.</p>
@@ -269,11 +274,11 @@ written permission of Adobe.
 <pre>
 &lt;style type="text/css"&gt;
     #article{
-        -webkit-flow-into: "article-thread";
+        -webkit-flow-into: article-thread;
     }
     #region1,
     #region2{
-        <em>-webkit-flow-from: "article-thread";</em>
+        <em>-webkit-flow-from: article-thread;</em>
         width:20%;
         height:4em;
     }
@@ -282,7 +287,7 @@ written permission of Adobe.
 &lt;div id="region1"&gt;&lt;/div&gt;
 &lt;div id="region2"&gt;&lt;/div&gt;
 &lt;div id="article"&gt;
-    This content will be associated with "article-thread" and will flow from #region1 to #region2.
+    This content will be associated with <em>article-thread</em> and will flow from #region1 to #region2.
 &lt;/div&gt;
 </pre>			
 		</dd>
