@@ -55,18 +55,19 @@
     git rebase origin/master
 
 # TODO output csv 
+# sed -e 's/   //g' -e 's/  //g' -e 's/ /, /'
 
 # Search for commits where we are the Author/Committer
     echo "looking for 'Author:'..."
-    git log --since="01/01/2012"| grep "^[\\t ]*Author: " | sed "s/ <.*//; s/ *//; s/^[\\t ]*Author: //" | sort | uniq -c | sort -nr  | egrep 'mihnea@adobe.com|achicu@adobe.com|krit@webkit.org' > $store/$gitLogByAuthor
+    git log --since="01/01/2012"| grep "^[\\t ]*Author: " | sed -e 's/ <.*//; s/ *//; s/^[\\t ]*Author: //' -e 's/   //g' -e 's/  //g' -e 's/ /, /' | sort | uniq -c | sort -nr  | egrep 'mihnea@adobe.com|achicu@adobe.com|krit@webkit.org' > $store/$gitLogByAuthor
 
 # Search for commits where we created reviewed the patch
     echo "looking for 'Reviewed by'..."
-    git log --since="01/01/2012"| grep "^[\\t ]*Reviewed by " | sed 's/ <.*//; s/\\t*//; s/ *//; s/^[\\t ]*Reviewed by //' | sort | uniq -c | sort -nr  | egrep 'Bear Travis|Mihnea|Chiculita|Raul Hudea|Max Vujovic|Hans Muller|Ethan Malasky|Arno Gourdol|Alan Stearns|Larry McLister|Jacob Goldstein|Dirk Schulze|Rebecca Hauck|Flex Mobile|David Alcala|Victor Carbune|Mihai Balan' > $store/$gitLogByReview
+    git log --since="01/01/2012"| grep "^[\\t ]*Reviewed by " | sed -e 's/ <.*//; s/\\t*//; s/ *//; s/^[\\t ]*Reviewed by //' -e 's/   //g' -e 's/  //g' -e 's/ /, /' | sort | uniq -c | sort -nr  | egrep 'Bear Travis|Mihnea|Chiculita|Raul Hudea|Max Vujovic|Hans Muller|Ethan Malasky|Arno Gourdol|Alan Stearns|Larry McLister|Jacob Goldstein|Dirk Schulze|Rebecca Hauck|Flex Mobile|David Alcala|Victor Carbune|Mihai Balan' > $store/$gitLogByReview
 
 # Search for commits where we created the patch
     echo "looking for 'Patch by'..."
     
-    git log --since="01/01/2012" | grep "^[\\t ]*Patch by " | sed 's/ <.*//; s/\\t*//; s/ *//; s/^[\\t ]*Patch by //' | sort | uniq -c | sort -nr  | egrep 'Bear Travis|Mihnea|Chiculita|Raul Hudea|Max Vujovic|Hans Muller|Ethan Malasky|Arno Gourdol|Alan Stearns|Larry McLister|Jacob Goldstein|Dirk Schulze|Rebecca Hauck|Flex Mobile|David Alcala|Victor Carbune|Mihai Balan' > $store/$gitLogByPatch
+    git log --since="01/01/2012" | grep "^[\\t ]*Patch by " | sed 's/ <.*//; s/\\t*//; s/ *//; s/^[\\t ]*Patch by //' -e 's/   //g' -e 's/  //g' -e 's/ /, /' | sort | uniq -c | sort -nr  | egrep 'Bear Travis|Mihnea|Chiculita|Raul Hudea|Max Vujovic|Hans Muller|Ethan Malasky|Arno Gourdol|Alan Stearns|Larry McLister|Jacob Goldstein|Dirk Schulze|Rebecca Hauck|Flex Mobile|David Alcala|Victor Carbune|Mihai Balan' > $store/$gitLogByPatch
 
     open $store
