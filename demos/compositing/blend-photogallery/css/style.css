@@ -115,7 +115,7 @@ section{
     height: 66px;
     cursor: pointer;
     z-index: 100;
-    background: url(../img/down.png);
+    background: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/down.png);
 }
 
 #left-btn{
@@ -126,7 +126,7 @@ section{
     height: 66px;
     cursor: pointer;
     z-index: 100;
-    background: url(../img/left.png);
+    background: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/left.png);
 }
 
 #right-btn{
@@ -137,7 +137,7 @@ section{
     height: 66px;
     cursor: pointer;
     z-index: 100;
-    background: url(../img/right.png);
+    background: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/right.png);
 }
 
 .arrow-btn{
