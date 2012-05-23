@@ -1,0 +1,194 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background: black;
+    background-image: -webkit-radial-gradient(circle, #000, #333);
+    -webkit-perspective: 1000;
+}
+
+h1, h2{
+    font-family: 'Italiana', serif;
+}
+
+h1{
+    margin: 0px;
+}
+
+hr{
+    margin: 0px auto;
+    width: 50%;
+}
+
+section{
+    display: none;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-transform: translateZ(-1000px) rotateX(90deg);
+    -webkit-transition: -webkit-transform 1s ease-in;
+}
+
+#container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    -webkit-perspective: 1000;
+    -webkit-transform-style: preserve-3d;
+}
+
+#page1{
+    display: block;
+    background-image: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/photo/yellowstone1.png);
+    -webkit-transform: translateZ(0px) rotateX(0deg);
+}
+
+#page2{
+    background-image: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/photo/yellowstone4.png);
+}
+
+#page3{
+    background-image: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/photo/yellowstone2.png);
+}
+
+#page4{
+    background-image: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/photo/yellowstone3.png);
+}
+
+#grid{
+    position: fixed;
+    width: 100%;
+    height: 400px;
+    top: -450px;
+    color: white;
+    background: rgba(0, 0, 0, .9);
+    border-bottom: 1px solid #111;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .5);
+    text-align: center;
+    z-index: 400;
+    -webkit-transition: top 1s ease-in;
+}
+
+#overlay{
+    position: fixed;
+    height: 220px;
+    width: 100%;
+    top: 50%;
+    margin-top: -150px;
+    z-index: 2;
+    -webkit-transition: all 1s;
+}
+
+#overlay-content{
+    position: absolute;
+    width: 100%;
+    /* height: 100%; */
+    left: 0px;
+    padding: 30px 0px;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+}
+
+#overlay-bg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    background: #ba3214;
+    pointer-events: none;
+    -webkit-transition: background 1s;
+    -webkit-blend-mode: multiply;
+}
+
+#down-btn{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 66px;
+    height: 66px;
+    cursor: pointer;
+    z-index: 100;
+    background: url(../img/down.png);
+}
+
+#left-btn{
+    position: fixed;
+    top: 42%;
+    left: 0px;
+    width: 66px;
+    height: 66px;
+    cursor: pointer;
+    z-index: 100;
+    background: url(../img/left.png);
+}
+
+#right-btn{
+    position: fixed;
+    top: 42%;
+    right: 0px;
+    width: 66px;
+    height: 66px;
+    cursor: pointer;
+    z-index: 100;
+    background: url(../img/right.png);
+}
+
+.arrow-btn{
+    opacity: .2;
+    -webkit-transition: opacity .2s ease-in;
+}
+
+.arrow-btn:hover{
+    opacity: .5;
+}
+
+#grid-images, #grid-blends{
+    position: absolute;
+}
+
+#grid-images img{
+    margin: 0px 10px 10px;
+}
+
+#grid-content{
+    position: absolute;
+    left: 50%;
+    margin-top: 30px;
+    margin-left: -250px;
+    width: 500px;
+}
+
+.grid-blend{
+    display: inline-block;
+    margin: 0px 10px 10px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    opacity: .5;
+    -webkit-transition: all .2s;
+    -webkit-blend-mode: screen;
+}
+
+.grid-blend:hover{
+    opacity: .8;
+    /* -webkit-blend-mode: overlay; */
+}
+
+#blinder{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 300;
+    -webkit-transition: opacity .2s;
+}
