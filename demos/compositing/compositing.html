@@ -7,12 +7,76 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <title>Compositing Demo</title>
         <style>
+/*             @font-face { */
+/*               font-family: 'MyriadPro-SemiCondensed'; */
+/*               src: local("MyriadPro-SemiCn"); */
+/*               font-weight: normal; */
+/*               font-style: normal; } */
+/*  */
+/*             @font-face { */
+/*               font-family: 'MyriadPro-SemiCondensed'; */
+/*               src: local("MyriadPro-SemiCnIt"); */
+/*               font-weight: normal; */
+/*               font-style: italic; } */
+/*  */
+/*             @font-face { */
+/*               font-family: 'MyriadPro-SemiCondensed'; */
+/*               src: local("MyriadPro-BoldSemiCn"); */
+/*               font-weight: bold; */
+/*               font-style: normal; } */
+/*  */
+/*             @font-face { */
+/*               font-family: 'MyriadPro-SemiCondensed'; */
+/*               src: local("MyriadPro-BoldSemiCnIt"); */
+/*               font-weight: bold; */
+/*               font-style: italic; } */
+
             body {
-                background: #ccc;
+                margin: 0;
+                padding: 0;
+                font-family: 'MyriadPro-Regular', 'myriad-pro-regular', "MyriadPro-Cond", 'MyriadPro-Cond', sans-serif;
             }
-        
+
+            h1{
+                margin: 0;
+                font-size: 60px;
+                font-weight: normal;
+                font-family: 'MyriadPro-Condensed', 'myriad-pro-condensed', "MyriadPro-Cond", 'MyriadPro-Cond', sans-serif;
+            }
+
+            p{
+                margin: 0;
+            }
+
+            a{
+                color:#874AB5;
+            }
+
+            header{
+                position: relative;
+                padding: 30px;
+                color: #4A98B5;
+                background-color: #fff;
+                box-shadow: rgba(0, 0, 0, .2) 0px 3px 5px 1px;
+                z-index: 10;
+            }
+
+            footer{
+                padding: 10px;
+                box-shadow: rgba(0, 0, 0, .2) 0px -3px 5px 1px;
+            }
+
+            section{
+                background: #eee;
+            }
+
+            .content{
+                width: 660px;
+                margin: auto;
+            }
+
             .container {
                 float: left;
                 position: relative;
@@ -21,6 +85,16 @@ Permissions beyond the scope of this license, pertaining to the examples of code
                 margin: 20px;
                 -webkit-isolation: isolate;
             }
+
+            .graphic{
+                /* -webkit-perspective: 3000; */
+                /* -webkit-transform-style: preserve-3d; */
+                -webkit-transition: -webkit-transform 1s;
+            }
+
+            /* .graphic:hover { */
+            /*     -webkit-transform: rotateX(35deg); */
+            /* } */
             
             .box {
                 position: absolute;
@@ -28,7 +102,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
                 top: 5px;
                 width: 75px;
                 height: 75px;
-                background: red;
+                background: #7FF19C;
             }
             
             .circle {
@@ -37,7 +111,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
                 top: 30px;
                 width: 75px;
                 height: 75px;
-                background: yellow;
+                background: #4A98B5;
                 border-radius: 150px;
             }
             
@@ -47,106 +121,164 @@ Permissions beyond the scope of this license, pertaining to the examples of code
                 top: 120px;
                 width: 120px;
                 height: 20px;
+                color: #333;
                 text-align: center;
             }
             
             br.clear {
                 clear: left;
             }
+
+            .license{
+                font-size: 12px;
+            }
+
+            #typekit-badge-jwk6nqv{
+                display: none;
+            }
+
         </style>
+        <script type="text/javascript" src="http://use.typekit.com/jwk6nqv.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
         <script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
     </head>
     
     <body>
+        <header>
+            <div class="content">
+                <h1>CSS Compositing</h1>
+                <p>Using elements and images to manipulate transparency.</p>
+            </div>
+        </header>
+        <section>
+            <div class="content">
+
+        <div class="container">
+            <div class="graphic">
+                <div class="box"></div>
+                <div class="circle"></div>
+            </div>
+            <div class="caption">none</div>
+        </div>
         
         <div class="container">
-            <div class="box"></div>
-            <div class="circle" style="-webkit-alpha-compositing: clear"></div>
+            <div class="graphic">
+                <div class="box"></div>
+                <div class="circle" style="-webkit-alpha-compositing: clear"></div>
+            </div>
             <div class="caption">clear</div>
         </div>
         
         <br class="clear" />
         
         <div class="container">
+            <div class="graphic">
             <div class="box"></div>
             <div class="circle" style="-webkit-alpha-compositing: src"></div>
+            </div>
             <div class="caption">src</div>
         </div>
         
         <div class="container">
+            <div class="graphic">
             <div class="box"></div>
             <div class="circle" style="-webkit-alpha-compositing: dst"></div>
+            </div>
             <div class="caption">dst</div>
         </div>
         
         
         <div class="container">
+            <div class="graphic">
             <div class="box"></div>
             <div class="circle" style="-webkit-alpha-compositing: src-over"></div>
+            </div>
             <div class="caption">src-over</div>
         </div>
         
         <div class="container">
+            <div class="graphic">
             <div class="box"></div>
             <div class="circle" style="-webkit-alpha-compositing: dst-over"></div>
+            </div>
             <div class="caption">dst-over</div>
         </div>
         
         <br class="clear" />
         
         <div class="container">
+            <div class="graphic">
             <div class="box"></div>
             <div class="circle" style="-webkit-alpha-compositing: src-in"></div>
+            </div>
             <div class="caption">src-in</div>
         </div>
 
         <div class="container">
+            <div class="graphic">
             <div class="box"></div>
             <div class="circle" style="-webkit-alpha-compositing: dst-in"></div>
+            </div>
             <div class="caption">dst-in</div>
         </div>
         
-        
-        
         <div class="container">
+            <div class="graphic">
             <div class="box"></div>
             <div class="circle" style="-webkit-alpha-compositing: src-out"></div>
+            </div>
             <div class="caption">src-out</div>
         </div>
         
         <div class="container">
+            <div class="graphic">
             <div class="box"></div>
             <div class="circle" style="-webkit-alpha-compositing: dst-out"></div>
+            </div>
             <div class="caption">dst-out</div>
         </div>
         
         <br class="clear" />
 
         <div class="container">
+            <div class="graphic">
             <div class="box"></div>
             <div class="circle" style="-webkit-alpha-compositing: src-atop"></div>
+            </div>
             <div class="caption">src-atop</div>
         </div>
         
         <div class="container">
+            <div class="graphic">
             <div class="box"></div>
             <div class="circle" style="-webkit-alpha-compositing: dst-atop"></div>
+            </div>
             <div class="caption">dst-atop</div>
         </div>
         
         <div class="container">
+            <div class="graphic">
             <div class="box"></div>
             <div class="circle" style="-webkit-alpha-compositing: xor"></div>
+            </div>
             <div class="caption">xor</div>
         </div>
         
         <div class="container">
-            <div class="box"></div>
-            <div class="circle" style="-webkit-alpha-compositing: plus"></div>
+            <div class="graphic">
+                <div class="box"></div>
+                <div class="circle" style="-webkit-alpha-compositing: plus"></div>
+            </div>
             <div class="caption">plus</div>
         </div>
         
         <br class="clear" />
-        <p class="license">Unless otherwise noted, code and content is licensed under a <a href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain License</a>.</p>
+    </div>
+        </section>
+        <footer>
+            <div class="content">
+                <p class="license">Unless otherwise noted, code and content is licensed under a <a href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain License</a>.</p>
+            </div>
+        </footer>
     </body>
 </html>
