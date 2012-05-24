@@ -95,6 +95,14 @@ $(function () {
 
         teardown(); 
     })
+    
+    test("NamedFlow should have name property", function(){
+        setup();
+
+        ok(prefixMethod(document, "getFlowByName")("article").name === "article");
+
+        teardown(); 
+    })
 
     test("NamedFlow should have contentNodes property", function() {
         setup();
