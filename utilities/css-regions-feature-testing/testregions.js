@@ -88,10 +88,10 @@ $(function () {
         teardown();
     }) 
     
-    test("NamedFlow should have overflow property", function(){ 
+    test("NamedFlow should have overset property", function(){ 
         setup();
 
-        ok(prefixMethod(document, "getFlowByName")("article").overflow === false);
+        ok(prefixMethod(document, "getFlowByName")("article").overset === false);
 
         teardown(); 
     })
