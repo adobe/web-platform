@@ -58,7 +58,7 @@
 		color: #DADADA;
 		padding: .5em;
 		text-align: center;
-		z-index: 100;
+		z-index: 50;
 	}
 	.toggleBox input[type='radio'] {
 		display: none;
@@ -77,12 +77,37 @@
 		border-bottom: medium solid #DADADA;
 		margin-bottom: 1em;
 	}
+
+	.no-regions .toggleBox {
+		opacity: 0.5;
+		-moz-opacity: 0.5;
+		filter:alpha(opacity=50);
+	}
+
+	.browserNotice {
+		text-align: center;
+		font-size: 0.9em;
+		margin: 0 1em;
+		padding: 5px 10px;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		background-color: lemonchiffon;
+		border-bottom: 1px solid darkgray;
+
+		display: none;
+	}
+
+	.no-regions .browserNotice {
+		display: block;
+	}
 	</style>
 
 	<link rel="stylesheet" href="css/region-no-style.css">
 	<link rel="stylesheet" href="css/region-style.css" id='region-styles'>
 	<script type="text/javascript">
-	document.addEventListener("change", function(evt) {
+	function toggleStyling(evt) {
 		if (evt.target.name == "stylesheet") {
 			var styleSheet = document.getElementById('region-styles');
 			if (evt.target.id == "styling-enabled") {
@@ -91,9 +116,13 @@
 				styleSheet.disabled = true;
 			}
 		}
-	});
+	}
+
+	document.addEventListener("change", toggleStyling, false);
+	
 	</script>
-	<script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
+	<script type="text/javascript" src="../modernizr.js"></script>
+	<script type="text/javascript" src="../css-regions.js"></script>
 </head>
 <body>
 	<div class="toggleBox">
@@ -103,6 +132,8 @@
 		<input type="radio" name="stylesheet" id="styling-disabled">
 		<label for="styling-disabled">Disabled</label>
 	</div>
+	<div class="browserNotice">This sample requires a web browser that supports CSS Regions.<br>
+		Use either <a href="https://tools.google.com/dlpage/chromesxs">Google Chrome Canary</a> with CSS Regions enabled (see <a href="../index.html#enable-regions">here</a> how to enable CSS Regions) or <a href="http://nightly.webkit.org/">WebKit Nightly</a>.</div>
 	<h1>The CMYK color model</h1>
 	<h2 class='firstHeading'>Cyan</h2>
 	<p><span class='figure'><img src="img/door-c.jpg" width="106" height="160" alt="Door CMYK split, Cyan"/><br/>Cyan component</span>
