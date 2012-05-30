@@ -109,8 +109,8 @@ section{
 
 #down-btn{
     position: fixed;
-    top: 0px;
-    right: 0px;
+    top: 5px;
+    right: 5px;
     width: 66px;
     height: 66px;
     cursor: pointer;
@@ -120,8 +120,8 @@ section{
 
 #left-btn{
     position: fixed;
-    top: 42%;
-    left: 0px;
+    bottom: 5px;
+    left: 5px;
     width: 66px;
     height: 66px;
     cursor: pointer;
@@ -131,8 +131,8 @@ section{
 
 #right-btn{
     position: fixed;
-    top: 42%;
-    right: 0px;
+    bottom: 5px;
+    left: 75px;
     width: 66px;
     height: 66px;
     cursor: pointer;
@@ -141,7 +141,7 @@ section{
 }
 
 .arrow-btn{
-    opacity: .2;
+    opacity: 1;
     -webkit-transition: opacity .2s ease-in;
 }
 
