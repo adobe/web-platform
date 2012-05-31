@@ -83,7 +83,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         // if the workaround flag is tripped, rely on the real overflow value 
         if (!this.namedFlows[flow].mockOverflow){ 
             // return the real overflow value
-            return this.namedFlows[flow].flow.overflow
+            return this.namedFlows[flow].flow.overset
         }    
         else{                       
             // making sure to never check agains the mock again
