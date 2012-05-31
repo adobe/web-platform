@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - Transformed regions demo</title>
+    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
+    <meta charset="UTF-8">
+    <style type="text/css">
+
+    article{
+        -webkit-flow-into: article;
+    }
+
+    .region{
+        -webkit-flow-from: article;
+        float: left;
+        height: 600px;
+    }
+
+    .region + .region{
+        border-left: 1px solid lightgray;
+        padding-left: 3.5%;
+        margin-left: 3.5%;
+    }
+
+    .page{
+        width: 70%;
+        margin: 5% auto;
+        padding: 50px;
+        min-width: 500px;
+    }
+     
+
+    #region1{
+        width: 52%;
+    }
+
+    #region2{
+        width: 32%;
+        -webkit-transform: perspective(700px) rotateY(30deg);
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <div id="region1" class="region"></div>
+        <div id="region2" class="region"></div>
+    </div>
+
+    <article>
+        <h1>Flowing content into transformed regions</h1>
+
+        <section id="introduction">
+            <p class="tip">
+                <strong>Tip: </strong> resize the browser window to see content flowing from one region to another.
+            </p>
+            
+            <p>
+                Any CSS properties that apply to regular elements apply to regions as well.
+            </p>
+            
+            <p>
+                This example shows how content flows from one region to another and respects the rotation transformation applied.
+            </p>                                                                           
+        </section>
+        
+        <section>
+            <h2>Sample</h2>
+<pre>
+#region2{
+    flow-from: article;
+    transform: rotateY(25deg);
+}
+</pre>
+        <p class="caption">
+            Content renders rotated according to the transforms on #region2
+        </p> 
+        </section>
+
+        <section>
+            <p>
+                Regions don't have to be regular HTML elements. Upcoming implementations will illustrate how CSS pseudo-elements such as <code>::before</code> or <code>::after</code> and other generated blocks may be turned into regions.
+            </p>
+        </section>
+    </article>
+    <script type="text/javascript" src="shared-script.js"></script>
+</body>
+</html>

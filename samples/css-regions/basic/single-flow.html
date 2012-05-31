@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - Single flow demo</title>
+    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
+    <meta charset="UTF-8">
+    <style type="text/css">
+
+    article{
+        -webkit-flow-into: article;
+    }
+
+    article h1 em{
+        white-space: nowrap;
+        font-style: normal;
+    }
+
+    .region{
+        -webkit-flow-from: article;
+        float: left;
+        height: 600px;
+    }
+
+    .region + .region{
+        border-left: 1px solid lightgray;
+        padding-left: 4%;
+        margin-left: 4%;
+    }
+
+    .page{
+        width: 70%;
+        margin: 5% auto;
+        padding: 50px;
+        min-width: 500px;
+    }
+
+    #region1{
+        width: 52%;
+    }
+
+    #region2{
+        width: 16%;
+    }
+
+    #region3{
+        width: 15%;
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <div id="region1" class="region"></div>
+        <div id="region2" class="region"></div>
+        <div id="region3" class="region"></div>
+    </div>
+
+
+    <article>
+        <h1>Flowing content with <em>CSS Regions</em></h1>
+
+        <section id="introduction">
+            <p class="tip">
+                <strong>Hint:</strong> resize the browser window to see the content reflow.
+            </p>
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </section>
+
+        <section id="problem">
+            <h2>The Problem with HTML</h2>
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </section>
+
+        <aside>
+            <h2>This is secondary content</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </aside>
+    </article>
+    
+    <script type="text/javascript" src="shared-script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - Region break before demo</title>
+    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
+    <meta charset="UTF-8">
+    <style type="text/css">
+
+    article{
+        -webkit-flow-into: article;
+    }
+
+    article .break{
+        margin-bottom: 2em;
+        -webkit-region-break-before: always;
+    }
+
+    article .break p{
+        margin-bottom:0;
+    }
+
+    .region{
+        -webkit-flow-from: article;
+        float: left;
+        height: 600px;
+    }
+
+    .region + .region{
+        border-left: 1px solid lightgray;
+        padding-left: 3.5%;
+        margin-left: 3.5%;
+    }
+
+    .page{
+        width: 70%;
+        margin: 5% auto;
+        padding: 50px; 
+        min-width: 500px;
+    }
+
+
+    #region1{
+        width: 62%;
+    }
+
+    #region2{
+        width: 30%;
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <div id="region1" class="region"></div>
+        <div id="region2" class="region"></div>
+    </div>
+
+
+    <article>
+        <h1>Adjusting content break across regions</h1>
+
+        <section id="introduction">
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </section>
+
+        <section class="break tip">
+            <p> 
+                <strong>Hint:</strong> the content of this section is forced to render in the next region even though it could fit in the previous one.
+            </p>
+        </section>
+
+        <section id="problem">
+            <h2>The Problem with HTML</h2>
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </section>
+    </article>
+    <script type="text/javascript" src="shared-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - NamedFlow API</title>
+    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
+    <meta charset="UTF-8">
+    <style type="text/css">
+
+    article{
+        -webkit-flow-into: article;
+    }
+
+    article h1 em{
+        white-space: nowrap;
+        font-style: normal;
+    }
+
+    .region{
+        -webkit-flow-from: article; 
+        float: left;
+        height: 600px;
+    }
+
+    .region + .region{
+        border-left: 1px solid lightgray;
+        padding-left: 3.5%;
+        margin-left: 4%;
+    }
+
+    .page{
+        width: 70%;
+        margin: 5% auto;
+        padding: 50px;
+        min-width: 500px;
+    }
+
+    #region1{
+        width: 52%;
+    }
+
+    #region2{
+        width: 32%;
+    } 
+    
+    #tripWire{
+        color: red;
+        font-weight: bold;
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <div id="region1" class="region"></div>
+        <div id="region2" class="region"></div>
+    </div>
+
+
+    <article>
+        <h1>Working with JavaScript and named flows</h1>
+
+        <section id="introduction">
+            <p class="info">
+                The <strong>article</strong> flow does <span id="tripWire">NOT</span> fit in the region chain. <br />
+            </p>
+            <p class="tip">
+                <strong>Hint:</strong> resize the browser window and check out the JavaScript source code of this page.
+            </p>
+            <p>
+                Named flows created from CSS have a corresponding DOM object. This object has a reference to its content elements and it can tell they fit completely into the region chain.
+            </p>
+        </section>
+        
+        <section>
+            <h2>Code sample</h2>
+<pre>
+var flow = document.getFlowByName('article')
+    flow.contentNodes // NodeList
+    flow.overset // boolean
+</pre>
+        <p class="caption">
+            'flow' is an instance of NamedFlow
+        </p> 
+        </section>   
+
+        <section>
+            <p>
+                A named flow is respresented in the DOM by a <code>NamedFlow</code> object. It can be retreived with the <code>document.getFlowByName()</code> method which accepts a single string parameter - the name of the flow.</p>
+            </p>
+            <p>
+                The <code>contentNodes</code> property references a <code>NodeList</code> of elements which are collected into the named flow.
+            </p>
+            <p>
+                The <code>NamedFlow</code> object has a boolean property called <code>overset</code>. If the flow's content fits completely in the region chain then the value of <code>overset</code> is false, otherwise it is true.
+            </p>
+        </section>
+    </article>
+    <script type="text/javascript" src="shared-script.js"></script>
+    <script type="text/javascript">
+    
+        document.addEventListener("DOMContentLoaded", function(){
+            
+            var tripWire = document.querySelector("#tripWire"),
+                namedFlow = document.webkitGetFlowByName("article"),
+                updateTripWire = function(){
+                    tripWire.style.display = (namedFlow.overset === false)? "none" : "inline"
+                }
+
+            updateTripWire.call()
+            window.addEventListener("resize", updateTripWire)
+        })
+    </script>
+</body>
+</html>

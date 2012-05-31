@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - Region styling demo</title>
+    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
+    <meta charset="UTF-8">
+    <style type="text/css">
+
+    article{
+        -webkit-flow-into: article;
+    }
+
+    .region{
+        -webkit-flow-from: article;
+        float: left;
+        height: 600px;
+    }
+
+    .region + .region{
+        border-left: 1px solid lightgray;
+        padding-left: 3.5%;
+        margin-left: 3.5%;
+    }
+
+    .page{
+        width: 70%;
+        margin: 5% auto;
+        padding: 50px;
+        min-width: 500px;
+    }
+
+    #region1{
+        width: 62%;
+    }
+
+    #region2{
+        width: 30%;
+    }
+    
+    @-webkit-region #region2{
+        p {
+            color: red
+        }
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <div id="region1" class="region"></div>
+        <div id="region2" class="region"></div>
+    </div>
+
+    <article>
+        <h1>Styling content when it flows into a region</h1>
+
+        <section id="introduction">
+            <p class="tip">
+                <strong>Tip: </strong> resize the browser window so that content flows into the second region and turns red.
+            </p>
+            
+            <p>
+                Content can be styled differently based on the region it flows into by using the <code>@region</code> rule. For example, the content that flows from this region to the next one will change color from black to red.
+            </p> 
+        </section>
+        
+        <section>
+            <h2>Code sample</h2>
+<pre>
+@region #region2{
+    p{
+        color: red;
+    }
+}
+</pre>
+        <p class="caption">
+            Paragraph content which flows into #region2 will have red font color.
+        </p> 
+        </section>
+
+        <section id="description">
+            <p>
+                When working with named flows and regions the original cascade of styles is not affected. This means that the original styles of the content get applied. Styles defined on the region elements do not affect the styles of the content which flows into them. 
+            </p>
+            
+            <p>
+                The styles of the content which flows into a region can be altered by defining them under a <code>@region</code> rule. This works in a similar way to the <code>@media</code> rule for media queries.
+            </p>
+        </section>
+    </article>
+    <script type="text/javascript" src="shared-script.js"></script>
+</body>
+</html>
