@@ -28,6 +28,46 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	<script type="text/javascript" src="qunit/jquery-1.7.1.js"></script>
 	<link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen">
 	<script type="text/javascript" src="qunit/qunit.js"></script>
+	<script type="text/javascript"> 
+	
+	// To save data in Browserscope do something like the following.
+    // The syntax is 'test_key': 'value' where test_key is some unique
+    // identifier for a piece of data you want to store (no = or , allowed)
+    // and value is a numeric value from 0 through 1000000000000.
+    // Note: You can only send a maximum of 200 results in a beacon.
+    var _bTestResults = {}  
+     
+    // Add option in Qunit to toggle publishing results to BrowserScope.org
+    QUnit.config.urlConfig.push("publishresults")
+    
+    // Timeout for async tests
+    QUnit.config.testTimeout = 1000
+    
+    // Build-up the test results beacon for BrowserScope.org
+    QUnit.testDone = function(obj){   
+        var testName = obj.module + " : " + obj.name; 
+
+        if (!obj.failed && obj.total === obj.passed){
+            _bTestResults[testName] = 1
+        } 
+        else{
+            _bTestResults[testName] = 0
+        }
+    }  
+    
+    // If the user agreed to publish results to BrowserScope.org, go for it!
+    QUnit.done = function(obj){   
+        if (QUnit.config.publishresults){
+            
+            var testKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBj_muYQDA';
+            var newScript = document.createElement('script'),
+                firstScript = document.getElementsByTagName('script')[0];
+            newScript.src = 'http://www.browserscope.org/user/beacon/' + testKey;
+            firstScript.parentNode.insertBefore(newScript, firstScript);    
+        }    
+    }   
+    
+    </script>
 	<script type="text/javascript" src="prefix-free/prefixfree.min.js"></script>
 	<script type="text/javascript" src="prefix-free/prefixfree.jquery.js"></script>
 	<script type="text/javascript" src="testregions.js"></script>
