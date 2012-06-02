@@ -49,8 +49,12 @@ section#end img#w3c {
 
 section#end img#adobe {
     width:150px;
-    left:350px;
-    top:200px;
+    left:375px;
+    top:250px;
+}
+
+li ul li .samesizesub {
+    font-size: 150%;
 }
 
 #focus {
@@ -65,7 +69,7 @@ section#end img#adobe {
 }
 
 li ol li, li ul li {
-    font-size: 70%;
+    font-size: 60%;
     margin-bottom: 0px;
     margin-left: 20px;
     line-height: 1.3em;
@@ -76,9 +80,19 @@ section .chartTitle {
     font-size: 16px;
 }
 
+section .note, #reveal .slides section note .roll {
+	font-size: 14px;
+	line-height: 14px;
+}
+
 #events {
     position: absolute;
     top: 80px;
+}
+
+#blog {
+    position: absolute;
+    top: 490px;
 }
 
 #presence {
@@ -100,8 +114,89 @@ section .chartTitle {
 
 #wef {
     position: absolute;
+    left: 500px;
     top: 490px;
 }
+
+section .console, .editor {
+	position: absolute;
+	background-color: black;
+	border-radius: 10px;
+	float: left;
+}
+
+section .editor {
+	left: 5%;
+	width: 90%;
+	height: 200px; 
+}
+
+section .console {
+	left: 15%; 
+	width: 70%;
+	height: 150px; 
+}
+
+section .bottomNote {
+	position: absolute;
+	top: 400px;
+	left: 30%;
+}
+section .consoleText, .editorText {
+	height: 150px;
+	padding-top: 20px;
+	font-family: Courier;
+	text-align: left;
+	font-size: 12pt;
+	line-height: 10pt;
+}
+
+section .consoleText {
+	padding-left: 30px;
+	color: #00FF33;
+}
+
+section .editorText {
+	padding-left: 10px;
+	left: 10%;
+}
+
+section .highlight {
+	border-style: solid; 
+	border-width: 1px; 
+	border-color: blue;
+}
+
+section .editorHtml {
+	color: #B7CEEC;
+}
+
+section .editorAttrVal {
+	color: #5FFB17;
+}
+
+section .editorHtmlTxt {
+	color:#FFFFFF;
+}
+
+section .creditPage {
+	position: absolute;
+	top: 99%;
+	left: 35%;
+	font-size: 6pt;
+	font-color: gray;
+}
+
+
+section .font1 { font-size: 32pt; font-weight: bold; }
+section .font2 { font-size: 24pt; }
+section .font2 { font-size: 18pt; }
+
+section .tab1 { margin-left: 10px; }
+section .tab2 { margin-left: 40px; }
+section .tab3 { margin-left: 70px; }
+section .tab4 { margin-left: 100px; }
+section .tab5 { margin-left: 350px; }
 
 /*MINIMAL STYLE*/
 table.minimal-style { margin-left:auto; margin-right:auto; border-collapse: collapse; font-size: 16px; text-align: left; min-width: 1000px; margin-bottom:25px; line-height: 1.2em;}

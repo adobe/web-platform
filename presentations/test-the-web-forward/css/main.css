@@ -43,7 +43,13 @@ html, body {
 	min-height: 600px;
 }
 
-
+body:after {
+    width: 74px;
+    height: 126px;
+    position: fixed;
+    top: 0px;
+    right: 2em;
+}
 
 html {
 	background: #1c1e20;
@@ -66,18 +72,18 @@ html {
 	
 	color: #eee;
 	
-	font-family: 'League Gothic', sans-serif;
+	font-family: 'Tahoma', sans-serif;
 	line-height: 0.9em;
 	letter-spacing: 0.02em;
 	
-	text-transform: uppercase;
 	text-shadow: 0px 0px 6px rgba(0,0,0,0.2);
 }
 
-#reveal h1 { font-size: 136px; 	}
-#reveal h2 { font-size: 76px;	}
-#reveal h3 { font-size: 56px;	}
-#reveal h4 { font-size: 36px;	}
+#reveal h1 { font-size: 136px; }
+#reveal h2 { font-size: 72px; text-transform: uppercase; }
+#reveal h3 { font-size: 36px;	}
+#reveal h4 { font-size: 28px;	}
+#reveal h5 { font-size: 16px;	}
 
 #reveal h1.inverted,
 #reveal h2.inverted,
@@ -186,7 +192,7 @@ html {
 	text-align: left;
 	font-size: 14px;
 	font-family: monospace;
-	line-height: 1.7em;
+	line-height: 1.1em;
 
 	word-wrap: break-word;
 
@@ -235,7 +241,7 @@ html {
 #reveal section img {
 	margin: 30px 0 0 0;
 	background: rgba(255,255,255,0.12);
-	border: 4px solid #eee;
+/*	border: 4px solid #eee;*/
 	
 	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 	   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -426,12 +432,11 @@ html {
 	height: 600px;
 	
 	left: 50%;
-	/*top: 50%;*/
+	top: 50%;
 	margin-left: -450px;
-	/*margin-top: -320px;*/
-	margin-top: 50px;	
-	padding: 20px 0px;
-
+	margin-top: -320px;
+	padding: 0px 0px;
+	
 	text-align: center;
 
 	-webkit-transition: -webkit-perspective .4s ease;
@@ -477,6 +482,7 @@ html {
 	z-index: 11;
 	opacity: 1;
 }
+
 
 /*********************************************
  * DEFAULT TRANSITION

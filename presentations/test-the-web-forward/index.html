@@ -1,13 +1,16 @@
 <!doctype html>  
 <html lang="en">
+	
 	<head>
 		<meta charset="utf-8">
 		
-    	<title>W3C-WebKit Test Suite Integration</title>
-    	<meta name="description" content="Test The Web Forward">
-    	<meta name="author" content="Rebecca Hauch and Jacob Goldstein">
+		<title>W3C Test Writing Tutorials</title>
 
+		<meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
+		<meta name="author" content="Hakim El Hattab">
+		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/adobe.css">
@@ -17,23 +20,318 @@
 	<body>
 		
 		<div id="reveal">
-			
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-			
+			    <script type="text/javascript">
+  			    function computedStyle(element)
+          	{
+          	  document.getElementById("computedStyle").innerHTML = window.getComputedStyle(element).getPropertyValue("-webkit-transform");
+          	}
+
+            function runAnimation(id)
+          	{
+          	   var shape = document.getElementById(id);
+          	   var state = shape.style.webkitAnimationPlayState;
+          	   
+          	   if(state == "running")
+          	        shape.style.webkitAnimationPlayState = "paused";
+          	  else
+          	        shape.style.webkitAnimationPlayState = "running";
+          	   
+          	}
+          </script>
                 <section id="title" style="margin-top: 200px">
-                	<h1>Test The Web Forward</h1>
-                </section>
+                   	<h1>Test The Web Forward</h1>
+                   </section>
 
-                <section id="Agenda">
-                    <h2>Agenda</h2>
-                    <ul>
-                        <li>Mercurial</li>
-                        <li>Ref Tests</li>
-                        <li>JavaScript Tests</li>
+                   <section id="Agenda">
+                       <h2>Agenda</h2>
+                       <ul>
+                           <li>Mercurial</li>
+                           <li>Ref Tests</li>
+                           <li>JavaScript Tests</li>
+                   </section>
+				<section>
+					<h2>W3C Reftest Tutorial</h2>
+					<img src="assets/images/W3C_logo.jpg">
+				</section>	
+				<section>
+					<h2>Sample Test Case</h2>
+					<br>
+					<h4>Write a basic test for the SVG transform attribute described in the CSS3 Transforms spec using the translate() function</h4>
+					<br>
+					<h3>Spec Links:</h3>
+					<br>
+				    <h4>
+					<a href="http://dev.w3.org/csswg/css3-transforms/#svg-transform" target="top">http://dev.w3.org/csswg/css3-transforms/#svg-transform</a>
+					<br>
+					<br>
+					<a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
+					</h4>
+					
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+			    <section>
+			        <h2>Step 1</h2>
+			        <br>
+    			    <h3>Pull the starter files for this tutorial from Mercurial</h3>
+			        <br>
+  				    <div class="console">
+  				    <div class="consoleText">
+  				        <br><br>
+  			            <p>$ cd ~/W3Cdir/test</p>
+  			            <p>$ hg pull</p>
+  			            <p>$ ls -lR ~/W3Cdir/test/contributors/adobe/ttwf</p>
+  			        </div>
+  			        </div>
+  			        <div class="bottomNote">
+  			            <h5>
+  			                Note: These files can also be downloaded from here:
+  			                <br>
+  			                <a href="assets/resources/ttwf-reftest-tutorial.zip">ttwf-reftest-tutorial.zip</a>
+  			            </h5>
+  			        </div>
                 </section>
-
-			</div> <!-- End div class="slides" -->
+                <section>
+    			     <h2>Step 2</h2>
+    			     <br>
+        		     <h3>Create a directory for your new test</h3>
+    			     <br>
+      				 <div class="console">
+      				 <div class="consoleText">
+      				     <br>
+      				     <br>
+      				     <br>
+      				     <p>$ mkdir -p ~/W3Cdir/test/contributors/yourName/incoming</p>
+      			     </div>
+      			     </div>
+                </section>
+                <section>
+    			     <h2>Step 3</h2>
+    			     <br>
+        		     <h3>Copy the starter files to your incoming directory</h3>
+    			     <br>
+      				 <div class="console">
+      				 <div class="consoleText">
+      				     <br>
+      				     <br>
+      				     <p>$ cd ~/W3Cdir/test/contributors/yourName/incoming</p>
+      			         <p>$ cp -R ~/W3Cdir/test/contributors/adobe/ttwf/* .</p>
+      			     </div>
+      			     </div>
+                </section>
+                <section>
+    			     <h2>Step 4</h2>
+    			     <h3>Open the test file in an editor</h3>
+    			     <img src="assets/images/testStarter.png">
+                </section>
+                <section>
+    			     <h2>Step 5</h2>
+    			     <br>
+        		     <h3>Add the test metadata</h3>
+    			     <div class="tab5">
+    			        <ul>
+      				        <li>Title</li>
+      				        <li>Author</li>
+      				        <li>Spec link(s)</li>
+      				        <li>Reference file path</li>
+      				        <li>Flags</li>
+      				        <li>Assertion</li>
+      				    </ul>
+      				</div>
+                </section>
+                <section>
+    			     <h2>Step 6</h2>
+    			     <br>
+        		     <h3>Add the test function to the SVG element</h3>
+        		     <br>
+        		     <div class="editor">
+       				 <div class="editorText">
+       				     <br><br>
+       				     <p class="tab1 editorHtml">&lt;body&gt;
+       				     <p class="tab2 editorHtml">&lt;svg&gt;</p>
+       			         <p class="tab3 editorHtml">&lt;rect width=<span class="editorAttrVal">"100"</span>
+       			             <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
+       			             <span class="highlight"><span class="editorHtml">transform=</span><span class="editorAttrVal">"translate(50)"</span></span><span class="editorHtml">/&gt;</span>
+       			         </p>
+       			         <p class="tab2 editorHtml">&lt;/svg&gt;</p>
+       			         <p class="tab1 editorHtml">&lt;/body&gt;
+       			     </div>
+       			     </div>
+    		    </section>
+                <section>
+    			     <h2>Step 7</h2>
+    			     <br>
+        		     <h3>Create an element that is visible only upon failure</h3>
+    			     <br>
+         		     <div class="editor">
+        			 <div class="editorText">
+            		     <br>
+            		     <p class="tab1 editorHtml">&lt;body&gt;
+            		     <p class="tab2 editorHtml">&lt;svg&gt;</p>
+            		     <p class="tab3 editorHtml"><span class="highlight">&lt;rect x=<span class="editorAttrVal">"51"</span>
+              		         <span class="editorHtml">y=</span><span class="editorAttrVal">"1"<span>
+              		         <span class="editorHtml">width=</span><span class="editorAttrVal">"98"</span>
+              		         <span class="editorHtml">height=</span><span class="editorAttrVal">"98"</span><span class="editorHtml">/&gt;</span></span>
+              		     </p>
+              		     <p class="tab3 editorHtml">&lt;rect width=<span class="editorAttrVal">"100"</span>
+            		         <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
+            		         <span class="editorHtml">transform=</span><span class="editorAttrVal">"translate(50)"<span><span class="editorHtml">/&gt;</span>
+            		     </p>
+            		     <p class="tab2 editorHtml">&lt;/svg&gt;</p>
+            			 <p class="tab1 editorHtml">&lt;/body&gt;
+            		 </div>
+        			 </div>
+                </section>
+                <section>
+    			     <h2>Step 8</h2>
+    			     <br>
+        		     <h3>Add green & red fill colors to denote passing & failing conditions</h3>
+        		     <br>
+        		     <div class="editor">
+         			 <div class="editorText">
+         			     <p class="tab1 editorHtml">&lt;body&gt;
+             		     <p class="tab2 editorHtml">&lt;svg&gt;</p>
+             		     <p class="tab3 editorHtml">&lt;rect width=<span class="editorHtml">x=</span><span class="editorAttrVal">"51"<span>
+               		         <span class="editorHtml">y=</span><span class="editorAttrVal">"1"<span>
+               		         <span class="editorHtml">width=</span><span class="editorAttrVal">"98"</span>
+               		         <span class="editorHtml">height=</span><span class="editorAttrVal">"98"</span>
+               		         <span class="highlight"><span class="editorHtml">fill=</span><span class="editorAttrVal">"red"</span></span><span class="editorHtml">/&gt;</span>
+               		     </p>
+             		     <p class="tab3 editorHtml">&lt;rect width=<span class="editorAttrVal">"100"</span>
+             		         <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
+             		         <span class="editorHtml">transform=</span><span class="editorAttrVal">"translate(50)"<span>
+             		         <span class="editorHtml"><span class="highlight">fill=<span class="editorAttrVal">"green"</span></span><span class="editorHtml">/&gt;</span>
+             		     </p>
+             		     <p class="tab2 editorHtml">&lt;/svg&gt;</p>
+             			 <p class="tab1 editorHtml">&lt;/body&gt;
+             		 </div>
+         			 </div>
+    			</section>
+                <section>
+    			     <h2>Step 9</h2>
+    			     <br>
+        		     <h3>Add a statement to the test page to make this a self-describing test</h3>
+        		     <br>
+        		     <div class="editor">
+         			 <div class="editorText">
+         			     <p class="tab1 editorHtml">&lt;body&gt;
+             		     <p class="tab2 editorHtml"><span class="highlight">&lt;p&gt;<span class="editorHtmlTxt">The test passes if there is a green square and no red.</span><span class="editorHtml">&lt;/p&gt;</span></span>
+                         <p class="tab2 editorHtml">&lt;svg&gt;</p>
+             		     <p class="tab3 editorHtml">&lt;rect x=</span><span class="editorAttrVal">"51"<span>
+               		         <span class="editorHtml">y=</span><span class="editorAttrVal">"1"<span>
+               		         <span class="editorHtml">width=</span><span class="editorAttrVal">"98"</span>
+               		         <span class="editorHtml">height=</span><span class="editorAttrVal">"98"</span>
+               		         <span class="editorHtml">fill=</span><span class="editorAttrVal">"red"</span><span class="editorHtml">/&gt;</span>
+               		     </p>
+             		     <p class="tab3 editorHtml">&lt;rect width=<span class="editorAttrVal">"100"</span>
+             		         <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
+             		         <span class="editorHtml">transform=</span><span class="editorAttrVal">"translate(50)"<span>
+             		         <span class="editorHtml">fill=</span><span class="editorAttrVal">"green"</span><span class="editorHtml">/&gt;</span>
+             		     </p>
+             		     <p class="tab2 editorHtml">&lt;/svg&gt;</p>
+             			 <p class="tab1 editorHtml">&lt;/body&gt;
+             		 </div>
+         			 </div>
+    			</section>
+                <section>
+    			     <h2>Step 9</h2>
+    			     <br>
+        		     <h3>Open the reference file in an editor</h3>
+        		     <img src="assets/images/refStarter.png">
+    		    </section>
+    		    <section>
+    			     <h2>Step 10</h2>
+    			     <br>
+        		     <h3>Add the reference metadata</h3>
+    			     <div class="tab5">
+    			        <ul>
+      				        <li>Title</li>
+      				        <li>Author</li>
+      				        <li>Flags</li>
+      				    </ul>
+      				</div>
+                </section>
+                <section>
+        		     <h2>Step 11</h2>
+        		     <br>
+            	     <h3>Create and position the reference element so it matches the test file exactly in a passing condition</h3>
+            	     <br>
+            	        <div class="editor">
+        				<div class="editorText">
+        				     <br><br>
+        				     <p class="tab1 editorHtml">&lt;body&gt;
+        				     <p class="tab2 editorHtml">&lt;svg&gt;</p>
+        			         <p class="tab3 editorHtml"><span class="highlight">&lt;rect x=<span class="editorAttrVal">"50"</span>
+        			             <span class="editorHtml">y=</span><span class="editorAttrVal">"0"<span>
+                                 <span class="editorHtml">width=</span><span class="editorAttrVal">"100"<span>
+                                 <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
+        			             <span class="editorHtml">fill=</span><span class="editorAttrVal">"green"</span><span class="editorHtml">/&gt;</span></span>
+        			         </p>
+        			         <p class="tab2 editorHtml">&lt;/svg&gt;</p>
+        			         <p class="tab1 editorHtml">&lt;/body&gt;
+        			    </div>
+        			    </div>
+                </section>
+                <section>
+        		     <h2>Step 12</h2>
+        		     <br>
+            	     <h3>Add the self-describing statement here, too</h3>
+            	     <br>
+            	     <div class="editor">
+     				 <div class="editorText">
+     				     <br><br>
+     				     <p class="tab1 editorHtml">&lt;body&gt;
+     				     <p class="tab2 editorHtml"><span class="highlight">&lt;p&gt;<span class="editorHtmlTxt">The test passes if there is a green square and no red.</span><span class="editorHtml">&lt;/p&gt;</span></span>
+                         <p class="tab2 editorHtml">&lt;svg&gt;</p>
+     			         <p class="tab3 editorHtml">&lt;rect x=<span class="editorAttrVal">"50"</span>
+     			             <span class="editorHtml">y=</span><span class="editorAttrVal">"0"<span>
+                              <span class="editorHtml">width=</span><span class="editorAttrVal">"100"<span>
+                              <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
+     			             <span class="editorHtml">fill=</span><span class="editorAttrVal">"green"</span><span class="editorHtml">/&gt;</span>
+     			         </p>
+     			         <p class="tab2 editorHtml">&lt;/svg&gt;</p>
+     			         <p class="tab1 editorHtml">&lt;/body&gt;
+     			    </div>
+     			    </div>
+                </section>
+                <section>
+        		     <h2>Step 13</h2>
+        		     <br>
+            	     <h3>Examine your test and reference files in the browser and confirm they are identical</h3>
+            	     <img src="assets/images/browserVerification.png">
+                </section>
+                <section>
+        		     <h3>Failing test example</h3>
+        		     <br>
+            	     <img src="assets/images/failingTestExample.png">
+                </section>
+                <section>
+    			     <h2>Step 14</h2>
+    			     <br>
+        		     <h3>Add your new test & reference file to the repository</h3>
+    			     <br>
+      				 <div class="console">
+      				 <div class="consoleText">
+      				     <br><br>
+      				     <p>$ cd ~/W3Cdir/test/contributors/yourName</p>
+      			         <p>$ hg add</p>
+      			         <p>$ hg commit -m "TTWF reftest tutorial"</p>
+      			         <p>$ hg push</p>
+      			     </div>
+      			     </div>
+                </section>
+                <section>
+    			     <h2>Step 15</h2>
+    			     <br>
+        		     <h3>Ask someone to review your test</h3>
+    			     <img src="assets/images/fixlink.gif">
+      		    </section>
+        </div>
 
 			<!-- The navigational controls UI -->
 			<aside class="controls">
@@ -49,6 +347,7 @@
 		</div>
 		
 		<script src="js/reveal.js"></script>
+		<script src="js/prefixfree.min.js"></script>
 		<script src="lib/highlight.js"></script>
 		<script>
 			// Parse the query string into a key/value object
