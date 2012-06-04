@@ -176,7 +176,15 @@ section .editorAttrVal {
 }
 
 section .editorHtmlTxt {
-	color:#FFFFFF;
+	color: #FFFFFF;
+}
+
+section .editorGray {
+	color: #D3D3D3;
+}
+
+section .editorReserveWord {
+	color: #4169E1;
 }
 
 section .creditPage {

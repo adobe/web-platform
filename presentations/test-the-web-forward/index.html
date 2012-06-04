@@ -331,6 +331,326 @@
         		     <h3>Ask someone to review your test</h3>
     			     <img src="assets/images/fixlink.gif">
       		    </section>
+      		  
+      		    <!-- JS BEGIN -->
+      		    
+                <section>
+					<h2>W3C JavaScript Tutorial</h2>
+					<img src="assets/images/W3C_logo.jpg">
+					<img src="assets/images/js_logo.png">
+				</section>
+				
+				<section>
+					<h2>JavaScript Test Overview</h2>
+					
+					<ul>
+					    <li>In most cases, JavaScript is the preferred method for writing tests</li>
+					    <li>JavaScript tests have some advantages over Ref Tests
+					        <ul>
+					            <li>Platform independent</li>
+					            <li>Robust and Flexible</li>
+					            <li>Performant</li>
+					            <li>Powerful</li>
+					        </ul>
+					    </li>
+					    <li>W3C provides a framework (testharness) to simplify and standardize test creation
+					        <ul>
+					            <li>Includes an API for making common test assertions</li>
+					            <li>Formats results and displays debug information for failures</li>
+					        </ul>
+					    </li>
+					    <li>JavaScript tests are best when used in conjunction with some number of Ref Tests that verify final rendering</li>
+					</ul>
+				</section>
+				
+					
+				<section>
+					<h2>Sample Test Case</h2>
+					<br>
+					<h4>Write a basic test for the SVG transform attribute described in the CSS3 Transforms spec using the translate() function</h4>
+					<h4 style="color:red">Same as Ref Test example</h4>
+					<br>
+					<h3>Spec Links:</h3>
+					<br>
+				    <h4>
+					<a href="http://dev.w3.org/csswg/css3-transforms/#svg-transform" target="top">http://dev.w3.org/csswg/css3-transforms/#svg-transform</a>
+					<br>
+					<br>
+					<a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
+					</h4>
+					
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+			    <section>
+			        <h2>Step 1</h2>
+			        <br>
+    			    <h3>Did you clone the resources directory?</h3>
+    			    <div class="console">
+    			        <div class="consoleText">
+        			        <br><br>
+        			        <p>$ ls /resources</p>
+        			        <p>... testharness.css   testharness.js    testharnessreport.js</p>
+        			    </div>
+        			</div>
+        			<br><br><br><br><br>
+        			<h3>If not, clone the resources directory now:</h3>
+                    <div class="console">
+    			        <div class="consoleText">
+        			        <br><br>
+        			        <p>$ cd /</p>
+        			        <p>$ sudo hg clone https://dvcs.w3.org/hg/resources/</p>
+        			    </div>
+        			</div>
+                </section>
+                				
+			    <section>
+			        <h2>Step 2</h2>
+			        <br>
+    			    <h3>JavaScript starter file was copied during Mercurial setup</h3>
+    			    <h3>Open the test file in an editor</h3>
+    			    <img src="assets/images/jsTestStarter.png">
+                </section>
+                
+                <section>
+    			     <h2>Step 3</h2>
+    			     <br>
+        		     <h3>Add the test metadata</h3>
+    			     <div class="tab5">
+    			        <ul>
+      				        <li>Title</li>
+      				        <li>Author</li>
+      				        <li>Spec link(s)</li>
+      				        <li>Flags
+      				            <ul>
+      				                <li>dom</li>
+      				                <li>svg</li>
+      				            </ul>
+      				        </li>
+      				        <li>Assertion</li>
+      				    </ul>
+      				</div>
+                </section>
+                
+                <section>
+        			<h2>Step 4</h2>
+    			    <br>
+        		    <h3>Import the W3C JavaScript Test Harness files</h3>                
+                    <div class="editor">
+                        <div class="editorText">
+                            <br>
+                            <p class="tab1 editorGray">&lt;meta name="assert" content="TEST ASSERTION"&gt;</p>
+                            <p class="tab1 editorHtml">&lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;</p>
+                            <p class="tab1 editorHtml">&lt;script src="/resources/testharnessreport.js"&gt;&gt;&lt;/script&gt;</p>
+                            <p class="tab1 editorGray">&lt;style&gt;</p>
+                            <p class="tab2 editorGray">...</p>
+                            <p class="tab1 editorGray">&lt;/style&gt;</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+        			<h2>Step 5</h2>
+    			    <br>
+        		    <h3>Add element with id="log" for test results</h3>
+        		    <br>
+                    <div class="editor">
+       				    <div class="editorText">
+           				    <br><br>
+           				    <p class="tab1 editorGray">&lt;body&gt;</p>
+           				    <p class="tab2 editorGray">...</p>
+           			        <p class="tab2 editorHtml">&lt;div id=<span class="editorAttrVal">"log"</span>&gt;&lt;/div&gt;</span>
+           			        <p class="tab1 editorGray">&lt;/body&gt;
+       			        </div>
+       			     <br><br>
+       			     <h3>testharness will add a HTML table that contains test results to this element</h3>
+                </section>
+                
+                <section>
+    			     <h2>Step 6</h2>
+    			     <br>
+        		     <h3>Add the test function to the SVG element</h3>
+        		     <h4 style="color:red">Same as step 6 from RefTest section </h4>
+        		     <br>
+        		     <div class="editor">
+       				     <div class="editorText">
+           				     <br><br>
+           				     <p class="tab1 editorHtml">&lt;body&gt;
+           				     <p class="tab2 editorHtml">&lt;svg&gt;</p>
+           			         <p class="tab3 editorHtml">&lt;rect width=<span class="editorAttrVal">"100"</span>
+           			             <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
+           			             <span class="highlight"><span class="editorHtml">transform=</span><span class="editorAttrVal">"translate(50)"</span></span><span class="editorHtml">/&gt;</span>
+           			         </p>
+           			         <p class="tab2 editorHtml">&lt;/svg&gt;</p>
+           			         <p class="tab1 editorHtml">&lt;/body&gt;
+           			     </div>
+       			     </div>
+    		    </section>
+    		    
+                <section>
+    			     <h2>Step 7</h2>
+    			     <br>
+        		     <h3>Set margins and padding to 0px</h3>
+        		     <br>
+        		     <div class="editor">
+       			         <div class="editorText">
+           			         <br><br>
+           				     <p class="tab1 editorHtml">&lt;style&gt;</p>
+           				     <p class="tab2 editorHtml">* {</p>
+           			         <p class="tab3 editorHtml">margin: 0px;</p>
+           			         <p class="tab3 editorHtml">padding: 0px;</p>
+           			         <p class="tab2 editorHtml">}</p>
+           			         <p class="tab1 editorHtml">&lt;/style&gt;
+           			     </div>
+       			     </div>
+       			     <br><br><br><br><br><br>
+       			     <h3>This is not required, but simplifies the results</h3>
+    		    </section>    		    
+    		    
+                <section>
+    			     <h2>Step 8</h2>
+    			     <br>
+        		     <h3>Create a script block that will contain the JavaScript</h3>
+    			     <br>
+         		     <div class="editor">
+        			     <div class="editorText">
+                		     <p class="tab1 editorGray">&lt;body&gt;</p>
+           				     <p class="tab2 editorGray">&lt;svg&gt;</p>
+           			         <p class="tab3 editorGray">&lt;rect width="100"
+           			             <span class="editorGray">height="100"</span>
+           			             <span class="editorGray">transform="translate(50)"/&gt;</span>
+           			         </p>
+           			         <p class="tab2 editorGray">&lt;/svg&gt;</p>
+               			     <p class="tab2 editorGray">&lt;div id="log"&gt;&lt;/div&gt;</p>        			            
+                		     <p class="tab2 editorHtml">&lt;script&gt;</p>
+                		     <p class="tab2 editorHtml">&lt;/script&gt;</p>
+                			 <p class="tab1 editorGray">&lt;/body&gt;</p>
+                		 </div>
+        			 </div>
+                </section>
+                
+                <section>
+    			     <h2>Step 9</h2>
+    			     <br>
+        		     <h3>Create a function that will return the x,y position of an element</h3>
+        		     <br>
+        		     <div class="editor">
+         			 <div class="editorText">
+         			     <p class="tab1 editorHtml">&lt;script&gt;
+             		     <p class="tab2 editorHtml">function checkElementPosition(elemID) {</p>
+             		     <p class="tab3 editorHtml"><span class="editorReserveWord">return</span> document.getElementById(elemID).getBoundingClientRect().top +</p>
+             		     <p class="tab3 editorHtml">"," +  document.getElementById(elemID).getBoundingClientRect().left;</p>
+             		     <p class="tab2 editorHtml">}</p>
+             			 <p class="tab1 editorHtml">&lt;/script&gt;
+             		 </div>
+         			 </div>
+    			</section>
+    			
+                <section>
+    			     <h2>Step 10</h2>
+    			     <br>
+        		     <h3>Use test function from testharness.js</h3>
+        		     <h4>test(function, description)</h4>
+        		     <br>
+        		     <div class="editor">
+         			     <div class="editorText">
+             			     <br>
+             			     <p class="tab1 editorHtml">&lt;script&gt;
+                 		     <p class="tab2 editorHtml">...</p>
+                 		     <p class="tab2 editorHtml">test(function() {}, "Enter test description here")</p>
+                 			 <p class="tab1 editorHtml">&lt;/script&gt;
+                 		 </div>
+         			 </div>
+         			 <br><br><br><br><br><br>
+         			 <h4>Each call to test() is a unique test case</h4>
+         			 <h4>Pass/Fail is based on return value of function</h4>
+         			 <h4>Description is displayed in test results table</h4>
+    			</section>    			
+    			
+                <section>
+    			     <h2>Step 11</h2>
+    			     <br>
+        		     <h3>Use assert_equals to check position of SVG Rect</h3>
+        		     <h4>assert_equals(actual, expected, description)</h4>
+        		     <h5>NOTE: description is only displayed if assertion failed</h5>
+        		     <br>
+        		     <div class="editor">
+         			     <div class="editorText">
+                             <br>    			         
+         			         <p class="tab2 editorHtml">assert_equals(checkElementPosition(<span class="editorAttrVal">"myRect"</span>), <span class="editorAttrVal">"50,50"</span>,</p>
+         			         <p class="tab2 editorHtml"><span class="editorAttrVal">"myRect should be at 50,50"</span>)</p>
+             		     </div>
+         			 </div>
+         			 <br><br><br><br><br>
+         			 <div style="text-align:left">
+         			     <h5>actual = assert_equals(checkElementPosition("myRect")</h5>
+            		     <h5>expected = "50,50"</h5>
+            		     <h5>description = "myRect should be at 50,50"</h5>
+            		</div>
+    			</section>
+                
+                <section>
+        		     <h2>Step 12</h2>
+        		     <br>
+            	     <h3>Call assert_equals function, inline, from test function</h3>
+            	     <h4>test(function, description)</h4>
+                     <br>
+         		     <div class="editor">
+          			     <div class="editorText">
+                              <br>    			         
+          			         <p class="tab2 editorHtml">test(function() {assert_equals(checkElementPosition(<span class="editorAttrVal">"myRect"</span>), <span class="editorAttrVal">"50,50"</span>,</p>
+          			         <p class="tab2 editorHtml"><span class="editorAttrVal">"myRect should be at 50,50"</span>)}, <span class="editorAttrVal">"Test transform translate on SVG rect"</span>);</p>
+              		     </div>
+          			 </div>            	     
+                </section>
+                
+                <section>
+                    <h2>Final file</h2>
+                    <img src="assets/images/jsTestFinal.png">
+                </section>
+                
+                <section>
+        		     <h2>Passing test example</h3>
+        		     <br>
+            	     <img src="assets/images/passingJSTestExample.png">
+                </section>
+                
+                <section>
+    			     <h2>Failing test example</h2>
+    			     <br>
+             	     <img src="assets/images/failingJSTestExample.png">
+                </section>
+                
+                <section>
+    			     <h2>Step 13</h2>
+    			     <br>
+        		     <h3>Ask someone to review your test</h3>
+    			     <img src="assets/images/fixlink.gif">
+      		    </section>      
+      		    
+                <section>
+   			     <h2>Step 14</h2>
+   			     <br>
+       		     <h3>Add your new test file to the repository</h3>
+   			     <br>
+     			 <div class="console">
+ 				     <div class="consoleText">
+     				     <br><br>
+     				     <p>$ cd ~/W3Cdir/test/contributors/yourName</p>
+     			         <p>$ hg add</p>
+     			         <p>$ hg commit -m "TTWF JavaScript tutorial"</p>
+     			         <p>$ hg push</p>
+     			     </div>
+ 			     </div>
+      		    </section> 
+      		    
+      		    <section>
+      		        <h2>Questions & Answers</h2>
+      		    </section>     		    		     
         </div>
 
 			<!-- The navigational controls UI -->
