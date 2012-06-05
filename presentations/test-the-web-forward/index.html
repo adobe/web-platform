@@ -318,7 +318,7 @@
       				 <div class="console">
       				 <div class="consoleText">
       				     <br><br>
-      				     <p>$ cd ~/W3Cdir/test/contributors/yourName</p>
+      				     <p>$ cd ~/W3Cdir/test/contributors/yourName/incoming</p>
       			         <p>$ hg add</p>
       			         <p>$ hg commit -m "TTWF reftest tutorial"</p>
       			         <p>$ hg push</p>
@@ -330,6 +330,24 @@
     			     <br>
         		     <h3>Ask someone to review your test</h3>
     		    </section>
+    		     <section>
+        			     <h2>Step 16</h2>
+        			     <br>
+            		     <h3>Incorporate feedback & move test to the submitted folder</h3>
+        			     <br>
+          				 <div class="consoleLarge">
+          				 <div class="consoleText">
+          				     <p>$ cd ~/W3Cdir/test/contributors/yourName</p>
+          				     <p>$ hg pull -u</p>
+          				     <p>$ hg merge</p>
+          				     <p>$ hg commit -m "merging"</p>
+          			         <p>$ hg mv incoming/ttwf-reftest-tutorial-001.html submitted/ttwf-reftest-tutorial-001.html</p>
+          			         <p>$ hg mv incoming/reftest/ttwf-reftest-tutorial-ref.html submitted/reftest/ttwf-reftest-tutorial-ref.html</p>
+          			         <p>$ hg commit -m "moved the TTWF reftest tutorial to the submitted folder"</p>
+          			         <p>$ hg push</p>
+          			     </div>
+          			     </div>
+                    </section>
       		  
       		    <!-- JS BEGIN -->
       		    

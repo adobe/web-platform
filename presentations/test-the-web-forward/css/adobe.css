@@ -118,7 +118,7 @@ section .note, #reveal .slides section note .roll {
     top: 490px;
 }
 
-section .console, .editor {
+section .console, .consoleLarge, .editor {
 	position: absolute;
 	background-color: black;
 	border-radius: 10px;
@@ -136,6 +136,12 @@ section .console {
 	width: 70%;
 	height: 150px; 
 }
+
+section .consoleLarge {
+	width: 100%;
+	height: 250px; 
+}
+
 
 section .bottomNote {
 	position: absolute;
