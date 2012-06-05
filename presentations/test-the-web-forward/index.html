@@ -77,13 +77,14 @@
 			        <h2>Step 1</h2>
 			        <br>
     			    <h3>Pull the starter files for this tutorial from Mercurial</h3>
-			        <br>
+			        
+			        <p>OSX:<p>
   				    <div class="console">
   				    <div class="consoleText">
   				        <br><br>
-  			            <p>$ cd ~/W3Cdir/test</p>
+  			            <p>$ cd [...]/W3Cdir/test</p>
   			            <p>$ hg pull -u</p>
-  			            <p>$ ls -lR ~/W3Cdir/test/contributors/adobe/ttwf</p>
+  			            <p>$ ls -lR contributors/adobe/ttwf</p>
   			        </div>
   			        </div>
   			        <div class="bottomNote">
@@ -93,34 +94,69 @@
   			                <a href="assets/resources/ttwf-reftest-tutorial.zip">ttwf-reftest-tutorial.zip</a>
   			            </h5>
   			        </div>
+  			        <br><br><br><br><br><br><br>
+  			        <p>Windows:<p>
+  			         <div class="console">
+      				    <div class="consoleText">
+      				        <br><br>
+      			            <p>> cd [...]\W3Cdir\test</p>
+      			            <p>> hg pull -u</p>
+      			            <p>> dir contributors\adobe\ttwf</p>
+      			        </div>
+      			    </div>
                 </section>
                 <section>
     			     <h2>Step 2</h2>
     			     <br>
         		     <h3>Create a directory for your new test</h3>
     			     <br>
+    			     <p>OSX:<p>
       				 <div class="console">
       				 <div class="consoleText">
       				     <br>
       				     <br>
       				     <br>
-      				     <p>$ mkdir -p ~/W3Cdir/test/contributors/yourName/incoming</p>
+      				     <p>$ cd [...]/W3Cdir/test/contributors/adobe/ttwf/</p>
+      				     <p>$ mkdir -p yourName/incoming</p>
       			     </div>
       			     </div>
+      			     <br><br><br><br><br>
+      			     <p>Windows:<p>
+       				 <div class="console">
+       				 <div class="consoleText">
+       				     <br>
+       				     <br>
+       				     <br>
+       				     <p>> cd [...]\W3Cdir\test\contributors\adobe\ttwf</p>
+       				     <p>> mkdir yourName\incoming</p>
+       			     </div>
+       			     </div>
                 </section>
                 <section>
     			     <h2>Step 3</h2>
     			     <br>
         		     <h3>Copy the starter files to your incoming directory</h3>
     			     <br>
+     			     <p>OSX:<p>
       				 <div class="console">
       				 <div class="consoleText">
       				     <br>
       				     <br>
-      				     <p>$ cd ~/W3Cdir/test/contributors/yourName/incoming</p>
-      			         <p>$ cp -R ~/W3Cdir/test/contributors/adobe/ttwf/* .</p>
+      				     <p>$ cd [...]/W3Cdir/test/contributors/yourName/incoming</p>
+      			         <p>$ cp -R [...]/W3Cdir/test/contributors/adobe/ttwf/* .</p>
       			     </div>
       			     </div>
+      			     <br><br><br><br><br>
+      			     <p>Windows:<p>
+       				 <div class="console">
+       				 <div class="consoleText">
+       				     <p>> cd [...]\W3Cdir\test\contributors\yourName\incoming</p>
+       			         <p>> copy ..\..\* .</p>
+       			         <p>> mkdir reftest</p>
+       			         <p>> cd reftest</p>
+       			         <p>> copy ..\..\..\reftest\* .</p>
+       			     </div>
+       			     </div>
                 </section>
                 <section>
     			     <h2>Step 4</h2>
@@ -237,7 +273,7 @@
          			 </div>
     			</section>
                 <section>
-    			     <h2>Step 9</h2>
+    			     <h2>Step 10</h2>
     			     <br>
         		     <h3>Open the reference file in an editor</h3>
         		     <img src="assets/images/refStarter.png">
@@ -313,15 +349,27 @@
     			     <br>
         		     <h3>Add your new test & reference file to the repository</h3>
     			     <br>
+    			     <p>OSX:</p>
       				 <div class="console">
       				 <div class="consoleText">
-      				     <br><br>
-      				     <p>$ cd ~/W3Cdir/test/contributors/yourName/incoming</p>
+      				     <br>
+      				     <p>$ cd [...]/W3Cdir/test/contributors/adobe/ttwf/yourName/incoming</p>
       			         <p>$ hg add</p>
       			         <p>$ hg commit -m "TTWF reftest tutorial"</p>
       			         <p>$ hg push</p>
       			     </div>
       			     </div>
+      			     <br><br><br><br><br>
+      			      <p>Windows:</p>
+       				 <div class="console">
+       				 <div class="consoleText">
+       				     <br>
+       				     <p>> cd [...]\W3Cdir\test\contributors\adobe\ttwf\yourName\incoming</p>
+       			         <p>> hg add</p>
+       			         <p>> hg commit -m "TTWF reftest tutorial"</p>
+       			         <p>> hg push</p>
+       			     </div>
+       			     </div>
                 </section>
                 <section>
     			     <h2>Step 15</h2>
@@ -347,12 +395,6 @@
           			     </div>
                     </section>
                 
-                <section>
-					<h2>W3C JavaScript Tutorial</h2>
-					<img src="assets/images/W3C_logo.jpg">
-					<img src="assets/images/js_logo.png">
-				</section>
-				
 				<section>
 					<h2>JavaScript Test Overview</h2>
 					
@@ -375,10 +417,10 @@
 					    <li>JavaScript tests are best when used in conjunction with some number of Ref Tests that verify final rendering</li>
 					</ul>
 				</section>
-				
 					
 				<section>
-					<h2>Sample Test Case</h2>
+				    <h2>W3C JavaScript Tutorial</h2>
+					<h3>Sample Test Case</h3>
 					<br>
 					<h4>Write a basic test for the SVG transform attribute described in the CSS3 Transforms spec using the translate() function</h4>
 					<h4 style="color:red">Same as Ref Test example</h4>
@@ -643,7 +685,6 @@
     			     <h2>Step 13</h2>
     			     <br>
         		     <h3>Ask someone to review your test</h3>
-    			     <img src="assets/images/fixlink.gif">
       		    </section>      
       		    
                 <section>
