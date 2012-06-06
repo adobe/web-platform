@@ -118,11 +118,17 @@ section .note, #reveal .slides section note .roll {
     top: 490px;
 }
 
-section .console, .consoleLarge, .editor {
+section .console, .consoleLarge, .editor, .editorSmall{
 	position: absolute;
 	background-color: black;
 	border-radius: 10px;
 	float: left;
+}
+
+section .editorSmall {
+	left: 5%;
+	width: 90%;
+	height: 100px;
 }
 
 section .editor {
@@ -142,13 +148,37 @@ section .consoleLarge {
 	height: 250px; 
 }
 
-
 section .bottomNote {
 	position: absolute;
-	top: 400px;
+	top: 600px;
 	left: 30%;
 }
-section .consoleText, .editorText {
+
+section .bottomNote2 {
+	position: absolute;
+	top: 390px;
+	left: 30%;
+	line-height: 18px;
+}
+
+section .bottomEditorNote{
+	position: absolute;
+	top: 500px;
+	left: 15%;
+	line-height: 18px;	
+}
+
+section .noteText {
+	font-size: 18px;
+}
+
+section .errorText {
+	font-family: Courier;
+	font-size: 12pt;
+	color: #00FF33;
+}
+
+section .consoleText, .editorText, .dosText {
 	height: 150px;
 	padding-top: 20px;
 	font-family: Courier;
@@ -160,6 +190,11 @@ section .consoleText, .editorText {
 section .consoleText {
 	padding-left: 30px;
 	color: #00FF33;
+}
+
+section .dosText {
+	padding-left: 30px;
+	color: #FFFFFF;
 }
 
 section .editorText {
@@ -185,10 +220,6 @@ section .editorHtmlTxt {
 	color: #FFFFFF;
 }
 
-section .editorGray {
-	color: #D3D3D3;
-}
-
 section .editorReserveWord {
 	color: #4169E1;
 }
@@ -199,6 +230,11 @@ section .creditPage {
 	left: 35%;
 	font-size: 6pt;
 	font-color: gray;
+}
+
+section .localPath {
+	font-style: italic;
+	color: #87CEFA;
 }
 
 
