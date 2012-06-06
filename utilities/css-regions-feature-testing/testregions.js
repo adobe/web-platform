@@ -122,39 +122,13 @@ $(function () {
 
     //TODO Write tests for getRegionFlowRanges() once this gets implemented
     asyncTest("regionLayoutUpdate event is thrown", function(){
-        var eventFired = false;
-        var oldDone;
-        var oldTimeout;
-
-        // internal functions
-        function cleanup() {
-            QUnit.config.testTimeout = oldTimeout;
-            QUnit.testDone = oldDone;
-
-            $region.unbind(prefixOM("regionLayoutUpdate"), handler);
-            
-            teardown();
-            start();
-        }
 
         function handler(ev) {
             equal(ev.target, $region[0], "Event.target points to the region");
-            eventFired = true;
-            cleanup();
+            $region.unbind(prefixOM("regionLayoutUpdate"), handler);
+            start();
         }
 
-        // Saving old defaults, wiring our own
-        oldTimeout = QUnit.config.testTimeout;
-        oldDone = QUnit.testDone;
-        QUnit.config.testTimeout = 2000;
-        QUnit.testDone = function() {
-            if (!eventFired) {
-                cleanup();
-            }
-        }
-
-        // the actual test
-        setup();
         $region.css(
             {
                 "width": "20px",
