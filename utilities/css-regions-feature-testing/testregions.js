@@ -37,7 +37,7 @@ $(function () {
     function setup(){
         $flow = $('<div />').css("flow-into", "article");
         $region = $('<div />').css("flow-from", "article"); 
-            
+
         $("body").append($flow, $region)    
     }   
     
@@ -46,99 +46,60 @@ $(function () {
         $region.remove();
     }  
     
-    module("CSS Regions basic")
+    module("CSS Regions basic", { "setup": setup, "teardown": teardown });
     
     test("Named flow - content should be pulled to a flow", function(){ 
-        setup();
-        
         ok($flow.css("flow-into") == "article");
-        
-        teardown();
     })
     
     test("Region - should consume from flow", function(){
-        setup();
-
         ok($region.css("flow-from") == "article");
-
-        teardown();
     })
 
     test("Region properties - region-overflow property", function() {
-        setup();
-        
         equal($region.css('region-overflow'), 'auto', 'Initial default value for region-overflow');
         
         $region.css('region-overflow', 'break');
         equal($region.css('region-overflow'), 'break', 'region-overflow: break');
-
-        teardown();
     })
 
     //TODO Rework and re-enable tests once we get a resolution on intended test & current
     // implementation behavior.
     
-    module("CSS OM");
+    module("CSS OM", { "setup": setup, "teardown": teardown });
     
-    test("Document should return a flow by name", function(){      
-        setup(); 
-
+    test("Document should return a flow by name", function(){ 
         ok(prefixMethod(document, "getFlowByName")("article"));
-        
-        teardown();
     }) 
     
     test("NamedFlow should have overset property", function(){ 
-        setup();
-
         ok(prefixMethod(document, "getFlowByName")("article").overset === false);
-
-        teardown(); 
     })
     
     test("NamedFlow should have name property", function(){
-        setup();
-
         ok(prefixMethod(document, "getFlowByName")("article").name === "article");
-
-        teardown(); 
     })
 
     test("NamedFlow should have contentNodes property", function() {
-        setup();
-
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
         ok(namedFlow.contentNodes, "NamedFlow.contentNodes");
-        equal(namedFlow.contentNodes.length, 1, "NamedFlow.contentNodes has one node")
-
-        teardown();
+        equal(namedFlow.contentNodes.length, 1, "NamedFlow.contentNodes has one node");
     })
 
     test("NamedFlow should have getRegionsByContentNode() function", function() {
-        setup();
-
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
         equal(typeof(namedFlow.getRegionsByContentNode), "function", "NamedFlow.getRegionsByContentNode is a function");
-
-        teardown();
     })
     test("NamedFlow getRegionsByContentNode() should return NodeList", function() {
-        setup();
-
         $flow.html('Foo');
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
         var theRegions = namedFlow.getRegionsByContentNode($flow.contents()[0]);
 
         equal(theRegions.length, 1, "One region for the content");
         equal(theRegions[0], $region.get(0), "Same region is returned");
-
-        teardown();
     })
     
     test("Element should have regionOverflow property", function(){   
-        
-        setup();
-        
         $region.css(
             {
                 "width": "20px",
@@ -156,21 +117,43 @@ $(function () {
         
         // no content, expect empty
         $flow.html("");
-        ok($region[0][prefixOM("regionOverflow")] == "empty"); 
-
-        teardown(); 
+        ok($region[0][prefixOM("regionOverflow")] == "empty");
     })
 
     //TODO Write tests for getRegionFlowRanges() once this gets implemented
-
     asyncTest("regionLayoutUpdate event is thrown", function(){
-        function handler(ev) {
+        var eventFired = false;
+        var oldDone;
+        var oldTimeout;
+
+        // internal functions
+        function cleanup() {
+            QUnit.config.testTimeout = oldTimeout;
+            QUnit.testDone = oldDone;
+
             $region.unbind(prefixOM("regionLayoutUpdate"), handler);
-            equal(ev.target, $region[0], "Event.target points to the region");
+            
             teardown();
             start();
         }
 
+        function handler(ev) {
+            equal(ev.target, $region[0], "Event.target points to the region");
+            eventFired = true;
+            cleanup();
+        }
+
+        // Saving old defaults, wiring our own
+        oldTimeout = QUnit.config.testTimeout;
+        oldDone = QUnit.testDone;
+        QUnit.config.testTimeout = 2000;
+        QUnit.testDone = function() {
+            if (!eventFired) {
+                cleanup();
+            }
+        }
+
+        // the actual test
         setup();
         $region.css(
             {
@@ -180,7 +163,7 @@ $(function () {
         );
         $flow.html("M");
         $region.bind(prefixOM("regionLayoutUpdate"), handler);
-        $flow.html("Long text long text long text long long long longer very longer text");
+        $flow.html("Long text long text long text long long long longer very longe text");
     })
 
     module("Region styling");
