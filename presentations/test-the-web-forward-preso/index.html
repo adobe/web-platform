@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
 
 		<link rel="stylesheet" href="lib/zenburn.css">
+		<link rel="stylesheet" href="css/adobe.css">
 	</head>
 	
 	<body>
@@ -225,7 +226,7 @@
 					<ul>
 					    <li>JavaScript should be used when Ref Tests are not practical</li>
 					    <li>JavaScript tests have some advantages over Ref Tests
-					        <ul style="font-size:28px; line-height:30px">
+					        <ul>
 					            <li>Robust</li>
 					            <li>Flexible</li>
 					            <li>Performant</li>
@@ -233,10 +234,10 @@
 					        </ul>
 					    </li>
 					    <li>Ref Tests have some advantages over JavaScript tests
-					        <ul style="font-size:28px; line-height:30px">
-					            <li>Verify rendering</li>
+					        <ul>
+					            <li>Tests verify complete rendering</li>
 					            <li>Easy to understand</li>
-					            <li>Avoid introducing additional technology (js)</li>
+					            <li>Avoids introducing additional technologies (js)</li>
 					        </ul>
 					    </li>
 					    <li>W3C provides a framework (testharness) to simplify and standardize test creation</li>
@@ -252,9 +253,8 @@
     				    <ul>
     				        <li>JavaScript framework that provides an API for making common test assertions</li>
     				        <li>Should be used by all JavaScript tests</li>
-    				        <li>Path to the resources directory should match its location on your local machine</li>
-    				        <li>Path must be updated /resources/... prior to pushing to the test repository</li>
-    				        <li>Element must exist with id="log" for test results</li>
+    				        <li>Path must be to /resources/... prior to pushing to the test repository</li>
+    				        <li>An element must exist in test file with id="log" for test results</li>
     				    </ul>
     				    
 				    </section>
@@ -268,7 +268,7 @@
         			        <li>Used to define an individual test case in a file</li>
         			        <li>The function argument must be a function object, not a function call</li>
         			        <li>The return value of the function object passed to test() (argument 1) determines Pass/Fail</li>
-        			        <li>The name passed to test() (argument 2) should a be descriptive test name that conveys what is being tested
+        			        <li>The name passed to test() (argument 2) should be a descriptive test name that conveys what is being tested
         			            <ul>
         			                <li>Name will be displayed in the test results table</li>
         			            </ul>
@@ -305,6 +305,25 @@
         			</section>
 				</section>
 
+                	<section>
+        				<h2>Sample Test Case</h2>
+        				<section>
+        					<br><br>
+        					<p>Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
+        					<br>
+        					<br>
+        					<p>Spec Links:</p>
+        					<p style="font-size: 16pt">
+        					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
+        					    <br>
+        					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
+    					    </p>
+    					</section>
+    					<section>
+    					    <img src="assets/images/specAssertion.png">
+    					</section>
+    	            </section>
+
 				<section data-state="screenshotPage">
 				    <h3>Examine the code</h3>
 					<img src="assets/images/jsTest_full.png"/>
@@ -319,13 +338,13 @@
 			    <section data-state="screenshotPage">
 			        <h3>Optional: CSS</h3>
 				    <p>Margins & Padding</p>
-				    <img src="assets/images/jsTest_css.png"/>
+				    <img src="assets/images/jsTest_mp.png"/>
 			    </section>
 
 			    <section data-state="screenshotPage">
 			        <h3>Self Description</h3>
 				    <p>Positioned to simplify code</p>
-				    <img src="assets/images/jsTest_sd.png"/>
+				    <img src="assets/images/jsTest_res.png"/>
 			    </section>
 			    
 			    <section data-state="screenshotPage">
@@ -344,6 +363,25 @@
 				    <h3>Test Case</h3>
 				    <p>Test Function with assert_equals</p>
 				    <img src="assets/images/jsTest_test.png"/>
+				    <br><br><br>
+				    <ul>
+				        <li>assert_equals(actual, expected, description)
+				            <ul>
+				                <li>actual = checkElementPosition("myDiv")</li>
+				                <li>expected = "100,100"</li>
+				                <li>description = "myDiv should be at 100,100"</li>
+				            </ul>
+				        </li>
+				        <br>				        
+				        <li>test(test_function, name, properties)
+				            <ul>
+				                <li>test_function = assert_equals(checkElementPosition("myDiv"), "100,100", "myDiv should be at 100,100")</li>
+				                <li>name = "Transform_Translate_100px_100px"</li>
+				                <li>properties = <span style="font-style:italic">not specified</span></li>
+				            </ul>
+				        </li>
+				    </ul>
+				        
 			    </section>   
                 
     			<section>
