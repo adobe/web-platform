@@ -218,6 +218,147 @@
 				<section>
     			    <h3>JS Test placeholder</h3>
     			</section>
+
+				<section>
+					<h2>JavaScript Test Overview</h2>
+					<br>
+					<ul>
+					    <li>JavaScript should be used when Ref Tests are not practical</li>
+					    <li>JavaScript tests have some advantages over Ref Tests
+					        <ul style="font-size:28px; line-height:30px">
+					            <li>Robust</li>
+					            <li>Flexible</li>
+					            <li>Performant</li>
+					            <li>Powerful</li>
+					        </ul>
+					    </li>
+					    <li>Ref Tests have some advantages over JavaScript tests
+					        <ul style="font-size:28px; line-height:30px">
+					            <li>Verify rendering</li>
+					            <li>Easy to understand</li>
+					            <li>Avoid introducing additional technology (js)</li>
+					        </ul>
+					    </li>
+					    <li>W3C provides a framework (testharness) to simplify and standardize test creation</li>
+					</ul>
+				</section>
+				
+				<section>
+				    <section>
+				    <h3>testharness</h3>
+				        <p>testharness.js and testharnessreport.js</p>
+				        <img src="assets/images/jsTest_th.png">
+				        <br><br>
+    				    <ul>
+    				        <li>JavaScript framework that provides an API for making common test assertions</li>
+    				        <li>Should be used by all JavaScript tests</li>
+    				        <li>Path to the resources directory should match its location on your local machine</li>
+    				        <li>Path must be updated /resources/... prior to pushing to the test repository</li>
+    				        <li>Element must exist with id="log" for test results</li>
+    				    </ul>
+    				    
+				    </section>
+				    
+				    <section>
+        			    <h2>The <span style="color:red">test</span> function</h2>
+        			    <br>
+        			    <ul>
+        			        <li>Documented and implemented in testharness.js</li>
+        			        <li>Function signature: <span style="color:red">test(test_function, name, properties)</span></li>
+        			        <li>Used to define an individual test case in a file</li>
+        			        <li>The function argument must be a function object, not a function call</li>
+        			        <li>The return value of the function object passed to test() (argument 1) determines Pass/Fail</li>
+        			        <li>The name passed to test() (argument 2) should a be descriptive test name that conveys what is being tested
+        			            <ul>
+        			                <li>Name will be displayed in the test results table</li>
+        			            </ul>
+        			        </li>
+        			        <li>Properties (argument 3) is an object that overrides default test properties
+        			            <ul>
+        			                <li>timeout is the only currently recognized property</li>
+        			            </ul>
+        			        </li>
+        			    </ul>
+        		    </section>
+        		    
+        		    <section>
+        			    <h2>testharness.js assert methods</h2>
+        			    <br>
+        			    <ul>
+        			        <li>testharness.js provides a number of assert methods to use for testing
+        			            <ul>
+        			                <li>Full list is provided in the comment section of the testharness.js file</li>
+        			                <li>Whenever possible, these methods should be used</li>
+        			            </ul>
+        			        </li>
+        			        <li>All assert methods contain an optional "description" argument that is only output if the assertion fails
+        			            <ul>
+        			                <li>The description will be added to the default output from testharness</li>
+        			                <li>The description should be used to provide additional debug information in the case of a failure</li>
+        			            </ul>
+        			        </li>
+        			        <li>All asserts must be located in a test()
+        			            <ul>
+        			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
+        			            </ul>
+        			    </ul>
+        			</section>
+				</section>
+
+				<section data-state="screenshotPage">
+				    <h3>Examine the code</h3>
+					<img src="assets/images/jsTest_full.png"/>
+				</section>				
+
+			    <section data-state="screenshotPage">
+				    <h3>Required Metadata: Flags</h3>
+				    <p>Flags</p>
+				    <img src="assets/images/jsTest_flags.png"/>
+			    </section>
+			    
+			    <section data-state="screenshotPage">
+			        <h3>Optional: CSS</h3>
+				    <p>Margins & Padding</p>
+				    <img src="assets/images/jsTest_css.png"/>
+			    </section>
+
+			    <section data-state="screenshotPage">
+			        <h3>Self Description</h3>
+				    <p>Positioned to simplify code</p>
+				    <img src="assets/images/jsTest_sd.png"/>
+			    </section>
+			    
+			    <section data-state="screenshotPage">
+				    <h3>Test Results Container</h3>
+				    <p>Element with id="log"</p>
+				    <img src="assets/images/jsTest_log.png"/>
+			    </section>
+ 			    
+			    <section data-state="screenshotPage">
+				    <h3>User Defined Function</h3>
+				    <p>JavaScript Function returns actual value</p>
+				    <img src="assets/images/jsTest_func.png"/>
+			    </section>
+
+			    <section data-state="screenshotPage">
+				    <h3>Test Case</h3>
+				    <p>Test Function with assert_equals</p>
+				    <img src="assets/images/jsTest_test.png"/>
+			    </section>   
+                
+    			<section>
+    			    <section data-state="screenshotPage">
+    				    <h3>Test Results</h3>
+    				    <p>PASS</p>
+    				    <img src="assets/images/jsTest_PASS.png"/>
+    			    </section>
+    			    
+                    <section data-state="screenshotPage">
+    				    <h3>Test Results</h3>
+    				    <p>FAIL</p>
+    				    <img src="assets/images/jsTest_FAIL.png"/>
+    			    </section>    			    
+                </section>                                                    
     			
     			<section>
     			    <h1>Q & A</h1>
