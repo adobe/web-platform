@@ -138,7 +138,7 @@ section .editor {
 }
 
 section .console {
-	left: 15%; 
+	left: 10%; 
 	width: 80%;
 	height: 150px; 
 }

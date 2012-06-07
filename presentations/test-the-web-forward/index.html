@@ -28,21 +28,15 @@
           	  document.getElementById("computedStyle").innerHTML = window.getComputedStyle(element).getPropertyValue("-webkit-transform");
           	}
 
-            function runAnimation(id)
-          	{
-          	   var shape = document.getElementById(id);
-          	   var state = shape.style.webkitAnimationPlayState;
-          	   
-          	   if(state == "running")
-          	        shape.style.webkitAnimationPlayState = "paused";
-          	  else
-          	        shape.style.webkitAnimationPlayState = "running";
-          	   
-          	}
           </script>
                 <section>
                     <h2>Test The Web Forward</h2>
                     <img src="assets/images/W3C_logo.jpg">
+                    <script>
+    					// Delicously hacky. Look away.
+    					if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+    					document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+    				</script>
                 </section>
 
                 <section id="Agenda">
@@ -70,28 +64,69 @@
                         <li>Step 5: Clone the Resources directory<br><a href="http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository" style="font-size:20px">http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository</a></li>
                     </ul>
                 </section>
-
-				<section>
+                
+                <section>
+					<br><br>
 					<h2>W3C Reftest Tutorial</h2>
-					<h3>Sample Test Case</h3>
-					<br>
-					<h4>Write a basic test for the SVG transform attribute described in the CSS3 Transforms spec using the translate() function</h4>
-					<br>
-					<h3>Spec Links:</h3>
-					<br>
-				    <h4>
-					<a href="http://dev.w3.org/csswg/css3-transforms/#svg-transform" target="top">http://dev.w3.org/csswg/css3-transforms/#svg-transform</a>
-					<br>
-					<br>
-					<a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
-					</h4>
-					
-					<script>
-						// Delicously hacky. Look away.
-						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
-						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
-					</script>
 				</section>
+				
+				<section>
+					<h2>Overview</h2>
+					<blockquote>
+					<ul>
+					    <li>Two files: Test file + Reference file</li>
+					    <li>Test file uses the feature under test</li>
+					    <li>Reference file is an exact visual match without using feature under test</li>
+						<li>Self-describing (works both manually and with automation)</li>
+						<li> Cross-browser & cross-platform</li>
+					</ul>
+					</blockquote>
+				</section>
+				
+				<section>
+    				<h2>Directory structure</h2>
+    				<section>
+    				<br>
+    				<ul>
+    				    <li>W3C Repository</li>
+    				    <ul>
+    				        <li>test</li>
+    				        <ul>
+    				            <li>contributors</li>
+						        <ul>
+						            <li>YourTestDir</li>
+						            <ul>
+						                <li>incoming</li>
+    						            <li>submitted</li>
+						            </ul>
+						        </ul>
+						    </ul>
+						</ul>
+						</li>
+					</ul>
+					</section>
+					<section>
+					    <img src="assets/images/directoryStructure.png"/>
+					</section>
+    			</section>
+    			<section>
+    				<h2>Sample Test Case</h2>
+    				<section>
+    					<br><br>
+    					<p>Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
+    					<br>
+    					<br>
+    					<p>Spec Links:</p>
+    					<p style="font-size: 16pt">
+    					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
+    					    <br>
+    					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
+					    </p>
+					</section>
+					<section>
+					    <img src="assets/images/specAssertion.png">
+					</section>
+	            </section>
 				
 			    <section>
 			        <section>
