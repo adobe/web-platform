@@ -1,0 +1,273 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Test the Web Forward</title>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+		<link rel="stylesheet" href="lib/zenburn.css">
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>Test the Web Forward</h2>
+					<img src="assets/images/W3C_logo.jpg">
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section>
+					<br><br>
+					<h2>W3C Reftest Tutorial</h2>
+				</section>
+				
+				<section>
+					<h2>Reftest overview</h2>
+					<ul>
+						<li>placeholder</li>
+						<li>placeholder</li>
+						<li>placeholder</li>
+						<li>placeholder</li>
+					</ul>
+				</section>
+				
+				<section>
+    				<h2>Reftest directory structure</h2>
+    				<section>
+    				    <br>
+    				    
+    				    <ul>
+    				    <li>W3C Repository</li>
+    				    <ul>
+    				        <li>test</li>
+    				        <ul>
+    				            <li>contributors</li>
+						        <ul>
+						            <li>YourTestDir</li>
+						            <ul>
+						                <li>incoming</li>
+    						            <li>submitted</li>
+						            </ul>
+						        </ul>
+						    </ul>
+						</ul>
+						</li>
+					</section>
+					<section>
+					    <img src="assets/images/directoryStructure.png"/>
+					</section>
+    			</section>
+				
+				<section data-state="screenshotPage">
+    			    <h3>Reftest Example</h3>
+    			    <p>Test File</p>
+    				<img src="assets/images/001a.png"/>
+    			    <p>Reference File</p>
+    			    <img src="assets/images/001b.png"/>
+    			</section>
+			
+				<section>
+					<h3>Examine the code</h3>
+					<section data-state="screenshotPage">
+    				    <p>Test File</p>
+    					<img src="assets/images/002a.png"/>
+    				</section>
+
+    				<section data-state="screenshotPage">
+    				    <p>Reference File</p>
+    				    <img src="assets/images/002b.png"/>
+    				</section>
+            	</section>
+				
+				<section>
+				    <h3>Required Metadata: Title</h3>
+				    <section data-state="screenshotPage">
+					    <p>Test Title</p>
+					    <img src="assets/images/003a.png"/>
+				    </section>
+
+				    <section data-state="screenshotPage">
+					    <p>Reference Title</p>
+					    <img src="assets/images/003b.png"/>
+				    </section>
+                </section>
+                
+                <section>
+    			    <h3>Required Metadata: Author</h3>
+    			    <section data-state="screenshotPage">
+    				    <p>Test Author</p>
+    				    <img src="assets/images/004a.png"/>
+    			    </section>
+
+    			    <section data-state="screenshotPage">
+    				    <p>Reference Author</p>
+    				    <img src="assets/images/004b.png"/>
+    			    </section>
+                </section>
+                
+                <section data-state="screenshotPage">
+    			    <h3>Required Metadata: Spec Links</h3>
+    			    <p>Test Spec Links</p>
+    			    <img src="assets/images/005.png"/>
+    			</section>
+
+                <section data-state="screenshotPage">
+    			    <h3>Required Metadata: Reference file</h3>
+    			    <p>Test Reference File</p>
+    			    <img src="assets/images/006.png"/>
+    			</section>
+    			
+    			<section data-state="screenshotPage">
+    			    <h3>Required Metadata: Assertion</h3>
+    			    <p>Test Assertion</p>
+    			    <img src="assets/images/007.png"/>
+    			</section>
+    			
+    			<section>
+    			    <h3>The Test</h3>
+    			    <section data-state="screenshotPage">
+    				    <p>Test element with the transform applied</p>
+    				    <img src="assets/images/008a.png"/>
+    			    </section>
+
+    			    <section data-state="screenshotPage">
+    				    <p>Reference element</p>
+    				    <img src="assets/images/008b.png"/>
+    			    </section>
+                </section>
+                
+                <section>
+    			    <h3>Visible failure</h3>
+    			    <section data-state="screenshotPage">
+    			        <p>Element is only visible when the test fails</p>
+    			        <img src="assets/images/009a.png"/>
+    			    </section>
+    			    <section data-state="screenshotPage">
+    				    <p>Failing test example</p>
+    				    <img src="assets/images/009b.png"/>
+    			    </section>
+    			</section>
+    			
+    			<section>
+    			    <h3>Self Description</h3>
+    			    <section data-state="screenshotPage">
+    				    <p>Simple statement of how the page renders when the test passes</p>
+    				    <img src="assets/images/010a.png"/>
+    			    </section>
+
+    			    <section data-state="screenshotPage">
+    				    <p>Matching statement in the reference file</p>
+    				    <img src="assets/images/010b.png"/>
+    			    </section>
+                </section>
+                
+                <section>
+        		    <h3>Add the elements</h3>
+        		    <section data-state="screenshotPage">
+        			    <p>Add the red & green elements to the test page</p>
+        			    <img src="assets/images/011a.png"/>
+        		    </section>
+
+        		    <section data-state="screenshotPage">
+        			    <p>Add the matching green element to the reference file</p>
+        			    <img src="assets/images/011b.png"/>
+        		    </section>
+                </section>
+    			
+				<!-- INSERT JS TEST STUFF HERE -->
+				<section>
+    			    <h3>JS Test placeholder</h3>
+    			</section>
+    			
+    			<section>
+    			    <h1>Q & A</h1>
+    			</section>
+		
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="lib/highlight.js"></script>
+		<script src="lib/classList.js"></script>
+		
+		<script src="js/reveal.js"></script>
+		
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			// Fires when a slide with data-state=customevent is activated
+			Reveal.addEventListener( 'customevent', function() {
+				alert( '"customevent" has fired' );
+			} );
+
+			// Fires each time a new slide is activated
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+				// event.indexh & event.indexv
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Loops the presentation, defaults to false
+				loop: false,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: true,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'default', // default/neon
+
+				// Transition style
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+		</script>
+
+	</body>
+</html>
