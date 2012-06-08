@@ -25,27 +25,38 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <head>
 	<meta charset="UTF-8" />
 	<title>CSS Regions Test Suite</title>
-	<script type="text/javascript" src="qunit/jquery-1.7.1.js"></script>
 	<link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen">
+    <style type="text/css">
+        #qunit-testrunner-toolbar a{
+            margin-left: 1.8em;  
+            font-weight: bold;
+            color: #366097;
+        }
+        #qunit-testrunner-toolbar a:visited{
+            color: purple;
+        }
+    </style>
+	<script type="text/javascript" src="qunit/jquery-1.7.1.js"></script>
 	<script type="text/javascript" src="qunit/qunit.js"></script>
 	<script type="text/javascript"> 
 	
-	// To save data in Browserscope do something like the following.
-    // The syntax is 'test_key': 'value' where test_key is some unique
-    // identifier for a piece of data you want to store (no = or , allowed)
-    // and value is a numeric value from 0 through 1000000000000.
-    // Note: You can only send a maximum of 200 results in a beacon.
-    var _bTestResults = {}  
+    // Test key for BrowserScope test suite
+    var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBiQzuQQDA'
+    
+    // Beacon object with test results for Browserscope.
+    // key = string test name
+    // value = numeric value (1 means pass, 0 means fail)
+    var _bTestResults = {}
      
     // Add option in Qunit to toggle publishing results to BrowserScope.org
-    QUnit.config.urlConfig.push("publishresults")
+    QUnit.config.urlConfig.push('publishresults')
     
     // Timeout for async tests
     QUnit.config.testTimeout = 1000
     
     // Build-up the test results beacon for BrowserScope.org
     QUnit.testDone = function(obj){   
-        var testName = obj.module + " : " + obj.name; 
+        var testName = obj.module + " : " + obj.name 
 
         if (!obj.failed && obj.total === obj.passed){
             _bTestResults[testName] = 1
@@ -59,13 +70,36 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     QUnit.done = function(obj){   
         if (QUnit.config.publishresults){
             
-            var testKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBj_muYQDA';
             var newScript = document.createElement('script'),
-                firstScript = document.getElementsByTagName('script')[0];
-            newScript.src = 'http://www.browserscope.org/user/beacon/' + testKey;
-            firstScript.parentNode.insertBefore(newScript, firstScript);    
-        }    
-    }   
+                firstScript = document.getElementsByTagName('script')[0]
+                
+            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey + '?callback=showResultsTable'
+            firstScript.parentNode.insertBefore(newScript, firstScript)
+        }
+            
+        var container = document.querySelector('#qunit-testrunner-toolbar'),
+            resultsLink = document.createElement('a'),
+            runsLink = document.createElement('a') 
+        
+        // Link to aggregated test results on Browserscope.org
+        resultsLink.href = 'http://www.browserscope.org/user/tests/table/' + _bTestKey + '?o=html'   
+        resultsLink.textContent = 'Results on Browserscope'  
+        
+        // Link to test runs table on Browserscope.org
+        runsLink.href = 'http://www.browserscope.org/browse?category=usertest_'+ _bTestKey  
+        runsLink.textContent = 'Test Runs on Browserscope'    
+        
+        container.appendChild(resultsLink)    
+        container.appendChild(runsLink)    
+    }
+    
+    function showResultsTable(){
+        var resultsWidget = document.createElement('script')
+        resultsWidget.src = 'http://www.browserscope.org/user/tests/table/'+ _bTestKey +'?o=js&v=3'
+        resultsWidget.type = 'text/javascript' 
+        
+        document.body.appendChild(resultsWidget)     
+    }  
     
     </script>
 	<script type="text/javascript" src="prefix-free/prefixfree.min.js"></script>
