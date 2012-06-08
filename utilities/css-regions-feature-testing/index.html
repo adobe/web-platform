@@ -73,7 +73,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             var newScript = document.createElement('script'),
                 firstScript = document.getElementsByTagName('script')[0]
                 
-            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey + '&callback=showResultsTable'
+            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey + '?callback=showResultsTable'
             firstScript.parentNode.insertBefore(newScript, firstScript)
         }
             
@@ -95,7 +95,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     
     function showResultsTable(){
         var resultsWidget = document.createElement('script')
-        resultsWidget.src = 'http://www.browserscope.org/user/tests/table/'+ _bTestKey +'?o=js&v=top-all'
+        resultsWidget.src = 'http://www.browserscope.org/user/tests/table/'+ _bTestKey +'?o=js&v=3'
         resultsWidget.type = 'text/javascript' 
         
         document.body.appendChild(resultsWidget)     
