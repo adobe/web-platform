@@ -96,6 +96,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     function showResultsTable(){
         var resultsWidget = document.createElement('script')
         resultsWidget.src = 'http://www.browserscope.org/user/tests/table/'+ _bTestKey +'?o=js&v=3'
+        resultsWidget.src = 'http://www.browserscope.org/user/tests/table/'+ _bTestKey +'?o=js&v=top-all'
         resultsWidget.type = 'text/javascript' 
         
         document.body.appendChild(resultsWidget)     
