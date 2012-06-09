@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
 
-		<link rel="stylesheet" href="lib/zenburn.css">
+		<link rel="stylesheet" href="lib/textmate.css">
 		<link rel="stylesheet" href="css/adobe.css">
 	</head>
 	
@@ -41,8 +41,8 @@
 					<blockquote>
 					<ul>
 					    <li class="fragment">Two files: Test file + Reference file</li>
-					    <li class="fragment">Test file uses the feature under test</li>
-					    <li class="fragment">Reference file is an exact visual match without using feature under test</li>
+					    <li class="fragment">Test file uses the feature you're test</li>
+					    <li class="fragment">Reference file is an exact visual match without using the feature you're testing'</li>
 						<li class="fragment">Self-describing (works both manually and with automation)</li>
 						<li class="fragment"> Cross-browser & cross-platform</li>
 					</ul>
@@ -63,7 +63,7 @@
 						        <ul>
 						            <li>ttwf</li>
 						            <ul>
-						                <li>yourName</li>
+						                <li>your_csswg_id</li>
 						                <ul>
 						                    <li>incoming</li>
     						                <li>submitted</li>
@@ -82,11 +82,11 @@
     				<h2>Sample Test Case</h2>
     				<section>
     					<br><br>
-    					<p>Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
+    					<p style="font-size: 28pt">Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
     					<br>
     					<br>
     					<p>Spec Links:</p>
-    					<p style="font-size: 16pt">
+    					<p style="font-size: 18pt">
     					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
     					    <br>
     					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
@@ -105,117 +105,312 @@
     			    <img src="assets/images/001b.png"/>
     			</section>
 			
-				<section>
+				<section data-state="screenshotPage">
 					<h3>Examine the code</h3>
-					<section data-state="screenshotPage">
-    				    <p>Test File</p>
-    					<img src="assets/images/002a.png"/>
-    				</section>
-
-    				<section data-state="screenshotPage">
-    				    <p>Reference File</p>
-    				    <img src="assets/images/002b.png"/>
-    				</section>
-            	</section>
+					<section>
+					    <p>Test file</p>
+					    <pre>
+					    <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;CSS Transforms Test: transform property with translate function&lt;/title&gt;
+    &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
+    &lt;link rel="match" href="reftest/ttwf-reftest-tutorial-ref.html"&gt;
+    &lt;meta name="assert" content="This transform moves the element by 100 pixels in both the X and Y directions."&gt;
+    &lt;<span class="styleTag">style type</span>="text/css"&gt;
+            <span class="styleTag">.greenSquare</span> {
+                <span class="cssProperty">position: absolute;
+                top: 0;
+                left: 0;
+                width: 100<span class="px">px</span>;
+                height: 100<span class="px">px</span>;
+                background: green;</span>
+                transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);
+            }
+            <span class="styleTag">.redSquare</span> {
+                <span class="cssProperty">position: absolute;
+                top: 101<span class="px">px</span>;
+                left: 101<span class="px">px</span>;
+                width: 98<span class="px">px</span>;
+                height: 98<span class="px">px</span>;
+                background: red;</span>
+            }
+        &lt;/<span class="styleTag">style</span>&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p&gt;The test passes if there is a green square and no red.&lt;/p&gt;
+        &lt;div class="redSquare"&gt;&lt;/div&gt;
+        &lt;div class="greenSquare"&gt;&lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                            </code>
+					    </pre>
+					</section>
+					<section>
+                        <p>Reference file</p>
+                    	<pre>
+                    	<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;CSS Transforms Reference file&lt;/title&gt;
+    &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+    &lt;<span class="styleTag">style type</span>="text/css"&gt;
+        <span class="styleTag">.greenSquare</span> {
+            <span class="cssProperty">position: absolute;
+            top: 100;
+            left: 100;
+            width: 100<span class="px">px</span>;
+            height: 100<span class="px">px</span>;
+            background: green;</span>
+        }
+    &lt;/<span class="styleTag">style</span>&gt;
+    &lt;/head&gt;
+        &lt;body&gt;
+            &lt;p&gt;The test passes if there is a green square and no red.&lt;/p&gt;
+            &lt;div class="greenSquare"&gt;&lt;/div&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+                                </code>
+    					    </pre>
+    					</section>
+	        	</section>
 				
-				<section>
+				<section data-state="screenshotPage">
 				    <h3>Required Metadata: Title</h3>
-				    <section data-state="screenshotPage">
-					    <p>Test Title</p>
-					    <img src="assets/images/003a.png"/>
-				    </section>
-
-				    <section data-state="screenshotPage">
-					    <p>Reference Title</p>
-					    <img src="assets/images/003b.png"/>
-				    </section>
-                </section>
+				    <br>
+				    <p>Test file</p>
+				    <pre>
+					<code class="html">
+<span class="expand">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;CSS Transforms Test: transform property with translate function&lt;/title&gt;
+        . . .			
+    </span>		        
+				    </code>
+				    </pre>
+		            <p>Reference file</p>
+		            <pre>
+                    <code>
+<span class="expand">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;CSS Transforms Reference file&lt;/title&gt;
+        . . .			
+</span>
+                    </code>
+                    </pre>
+			    </section>
                 
-                <section>
+                <section data-state="screenshotPage">
     			    <h3>Required Metadata: Author</h3>
-    			    <section data-state="screenshotPage">
-    				    <p>Test Author</p>
-    				    <img src="assets/images/004a.png"/>
-    			    </section>
-
-    			    <section data-state="screenshotPage">
-    				    <p>Reference Author</p>
-    				    <img src="assets/images/004b.png"/>
-    			    </section>
+                    <br>
+                    <p>Test file</p>
+                    <pre>
+                    <code class="html">
+<span class="expand">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    . . .			
+    &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+    . . .			
+</span>		        
+				    </code>
+				    </pre>
+		            <p>Reference file</p>
+                    <pre>
+                    <code>
+<span class="expand">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    . . .
+    &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+    . . .			
+</span>
+                    </code>
+                    </pre>
                 </section>
                 
-                <section data-state="screenshotPage">
+                <section data-state="expandPageMed">
     			    <h3>Required Metadata: Spec Links</h3>
-    			    <p>Test Spec Links</p>
-    			    <img src="assets/images/005.png"/>
+    			    <p>Test file only</p>
+                    <pre>
+                    <code>
+<span class="expand">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    . . .
+    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;          . . .
+</span>
+                    </code>
+                    </pre>
     			</section>
 
-                <section data-state="screenshotPage">
-    			    <h3>Required Metadata: Reference file</h3>
-    			    <p>Test Reference File</p>
-    			    <img src="assets/images/006.png"/>
+                <section data-state="expandPageMed">
+    			    <h3>Required Metadata: Reference File Path</h3>
+        		    <p>Test file only</p>
+                    <pre>
+                    <code>
+<span class="expand">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    . . .   
+    &lt;link rel="match" href="reftest/ttwf-reftest-tutorial-ref.html"&gt;
+    . . .
+</span>
+                        </code>
+                        </pre>
     			</section>
-    			
-    			<section>
-    			    <section data-state="screenshotPage">
-    			        <h3>Required Metadata: Assertion</h3>
-    			        <p>Test Assertion</p>
-    			        <img src="assets/images/007.png"/>
+    		    
+    		    <section>
+    		        <h3>Required Metadata: Assertion</h3>
+                    <section data-state="expandPageWide">
+            	        <p>Test file only</p>
+                        <pre>
+                        <code>
+<span class="expand">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    . . .   
+    &lt;meta name="assert" content="This transform moves the element by 100 pixels in both the X and Y directions."&gt;
+    . . .
+</span>
+                        </code>
+                        </pre>
     			    </section>
     			    <section>
-    			        <img src="assets/images/specAssertion.png">
-    			    </section>
+			            <img src="assets/images/specAssertion.png">
+			        </section>
     			</section>
+    		
     			
     			<section>
     			    <h3>The Test</h3>
-    			    <section data-state="screenshotPage">
+    			    <section>
     				    <p>Test element with the transform applied</p>
-    				    <img src="assets/images/008a.png"/>
+    				    <pre>
+    				    <code class="html">
+<span class="expand2">
+                    &lt;<span class="styleTag">style type</span>="text/css"&gt;
+                        <span class="styleTag">.greenSquare</span> {
+                            <span class="cssProperty">position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100<span class="px">px</span>;
+                            height: 100<span class="px">px</span>;
+                            background: green;</span>
+                            transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);
+                        }
+                        . . .
+                    &lt;/<span class="styleTag">style</span>&gt;    
+</span>				        
+    				    </code>
+    				    </pre>
     			    </section>
 
-    			    <section data-state="screenshotPage">
+    			    <section>
     				    <p>Reference element</p>
-    				    <img src="assets/images/008b.png"/>
+    				    <pre>
+    				    <code class="html">
+<span class="expand2">
+                    &lt;<span class="styleTag">style type</span>="text/css"&gt;
+                        <span class="styleTag">.greenSquare</span> {
+                            <span class="cssProperty">position: absolute;
+                            top: 100;
+                            left: 100;
+                            width: 100<span class="px">px</span>;
+                            height: 100<span class="px">px</span>;
+                            background: green;</span>
+                        }
+                    &lt;/<span class="styleTag">style</span>&gt;
+</span>				        
+    				    </code>
+    				    </pre>
     			    </section>
                 </section>
                 
                 <section>
     			    <h3>Visible failure</h3>
-    			    <section data-state="screenshotPage">
+    			    <section>
     			        <p>Element is only visible when the test fails</p>
-    			        <img src="assets/images/009a.png"/>
+    			         <pre>
+        				    <code class="html">
+<span class="expand2">
+                        &lt;<span class="styleTag">style type</span>="text/css"&gt;
+                            . . .
+                            <span class="styleTag">.redSquare</span> {
+                                <span class="cssProperty">position: absolute;
+                                top: 101<span class="px">px</span>;
+                                left: 101<span class="px">px</span>;
+                                width: 98<span class="px">px</span>;
+                                height: 98<span class="px">px</span>;
+                                background: red;</span>
+                            }
+                        &lt;/<span class="styleTag">style</span>&gt;    
+</span>				        
+        				    </code>
+        				    </pre>
     			    </section>
-    			    <section data-state="screenshotPage">
+    			    <section>
     				    <p>Failing test example</p>
-    				    <img src="assets/images/009b.png"/>
+    				    <img src="assets/images/failingRefTest.png"/>
     			    </section>
     			</section>
     			
     			<section>
     			    <h3>Self Description</h3>
-    			    <section data-state="screenshotPage">
-    				    <p>Simple statement of how the page renders when the test passes</p>
-    				    <img src="assets/images/010a.png"/>
-    			    </section>
-
-    			    <section data-state="screenshotPage">
-    				    <p>Matching statement in the reference file</p>
-    				    <img src="assets/images/010b.png"/>
-    			    </section>
+    			    <p style="font-size: 24pt">Simple statement of how the page renders when the test passes</p>
+    				<br>
+    				<p style="font-size: 24pt"> Test file & Reference file </p>
+    				 <pre>
+    				 <code class="html">
+<span class="expand2">
+    &lt;body&gt;
+        &lt;p&gt;The test passes if there is a green square and no red.&lt;/p&gt;
+        . . .
+    &lt;/body&gt;
+</span>    				        
+    			    </code>
+    			    </pre>
                 </section>
                 
-                <section>
+                <section data-state="screenshotPage">
         		    <h3>Add the elements</h3>
-        		    <section data-state="screenshotPage">
-        			    <p>Add the red & green elements to the test page</p>
-        			    <img src="assets/images/011a.png"/>
-        		    </section>
-
-        		    <section data-state="screenshotPage">
-        			    <p>Add the matching green element to the reference file</p>
-        			    <img src="assets/images/011b.png"/>
-        		    </section>
+        		    <p>Test file</p>
+        		     <pre>
+    				 <code class="html">
+<span class="expand2">
+    &lt;body&gt;
+        . . .
+        &lt;div class="redSquare"&gt;&lt;/div&gt;
+        &lt;div class="greenSquare"&gt;&lt;/div&gt;
+    &lt;/body&gt;
+</span>    				        
+    			    </code>
+    			    </pre>
+    			    <p>Reference file</p>
+                     <pre>
+    				 <code class="html">
+<span class="expand2">
+    &lt;body&gt;
+        . . .
+        &lt;div class="greenSquare"&gt;&lt;/div&gt;
+    &lt;/body&gt;
+</span>    				        
+    			    </code>
+    			    </pre>
                 </section>
     			
 				<!-- Begin JS TEST -->

@@ -137,7 +137,9 @@ body {
 
 .reveal ol, 
 .reveal ul {
+	font-family: Tahoma;
 	display: inline-block;
+	line-height: 48pt;
 
 	text-align: left;
 	margin: 0 auto;
@@ -169,6 +171,7 @@ body {
 }
 
 .reveal p {
+	font-family: Tahoma;
 	margin-bottom: 10px;
 }
 
@@ -188,8 +191,8 @@ body {
 .reveal pre {
 	display: block;
 	position: relative;
-	width: 90%;
-	margin: 10px auto;
+	width: 100%;
+	margin: 1px auto;
 
 	text-align: left;
 	font-size: 14px;
@@ -198,11 +201,12 @@ body {
 
 	word-wrap: break-word;
 
-	box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
+/*	box-shadow: 0px 0px 6px rgba(0,0,0,0.3);*/
 }
 
 .reveal code {
-	font-family: monospace;
+	font-family: Monaco;
+	line-height: 14pt;
 }
 
 .reveal small {
@@ -931,6 +935,17 @@ body {
 .screenshotPage .slides {
 	top: 35%;
 }
+
+.expandPageWide .slides {
+	left: 40%;
+	width: 1200px;
+}
+
+.expandPageMed .slides {
+	left: 45%;
+	width: 1000px;
+}
+
 .alert .state-background {
 	background: rgba( 200, 50, 30, 0.6 );
 }
