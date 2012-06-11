@@ -65,24 +65,35 @@
                 <strong>Hint:</strong> resize the browser window to see the content reflow.
             </p>
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                With CSS Regions content can be extracted from its original DOM container into logical structures called named flows. These named flows can be used to associate the content with other containers called regions. 
             </p>
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+<pre>
+article{
+    flow-into: myArticle
+}
+
+#region1, #region2{
+    flow-from: myArticle
+} 
+</pre>
+            <p class="caption">The content of the <code>article</code> tag is pulled into a named flow called 'myArticle'. This named flow is associated with two regions. The original content of <code>article</code> now shows up in '#region1' and '#region2'.</p>
+            <p>Multiple regions can be associated with the same named flow thus creating a region chain. Content flows from one region to another regardless of their positioning. </p>
         </section>
 
         <section id="problem">
-            <h2>The Problem with HTML</h2>
+            <h2>The Problem with Overflow</h2>
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                When content does not fit in a box CSS has a limited set of options for overflow: it can hide it, it can add scrollbars or it can chose to display it completely with the risk of breaking the design. CSS Regions brings the flexibility of redirecting overflow content into another box.
             </p>
         </section>
 
         <aside>
-            <h2>This is secondary content</h2>
+            <h2>What's a region</h2>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Regions are placeholders for content which is directed into them with named flows. 
+            </p>
+            <p>
+                Regions don't have to be empty DOM elements. Future implementations will highlight the use of pseudo elements and other generated boxes as regions.
             </p>
         </aside>
     </article>

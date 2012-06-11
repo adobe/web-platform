@@ -84,24 +84,45 @@
             </p>
             
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+               Media Queries work together with CSS Regions to create highly adaptive layouts where content is not bound to boxes.
             </p>
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </section>
+        </section>                                                                                                        
+        
+        <section>
+            <h2>Code sample</h2>
+<pre>
+@media screen and (max-width: 480px){
+    #region1{
+        width: 100%;
+        flow-from: article;
+    }
+    
+    #region2,
+    #region3{
+        display: none;
+    }                 
+}    
+</pre>
+        <p class="caption">
+        Remove '#region2' and '#region3' from the region chain. Content is rendered only in '#region1' on narrow screens.
+        </p>
+        </section>        
 
-        <section id="problem">
-            <h2>The Problem with HTML</h2>  
+        <section>
+            <h2>Using Media Queries</h2>  
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Traditionally developers could define constraints for layout boxes with <code>@media</code> queries. However, in some cases, that meant hiding some content.  
+            </p>
+
+            <p>
+                With CSS Regions and Media Queries the content can be moved around independently of the original containers it comes in. This opens up possibilities for rich and adaptive layouts with full control over the display of the content.
             </p>
         </section>
 
         <aside>
-            <h2>This is secondary content</h2>
+            <h2>Opportunities</h2>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Because named flows can be redefined within media queries blocks this means that the content structure of a page can change drastically between screen sizes. For example, the contact information from the footer of a document can be pulled to the header for users on mobile phones.
             </p>
         </aside>
     </article>
