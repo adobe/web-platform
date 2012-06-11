@@ -12,7 +12,7 @@
     
     article aside{   
         -webkit-flow-into: secondary;
-        color: navy;     
+        color: green;     
     }
     
     article aside h2{
@@ -92,22 +92,43 @@
 
         <section id="introduction">
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            The content of an element can be broken into multiple named flows. These flows can be associated to different region chains. This way the layout of the content is no longer bound to its structure.
             </p>
         </section>
+        
+        <section>
+            <h2>Consuming from named flows</h2>   
+            <p>Bits of content from named flow can pulled into another named flow. </p>        
+            <p>Child nodes beloging to an element associated to a named flow can be pulled into a separate named flow using a more specific selector and the <code>flow-into</code> property.</p>
+        </section>
+        
+        <section>
+            <h2>Code Sample</h2>
+<pre>
+article{
+    flow-into: article;
+}
 
+article aside{
+    flow-into: secondary;
+}
+</pre>
+        <p class="caption">
+           The content of the aside is pulled from the 'article' flow into the 'secondary' flow
+        </p>  
+         
+        <p>Content is never duplicated. The content targeted with the more specific selector is taken out of the first flow and moved to the other flow.</p>
+        
+        </section>        
+        
         <aside>
             <h2>This content belongs to another flow</h2>
             <p class="tip">
-                <strong>Hint:</strong> resize the browser window to see the content reflow.
+                <strong>Hint:</strong> resize the browser window to see how the content flows through the region chains.
             </p>
-            
             <p>
                 This content belongs to the same article but it's assigned to different flow. This flow can be rendered independently from the main article content.
-            </p>
+            </p> 
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
