@@ -4,55 +4,41 @@
 	<head>
 		<meta charset="utf-8">
 		
-		<title>W3C Test Writing Tutorials</title>
-
-		<meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
-		<meta name="author" content="Hakim El Hattab">
+		<title>Test the Web Forward</title>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 		
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+		<link rel="stylesheet" href="lib/textmate.css">
 		<link rel="stylesheet" href="css/adobe.css">
-		<link rel="stylesheet" href="lib/zenburn.css">
 	</head>
 	
 	<body>
 		
-		<div id="reveal">
-		    <div class="state-background"></div>
-		    
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-			    <script type="text/javascript">
-  			    function computedStyle(element)
-          	{
-          	  document.getElementById("computedStyle").innerHTML = window.getComputedStyle(element).getPropertyValue("-webkit-transform");
-          	}
-
-          </script>
-                <section>
-                    <h2>Test The Web Forward</h2>
-                    <img src="assets/images/W3C_logo.jpg">
-                    <script>
-    					// Delicously hacky. Look away.
-    					if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
-    					document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
-    				</script>
-                </section>
-
-                <section id="Agenda">
-                   <h2>Agenda</h2>
-                   <ul>
-                       <li>Setup</li>
-                       <li>Ref Test Example</li>
-                       <li>JavaScript Test Example</li>
-                    </ul>
-                </section>
-
-                <section>
+				<section>
+					<h2>W3C Test Writing Tutorials</h2>
+					<img src="assets/images/W3C_logo.jpg">
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				 <section data-state="screenshotPage">
                     <h2>Setup</h2>
-                    <h4>Complete all steps before proceeding</h4>
+                    <p class="font2">Complete all steps before proceeding</p>
                     <br>
                     <ul>
                         <li>Step 1: Create a CSSWG Test Manager Account<br><a href="https://test.csswg.org/shepherd/register/" style="font-size:18px">https://test.csswg.org/shepherd/register/</a> 
@@ -66,19 +52,16 @@
                         <li>Step 5: Clone the Resources directory<br><a href="http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository" style="font-size:20px">http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository</a></li>
                     </ul>
                 </section>
-                
-               	<section>
+				
+				<section>
 					<h2>Reftest Overview</h2>
-					<br>
 					<blockquote>
 					<ul>
-					    <li>A reftest consists of two files:</li>
-					    <ul>
-					        <li>Test file - Uses the feature under test</li>
-					        <li>Reference file - An exact visual match without using feature under test</li>
-						</ul>
-						<li>Self-describing - Works both manually and with automation</li>
-						<li>Cross-browser & cross-platform</li>
+					    <li>Two files: Test file + Reference file</li>
+					    <li>Test file uses the feature you're test</li>
+					    <li>Reference file is an exact visual match without using the feature you're testing'</li>
+						<li>Self-describing (works both manually and with automation)</li>
+						<li> Cross-browser & cross-platform</li>
 					</ul>
 					</blockquote>
 				</section>
@@ -86,17 +69,18 @@
 				<section>
     				<h2>Directory structure</h2>
     				<section>
-    				<br>
-    				<ul>
-    				    <li>CSSWG Repository</li>
+    				    <br>
+    				    
+    				    <ul>
+    				    <li>CSSWG Test Repository</li>
     				    <ul>
     				        <li>test</li>
     				        <ul>
     				            <li>contributors</li>
 						        <ul>
-						            <li>ttwf
+						            <li>ttwf</li>
 						            <ul>
-						                <li>yourName</li>
+						                <li>your_csswg_id</li>
 						                <ul>
 						                    <li>incoming</li>
     						                <li>submitted</li>
@@ -106,7 +90,6 @@
 						    </ul>
 						</ul>
 						</li>
-					</ul>
 					</section>
 					<section>
 					    <img src="assets/images/directoryStructure.png"/>
@@ -116,11 +99,11 @@
     				<h2>Sample Test Case</h2>
     				<section>
     					<br><br>
-    					<p>Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
+    					<p style="font-size: 28pt">Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
     					<br>
     					<br>
     					<p>Spec Links:</p>
-    					<p style="font-size: 16pt">
+    					<p style="font-size: 18pt">
     					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
     					    <br>
     					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
@@ -130,899 +113,1089 @@
 					    <img src="assets/images/specAssertion.png">
 					</section>
 	            </section>
-				
-			    <section>
-			        <section>
-			            <h2>Step 1 - OSX</h2>
-			            <h5>Press down-arrow for Windows instructions</h5>
-    			        <br>
-        			    <h3>Update your local CSSWG test repository</h3>
-        			    <p style="font-size:22px">Complete this step unless you just cloned the repository in the previous step</p>
-        			    <br>
-			        
-    			        <p style="font-size:30px">From a terminal window, type the following:</p>
-      				    <div class="console">
-      				        <div class="consoleText">
-          				        <br><br>
-          			            <p>$ cd <span class="localPath">[path to repo]</span>/test</p>
-          			            <p>$ hg pull -u</p>
-          			            <p>$ ls -lR contributors/ttwf/samples</p>
-          			        </div>
-      			        </div>
-      			        <br><br><br>
-      			        <div class="bottomNote">
-      			            <h5>
-      			                Note: These files can also be downloaded from here:
-      			                <br>
-      			                <a href="assets/resources/ttwf-reftest-tutorial.zip">ttwf-reftest-tutorial.zip</a>
-      			            </h5>
-      			        </div>
-  			        </section>  
-  			        <section>
-                        <h2>Step 1 - Windows</h2>
-			            <h5>Press up-arrow for OSX instructions</h5>
-    			        <br>
-        			    <h3>Update your local CSSWG test repository</h3>
-        			    <p style="font-size:22px">Complete this step unless you just cloned the repository in the previous step</p>
-        			    <br>
-			        
-    			        <p style="font-size:30px">From a DOS command window, type the following:</p>
-      				    <div class="console">
-      				        <div class="dosText">
-          				        <br><br>
-          			            <p>> cd <span class="localPath">[path to repo]</span>\test</p>
-          			            <p>> hg pull -u</p>
-          			            <p>> dir contributors\ttwf\samples</p>
-          			        </div>
-      			        </div>
-      			        <br><br><br>
-      			        <div class="bottomNote">
-      			            <h5>
-      			                Note: These files can also be downloaded from here:
-      			                <br>
-      			                <a href="assets/resources/ttwf-reftest-tutorial.zip">ttwf-reftest-tutorial.zip</a>
-      			            </h5>
-      			        </div>                                                 
-      			    </section>
-                </section>
-                
-                <section>
-                    <section>
-    			         <h2>Step 2 - OSX</h2>
-    			         <h5>Press down-arrow for Windows instructions</h5>
-        			     <br>
-            		     <h3>Create a directory for your new test</h3>
-        			     <br>
-          				 <div class="console">
-          				     <div class="consoleText">
-              				     <br><br><br>
-              				     <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/</p>
-              				     <p>$ mkdir -p <span class="localPath">yourName</span>/incoming</p>
-              				     <p>$ cd <span class="localPath">yourName</span>/incoming</p>
-              			     </div>
-          			     </div>
-           		    </section>
-           		    <section>
-           		        <h2>Step 2 - Windows</h2>
-           		        <h5>Press up-arrow for OSX instructions</h5>
-        			    <br>
-            		    <h3>Create a directory for your new test</h3>
-        			    <br>
-           				<div class="console">
-           				    <div class="dosText">
-               				     <br>
-               				     <br>
-               				     <br>
-               				     <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf</p>
-               				     <p>> mkdir <span class="localPath">yourName</span>\incoming</p>
-               				     <p>> cd <span class="localPath">yourName</span>\incoming</p>
-               			    </div>
-           			    </div>
-           		    </section>
-                </section>
-                
-                <section>
-                    <section>
-    			         <h2>Step 3 - OSX</h2>
-    			         <h5>Press down-arrow for Windows instructions</h5>
-        			     <br>
-            		     <h3>Copy the starter files to your incoming directory</h3>
-            		     <br>
-          				 <div class="console">
-          				     <div class="consoleText">
-              				     <br>
-              				     <br>
-              				     <p><span class="localPath">From your incoming directory created in previous step</span></p>
-              			         <p>$ cp -R ../../samples/* .</p>
-              			     </div>
-          			     </div>
-                    </section>
-                    <section>
-                        <h2>Step 3 - Windows</h2>
-    			         <h5>Press up-arrow for OSX instructions</h5>
-        			     <br>
-            		     <h3>Copy the starter files to your incoming directory</h3>
-            		     <br>
-          				 <div class="console">
-          				     <div class="dosText">
-              				     <br>
-              				     <br>
-              				     <p><span class="localPath">From your incoming directory created in previous step</span></p>
-              			         <p>> xcopy /e ..\..\samples .</p>
-              			     </div>
-          			     </div>                        
-                    </section>
-                </section>
-                
-                <section data-state="screenshotPage">
-    			     <h2>Step 4</h2>
-    			     <h3>Open the <span style="color:red">ttwf-reftest-starter-001.html</span> file in a editor</h3>
-    			     <img src="assets/images/testStarter.png">
-                </section>
-                
-                <section>
-    			     <h2>Step 5</h2>
-    			     <br>
-        		     <h3>Add the test metadata</h3>
-    			     <div class="tab5">
-    			        <ul>
-      				        <li>Title</li>
-      				        <li>Author</li>
-      				        <li>Spec link(s)</li>
-      				        <li>Reference file path</li>
-      				        <li>Flags</li>
-      				        <li>Assertion</li>
-      				    </ul>
-      				</div>
-      				<div class="bottomNote">
-  			            <h5>
-  			                Note: Each metadata element is described in detail on the CSSWG Wiki<br>
-  			                <a href="http://wiki.csswg.org/test/format#template-details">http://wiki.csswg.org/test/format#template-details</a>
-  			            </h5>
-  			        </div>
-                </section>
-                
-                <section>
-    			     <h2>Step 6</h2>
-    			     <br>
-        		     <h3>Add the transform attribute and test function to the SVG element</h3>
-        		     <br>
-        		     <div class="editor">
-       				 <div class="editorText">
-       				     <br><br>
-       				     <p class="tab1 editorHtml">&lt;body&gt;
-       				     <p class="tab2 editorHtml">&lt;svg&gt;</p>
-       			         <p class="tab3 editorHtml">&lt;rect width=<span class="editorAttrVal">"100"</span>
-       			             <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
-       			             <span class="highlight"><span class="editorHtml">transform=</span><span class="editorAttrVal">"translate(50)"</span></span><span class="editorHtml">/&gt;</span>
-       			         </p>
-       			         <p class="tab2 editorHtml">&lt;/svg&gt;</p>
-       			         <p class="tab1 editorHtml">&lt;/body&gt;
-       			     </div>
-       			     </div>
-    		    </section>
-    		    
-                <section>
-    			     <h2>Step 7</h2>
-    			     <br>
-        		     <h3>Create an element that is visible only upon failure</h3>
-    			     <br>
-         		     <div class="editor">
-        			 <div class="editorText">
-            		     <br>
-            		     <p class="tab1 editorHtml">&lt;body&gt;
-            		     <p class="tab2 editorHtml">&lt;svg&gt;</p>
-            		     <p class="tab3 editorHtml"><span class="highlight">&lt;rect x=<span class="editorAttrVal">"51"</span>
-              		         <span class="editorHtml">y=</span><span class="editorAttrVal">"1"<span>
-              		         <span class="editorHtml">width=</span><span class="editorAttrVal">"98"</span>
-              		         <span class="editorHtml">height=</span><span class="editorAttrVal">"98"</span><span class="editorHtml">/&gt;</span></span>
-              		     </p>
-              		     <p class="tab3 editorHtml">&lt;rect width=<span class="editorAttrVal">"100"</span>
-            		         <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
-            		         <span class="editorHtml">transform=</span><span class="editorAttrVal">"translate(50)"<span><span class="editorHtml">/&gt;</span>
-            		     </p>
-            		     <p class="tab2 editorHtml">&lt;/svg&gt;</p>
-            			 <p class="tab1 editorHtml">&lt;/body&gt;
-            		 </div>
-        			 </div>
-                </section>
-                
-                <section>
-    			     <h2>Step 8</h2>
-    			     <br>
-        		     <h3>Add green & red fill colors to denote passing & failing conditions</h3>
-        		     <br>
-        		     <div class="editor">
-         			 <div class="editorText">
-         			     <p class="tab1 editorHtml">&lt;body&gt;
-             		     <p class="tab2 editorHtml">&lt;svg&gt;</p>
-             		     <p class="tab3 editorHtml">&lt;rect width=<span class="editorHtml">x=</span><span class="editorAttrVal">"51"<span>
-               		         <span class="editorHtml">y=</span><span class="editorAttrVal">"1"<span>
-               		         <span class="editorHtml">width=</span><span class="editorAttrVal">"98"</span>
-               		         <span class="editorHtml">height=</span><span class="editorAttrVal">"98"</span>
-               		         <span class="highlight"><span class="editorHtml">fill=</span><span class="editorAttrVal">"red"</span></span><span class="editorHtml">/&gt;</span>
-               		     </p>
-             		     <p class="tab3 editorHtml">&lt;rect width=<span class="editorAttrVal">"100"</span>
-             		         <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
-             		         <span class="editorHtml">transform=</span><span class="editorAttrVal">"translate(50)"<span>
-             		         <span class="editorHtml"><span class="highlight">fill=<span class="editorAttrVal">"green"</span></span><span class="editorHtml">/&gt;</span>
-             		     </p>
-             		     <p class="tab2 editorHtml">&lt;/svg&gt;</p>
-             			 <p class="tab1 editorHtml">&lt;/body&gt;
-             		 </div>
-         			 </div>
-    			</section>
-    			
-                <section>
-    			     <h2>Step 9</h2>
-    			     <br>
-        		     <h3>Add a statement to the test page to make this a self-describing test</h3>
-        		     <br>
-        		     <div class="editor">
-         			 <div class="editorText">
-         			     <p class="tab1 editorHtml">&lt;body&gt;
-             		     <p class="tab2 editorHtml"><span class="highlight">&lt;p&gt;<span class="editorHtmlTxt">The test passes if there is a green square and no red.</span><span class="editorHtml">&lt;/p&gt;</span></span>
-                         <p class="tab2 editorHtml">&lt;svg&gt;</p>
-             		     <p class="tab3 editorHtml">&lt;rect x=</span><span class="editorAttrVal">"51"<span>
-               		         <span class="editorHtml">y=</span><span class="editorAttrVal">"1"<span>
-               		         <span class="editorHtml">width=</span><span class="editorAttrVal">"98"</span>
-               		         <span class="editorHtml">height=</span><span class="editorAttrVal">"98"</span>
-               		         <span class="editorHtml">fill=</span><span class="editorAttrVal">"red"</span><span class="editorHtml">/&gt;</span>
-               		     </p>
-             		     <p class="tab3 editorHtml">&lt;rect width=<span class="editorAttrVal">"100"</span>
-             		         <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
-             		         <span class="editorHtml">transform=</span><span class="editorAttrVal">"translate(50)"<span>
-             		         <span class="editorHtml">fill=</span><span class="editorAttrVal">"green"</span><span class="editorHtml">/&gt;</span>
-             		     </p>
-             		     <p class="tab2 editorHtml">&lt;/svg&gt;</p>
-             			 <p class="tab1 editorHtml">&lt;/body&gt;
-             		 </div>
-         			 </div>
-    			</section>
-    			
-                <section>
-    			     <h2>Step 10</h2>
-    			     <br>
-        		     <h3>Open the <span style="color:red">reftests/ttwf-reftest-tutorial-ref.html</span> file in an editor</h3>
-        		     <img src="assets/images/refStarter.png">
-    		    </section>
-    		    
-    		    <section>
-    			     <h2>Step 11</h2>
-    			     <br>
-        		     <h3>Add the reference metadata</h3>
-    			     <div class="tab5">
-    			        <ul>
-      				        <li>Title</li>
-      				        <li>Author</li>
-      				        <li>Flags</li>
-      				    </ul>
-      				</div>
-                </section>
-                
-                <section>
-        		     <h2>Step 12</h2>
-        		     <br>
-            	     <h3>Create and position the reference element so it matches the test file exactly in a passing condition</h3>
-            	     <br>
-            	        <div class="editor">
-        				<div class="editorText">
-        				     <br><br>
-        				     <p class="tab1 editorHtml">&lt;body&gt;
-        				     <p class="tab2 editorHtml">&lt;svg&gt;</p>
-        			         <p class="tab3 editorHtml"><span class="highlight">&lt;rect x=<span class="editorAttrVal">"50"</span>
-        			             <span class="editorHtml">y=</span><span class="editorAttrVal">"0"<span>
-                                 <span class="editorHtml">width=</span><span class="editorAttrVal">"100"<span>
-                                 <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
-        			             <span class="editorHtml">fill=</span><span class="editorAttrVal">"green"</span><span class="editorHtml">/&gt;</span></span>
-        			         </p>
-        			         <p class="tab2 editorHtml">&lt;/svg&gt;</p>
-        			         <p class="tab1 editorHtml">&lt;/body&gt;
-        			    </div>
-        			    </div>
-                </section>
-                
-                <section>
-        		     <h2>Step 13</h2>
-        		     <br>
-            	     <h3>Add the self-describing statement here, too</h3>
-            	     <br>
-            	     <div class="editor">
-     				 <div class="editorText">
-     				     <br><br>
-     				     <p class="tab1 editorHtml">&lt;body&gt;
-     				     <p class="tab2 editorHtml"><span class="highlight">&lt;p&gt;<span class="editorHtmlTxt">The test passes if there is a green square and no red.</span><span class="editorHtml">&lt;/p&gt;</span></span>
-                         <p class="tab2 editorHtml">&lt;svg&gt;</p>
-     			         <p class="tab3 editorHtml">&lt;rect x=<span class="editorAttrVal">"50"</span>
-     			             <span class="editorHtml">y=</span><span class="editorAttrVal">"0"<span>
-                              <span class="editorHtml">width=</span><span class="editorAttrVal">"100"<span>
-                              <span class="editorHtml">height=</span><span class="editorAttrVal">"100"</span>
-     			             <span class="editorHtml">fill=</span><span class="editorAttrVal">"green"</span><span class="editorHtml">/&gt;</span>
-     			         </p>
-     			         <p class="tab2 editorHtml">&lt;/svg&gt;</p>
-     			         <p class="tab1 editorHtml">&lt;/body&gt;
-     			    </div>
-     			    </div>
-                </section>
-                
-                <section>
-        		     <h2>Step 14</h2>
-        		     <br>
-            	     <h3>Examine your test and reference files in the browser and confirm they are identical</h3>
-            	     <img src="assets/images/passingRefTestExample.png">
-                </section>
-                <section>
-        		     <h3>Failing test example</h3>
-        		     <br>
-            	     <img src="assets/images/failingRefTestExample.png">
-                </section>
-                <section>
-                    <section>
-    			        <h2>Step 15 - OSX</h2>
-    			        <h5>Press the down-arrow for Windows instructions</h5>
-    			        <br>
-            		    <h3>Add your new test & reference file to the repository</h3>
-          				<div class="console">
-          				    <div class="consoleText">
-              				    <br>
-              				    <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span>/incoming</p>
-              			        <p>$ hg add ttwf-reftest-tutorial-001.html</p>
-              			        <p>$ hg add reftest</p>
-              			        <p>$ hg commit -m "TTWF reftest tutorial"</p>
-              			        <p>$ hg push</p>
-              			    </div>
-          			    </div>
-                         <div class="bottomNote2">
-          			            <p class="noteText">Note: If you receive the following error:</p> 
-          			            <p class="errorText">abort: push creates new remote head ...</p>
-          			            <p class="noteText">Your local repository is out of sync with the test repository</p>
-          			            <p class="noteText">Do the following to resolve the issue:</p>
-          			    </div>  
-      			        <br><br><br><br><br><br><br>
-                        <div class="console">
-          				    <div class="consoleText">
-              				    <br>
-              			        <p>$ hg pull -u</p>
-              			        <p>$ hg merge</p>
-              			        <p>$ hg commit -m "Merge"</p>
-              			        <p>$ hg push</p>
-              			    </div>
-          			    </div>          			    
-      			    </section>
-      			    <section>
-    			        <h2>Step 15 - Windows</h2>
-    			        <h5>Press the up-arrow for OSX instructions</h5>
-    			        <br>
-            		    <h3>Add your new test & reference file to the repository</h3>
-          				<div class="console">
-          				    <div class="dosText">
-              				    <br>
-              				    <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span>\incoming</p>
-              			        <p>$ hg add ttwf-reftest-tutorial-001.html</p>
-              			        <p>$ hg add reftest</p>
-              			        <p>> hg commit -m "TTWF reftest tutorial"</p>
-              			        <p>> hg push</p>
-              			    </div>
-          			    </div>
-                        <div class="bottomNote2">
-      			            <p class="noteText">Note: If you receive the following error:</p> 
-      			            <p class="errorText">abort: push creates new remote head ...</p>
-      			            <p class="noteText">Your local repository is out of sync with the test repository</p>
-      			            <p class="noteText">Do the following to resolve the issue:</p>
-      			        </div>  
-      			        <br><br><br><br><br><br><br>
-                        <div class="console">
-          				    <div class="dosText">
-              				    <br>
-              			        <p>> hg pull -u</p>
-              			        <p>> hg merge</p>
-              			        <p>> hg commit -m "Merge"</p>
-              			        <p>> hg push</p>
-              			    </div>
-          			    </div>      			               			    
-      			    </section>
-                </section>
-                <section>
-    			     <h2>Step 16</h2>
-    			     <br>
-        		     <h3>Ask someone to review your test</h3>
-    		    </section>
-    		    <section>
-    		        <section>
-        			    <h2>Step 17 - OSX</h2>
-        			    <h5>Press down-arrow for Windows instructions</h5>
-        			    <br>
-            		    <h3>Incorporate feedback & move test to the submitted folder</h3>
-        			    <br>
-          				<div class="consoleLarge">
-          				    <div class="consoleText">
-              				    <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span></p>
-              				    <p>$ hg pull -u</p>
-              				    <p>$ hg merge</p>
-              				    <p>$ hg commit -m "merging"</p>
-              			        <p>$ hg mv incoming/ttwf-reftest-tutorial-001.html submitted/ttwf-reftest-tutorial-001.html</p>
-              			        <p>$ hg mv incoming/reftest/ttwf-reftest-tutorial-ref.html submitted/reftest/ttwf-reftest-tutorial-ref.html</p>
-              			        <p>$ hg commit -m "moved the TTWF reftest tutorial to the submitted folder"</p>
-              			        <p>$ hg push</p>
-              			    </div>
-          			    </div>
-          		    </section>
-                    <section>
-    			        <h2>Step 17 - Windows</h2>
-        			    <h5>Press down-arrow for OSX instructions</h5>
-        			    <br>
-            		    <h3>Incorporate feedback & move test to the submitted folder</h3>
-        			    <br>
-          				<div class="consoleLarge">
-          				    <div class="dosText">
-              				    <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span></p>
-              				    <p>> hg pull -u</p>
-              				    <p>> hg merge</p>
-              				    <p>> hg commit -m "merging"</p>
-              			        <p>> hg mv incoming\ttwf-reftest-tutorial-001.html submitted\ttwf-reftest-tutorial-001.html</p>
-              			        <p>> hg mv incoming\reftest/ttwf-reftest-tutorial-ref.html submitted\reftest\ttwf-reftest-tutorial-ref.html</p>
-              			        <p>> hg commit -m "moved the TTWF reftest tutorial to the submitted folder"</p>
-              			        <p>> hg push</p>
-              			    </div>
-          			    </div>
-      		        </section>          		        
-                </section>
-                
-                <section>
-                    <h1>W3C JavaScript Test Tutorial</h1>
-                </section>
-                
-				<section>
-					<h2>JavaScript Test Overview</h2>
-					<br>
-					<ul>
-					    <li>In most cases, JavaScript is the preferred method for writing tests</li>
-					    <li>JavaScript tests have some advantages over Ref Tests
-					        <ul>
-					            <li>Robust</li>
-					            <li>Flexible</li>
-					            <li>Performant</li>
-					            <li>Powerful</li>
-					        </ul>
-					    </li>
-					    <li>W3C provides a framework (testharness) to simplify and standardize test creation
-					        <ul>
-					            <li>Includes an API for making common test assertions</li>
-					            <li>Formats results and displays debug information for failures</li>
-					        </ul>
-					    </li>
-					    <li>JavaScript tests are best when used in conjunction with some number of Ref Tests that verify final rendering</li>
-					</ul>
-				</section>
-					
-				<section>
-				    <h2>JavaScript Test Tutorial</h2>
-					<h3>Sample Test Case</h3>
-					<br>
-					<h4>Write a basic test for the SVG transform attribute described in the CSS3 Transforms spec using the translate() function</h4>
-					<h4 style="color:red">Same as Ref Test example</h4>
-					<br>
-					<h3>Spec Links:</h3>
-					<br>
-				    <h4>
-					<a href="http://dev.w3.org/csswg/css3-transforms/#svg-transform" target="top">http://dev.w3.org/csswg/css3-transforms/#svg-transform</a>
-					<br>
-					<br>
-					<a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
-					</h4>
-					
-					<script>
-						// Delicously hacky. Look away.
-						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
-						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
-					</script>
-				</section>
-				                				
-			    <section>
-			        <h2>Step 1</h2>
-			        <br>
-    			    <h3>A JavaScript starter file was copied during Setup</h3>
-    			    <h3>Open the <span style="color:red">ttwf-js-tutorial-001.html</span> file in an editor</h3>
-    			    <img src="assets/images/jsTestStarter.png">
-                </section>
-                
-                <section>
-    			     <h2>Step 2</h2>
-    			     <br>
-        		     <h3>Review metadata</h3>
-        		     <br>
-        		     <h3>
-    			        <ul>
-    			            <li>Most items have been completed in the starter file</li>
-    			            <li>Update the author metadata to include your name and email address</li>
-    			            <li>Note the following differences from the Ref Test metadata:
-    			                <ul>
-    			                    <li>Additional flag was used: "dom"</li>
-    			                    <li>No match metadata is required - only needed for Ref Tests</li>
-    			                </ul>
-    			            </li>
-      				    </ul>
-      				</h3>
-                </section>
-                
-                <section>
-        			<h2>Step 3</h2>
-    			    <br>
-        		    <h3>Import the W3C JavaScript Test Harness files</h3> 
-        		    <br>
-        		    <h4>Add the following lines to the starter file above the style block</h4>   
-        		    <br>            
-                    <div class="editorSmall">
-                        <div class="editorText">
-                            <br>
-                            <p class="tab1 editorHtml">&lt;script src=<span class="editorAttrVal">"/resources/testharness.js"</span>&gt;&lt;/script&gt;</p>
-                            <p class="tab1 editorHtml">&lt;script src=<span class="editorAttrVal">"/resources/testharnessreport.js"</span>&gt;&gt;&lt;/script&gt;</p>
-                        </div>
-                    </div>
-                    <div class="bottomEditorNote">
-                        <h5>Note: The path to the resources directory should match its location on your local machine</h5>
-                        <br>
-                        <h5>The path to these scripts must be updated to match the above before pushing to the test repo</h5>
-                    </div>
-                </section>
+				<section data-state="screenshotPage">
+                      <section>
+                          <br>
+                          <h2>Step 1 - OSX</h2>
+                          <p class="font5">Press down-arrow for Windows instructions</p>
+              	        <br>
+              		    <p class="font2">Update your local CSSWG test repository</p>
+              		    <p style="font-size:22px">Complete this step unless you just cloned the repository in the previous step</p>
+              		    <br>
 
-                <section>
-        			<h2>Step 4</h2>
-    			    <br>
-        		    <h3>Add a div element with id="log" for test results</h3>
-        		    <br>
-                    <div class="editor">
-       				    <div class="editorText">
-           				    <br><br>
-           				    <p class="tab1 editorHtml">&lt;body&gt;</p>
-           				    <p class="tab2 editorHtml">...</p>
-           			        <p class="tab2 editorHtml">&lt;div id=<span class="editorAttrVal">"log"</span>&gt;&lt;/div&gt;</span>
-           			        <p class="tab1 editorHtml">&lt;/body&gt;
-       			        </div>
-       			     <br><br>
-       			     <h4 style="line-height:30px">testharness will add an HTML table that contains a row for the test results from each test case in the file to this element</h4>
-                </section>
-                
-                <section>
-    			     <h2>Step 5</h2>
-    			     <br>
-        		     <h3>Set margins and padding to 0px</h3>
-        		     <br>
-        		     <div class="editor">
-       			         <div class="editorText">
-           			         <br><br>
-           				     <p class="tab1 editorHtml">&lt;style&gt;</p>
-           				     <p class="tab2 editorHtml">* {</p>
-           			         <p class="tab3 editorHtml">margin: 0px;</p>
-           			         <p class="tab3 editorHtml">padding: 0px;</p>
-           			         <p class="tab2 editorHtml">}</p>
-           			         <p class="tab1 editorHtml">&lt;/style&gt;
-           			     </div>
-       			     </div>
-       			     <br><br><br><br><br><br>
-       			     <h4>This is not required, but simplifies the code</h4>
-    		    </section>    		    
-    		    
-                <section>
-    			     <h2>Step 6</h2>
-    			     <br>
-        		     <h3>Create a script block that will contain the JavaScript</h3>
-    			     <br>
-         		     <div class="editor">
-        			     <div class="editorText">
-        			         <br><br>
-                		     <p class="tab1 editorHtml">&lt;body&gt;</p>
-           				     <p class="tab2 editorHtml">...</p>        			            
-                		     <p class="tab2 editorHtml">&lt;script&gt;</p>
-                		     <p class="tab2 editorHtml">&lt;/script&gt;</p>
-                			 <p class="tab1 editorHtml">&lt;/body&gt;</p>
-                		 </div>
-        			 </div>
-                </section>
-                
-                <section>
-                    <h3>Test file should now appear as follows:</h3>
-                    <img src="jsTest_step6.png">
-                </section>
-                
-                <section>
-    			     <h2>Step 7</h2>
-    			     <br>
-        		     <h3>Create a function inside the script block that will return the x,y position of an element</h3>
-        		     <br>
-        		     <div class="editor">
-         			 <div class="editorText">
-         			     <br>
-         			     <p class="tab1 editorHtml">&lt;script&gt;
-             		     <p class="tab2 editorHtml">function checkElementPosition(elemID) {</p>
-             		     <p class="tab3 editorHtml"><span class="editorReserveWord">return</span> document.getElementById(elemID).getBoundingClientRect().top +</p>
-             		     <p class="tab3 editorHtml">"," +  document.getElementById(elemID).getBoundingClientRect().left;</p>
-             		     <p class="tab2 editorHtml">}</p>
-             			 <p class="tab1 editorHtml">&lt;/script&gt;
-             		 </div>
-         			 </div>
-    			</section>
-    			
-    			<section>
-    			    <h2>The <span style="color:red">test</span> function</h2>
-    			    <br>
-    			    <ul>
-    			        <li>Documented and implemented in testharness.js</li>
-    			        <li>Function signature: <span style="color:red">test(test_function, name, properties)</span></li>
-    			        <li>Used to define an individual test case in a file
-    			            <ul>
-    			                <li>Multiple calls to test() are common in a single file</li>
-    			            </ul>
-    			        </li>
-    			        <li>The function argument must be a function object, not a function call</li>
-    			        <li>The return value of the function object passed to test() (argument 1) determines Pass/Fail
-    			            <ul>
-    			                <li>The assert methods in testharness.js are typically used as the function supplied to test(), but can also be user defined</li>
-    			            </ul>
-    			        </li>
-    			        <li>The name passed to test() (argument 2) should a be descriptive test name that conveys what is being tested
-    			            <ul>
-    			                <li>Name will be displayed in the test results table</li>
-    			            </ul>
-    			        </li>
-    			        <li>Properties (argument 3) is an object that overrides default test properties
-    			            <ul>
-    			                <li>timeout is the only currently recognized property</li>
-    			            </ul>
-    			        </li>
-    			    </ul>
-    		    </section>
-    		
-                <section>
-    			     <h2>Step 8</h2>
-    			     <br>
-        		     <h3>Add a call to the test function to your script block</h3>
-        		     <h4 style="color:red">test(test_function, name, properties)</h4>
-        		     <br>
-        		     <div class="editor">
-         			     <div class="editorText">
+              	        <p style="font-size:30px">From a terminal window, type the following:</p>
+              		    <div class="console">
+              		        <div class="consoleText">
+              			        <br><br>
+              		            <p>$ cd <span class="localPath">[path to repo]</span>/test</p>
+              		            <p>$ hg pull -u</p>
+              		            <p>$ ls -lR contributors/ttwf/samples</p>
+              		        </div>
+              	        </div>
+              	        <br><br><br>
+              	        <div class="bottomNote">
+              	            <p class="font5">
+              	                Note: These files can also be downloaded from here:
+              	                <br>
+              	                <a href="assets/resources/ttwf-reftest-tutorial-starter.zip">ttwf-reftest-tutorial-starter.zip</a>
+              	            </p>
+              	        </div>
+                      </section>  
+                      
+                      <section>
+                          <br>
+                          <h2>Step 1 - Windows</h2>
+                          <p class="font5">Press up-arrow for OSX instructions</p>
+              	        <br>
+              		    <p class="font2">Update your local CSSWG test repository</p>
+              		    <p style="font-size:22px">Complete this step unless you just cloned the repository in the previous step</p>
+              		    <br>
+
+              	        <p style="font-size:30px">From a DOS command window, type the following:</p>
+              		    <div class="console">
+              		        <div class="dosText">
+              			        <br><br>
+              		            <p>> cd <span class="localPath">[path to repo]</span>\test</p>
+              		            <p>> hg pull -u</p>
+              		            <p>> dir contributors\ttwf\samples</p>
+              		        </div>
+              	        </div>
+              	        <br><br><br>
+              	        <div class="bottomNote">
+              	            <p class="font5">
+              	                Note: These files can also be downloaded from here:
+              	                <br>
+              	                <a href="assets/resources/ttwf-reftest-tutorial-starter.zip">ttwf-reftest-tutorial-starter.zip</a>
+              	            </p>
+              	        </div>                                                 
+              	    </section>
+              	    
+                  </section>
+
+                  <section data-state="screenshotPage">
+                      <section>
+                          <br>
+              	         <h2>Step 2 - OSX</h2>
+              	         <p class="font5">Press down-arrow for Windows instructions</p>
+              		     <br>
+              		     <p class="font2">Create a directory for your new test</p>
+              		     <br>
+              			 <div class="console">
+              			     <div class="consoleText">
+                				     <br><br><br>
+                				     <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/</p>
+                				     <p>$ mkdir -p <span class="localPath">yourName</span>/incoming</p>
+                				     <p>$ cd <span class="localPath">yourName</span>/incoming</p>
+                			     </div>
+              		     </div>
+              	    </section>
+              	    <section>
+              	        <br>
+              	        <h2>Step 2 - Windows</h2>
+              	        <p class="font5">Press up-arrow for OSX instructions</p>
+              		    <br>
+              		    <p class="font2">Create a directory for your new test</p>
+              		    <br>
+              			<div class="console">
+              			    <div class="dosText">
+                 				     <br>
+                 				     <br>
+                 				     <br>
+                 				     <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf</p>
+                 				     <p>> mkdir <span class="localPath">yourName</span>\incoming</p>
+                 				     <p>> cd <span class="localPath">yourName</span>\incoming</p>
+                 			    </div>
+              		    </div>
+              	    </section>
+                  </section>
+
+                  <section data-state="screenshotPage">
+                      <section>
+                          <br>
+              	         <h2>Step 3 - OSX</h2>
+              	         <p class="font5">Press down-arrow for Windows instructions</p>
+              		     <br>
+              		     <p class="font2">Copy the starter files to your incoming directory</p>
+              		     <br>
+              			 <div class="console">
+              			     <div class="consoleText">
+                				     <br>
+                				     <br>
+                				     <p><span class="localPath">From your incoming directory created in previous step</span></p>
+                			         <p>$ cp -R ../../samples/* .</p>
+                			     </div>
+              		     </div>
+                      </section>
+                      <section>
+                          <br>
+                          <h2>Step 3 - Windows</h2>
+              	         <p class="font5">Press up-arrow for OSX instructions</p>
+              		     <br>
+              		     <p class="font2">Copy the starter files to your incoming directory</p>
+              		     <br>
+              			 <div class="console">
+              			     <div class="dosText">
+                				     <br>
+                				     <br>
+                				     <p><span class="localPath">From your incoming directory created in previous step</span></p>
+                			         <p>> xcopy /e ..\..\samples .</p>
+                			     </div>
+              		     </div>                        
+                      </section>
+                  </section>
+
+                  <section data-state="screenshotPage">
+              	     <h2>Step 4</h2>
+              	     <p class="font2">Open the ttwf-reftest-starter-001.html file in a editor</p>
+              	     					    <pre>
+                     					    <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;Test File&lt;/title&gt;
+    &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+    &lt;link rel="help" href="additional spec link"&gt;
+    &lt;link rel="match" href="path to reference file"&gt;
+    &lt;meta name="assert" content="Statement describing what the test case is asserting&gt;
+    &lt;<span class="styleTag">style type</span>="text/css"&gt;
+         /* Positioned container allows for the self-describing statement to still 
+            be visible in the case of failure */
+         <span class="styleTag">.container</span> {
+              <span class="cssProperty">position: absolute;
+         }
+         <span class="styleTag">.greenSquare</span> {
+             <span class="cssProperty">position: absolute;
+             top: 0;
+             left: 0;
+             width: 100<span class="px">px</span>;
+             height: 100<span class="px">px</span>;
+             /* Add fil color green here */
+             /* Add CSS transform here */
+         }
+         /* This div should only be visible if the test fails */
+         <span class="styleTag">.redSquare</span> {
+             /* It is approximately the same size as the test div, but with a 1px margin */
+             <span class="cssProperty">position: absolute;
+             width: 98<span class="px">px</span>;
+             height: 98<span class="px">px</span>;
+             /* Add fill color red */
+             /* Add top and left to position the div so it is hidden behind the green square */
+         }
+     &lt;/<span class="styleTag">style</span>&gt;
+     &lt;/head&gt;
+     &lt;body&gt;
+         &lt;p&gt;The test passes if ...&lt;/p&gt;
+         &lt;div class="container"&gt;
+            &lt;!-- This is the square that should not be visible if the test passes --&gt;
+            &lt;div class="redSquare"&gt;&lt;/div&gt;
+            &lt;!-- This is the square being tested with the transform --&gt;
+            &lt;div class="greenSquare"&gt;&lt;/div&gt;
+         &lt;/div&gt;
+     &lt;/body&gt;
+&lt;/html&gt;
+                                                 </code>
+                     					    </pre>
+                  </section>
+
+                  <section data-state="screenshotPage">
+                     <br>
+              	     <h2>Step 5.1 </h2>
+              	     <br>
+              	     <p class="font2">Add the test metadata</p>
+              	     <p class="font3">Title & Author</p>
+              	     				    <pre>
+                     					<code class="html">
+                     <span class="expand">
+    &lt;!DOCTYPE html&gt;
+     &lt;html&gt;
+         &lt;head&gt;
+         &lt;title&gt;CSS Transforms Test: transform property with translate function&lt;/title&gt;
+         &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+             . . .			
+                         </span>		        
+                     				    </code>
+                     				    </pre>
+              	     
+              		<div class="bottomNote3">
+                          <p class="font5">
+                              Note: Each metadata element is described in detail on the CSSWG Wiki<br>
+                              <a href="http://wiki.csswg.org/test/format#template-details">http://wiki.csswg.org/test/format#template-details</a>
+                          </p>
+                      </div>
+                  </section>
+                  
+                   <section data-state="screenshotPage">
+                        <br>
+                	     <h2>Step 5.2</h2>
+                	     <br>
+                	     <p class="font2">Add the test metadata</p>
+                	     <p class="font3">Path to reference file</p>
+                	     				    <pre>
+                       					<code class="html">
+                       <span class="expand">
+      &lt;!DOCTYPE html&gt;
+       &lt;html&gt;
+           &lt;head&gt;
+              . . .
+              &lt;link rel="match" href="reftest/ttwf-reftest-tutorial-starter.html"&gt;
+              . . .
+                           </span>		        
+                       				    </code>
+                       				    </pre>
+
+                		<div class="bottomNote3">
+                            <p class="font5">
+                                Note: Each metadata element is described in detail on the CSSWG Wiki<br>
+                                <a href="http://wiki.csswg.org/test/format#template-details">http://wiki.csswg.org/test/format#template-details</a>
+                            </p>
+                        </div>
+                    </section>
+                    
+                     <section data-state="screenshotPage">
+                             <br>
+                    	     <h2>Step 5.3</h2>
+                    	     <br>
+                    	     <p class="font2">Add the test metadata</p>
+                    	     <p class="font3">Spec links</p>
+                    	     				    <pre>
+                           					<code class="html">
+                           <span class="expandPageMed">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        . . .
+        &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+        &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;     
+        . . .
+                               </span>		        
+                           				    </code>
+                           				    </pre>
+
+                    		<div class="bottomNote3">
+                                <p class="font5">
+                                    Note: Each metadata element is described in detail on the CSSWG Wiki<br>
+                                    <a href="http://wiki.csswg.org/test/format#template-details">http://wiki.csswg.org/test/format#template-details</a>
+                                </p>
+                            </div>
+                        </section>
+                        
+                        <section data-state="screenshotPage">
+                                 <br>
+                        	     <h2>Step 6</h2>
+                        	     <br>
+                        	     <p class="font2">Add the transform property to the test element</p>
+                        	     
+                        	         <pre>
+                 				    <code class="html">
+             <span class="expand2">
+                    &lt;<span class="styleTag">style type</span>="text/css"&gt;
+                         <span class="styleTag">.greenSquare</span> {
+                             <span class="cssProperty">position: absolute;
+                             top: 0;
+                             left: 0;
+                             width: 100<span class="px">px</span>;
+                             height: 100<span class="px">px</span>;
+                             <span class="highlight">transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                         }
+                         . . .
+                     &lt;/<span class="styleTag">style</span>&gt;    
+             </span>				        
+                 				    </code>
+                 				    </pre>
+
+                         </section>
+
+                         <section data-state="screenshotPage">
+                                 <br>
+                        	     <h2>Step 7</h2>
+                        	     <br>
+                        	     <p class="font2">Create an element that is visible only upon failure</p>
+                        	      <pre>
+                 				    <code class="html">
+                                    <span class="expand2">
+                     &lt;<span class="styleTag">style type</span>="text/css"&gt;
+                         . . .
+                         <span class="styleTag">.redSquare</span> {
+                             <span class="cssProperty">position: absolute;
+                             width: 98<span class="px">px</span>;
+                             height: 98<span class="px">px</span>;
+                             <span class="highlight">top: 101<span class="px">px</span>;</span>
+                             <span class="highlight">left: 101<span class="px">px</span>;</span>
+                         }
+                     &lt;/<span class="styleTag">style</span>&gt;    
+         </span>				        
+                 				    </code>
+                 				    </pre>
+
+                         </section>
+
+                         <section data-state="screenshotPage">
+                                 <h2>Step 8</h2>
+                        	     <br>
+                        	     <p class="font2">Add green & red fill colors to denote passing & failing conditions</p>
+                        	      <pre>
+              				    <code class="html">
+          <span class="expand2">
+                 &lt;<span class="styleTag">style type</span>="text/css"&gt;
+                      <span class="styleTag">.greenSquare</span> {
+                          <span class="cssProperty">position: absolute;
+                          top: 0;
+                          left: 0;
+                          width: 100<span class="px">px</span>;
+                          height: 100<span class="px">px</span>;
+                          transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);
+                          <span class="highlight">background: green;</span>
+                      }
+                       <span class="styleTag">.redSquare</span> {
+                           <span class="cssProperty">position: absolute;
+                           width: 98<span class="px">px</span>;
+                           height: 98<span class="px">px</span>;
+                           top: 101<span class="px">px</span>;
+                           left: 101<span class="px">px</span>;
+                           <span class="highlight">background: red;</span>
+                       }
+                  &lt;/<span class="styleTag">style</span>&gt;    
+          </span>				        
+              				    </code>
+              				    </pre>
+                        </section>
+                        <section data-state="screenshotPage">
+                            <br>
+                             <h2>Step 9</h2>
+                             <br>
+                             <p class="font2">Add a statement to the test page to make this a self-describing test</p>
+                              <pre>
+             				 <code class="html">
+         <span class="expand2">
+         &lt;body&gt;
+             &lt;p&gt;The test passes if there is a green square and no red.&lt;/p&gt;
+             . . .
+         &lt;/body&gt;
+         </span>    				        
+             			    </code>
+             			    </pre>
+
+                        </section>
+
+                        <section data-state="screenshotPage">
+                            <br>
+                             <h2>Step 10</h2>
+                             <br>
+                             <p class="font2">Open the reftests/ttwf-reftest-tutorial-starter-ref.html file in an editor</p>
+                             <pre>
+                         	<code class="html">
+     &lt;!DOCTYPE html&gt;
+     &lt;html&gt;
+         &lt;head&gt;
+         &lt;title&gt;Reference File&lt;/title&gt;
+         &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+         &lt;<span class="styleTag">style type</span>="text/css"&gt;
+             <span class="styleTag">.container</span> {
+                  <span class="cssProperty">position: absolute;
+             }
+             <span class="styleTag">.greenSquare</span> {
+                 <span class="cssProperty">position: absolute;
+                 width: 100<span class="px">px</span>;
+                 height: 100<span class="px">px</span>;
+                 /* Position the div so its identical to the div in the test file */
+                 /* Add fill color to match the test file */
+             }
+         &lt;/<span class="styleTag">style</span>&gt;
+         &lt;/head&gt;
+             &lt;body&gt;
+                 &lt;p&gt;The test passes if...&lt;/p&gt;
+                 &lt;div class="container"&gt;
+                    &lt;div class="greenSquare"&gt;&lt;/div&gt;
+                 &lt;/div&gt;
+             &lt;/body&gt;
+         &lt;/html&gt;
+                                     </code>
+         					    </pre>
+
+                        </section>
+
+                        <section data-state="screenshotPage">
+                            <br>
+                             <h2>Step 11</h2>
+                             <br>
+                             <p class="font2">Add the reference metadata</p>
+                             <p class="font3">Title & Author</p>
+                             <pre>
+                                 
+        <span class="expand">
+                         	<code class="html">
+     &lt;!DOCTYPE html&gt;
+     &lt;html&gt;
+         &lt;head&gt;
+         &lt;title&gt;CSS Transforms Reference file&lt;/title&gt;
+         &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+         . . .
+                            </span>
+                            </code>
+   					    </pre>
+
+                    </section>
+                    <section data-state="screenshotPage">
+                        <br>
+                         <h2>Step 12</h2>
+                         <br>
+                         <p class="font2">Position and fill the reference element so it matches the test file exactly in a passing condition</p>
+                         <pre>
+     				    <code class="html">
+ <span class="expand2">
+                     &lt;<span class="styleTag">style type</span>="text/css"&gt;
+                         <span class="styleTag">.greenSquare</span> {
+                             <span class="cssProperty">position: absolute;
+                             width: 100<span class="px">px</span>;
+                             height: 100<span class="px">px</span>;
+                             <span class="highlight">top: 100;</span>
+                             <span class="highlight">left: 100;</span>
+                             <span class="highlight">background: green;</span>
+                         }
+                     &lt;/<span class="styleTag">style</span>&gt;
+ </span>				        
+     				    </code>
+     				    </pre>
+
+                    </section>
+
+                    <section data-state="screenshotPage">
+                         <br>
+                         <h2>Step 13</h2>
+                         <br>
+                         <p class="font2">Add the self-describing statement here, too</p>
+                         <pre>
+         				 <code class="html">
+     <span class="expand2">
+         &lt;body&gt;
+             &lt;p&gt;The test passes if there is a green square and no red.&lt;/p&gt;
+             . . .
+         &lt;/body&gt;
+     </span>    				        
+         			    </code>
+         			    </pre>
+                    </section>
+
+                    <section data-state="screenshotPage">
+                        <br>
+                         <h2>Step 14</h2>
+                         <br>
+                         <p class="font2">Examine your test and reference files in the browser and confirm they are identical</p>
+                         <img src="assets/images/comparison.png">
+                    </section>
+                    <section>
+                         <h3>Failing test example</h3>
+                         <br>
+                         <img src="assets/images/failingRefTest.png">
+                    </section>
+                    
+                    <section data-state="screenshotPage">
+                          <section>
+                            <br>
+                  	        <h2>Step 15 - OSX</h2>
+                  	        <p class="font5">Press the down-arrow for Windows instructions</p>
+                  	        <br>
+                  		    <p class="font2">Add your new test & reference file to the repository</p>
+                  			<div class="console">
+                  			    <div class="consoleText">
+                    				    <br>
+                    				    <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span>/incoming</p>
+                    			        <p>$ hg add ttwf-reftest-tutorial-001.html</p>
+                    			        <p>$ hg add reftest</p>
+                    			        <p>$ hg commit -m "TTWF reftest tutorial"</p>
+                    			        <p>$ hg push</p>
+                    			    </div>
+                  		    </div>
+                               <div class="bottomNote2">
+                                   <br><br><br>
+                  		            <p class="noteText">Note: If you receive the following error:</p> 
+                  		            <p class="errorText">abort: push creates new remote head ...</p>
+                  		            <p class="noteText">Your local repository is out of sync with the test repository</p>
+                  		            <p class="noteText">Do the following to resolve the issue:</p>
+                  		    </div>  
+                  	        <br><br><br><br><br><br><br>
+                              <div class="console">
+                  			    <div class="consoleText">
+                    				    <br>
+                    			        <p>$ hg pull -u</p>
+                    			        <p>$ hg merge</p>
+                    			        <p>$ hg commit -m "Merge"</p>
+                    			        <p>$ hg push</p>
+                    			    </div>
+                  		    </div>          			    
+                  	    </section>
+                  	    <section>
+                  	        <br>
+                  	        <h2>Step 15 - Windows</h2>
+                  	        <p class="font5">Press the up-arrow for OSX instructions</p>
+                  	        <br>
+                  		    <p class="font2">Add your new test & reference file to the repository</p>
+                  			<div class="console">
+                  			    <div class="dosText">
+                    				    <br>
+                    				    <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span>\incoming</p>
+                    			        <p>$ hg add ttwf-reftest-tutorial-001.html</p>
+                    			        <p>$ hg add reftest</p>
+                    			        <p>> hg commit -m "TTWF reftest tutorial"</p>
+                    			        <p>> hg push</p>
+                    			    </div>
+                  		    </div>
+                              <div class="bottomNote2">
+                                 <br><br><br>
+                  	            <p class="noteText">Note: If you receive the following error:</p> 
+                  	            <p class="errorText">abort: push creates new remote head ...</p>
+                  	            <p class="noteText">Your local repository is out of sync with the test repository</p>
+                  	            <p class="noteText">Do the following to resolve the issue:</p>
+                  	        </div>  
+                  	        <br><br><br><br><br><br><br>
+                              <div class="console">
+                  			    <div class="dosText">
+                    				    <br>
+                    			        <p>> hg pull -u</p>
+                    			        <p>> hg merge</p>
+                    			        <p>> hg commit -m "Merge"</p>
+                    			        <p>> hg push</p>
+                    			    </div>
+                  		    </div>      			               			    
+                  	    </section>
+                      </section>
+                      <section data-state="screenshotPage">
+                         <br>
+                  	     <h2>Step 16</h2>
+                  	     <br>
+                  	     <h3>Ask someone to review your test</h3>
+                      </section>
+                      <section data-state="screenshotPage">
+                          <section>
+                             <br>
+                  		    <h2>Step 17 - OSX</h2>
+                  		    <p class="font5">Press down-arrow for Windows instructions</p>
+                  		    <br>
+                  		    <p class="font2">Incorporate feedback & move test to the submitted folder</p>
+                  		    <br>
+                  			<div class="consoleLarge">
+                  			    <div class="consoleText">
+                  			            <br>
+                    				    <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span></p>
+                    				    <p>$ hg pull -u</p>
+                    				    <p>$ hg merge</p>
+                    				    <p>$ hg commit -m "merging"</p>
+                    			        <p>$ hg mv incoming/ttwf-reftest-tutorial-001.html submitted/ttwf-reftest-tutorial-001.html</p>
+                    			        <p>$ hg mv incoming/reftest/ttwf-reftest-tutorial-ref.html submitted/reftest/ttwf-reftest-tutorial-ref.html</p>
+                    			        <p>$ hg commit -m "moved the TTWF reftest tutorial to the submitted folder"</p>
+                    			        <p>$ hg push</p>
+                    			    </div>
+                  		    </div>
+                  	    </section>
+                          <section>
+                            <br>
+                  	        <h2>Step 17 - Windows</h2>
+                  		    <p class="font5">Press down-arrow for OSX instructions</p>
+                  		    <br>
+                  		    <p class="font2">Incorporate feedback & move test to the submitted folder</p>
+                  		    <br>
+                  			<div class="consoleLarge">
+                  			    <div class="dosText">
+                  			         <br>
+                    				    <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span></p>
+                    				    <p>> hg pull -u</p>
+                    				    <p>> hg merge</p>
+                    				    <p>> hg commit -m "merging"</p>
+                    			        <p>> hg mv incoming\ttwf-reftest-tutorial-001.html submitted\ttwf-reftest-tutorial-001.html</p>
+                    			        <p>> hg mv incoming\reftest/ttwf-reftest-tutorial-ref.html submitted\reftest\ttwf-reftest-tutorial-ref.html</p>
+                    			        <p>> hg commit -m "moved the TTWF reftest tutorial to the submitted folder"</p>
+                    			        <p>> hg push</p>
+                    			    </div>
+                  		    </div>
+                          </section>          		        
+                      </section>
+                      
+                      
+                      <section>
+                          <h1>W3C JavaScript Test Tutorial</h1>
+                      </section>
+
+                      <section data-state="screenshotPage">
+                         <br>
+                      	<h2>JavaScript Test Overview</h2>
+                      	<br>
+                      	<ul>
+                      	    <li>In most cases, JavaScript is the preferred method for writing tests</li>
+                      	    <li>JavaScript tests have some advantages over Ref Tests
+                      	        <ul>
+                      	            <li>Robust</li>
+                      	            <li>Flexible</li>
+                      	            <li>Performant</li>
+                      	            <li>Powerful</li>
+                      	        </ul>
+                      	    </li>
+                      	    <li>W3C provides a framework (testharness) to simplify and standardize test creation
+                      	        <ul>
+                      	            <li>Includes an API for making common test assertions</li>
+                      	            <li>Formats results and displays debug information for failures</li>
+                      	        </ul>
+                      	    </li>
+                      	    <li>JavaScript tests are best when used in conjunction with some number of Ref Tests that verify final rendering</li>
+                      	</ul>
+                      </section>
+
+                      <section data-state="screenshotPage">
+                          <br>
+                          	<h2>Sample Test Case</h2>
+                          	<section>
+              					<br><br>
+              					<p style="font-size: 28pt">Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
+              					<p class="font4" style="color:red">Same as Ref Test example</p>
+                                
+              					<br>
+              					<br>
+              					<p>Spec Links:</p>
+              					<p style="font-size: 18pt">
+              					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
+              					    <br>
+              					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
+          					    </p>
+                          
+                         </section> 
+                         <section>
+                              <img src="assets/images/specAssertion.png">
+                         </section>       
+
+                      </section>
+                      
+                      <section data-state="screenshotPage">
+                         <br>
+          		        <h2>Step 1</h2>
+          		        <br>
+          			    <p class="font2">A JavaScript starter file was copied during Setup</p>
+          			    <p class="font2">Open the <span style="color:red">ttwf-js-tutorial-001.html</span> file in an editor</p>
+          			    <img src="assets/images/jsTestStarter.png">
+                      </section>
+
+                      <section data-state="screenshotPage">
+                          <br>
+          			     <h2>Step 2</h2>
+          			     <br>
+              		     <p class="font2">Review metadata</p>
+              		     <br>
+              		     <p class="font2">
+          			        <ul>
+          			            <li>Most items have been completed in the starter file</li>
+          			            <li>Update the author metadata to include your name and email address</li>
+          			            <li>Note the following differences from the Ref Test metadata:
+          			                <ul>
+          			                    <li>Additional flag was used: "dom"</li>
+          			                    <li>No match metadata is required - only needed for Ref Tests</li>
+          			                </ul>
+          			            </li>
+            				    </ul>
+            				</p>
+                      </section>
+
+                      <section data-state="screenshotPage">
+                         <br>
+              			<h2>Step 3</h2>
+          			    <br>
+              		    <p class="font2">Import the W3C JavaScript Test Harness files</p> 
+              		    <br>
+              		    <p class="font3">Add the following lines to the starter file above the style block</p>   
+              		    <br>            
+                          <div class="editorSmall">
+                              <div class="editorText">
+                                  <br>
+                                  <p class="tab1 editorHtml">&lt;script src=<span class="editorAttrVal">"/resources/testharness.js"</span>&gt;&lt;/script&gt;</p>
+                                  <p class="tab1 editorHtml">&lt;script src=<span class="editorAttrVal">"/resources/testharnessreport.js"</span>&gt;&gt;&lt;/script&gt;</p>
+                              </div>
+                          </div>
+                          <div class="bottomEditorNote">
+                              <p class="font5">Note: The path to the resources directory should match its location on your local machine</p>
+                              <br>
+                              <p class="font5">The path to these scripts must be updated to match the above before pushing to the test repo</p>
+                          </div>
+                      </section>
+
+                      <section data-state="screenshotPage">
+                         <br>
+              			<h2>Step 4</h2>
+          			    <br>
+              		    <p class="font2">Add a div element with id="log" for test results</p>
+              		    <br>
+                          <div class="editor">
+             				    <div class="editorText">
+                 				    <br><br>
+                 				    <p class="tab1 editorHtml">&lt;body&gt;</p>
+                 				    <p class="tab2 editorHtml">...</p>
+                 			        <p class="tab2 editorHtml">&lt;div id=<span class="editorAttrVal">"log"</span>&gt;&lt;/div&gt;</span>
+                 			        <p class="tab1 editorHtml">&lt;/body&gt;
+             			        </div>
              			     <br><br>
-             			     <p class="tab1 editorHtml">&lt;script&gt;
-                 		     <p class="tab2 editorHtml">...</p>
-                 		     <p class="tab2 editorHtml">test(function, "Test CSS transform translate on a div");</p>
-                 			 <p class="tab1 editorHtml">&lt;/script&gt;
-                 		 </div>
-         			 </div>
-         			 <br><br><br><br><br><br>
-         			 <h4>No need to specify properties in this case</h4>
-    			</section>    	
-    			
-    			<section>
-    			    <h2>testharness.js assert methods</h2>
-    			    <br>
-    			    <ul>
-    			        <li>testharness.js provides a number of assert methods to use for testing
-    			            <ul>
-    			                <li>Full list is provided in the comment section of the testharness.js file</li>
-    			                <li>Whenever possible, these methods should be used</li>
-    			            </ul>
-    			        </li>
-    			        <li>All assert methods contain an optional "description" argument that is only output if the assertion fails
-    			            <ul>
-    			                <li>The description will be added to the default output from testharness</li>
-    			                <li>The description should be used to provide additional debug information in the case of a failure</li>
-    			            </ul>
-    			        </li>
-    			        <li>All asserts must be located in a test()
-    			            <ul>
-    			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
-    			            </ul>
-    			    </ul>
-    			</section>		
-    			
-                <section>
-    			     <h2>Step 9</h2>
-    			     <br>
-        		     <h3>Add assert_equals as the test_function for test()</h3>
-        		     <h4 style="color:red">assert_equals(actual, expected, description)</h4>
-        		     <br>
-        		     <div class="editorSmall">
-           			     <div class="editorText">
-                               <br>    			         
-           			         <p class="tab2 editorHtml">test(function() {assert_equals(checkElementPosition(<span class="editorAttrVal">"myDiv"</span>), <span class="editorAttrVal">"50,50"</span>,</p>
-           			         <p class="tab2 editorHtml"><span class="editorAttrVal">"myDiv should be at 50,50"</span>)}, <span class="editorAttrVal">"Test transform translate on SVG rect"</span>);</p>
-               		     </div>
-           			 </div>
-         			 <br><br><br>
-         			 <div style="text-align:left; line-height:20px; font-size:18px">
-         			     <p>Arguments used for assert_equals:</p>
-         			     <p>actual = assert_equals(checkElementPosition("myDiv")</p>
-            		     <p>expected = "50,50"</p>
-            		     <p>description = "myDiv should be at 50,50"</p>
-            		</div>
-    			</section>
-                 
-                <section>
-                    <h2 style="line-height:10px">Final file</h2>
-                    <img src="assets/images/jsTestFinal.png">
-                </section>
-                
-                <section>
-        		     <h2>Passing test example</h3>
-        		     <br>
-            	     <img src="assets/images/passingJSTestExample.png">
-                </section>
-                
-                <section>
-    			     <h2>Failing test example</h2>
-    			     <br>
-             	     <img src="assets/images/failingJSTestExample.png">
-                </section>
-                
-                <section>
-                    <section>
-    			        <h2>Step 10 - OSX</h2>
-    			        <h5>Press the down-arrow for Windows instructions</h5>
-    			        <br>
-            		    <h3>Add your new test file to the repository</h3>
-          				<div class="console">
-          				    <div class="consoleText">
-              				    <br>
-              				    <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span>/incoming</p>
-              			        <p>$ hg add ttwf-js-tutorial-001.html</p>
-              			        <p>$ hg commit -m "TTWF JavaScript tutorial"</p>
-              			        <p>$ hg push</p>
-              			    </div>
-          			    </div>
-                         <div class="bottomNote2">
-          			            <p class="noteText">Note: If you receive the following error:</p> 
-          			            <p class="errorText">abort: push creates new remote head ...</p>
-          			            <p class="noteText">Your local repository is out of sync with the test repository</p>
-          			            <p class="noteText">Do the following to resolve the issue:</p>
-          			    </div>  
-      			        <br><br><br><br><br><br><br>
-                        <div class="console">
-          				    <div class="consoleText">
-              				    <br>
-              			        <p>$ hg pull -u</p>
-              			        <p>$ hg merge</p>
-              			        <p>$ hg commit -m "Merge"</p>
-              			        <p>$ hg push</p>
-              			    </div>
-          			    </div>          			       
-      			    </section>
-      			    <section>
-    			        <h2>Step 10 - Windows</h2>
-    			        <h5>Press the up-arrow for OSX instructions</h5>
-    			        <br>
-            		    <h3>Add your new test file to the repository</h3>
-          				<div class="console">
-          				    <div class="dosText">
-              				    <br>
-              				    <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span>\incoming</p>
-              			        <p>> hg add ttwf-js-tutorial-001.html</p>
-              			        <p>> hg commit -m "TTWF JavaScript tutorial"</p>
-              			        <p>> hg push</p>
-              			    </div>
-          			    </div>
-                        <div class="bottomNote2">
-      			            <p class="noteText">Note: If you receive the following error:</p> 
-      			            <p class="errorText">abort: push creates new remote head ...</p>
-      			            <p class="noteText">Your local repository is out of sync with the test repository</p>
-      			            <p class="noteText">Do the following to resolve the issue:</p>
-      			        </div>  
-      			        <br><br><br><br><br><br><br>
-                        <div class="console">
-          				    <div class="dosText">
-              				    <br>
-              			        <p>> hg pull -u</p>
-              			        <p>> hg merge</p>
-              			        <p>> hg commit -m "Merge"</p>
-              			        <p>> hg push</p>
-              			    </div>
-          			    </div>      			               			    
-      			    </section>
-                </section>
-                
-                <section>
-    			     <h2>Step 11</h2>
-    			     <br>
-        		     <h3>Ask someone to review your test</h3>
-    		    </section>
-    		    
-    		    <section>
-    		        <section>
-        			    <h2>Step 12 - OSX</h2>
-        			    <h5>Press down-arrow for Windows instructions</h5>
-        			    <br>
-            		    <h3>Incorporate feedback & move test to the submitted folder</h3>
-        			    <br>
-          				<div class="consoleLarge">
-          				    <div class="consoleText">
-          				        <br><br>
-              				    <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span></p>
-              			        <p>$ hg mv incoming/ttwf-js-tutorial-001.html submitted/ttwf-js-tutorial-001.html</p>
-              			        <p>$ hg commit -m "moved the TTWF JavaScript tutorial to the submitted folder"</p>
-              			        <p>$ hg push</p>
-              			    </div>
-          			    </div>
+             			     <p class="font3">testharness will add an HTML table that contains a row for the test results from each test case in the file to this element</p>
+                      </section>
+                      
+                      <section data-state="screenshotPage">
+                          <br>
+                           <h2>Step 5</h2>
+                           <br>
+                           <p class="font2">Set margins and padding to 0px</p>
+                           <br>
+                           <div class="editor">
+                               <div class="editorText">
+                      	         <br><br>
+                      		     <p class="tab1 editorHtml">&lt;style&gt;</p>
+                      		     <p class="tab2 editorHtml">* {</p>
+                      	         <p class="tab3 editorHtml">margin: 0px;</p>
+                      	         <p class="tab3 editorHtml">padding: 0px;</p>
+                      	         <p class="tab2 editorHtml">}</p>
+                      	         <p class="tab1 editorHtml">&lt;/style&gt;
+                      	     </div>
+                           </div>
+                           <br><br><br><br><br><br>
+                           <p class="font3">This is not required, but simplifies the code</p>
+                      </section>    		    
+
+                      <section data-state="screenshotPage">
+                          <br>
+                           <h2>Step 6</h2>
+                           <br>
+                           <p class="font2">Create a script block that will contain the JavaScript</p>
+                           <br>
+                           <div class="editor">
+                      	     <div class="editorText">
+                      	         <br><br>
+                      		     <p class="tab1 editorHtml">&lt;body&gt;</p>
+                      		     <p class="tab2 editorHtml">...</p>        			            
+                      		     <p class="tab2 editorHtml">&lt;script&gt;</p>
+                      		     <p class="tab2 editorHtml">&lt;/script&gt;</p>
+                      			 <p class="tab1 editorHtml">&lt;/body&gt;</p>
+                      		 </div>
+                      	 </div>
+                      </section>
+
+                      <section data-state="screenshotPage">
+                          <br>
+                          <p class="font2">Test file should now appear as follows:</p>
+                          <img src="jsTest_step6.png">
+                      </section>
+
+                      <section data-state="screenshotPage">
+                          <br>
+                           <h2>Step 7</h2>
+                           <br>
+                           <p class="font2">Create a function inside the script block that will return the x,y position of an element</p>
+                           <br>
+                           <div class="editor">
+                      	 <div class="editorText">
+                      	     <br>
+                      	     <p class="tab1 editorHtml">&lt;script&gt;
+                      	     <p class="tab2 editorHtml">function checkElementPosition(elemID) {</p>
+                      	     <p class="tab3 editorHtml"><span class="editorReserveWord">return</span> document.getElementById(elemID).getBoundingClientRect().top +</p>
+                      	     <p class="tab3 editorHtml">"," +  document.getElementById(elemID).getBoundingClientRect().left;</p>
+                      	     <p class="tab2 editorHtml">}</p>
+                      		 <p class="tab1 editorHtml">&lt;/script&gt;
+                      	 </div>
+                      	 </div>
+                      </section>
+                      <section data-state="screenshotPage">
+          			    <p class="font1">The <span style="color:red">test</span> function</p>
+          			    <br>
+          			    <ul>
+          			        <li>Documented and implemented in testharness.js</li>
+          			        <li>Function signature: <span style="color:red">test(test_function, name, properties)</span></li>
+          			        <li>Used to define an individual test case in a file
+          			            <ul>
+          			                <li>Multiple calls to test() are common in a single file</li>
+          			            </ul>
+          			        </li>
+          			        <li>The function argument must be a function object, not a function call</li>
+          			        <li>The return value of the function object passed to test() (argument 1) determines Pass/Fail
+          			            <ul>
+          			                <li>The assert methods in testharness.js are typically used as the function supplied to test(), but can also be user defined</li>
+          			            </ul>
+          			        </li>
+          			        <li>The name passed to test() (argument 2) should a be descriptive test name that conveys what is being tested
+          			            <ul>
+          			                <li>Name will be displayed in the test results table</li>
+          			            </ul>
+          			        </li>
+          			        <li>Properties (argument 3) is an object that overrides default test properties
+          			            <ul>
+          			                <li>timeout is the only currently recognized property</li>
+          			            </ul>
+          			        </li>
+          			    </ul>
           		    </section>
-                    <section>
-    			        <h2>Step 12 - Windows</h2>
-        			    <h5>Press down-arrow for OSX instructions</h5>
-        			    <br>
-            		    <h3>Incorporate feedback & move test to the submitted folder</h3>
-        			    <br>
-          				<div class="consoleLarge">
-          				    <div class="dosText">
-          				        <br><br>
-              				    <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span></p>
-              			        <p>> hg mv incoming\ttwf-js-tutorial-001.html submitted\ttwf-js-tutorial-001.html</p>
-              			        <p>> hg commit -m "moved the TTWF JavaScript tutorial to the submitted folder"</p>
-              			        <p>> hg push</p>
-              			    </div>
-          			    </div>
-      		        </section>          		        
-                </section>  
-                
-                <section>
-                    <h2>Congratulations!</h2>
-                    <br><br>
-                    <h3>You have completed your first two W3C tests!</h3>
-                </section>                 		    		     
-                
-                <section>
-                    <h2>Reference Slides</h2>
-                </section>
-                
-                <section>
-                    <h2>Mercurial Command Reference</h2>
-                    <br>
-                    <ul>
-                        <li>Basic Commands:
-                            <ul>
-                                <li>hg pull   (gets the latest changes from the CSSWG Test repo)</li>
-                                <ul>
-                                    <li>To update after pull, use: hg pull -u (alleviates need to do hg update)</li>
-                                </ul>                                
-                                <li>hg update (applies the latest changes pulled to your local repo)</li>
-                                <li>hg status (displays list of locally changed files)</li>
-                                <li>hg add    (stages a new or modified local file for commit)</li>
-                                <li>hg remove (stages the removal of a local file for commit)</li>
-                                <li>hg merge  (merges local changes with updates pulled from CSSWG Test repo)</li>
-                                <li>hg commit (commits local changes to local repository)</li>
-                                    <ul>
-                                        <li>To include commit message, use: hg commit -m "<span style="font-style:italic">Commit message here</span>"</li>
-                                    </ul>
-                                <li>hg push   (pushes local changes to the CSSWG Test repository)</li>
-                            </ul>
-                        </li>
-                        <li>See next slide for typical usage scenarios</li>
-                </section>
-                <section>
-                    <h2>Mercurial Command Reference</h2>
-                    <br>
-                    <ul>
-                        <li>User wants to update their local repo to match the CSSWG Test repo:
-                            <ul>
-                                <li>hg pull -u  (pulls and applies latest changes from CSSWG repo to local repo)</li>
-                            </ul>
-                        </li>
-                        <li>User makes local changes, wants to get them into CSSWG Test repo:
-                            <ul>
-                                <li>hg status (check which files are stages for commit)</li>
-                                <li>hg add <span style="font-style:italic">fileName</span> (stages file for commit, repeat for each file)</li>
-                                <li>hg status (confirm all files are stages for commit)</li>
-                                <li>hg commit -m "<span style="font-style:italic">Commit message here</span>" (Commit to local repo)</li>
-                                <li>hg push (pushes locally committed changes to CSSWG Test repo)
-                            </ul>
-                        </li> 
-                        <li>User attempts to push, gets error message "abort: push creates new remote head ..."
-                            <ul>
-                                <li>hg pull (gets newest changes from CSSWG Test repo)</li>
-                                <li>hg merge (merges newest changes from CSSWG Test repo with local changes)</li>
-                                <li>hg commit -m "Merge" (commits the merge to local repo)</li>
-                                <li>hg push (pushes changes to CSSWG Test repo)</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-        </div>
+
+                      <section data-state="screenshotPage">
+                          <br>
+          			     <h2>Step 8</h2>
+          			     <br>
+              		     <p class="font2">Add a call to the test function to your script block</p>
+              		     <p class="font3" style="color:red">test(test_function, name, properties)</p>
+              		     <br>
+              		     <div class="editor">
+               			     <div class="editorText">
+                   			     <br><br>
+                   			     <p class="tab1 editorHtml">&lt;script&gt;
+                       		     <p class="tab2 editorHtml">...</p>
+                       		     <p class="tab2 editorHtml">test(function, "Test CSS transform translate on a div");</p>
+                       			 <p class="tab1 editorHtml">&lt;/script&gt;
+                       		 </div>
+               			 </div>
+               			 <br><br><br><br><br><br>
+               			 <p class="font4">No need to specify properties in this case</p>
+          			</section>    	
+
+          			<section data-state="screenshotPage">
+          			    <br>
+          			    <p class="font2">testharness.js assert methods</p>
+          			    <br>
+          			    <ul>
+          			        <li>testharness.js provides a number of assert methods to use for testing
+          			            <ul>
+          			                <li>Full list is provided in the comment section of the testharness.js file</li>
+          			                <li>Whenever possible, these methods should be used</li>
+          			            </ul>
+          			        </li>
+          			        <li>All assert methods contain an optional "description" argument that is only output if the assertion fails
+          			            <ul>
+          			                <li>The description will be added to the default output from testharness</li>
+          			                <li>The description should be used to provide additional debug information in the case of a failure</li>
+          			            </ul>
+          			        </li>
+          			        <li>All asserts must be located in a test()
+          			            <ul>
+          			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
+          			            </ul>
+          			    </ul>
+          			</section>		
+
+                      <section data-state="screenshotPage">
+                          <br>
+          			     <h2>Step 9</h2>
+          			     <br>
+              		     <p class="font2">Add assert_equals as the test_function for test()</p>
+              		     <p class="font3" style="color:red">assert_equals(actual, expected, description)</p>
+              		     <br>
+              		     <div class="editorSmall">
+                 			     <div class="editorText">
+                                     <br>    			         
+                 			         <p class="tab2 editorHtml">test(function() {assert_equals(checkElementPosition(<span class="editorAttrVal">"myDiv"</span>), <span class="editorAttrVal">"50,50"</span>,</p>
+                 			         <p class="tab2 editorHtml"><span class="editorAttrVal">"myDiv should be at 50,50"</span>)}, <span class="editorAttrVal">"Test transform translate on SVG rect"</span>);</p>
+                     		     </div>
+                 			 </div>
+               			 <br><br><br>
+               			 <div style="text-align:left; line-height:20px; font-size:18px">
+               			     <p>Arguments used for assert_equals:</p>
+               			     <p>actual = assert_equals(checkElementPosition("myDiv")</p>
+                  		     <p>expected = "50,50"</p>
+                  		     <p>description = "myDiv should be at 50,50"</p>
+                  		</div>
+          			</section>
+          			
+          			<section data-state="screenshotPage">
+          			      <br>
+                           <h2 style="line-height:10px">Final file</h2>
+                           <img src="assets/images/jsTestFinal.png">
+                       </section>
+
+                       <section data-state="screenshotPage">
+                          <br>
+                   	     <h2>Passing test example</p>
+                   	     <br>
+                   	     <img src="assets/images/passingJSTestExample.png">
+                       </section>
+
+                       <section data-state="screenshotPage">
+                          <br>
+                   	     <h2>Failing test example</h2>
+                   	     <br>
+                    	     <img src="assets/images/failingJSTestExample.png">
+                       </section>
+
+                       <section data-state="screenshotPage">
+                           <section>
+                   	        <h2>Step 10 - OSX</h2>
+                   	        <br>
+                   	        <p class="font5">Press the down-arrow for Windows instructions</p>
+                   	        <br>
+                   		    <p class="font2">Add your new test file to the repository</p>
+                   			<div class="console">
+                   			    <div class="consoleText">
+                     				    <br>
+                     				    <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span>/incoming</p>
+                     			        <p>$ hg add ttwf-js-tutorial-001.html</p>
+                     			        <p>$ hg commit -m "TTWF JavaScript tutorial"</p>
+                     			        <p>$ hg push</p>
+                     			    </div>
+                   		    </div>
+                                <div class="bottomNote2">
+                                    <br><br><br>
+                   		            <p class="noteText">Note: If you receive the following error:</p> 
+                   		            <p class="errorText">abort: push creates new remote head ...</p>
+                   		            <p class="noteText">Your local repository is out of sync with the test repository</p>
+                   		            <p class="noteText">Do the following to resolve the issue:</p>
+                   		    </div>  
+                   	        <br><br><br><br><br><br><br>
+                               <div class="console">
+                   			    <div class="consoleText">
+                     				    <br>
+                     			        <p>$ hg pull -u</p>
+                     			        <p>$ hg merge</p>
+                     			        <p>$ hg commit -m "Merge"</p>
+                     			        <p>$ hg push</p>
+                     			    </div>
+                   		    </div>          			       
+                   	    </section>
+                   	    <section>
+                   	        <h2>Step 10 - Windows</h2>
+                   	        <br>
+                   	        <p class="font5">Press the up-arrow for OSX instructions</p>
+                   	        <br>
+                   		    <p class="font2">Add your new test file to the repository</p>
+                   			<div class="console">
+                   			    <div class="dosText">
+                     				    <br>
+                     				    <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span>\incoming</p>
+                     			        <p>> hg add ttwf-js-tutorial-001.html</p>
+                     			        <p>> hg commit -m "TTWF JavaScript tutorial"</p>
+                     			        <p>> hg push</p>
+                     			    </div>
+                   		    </div>
+                               <div class="bottomNote2">
+                                <br><br><br>
+                   	            <p class="noteText">Note: If you receive the following error:</p> 
+                   	            <p class="errorText">abort: push creates new remote head ...</p>
+                   	            <p class="noteText">Your local repository is out of sync with the test repository</p>
+                   	            <p class="noteText">Do the following to resolve the issue:</p>
+                   	        </div>  
+                   	        <br><br><br><br><br><br><br>
+                               <div class="console">
+                   			    <div class="dosText">
+                     				    <br>
+                     			        <p>> hg pull -u</p>
+                     			        <p>> hg merge</p>
+                     			        <p>> hg commit -m "Merge"</p>
+                     			        <p>> hg push</p>
+                     			    </div>
+                   		    </div>      			               			    
+                   	    </section>
+                       </section>
+
+                       <section data-state="screenshotPage">
+                         <br>
+                   	     <h2>Step 11</h2>
+                   	     <br>
+                   	     <h3>Ask someone to review your test</h3>
+                       </section>
+                       
+                       <section data-state="screenshotPage">
+                           <section>
+                       	    <h2>Step 12 - OSX</h2>
+                       	    <br>
+                       	    <p class="font5">Press down-arrow for Windows instructions</p>
+                       	    <br>
+                       	    <p class="font2">Incorporate feedback & move test to the submitted folder</p>
+                       	    <br>
+                       		<div class="consoleLarge">
+                       		    <div class="consoleText">
+                       		        <br><br><br>
+                       			    <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span></p>
+                       		        <p>$ hg mv incoming/ttwf-js-tutorial-001.html submitted/ttwf-js-tutorial-001.html</p>
+                       		        <p>$ hg commit -m "moved the TTWF JavaScript tutorial to the submitted folder"</p>
+                       		        <p>$ hg push</p>
+                       		    </div>
+                       	    </div>
+                           </section>
+                           <section>
+                               <h2>Step 12 - Windows</h2>
+                               <br>
+                       	    <p class="font5">Press down-arrow for OSX instructions</p>
+                       	    <br>
+                       	    <p class="font2">Incorporate feedback & move test to the submitted folder</p>
+                       	    <br>
+                       		<div class="consoleLarge">
+                       		    <div class="dosText">
+                       		        <br><br><br>
+                       			    <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span></p>
+                       		        <p>> hg mv incoming\ttwf-js-tutorial-001.html submitted\ttwf-js-tutorial-001.html</p>
+                       		        <p>> hg commit -m "moved the TTWF JavaScript tutorial to the submitted folder"</p>
+                       		        <p>> hg push</p>
+                       		    </div>
+                       	    </div>
+                           </section>          		        
+                       </section>  
+
+                       <section data-state="screenshotPage">
+                           <br>
+                           <h2>Congratulations!</h2>
+                           <br><br>
+                           <p class="font1">You have completed your first two W3C tests!</p>
+                       </section>                 		    		     
+
+                       <section>
+                           <h2>Reference Slides</h2>
+                       </section>
+
+                       <section data-state="screenshotPage">
+                           <br>
+                           <h2>Mercurial Command Reference</h2>
+                           <br>
+                           <ul>
+                               <li>Basic Commands:
+                                   <ul>
+                                       <li>hg pull   (gets the latest changes from the CSSWG Test repo)</li>
+                                       <ul>
+                                           <li>To update after pull, use: hg pull -u (alleviates need to do hg update)</li>
+                                       </ul>                                
+                                       <li>hg update (applies the latest changes pulled to your local repo)</li>
+                                       <li>hg status (displays list of locally changed files)</li>
+                                       <li>hg add    (stages a new or modified local file for commit)</li>
+                                       <li>hg remove (stages the removal of a local file for commit)</li>
+                                       <li>hg merge  (merges local changes with updates pulled from CSSWG Test repo)</li>
+                                       <li>hg commit (commits local changes to local repository)</li>
+                                           <ul>
+                                               <li>To include commit message, use: hg commit -m "<span style="font-style:italic">Commit message here</span>"</li>
+                                           </ul>
+                                       <li>hg push   (pushes local changes to the CSSWG Test repository)</li>
+                                   </ul>
+                               </li>
+                               <li>See next slide for typical usage scenarios</li>
+                       </section>
+                       <section data-state="screenshotPage">
+                           <br>
+                           <h2>Mercurial Command Reference</h2>
+                           <br>
+                           <ul>
+                               <li>User wants to update their local repo to match the CSSWG Test repo:
+                                   <ul>
+                                       <li>hg pull -u  (pulls and applies latest changes from CSSWG repo to local repo)</li>
+                                   </ul>
+                               </li>
+                               <li>User makes local changes, wants to get them into CSSWG Test repo:
+                                   <ul>
+                                       <li>hg status (check which files are stages for commit)</li>
+                                       <li>hg add <span style="font-style:italic">fileName</span> (stages file for commit, repeat for each file)</li>
+                                       <li>hg status (confirm all files are stages for commit)</li>
+                                       <li>hg commit -m "<span style="font-style:italic">Commit message here</span>" (Commit to local repo)</li>
+                                       <li>hg push (pushes locally committed changes to CSSWG Test repo)
+                                   </ul>
+                               </li> 
+                               <li>User attempts to push, gets error message "abort: push creates new remote head ..."
+                                   <ul>
+                                       <li>hg pull (gets newest changes from CSSWG Test repo)</li>
+                                       <li>hg merge (merges newest changes from CSSWG Test repo with local changes)</li>
+                                       <li>hg commit -m "Merge" (commits the merge to local repo)</li>
+                                       <li>hg push (pushes changes to CSSWG Test repo)</li>
+                                   </ul>
+                               </li>
+                           </ul>
+                       </section>
+          		    
+                    
+                   
+		
+			</div>
 
 			<!-- The navigational controls UI -->
 			<aside class="controls">
@@ -1036,10 +1209,13 @@
 			<div class="progress"><span></span></div>
 			
 		</div>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="lib/highlight.js"></script>
+		<script src="lib/classList.js"></script>
 		
 		<script src="js/reveal.js"></script>
-		<script src="js/prefixfree.min.js"></script>
-		<script src="lib/highlight.js"></script>
+		
 		<script>
 			// Parse the query string into a key/value object
 			var query = {};
@@ -1047,15 +1223,28 @@
 				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
 			} );
 
+			// Fires when a slide with data-state=customevent is activated
+			Reveal.addEventListener( 'customevent', function() {
+				alert( '"customevent" has fired' );
+			} );
+
+			// Fires each time a new slide is activated
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+				// event.indexh & event.indexv
+			} );
+
 			Reveal.initialize({
 				// Display controls in the bottom right corner
-				controls:true,
+				controls: true,
 
 				// Display a presentation progress bar
 				progress: true,
 
 				// If true; each slide will be pushed to the browser history
 				history: true,
+
+				// Loops the presentation, defaults to false
+				loop: false,
 
 				// Flags if mouse wheel navigation should be enabled
 				mouseWheel: true,
@@ -1067,7 +1256,7 @@
 				theme: query.theme || 'default', // default/neon
 
 				// Transition style
-				transition: query.transition || 'concave' // default/cube/page/concave/linear(2d)
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
 			});
 
 			hljs.initHighlightingOnLoad();
