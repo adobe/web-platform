@@ -121,6 +121,9 @@
     &lt;link rel="match" href="reftest/ttwf-reftest-tutorial-ref.html"&gt;
     &lt;meta name="assert" content="This transform moves the element by 100 pixels in both the X and Y directions."&gt;
     &lt;<span class="styleTag">style type</span>="text/css"&gt;
+            <span class="styleTag">.container</span> {
+                <span class="cssProperty">position: relative;
+            }    
             <span class="styleTag">.greenSquare</span> {
                 <span class="cssProperty">position: absolute;
                 top: 0;
@@ -142,8 +145,10 @@
     &lt;/head&gt;
     &lt;body&gt;
         &lt;p&gt;The test passes if there is a green square and no red.&lt;/p&gt;
-        &lt;div class="redSquare"&gt;&lt;/div&gt;
-        &lt;div class="greenSquare"&gt;&lt;/div&gt;
+        &lt;div class="container"&gt;
+            &lt;div class="redSquare"&gt;&lt;/div&gt;
+            &lt;div class="greenSquare"&gt;&lt;/div&gt;
+        &lt;/div&gt;
     &lt;/body&gt;
 &lt;/html&gt;
                             </code>
@@ -159,6 +164,9 @@
     &lt;title&gt;CSS Transforms Reference file&lt;/title&gt;
     &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
     &lt;<span class="styleTag">style type</span>="text/css"&gt;
+        <span class="styleTag">.container</span> {
+            <span class="cssProperty">position: relative;
+        }    
         <span class="styleTag">.greenSquare</span> {
             <span class="cssProperty">position: absolute;
             top: 100;
@@ -171,7 +179,9 @@
     &lt;/head&gt;
         &lt;body&gt;
             &lt;p&gt;The test passes if there is a green square and no red.&lt;/p&gt;
-            &lt;div class="greenSquare"&gt;&lt;/div&gt;
+            &lt;div class="container"&gt;
+                &lt;div class="greenSquare"&gt;&lt;/div&gt;
+            &lt;/div&gt;
         &lt;/body&gt;
     &lt;/html&gt;
                                 </code>
@@ -468,7 +478,9 @@
     				        <li>An element must exist in test file with id="log" to be used as a container for test results</li>
     				    </ul>
 				    </section>
-				    
+				</section>
+				
+				<section data-state="largePage">
 			        <section>
     			        <h2>The test function</h2>
         			    <br>
@@ -552,17 +564,28 @@
                         </pre>                        
                         <ul>
                             <li>Properties is an object that overrides default test properties</li>
-                            <li>timeout is the only currently recognized property
+                            <li>Recognized properties include the following:
     			                <ul>
-    			                    <li>timeout defines how long testharness will wait while executing a test case</li>
-    			                    <li>This is specific to synchronous test, async_tests also have a timeout used slightly differently</li>
+    			                    <li>timeout
+    			                        <ul style="font-size:28px">
+    			                            <li>timeout defines how long testharness will wait while executing a test case</li>
+    			                            <li>This is specific to synchronous test, async_tests also have a timeout used slightly differently</li>
+    			                        </ul>
+    			                    </li>
+    			                    <li>author / help/ assert metadata 
+    			                        <ul style="font-size:28px">
+    			                            <li>Allows test author to define per-test case metadata</li>
+    			                            <li>Overrides the metadata defined in the head</li>
+    			                            <li>Each parameter accepts a single value or an array</li>
+    			                        </ul>
+    			                    </li>
     			                </ul>
                             </li>
                             <br>
                             <li>Usage example:
                                 <pre style="font-size:18px">
                                     <code class="html">
-  test(function() {assert_true(true)}, "Assert_true with true", {timeout:1000})
+ test(function() {assert_true(true)}, "Assert_true with true", <br><br> {timeout:1000, <br><br> help: 'http://www.w3.org/TR/spec', <br><br> author: ['John Doe &lt;john@doe.com&lt;mailto:john@doe.com&gt;&gt;', 'Fred Smith http://smith.com/fred'],<br><br> assert: 'This should always be true.']})
                                     </code>
                                 </pre>                                
                             </li>    			                    
