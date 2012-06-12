@@ -44,12 +44,35 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         // code under prefixed notation that is still being debated in the W3C
         return (style['webkitFlowInto'] && style['webkitFlowFrom'])
     })()
+    
+    
+    CSSRegions.prototype.hasOversetProperty = (function(){
+        var test = document.createElement("span"),
+            hasOverset,
+            flow
+            
+        test.style['-webkit-flow-into'] = 'testflow'
+            
+        document.body.appendChild(test) 
+        
+        flow = document.webkitGetFlowByName('testflow')
+        
+        // older implementations used to have overflow not overset
+        hasOverset = (typeof flow.overset !== 'undefined')
+                                               
+        // cleanup                                 
+        test.style['-webkit-flow-into'] = 'none'
+        test.parentNode.removeChild(test)
+        flow = null
+        
+        return hasOverset;
+    })()
 
     var CSSRegions = new CSSRegions()
 
     scope = scope || window
-    scope["CSSRegions"] = CSSRegions
-
+    scope["CSSRegions"] = CSSRegions  
+    
     /*
         Demo Harness
 
@@ -152,9 +175,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         !function(){                              
             var hasMeta = false, 
                 el  = document.createElement("div")                
-                el.id = "demo-harness"
-
-            if (CSSRegions.isSupported){
+                el.id = "demo-harness"     
+                
+            if (CSSRegions.isSupported && CSSRegions.hasOversetProperty){
                 
                 el.innerHTML = createToggle() 
                 
@@ -228,9 +251,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     
     var harnes = new Harness()
     
-    if (CSSRegions.isSupported){
-        harnes.sync()
-
+    if (CSSRegions.isSupported && CSSRegions.hasOversetProperty){
+        harnes.sync() 
+        
         document.addEventListener("DOMSubtreeModified", function(e){    
             harnes.sync()
         })
