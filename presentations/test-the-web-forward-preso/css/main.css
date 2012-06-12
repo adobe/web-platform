@@ -946,6 +946,12 @@ body {
 	width: 1000px;
 }
 
+.largePage .slides {
+	top: 40%;
+	left: 45%;
+	width: 1000px;
+}
+
 .alert .state-background {
 	background: rgba( 200, 50, 30, 0.6 );
 }

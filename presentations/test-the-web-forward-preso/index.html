@@ -414,11 +414,10 @@
                 </section>
     			
 				<!-- Begin JS TEST -->
-				<section>
+				<section data-state="largePage">
 					<h2>JavaScript Test Overview</h2>
-					<br>
-					<ul>
-					    <li>JavaScript should be used when Ref Tests are not practical</li>
+					<ul  style="line-height:50px">
+					    <li>JavaScript tests programmatically verify functionality</li>
 					    <li>JavaScript tests have some advantages over Ref Tests
 					        <ul>
 					            <li>Robust</li>
@@ -431,55 +430,151 @@
 					        <ul>
 					            <li>Tests verify complete rendering</li>
 					            <li>Easy to understand</li>
-					            <li>Avoids introducing additional technologies (js)</li>
+					            <li>Avoids introducing additional technologies (JS)</li>
 					        </ul>
 					    </li>
-					    <li>W3C provides a framework (testharness) to simplify and standardize test creation</li>
+					    <li>JavaScript tests can be used in conjunction with Ref Tests
+					        <ul>
+					            <li>Test can have both a reference file and a JavaScript section</li>
+					            <li>Ref Test portion supports suites without script engines</li>
+					        </ul>
+					    </li>
+					    <li>JavaScript tests best used in the following scenarios:
+					        <ul>
+					            <li>Testing a JS API or behavior (ex: CSSOM spec)</li>
+					            <li>Adding automation to Ref Tests</li>
+					        </ul>
+					    </li>
+					    <li>W3C provides a framework (testharness) to simplify and standardize JS test creation</li>
 					</ul>
 				</section>
 				
-				<section>
+				<section data-state="largePage">
 				    <section>
-				    <h3>testharness</h3>
+				        <h3>testharness</h3>
 				        <p>testharness.js and testharnessreport.js</p>
-				        <img src="assets/images/jsTest_th.png">
-				        <br><br>
+				        <pre style="font-size:24px">
+				            <code class="html">
+&lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
+
+&lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;
+                            </code>
+                        </pre>
+				        
     				    <ul>
     				        <li>JavaScript framework that provides an API for making common test assertions</li>
     				        <li>Should be used by all JavaScript tests</li>
-    				        <li>Path must be to /resources/... prior to pushing to the test repository</li>
-    				        <li>An element must exist in test file with id="log" for test results</li>
+    				        <li>Path must be to a resources directory at the root level (/resources/...) prior to pushing to the test repository</li>
+    				        <li>An element must exist in test file with id="log" to be used as a container for test results</li>
     				    </ul>
-    				    
 				    </section>
 				    
-				    <section>
-        			    <h2>The <span style="color:red">test</span> function</h2>
+			        <section>
+    			        <h2>The test function</h2>
         			    <br>
+        			    <pre style="font-size:24px">
+        			        <code class="html">
+                test(test_function, name, properties)
+        			        </code>
+        			    </pre>
         			    <ul>
+        			        <li>Used for synchronous tests
+        			            <ul>
+        			                <li>async_test() is also provided by testharness for asychronous testing</li>
+        			            </ul>
+        			        </li>
         			        <li>Documented and implemented in testharness.js</li>
-        			        <li>Function signature: <span style="color:red">test(test_function, name, properties)</span></li>
-        			        <li>Used to define an individual test case in a file</li>
-        			        <li>The function argument must be a function object, not a function call</li>
-        			        <li>The return value of the function object passed to test() (argument 1) determines Pass/Fail</li>
-        			        <li>The name passed to test() (argument 2) should be a descriptive test name that conveys what is being tested
+        			        <li>Used to define an individual test case in a file
         			            <ul>
-        			                <li>Name will be displayed in the test results table</li>
+        			                <li>Common for a file to have multiple calls to test()</li>
         			            </ul>
-        			        </li>
-        			        <li>Properties (argument 3) is an object that overrides default test properties
-        			            <ul>
-        			                <li>timeout is the only currently recognized property</li>
-        			            </ul>
-        			        </li>
+        			        </li>   
+        			        <li>testharness will display PASS/FAIL for each call to test()</li>
+        			         
         			    </ul>
-        		    </section>
-        		    
-        		    <section>
-        			    <h2>testharness.js assert methods</h2>
-        			    <br>
+                    </section>
+                    
+                    <section>
+                        <h2>test() Argument 1: test_function</h2>
+        			    <pre style="font-size:24px">
+        			        <code class="html">
+                test(<span style="color:red">test_function</span>, name, properties)
+        			        </code>
+        			    </pre>                        
+                        <ul>
+                            <li>The test_function argument must be a function object, not a function call</li>
+                            <li>The test_function will typically be one of the assert methods supplied by testharness
+                                <ul>
+                                    <li>Can also be user defined if no assert method provides the needed functionality</li>
+                                </ul>
+                            </li>
+                            <li>The evaluation of the assertion will determine PASS/FAIL for the test</li>
+                            <br>
+                            <li>Usage example:
+                                <pre style="font-size:18px">
+                                    <code>
+                    test(function() {assert_true(true)}, name, properties)
+                                    </code>
+                                </pre>  
+                            </li>                            
+    			        </ul>                   
+                        
+                    </section>
+                                 
+                   <section>
+                        <h2>test() Argument 2: Name</h2>
+                        <pre style="font-size:24px">
+                            <code class="html">
+                test(test_function,<span style="color:red"> name</span>, properties)
+                            </code>
+                        </pre>                        
+                        <ul>
+                            <li>Name is a string that identifies the test</li> 
+                            <li>Should be a descriptive test name that conveys what is being tested</li>
+        			        <li>Name will be displayed in the test results table</li>
+        			        <br>
+                            <li>Usage example:
+                                <pre style="font-size:18px">
+                                    <code class="html">
+            test(function() {assert_true(true)}, "Assert_true with true", properties)
+                                    </code>
+                                </pre>  
+                            </li>
+                        </ul>       			                                   
+                    </section>
+
+                    <section>
+                        <h2>test() Argument 3: Properties</h2>
+                        <pre style="font-size:24px">
+                            <code class="html">
+                test(test_function, name,<span style="color:red"> properties</span>)
+                            </code>
+                        </pre>                        
+                        <ul>
+                            <li>Properties is an object that overrides default test properties</li>
+                            <li>timeout is the only currently recognized property
+    			                <ul>
+    			                    <li>timeout defines how long testharness will wait while executing a test case</li>
+    			                    <li>This is specific to synchronous test, async_tests also have a timeout used slightly differently</li>
+    			                </ul>
+                            </li>
+                            <br>
+                            <li>Usage example:
+                                <pre style="font-size:18px">
+                                    <code class="html">
+  test(function() {assert_true(true)}, "Assert_true with true", {timeout:1000})
+                                    </code>
+                                </pre>                                
+                            </li>    			                    
+    			        </ul>
+                    </section>
+                </section>
+                  
+        	    <section data-state="largePage">
+        	        <section>
+    			        <h2>Assert methods</h2>
         			    <ul>
-        			        <li>testharness.js provides a number of assert methods to use for testing
+        			        <li>testharness.js provides a number of assert methods to use for making test assertions
         			            <ul>
         			                <li>Full list is provided in the comment section of the testharness.js file</li>
         			                <li>Whenever possible, these methods should be used</li>
@@ -495,69 +590,194 @@
         			            <ul>
         			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
         			            </ul>
+        			        </li>
         			    </ul>
-        			</section>
+    			    </section>
+    			    
+    			    <section>
+    			        <h2>Assert Example</h2>
+                        <pre style="font-size:24px">
+                            <code class="html">
+            assert_equals(actual, expected, description)
+                            </code>
+                        </pre>
+                        <ul>
+                            <li>actual: The actual value based on the functionality being tests</li>
+                            <li>expected: The expected value, evaluated against actual value to determine if they are the same</li>
+                            <li>description (optional): Output only if the assertion fails, used to provide additional debug info</li>
+                            <br>
+                            <li>Usage example:
+                                <pre style="font-size:18px">
+                                    <code class="html">
+    assert_equals(getActualData("myElement"), 100, "Expected value for myElement is 100")
+                                    </code>
+                                </pre>                                
+                            </li>                            
+                        </ul>    			        
+    			    </section>
 				</section>
 
-                	<section>
-        				<h2>Sample Test Case</h2>
-        				<section>
-        					<br><br>
-        					<p>Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
-        					<br>
-        					<br>
-        					<p>Spec Links:</p>
-        					<p style="font-size: 16pt">
-        					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
-        					    <br>
-        					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
-    					    </p>
-    					</section>
-    					<section>
-    					    <img src="assets/images/specAssertion.png">
-    					</section>
-    	            </section>
+            	<section>
+    				<h2>Sample Test Case</h2>
+    				<section>
+    					<br>
+    					<p>Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
+    					<br><br>
+    					<p>Spec Links:</p>
+    					<p style="font-size: 16pt">
+    					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
+    					    <br>
+    					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
+					    </p>
+					    <br>
+					    <p style="color:red; font-style:italic; font-size: 16pt">Build upon Ref Test example to add JavaScript verification</p>
+					</section>
+					<section>
+					    <img src="assets/images/specAssertion.png">
+					</section>
+	            </section>
 
-				<section data-state="screenshotPage">
-				    <h3>Examine the code</h3>
-					<img src="assets/images/jsTest_full.png"/>
-				</section>				
-
-			    <section data-state="screenshotPage">
-				    <h3>Required Metadata: Flags</h3>
-				    <p>Flags</p>
-				    <img src="assets/images/jsTest_flags.png"/>
-			    </section>
+				<section data-state="largePage">
+				    <section>
+				        <h3>Examine the code (head)</h3>
+					    <pre style="font-size: 14px">
+					        <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;CSS Transforms Test: translate function&lt;/title&gt;
+    &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
+    &lt;link rel="match" href="reftest/ttwf-reftest-tutorial-ref.html"&gt;
+    &lt;meta name="assert" content="This transform moves the element by 100 pixels in both the X and Y directions."&gt;
+    &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
+    &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
+    &lt;style type="text/css"&gt;
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .results {
+            position: absolute;
+            top: 225px;
+            width: 100%;
+        }    
+        .container {
+            position: relative;
+        }
+        .greenSquare {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: green;
+            transform: translate(100px,100px);
+        }
+        .redSquare {
+            position: absolute;
+            top: 101px;
+            left: 101px;
+            width: 98px;
+            height: 98px;
+            background: red;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+                            </code>
+                        </pre>
+                    </section>
+                
+                    <section>
+                        <h3>Examine the Code (Body)</h3>
+                        <pre>
+                            <code>
+...
+    &lt;body&gt;
+        &lt;div class="results"&gt;
+            &lt;p&gt;The test passes if there is a green square at 100,100 and no red is visible&lt;/p&gt;&lt;br&gt;
+            &lt;div id="log"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="container"&gt;
+            &lt;div class="redSquare"&gt;&lt;/div&gt;
+            &lt;div id="myDiv" class="greenSquare"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;script type="text/javascript"&gt;
+            function checkElementPosition(elemID) {
+                return document.getElementById(elemID).getBoundingClientRect().left + "," +
+                       document.getElementById(elemID).getBoundingClientRect().top;            
+            }    
+            test(function() {assert_equals(checkElementPosition("myDiv"), "100,100", "myDiv should be at 100,100")}, 
+                            "Transform_Translate_100px_100px");
+        &lt;/script&gt;    
+    &lt;/body&gt;
+&lt;/html&gt;					    
+					        </code>
+					    </pre>
+				    </section>
+			    </section>				
 			    
-			    <section data-state="screenshotPage">
-			        <h3>Optional: CSS</h3>
-				    <p>Margins & Padding</p>
-				    <img src="assets/images/jsTest_mp.png"/>
-			    </section>
+			    <section data-state="largePage">
+			        <h3>Positioning</h3>
+			        <pre>
+			            <code class="html">
+&lt;style type="text/css"&gt;
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
 
-			    <section data-state="screenshotPage">
-			        <h3>Self Description</h3>
-				    <p>Positioned to simplify code</p>
-				    <img src="assets/images/jsTest_res.png"/>
-			    </section>
-			    
-			    <section data-state="screenshotPage">
-				    <h3>Test Results Container</h3>
-				    <p>Element with id="log"</p>
-				    <img src="assets/images/jsTest_log.png"/>
+    .results {
+        position: absolute;
+        top: 225px;
+        width: 100%;
+    }    
+...
+&lt;/style&gt;
+                        </code>
+                    </pre>
+                    <br>
+                    <ul>
+                        <li>Not required for the test</li> 
+                        <li>Simplifies the code by removing offsets caused by margins/padding</li>
+                        <li>Results container positioned below test element to avoid interference</li>
+                        <li>Test could also omit these styles and account for offsets in expected value</li>
+                    </ul>
 			    </section>
  			    
-			    <section data-state="screenshotPage">
+			    <section data-state="largePage">
 				    <h3>User Defined Function</h3>
-				    <p>JavaScript Function returns actual value</p>
-				    <img src="assets/images/jsTest_func.png"/>
+                    <pre>
+                        <code class="html">
+...
+        function checkElementPosition(elemID) {
+            return document.getElementById(elemID).getBoundingClientRect().left + "," +
+                   document.getElementById(elemID).getBoundingClientRect().top;            
+        }    
+...
+                        </code>
+                    </pre>
+                    <br>
+                    <ul>
+                        <li>User defined function to get the actual value of the element being tested</li>
+                        <li>Uses the DOM function getBoundingClientRect() to get the x,y coordinates of an element based on its ID</li> 
+                        <li>Returns a string that consists of "X,Y"</li>
+                    </ul>
 			    </section>
 
-			    <section data-state="screenshotPage">
+			    <section data-state="largePage">
 				    <h3>Test Case</h3>
-				    <p>Test Function with assert_equals</p>
-				    <img src="assets/images/jsTest_test.png"/>
-				    <br><br><br>
+				    <p>test() with assert_equals</p>
+                        <pre>
+                            <code class="html">
+&lt;body&gt;
+... 
+    test(function() {assert_equals(checkElementPosition("myDiv"), "100,100", "myDiv should be at 100,100")}, 
+                    "Transform_Translate_100px_100px");
+...    
+&lt;/body&gt;
+&lt;/html&gt;
+                            </code>
+                        </pre>
 				    <ul>
 				        <li>assert_equals(actual, expected, description)
 				            <ul>
@@ -579,13 +799,13 @@
 			    </section>   
                 
     			<section>
-    			    <section data-state="screenshotPage">
+    			    <section data-state="largePage">
     				    <h3>Test Results</h3>
     				    <p>PASS</p>
     				    <img src="assets/images/jsTest_PASS.png"/>
     			    </section>
     			    
-                    <section data-state="screenshotPage">
+                    <section data-state="largePage">
     				    <h3>Test Results</h3>
     				    <p>FAIL</p>
     				    <img src="assets/images/jsTest_FAIL.png"/>
