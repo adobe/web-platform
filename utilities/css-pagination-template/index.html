@@ -189,34 +189,24 @@
         <p>The samples code and content, test files and documentation, unless otherwise specified, are available under the Public Domain License.</p>
         <p>Third party assets are licensed accordingly in their respective folders.</p>
     </div>
-
+      
+    <script type="text/javascript" src="src/demo-harness.js"></script>
     <script type="text/javascript">
 
     document.addEventListener("DOMContentLoaded", function(){
         var message = [],
-            test = document.createElement('div'),
             el = document.querySelector('#check_support'),
-            isSupported = (function(){
+            cruft = document.querySelector('#demo-harness')   
+        
+        if (cruft){
+            cruft.parentNode.removeChild(cruft)
+        }    
 
-                if (typeof document.webkitGetFlowByName !== 'function'){
-                    return false
-                }
-
-                test.style['webkitFlowInto'] = 'test'
-                return document.webkitGetFlowByName('test')
-            })()
-
-        if (!isSupported){
+        if (!CSSRegions.isSupported || !CSSRegions.hasOversetProperty){
 
             el.className = 'false'
             message.push('Sorry, your browser does not support these demos.')
             message.push('Please use a <a href="http://nightly.webkit.org/">WebKit nightly</a> build.')
-            
-            if (navigator.vendor && navigator.vendor.indexOf("Google") > -1){
-                message.push('')
-                message.push('<strong>On a dev build of Google Chrome?</strong>')
-                message.push('Type <code>about://flags</code> in the addres bar and enable CSS Regions, then relaunch the browser.')
-            }
             
             el.innerHTML = message.join('<br />')
         }

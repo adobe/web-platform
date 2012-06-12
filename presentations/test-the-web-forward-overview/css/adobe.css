@@ -4,3 +4,7 @@ li ol li, li ul li {
     margin-left: 20px;
     line-height: 1.3em;
 }
+
+li {
+	line-height: 1.3em;
+}
