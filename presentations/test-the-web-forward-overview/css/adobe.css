@@ -8,3 +8,7 @@ li ol li, li ul li {
 li {
 	line-height: 1.5em;
 }
+
+tt {
+	font-family: monospace;
+}
