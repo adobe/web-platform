@@ -195,7 +195,7 @@ body {
 	margin: 1px auto;
 
 	text-align: left;
-	font-size: 14px;
+	font-size: 18pt;
 	font-family: monospace;
 	line-height: 1.2em;
 
@@ -937,6 +937,7 @@ body {
 }
 
 .expandPageWide .slides {
+	top: 35%;
 	left: 40%;
 	width: 1200px;
 }
