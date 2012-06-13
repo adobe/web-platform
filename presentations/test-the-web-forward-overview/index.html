@@ -569,27 +569,27 @@
 			    <section>
 			        <h3>Metadata</h3>
 			        <section>
-    			        <pre>
-    			            <code class="html">
+    			        <pre style="width:1000px">
+    			            <code class="html" style="line-height:26px; font-size:18px">
 &lt;head&gt;
-    &lt;title&gt;CSS Transforms API Test: transform translate&lt;/title&gt;
-    &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
-    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
-    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
-    &lt;meta name="flags" content="dom"&gt;
-    &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt;	
+  &lt;title&gt;CSS Transforms API Test: transform translate&lt;/title&gt;
+  &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+  &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+  &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
+  &lt;meta name="flags" content="dom"&gt;
+  &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt;	
 ...    
 &lt;/head&gt;                
     			            </code>
     			        </pre>
     			        <ul>
     			            <li>JavaScript tests have similar requirements as RefTest</li>
-    			            <li>flags metadata "dom" used to specify that JavaScript is required</li>
+    			            <li>flags "dom" token specifies that JavaScript is required</li>
     			            <li>JSON metadata supports build system (not shown)</li>
     			    </section>
     			    <section>
     			        <pre>
-    			            <code class="html">
+    			            <code class="html" style="line-height:26px">
 &lt;head&gt;
 ...    
     &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
@@ -608,10 +608,10 @@
     			    </section>
 			    </section>
 			    
-			    <section>
+			    <section data-state="largePage">
 			        <h3>Body</h3>
-			        <pre>
-			            <code class="html">
+			        <pre style="width:900px">
+			            <code class="html" style="line-height:22px; font-size:14px">
 &lt;body&gt;
     &lt;div id="myDiv"&gt;&lt;/div&gt;
     &lt;div id="log"&gt;&lt;/div&gt;    
@@ -622,20 +622,20 @@
 
         // Verify that the transform was set as expected
         test(function() {assert_equals(
-                        document.getElementById("myDiv").style.transform, // Actual
-                        "translate(100px, 100px)",  // Expected
-                        "transform should be translate(100px,100px)")}, // Description
-                        "Transform_Translate_100px_100px"); // name
+                document.getElementById("myDiv").style.getPropertyCSSValue("transform").cssText, // Actual
+                "translate(100px, 100px)",  // Expected
+                "transform should be translate(100px,100px)")}, // Description
+                "Transform_Translate_100px_100px"); // name
     &lt;/script&gt;
 &lt;/body&gt;			                
 			            </code>
 			        </pre>
-			        <ul style="font-size:30px">
+			        <ul style="font-size:28px">
 			            <li>div "myDiv" used as test element - translate applied in JS</li>
 			            <li>div "log" used as container for test results</li>
 			            <li>test() uses assert_equals as test_function</li>
                         <li>assert_equals actual value supplied by transform</li>
-			        </ul>
+			        </ul>			        
 			    </section>
  			    
     			<section data-state="largePage">
