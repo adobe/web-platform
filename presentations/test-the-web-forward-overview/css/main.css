@@ -205,7 +205,7 @@ body {
 }
 
 .reveal code {
-	font-family: Monaco;
+	font-family: Monaco, monospace; /* it doesn't properly fall-back on non-Mac browsers :) */
 	line-height: 14pt;
 }
 
