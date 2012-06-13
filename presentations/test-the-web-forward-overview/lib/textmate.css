@@ -62,12 +62,14 @@ pre .highlight {
 }
 
 pre .expand {
-	font-size: 12pt;
+	width: 1200px;
+	font-size: 18pt;
 	line-height: 20pt;
 }
 
 pre .expand2 {
-	font-size: 14pt;
+	width: 1200px;
+	font-size: 20pt;
 	line-height: 24pt;
 }
 
