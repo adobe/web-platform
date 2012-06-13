@@ -39,17 +39,27 @@
 				 <section data-state="screenshotPage">
                     <h2>Setup</h2>
                     <p class="font2">Complete all steps before proceeding</p>
-                    <ul>
-                        <li>Step 1: Create a CSSWG Test Manager Account<br><a href="https://test.csswg.org/shepherd/register/" style="font-size:16px">https://test.csswg.org/shepherd/register/</a> 
-                            <ul>
-                                <li>Select the check box next to "Request Repository Write Access"</li>
-                            </ul>
-                        </li>
-                        <li>Step 2: Install Mercurial<br><a href="http://wiki.csswg.org/tools/hg/install" style="font-size:16px">http://wiki.csswg.org/tools/hg/install</a></li>
-                        <li>Step 3: Setup Mercurial Preferences<br><a href="http://wiki.csswg.org/tools/hg#setting-up-mercurial-preferences" style="font-size:16px">http://wiki.csswg.org/tools/hg#setting-up-mercurial-preferences</a></li>   
-                        <li>Step 4: Clone the CSSWG Test Suite Repository<br><a href="http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository" style="font-size:16px">http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository</a></li>
-                        <li>Step 5: Clone the Resources directory<br><a href="http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository" style="font-size:16px">http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository</a></li>
-                    </ul>
+                    <section>
+                        <br>
+                        <ul style="line-height:50px">
+                            <li>Step 1: Create a CSSWG Test Manager Account<br><a href="https://test.csswg.org/shepherd/register/" style="font-size:16px">https://test.csswg.org/shepherd/register/</a> 
+                                <ul>
+                                    <li>Select the check box next to "Request Repository Write Access"</li>
+                                </ul>
+                            </li>
+                            <li>Step 2: Install Mercurial<br><a href="http://wiki.csswg.org/tools/hg/install" style="font-size:16px">http://wiki.csswg.org/tools/hg/install</a></li>
+                            <li>Step 3: Setup Mercurial Preferences<br><a href="http://wiki.csswg.org/tools/hg#setting-up-mercurial-preferences" style="font-size:16px">http://wiki.csswg.org/tools/hg#setting-up-mercurial-preferences</a></li>   
+                        </ul>
+                        <br><br>
+                        <p class="font5">Press down for additional steps</p>
+                    </section>
+                    <section>
+                        <br>
+                        <ul style="line-height:50px"> 
+                            <li>Step 4: Clone the CSSWG Test Suite Repository<br><a href="http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository" style="font-size:16px">http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository</a></li>
+                            <li>Step 5: Clone the Resources directory<br><a href="http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository" style="font-size:16px">http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository</a></li>
+                        </ul>                        
+                    </section>
                 </section>
 				
 				<section data-state="screenshotPage">
@@ -766,42 +776,48 @@
       				<section data-state="screenshotPage">
       				    <br>
   				        <h3>testharness</h3>
-  				        <p>testharness.js and testharnessreport.js</p>
-  				        <pre style="font-size:24px">
-  				            <code class="html">
+  				        <section>
+      				        <p style="font-size:24px">testharness.js and testharnessreport.js</p>
+      				        <pre>
+      				            <code class="html" style="font-size:24px; line-height:26px">
 &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
-
 &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;
-                              </code>
-                          </pre>    
-      				    <ul>
-      				        <li>JavaScript API for making common test assertions</li>
-      				        <li>Documented in the comment section of testharness.js</li>
-      				        <li>Should be used by all JavaScript tests</li>
-      				        <li>Path must be to resources directory at root level
-      				            <ul>
-      				                <li>Locally, resources directory can be located anywhere</li> 
-      				                <li>Prior to pushing to CSSWG Test repository, the path must match example above</li>
-      				            </ul>
-      				        </li>
-      				        <li>Element with id="log" must exist in test file
-      				            <ul>
-      				                <li>Test results table will be added to this element</li>
-      				            </ul>
-      				        </li>
-      				    </ul>
+                                </code>
+                            </pre>    
+          				    <ul style="line-height:60px">
+          				        <li>JavaScript API for making common test assertions</li>
+          				        <li>Documented in the comment section of testharness.js</li>
+          				        <li>Should be used by all JavaScript tests</li>
+          				    </ul>
+          				    <br><br>
+          				    <p class="font5">Press down for more</p>
+      				    </section>
+      				    <section>
+      				        <ul>
+          				        <li>Path must be to resources directory at root level
+          				            <ul>
+          				                <li>Locally, resources directory can be located anywhere</li> 
+          				                <li>Prior to pushing to CSSWG Test repository, the path must match example above</li>
+          				            </ul>
+          				        </li>
+          				        <li>Element with id="log" must exist in test file
+          				            <ul>
+          				                <li>Test results table will be added to this element</li>
+          				            </ul>
+          				        </li>
+      				        </ul>
+      				    </section>
       				</section>
 
-      				<section>
+      				<section data-state="screenshotPage">
       			        <section>
           			        <h2>The test function</h2>
-              			    <br>
-              			    <pre style="font-size:24px">
-              			        <code class="html">
+              			    <pre>
+              			        <code class="html" style="font-size:24px">
             test(test_function, name, properties)
               			        </code>
               			    </pre>
-              			    <ul>
+              			    <ul style="line-height:60px">
               			        <li>Used for synchronous tests
               			            <ul>
               			                <li>async_test() is also defined by testharness for asychronous testing</li>
@@ -816,19 +832,19 @@
               			        <li>testharness will display PASS/FAIL for each call to test()</li>
               			    </ul>
               			    <br><br>
-              			    <p style="font-size:14px">Press down for example</p>
+              			    <p class="font5">Press down for more</p>
                           </section>
 
                           <section>
                               <h2>test() Argument 1: test_function</h2>
-              			    <pre style="font-size:24px">
-              			        <code class="html">
+              			    <pre>
+              			        <code class="html" style="font-size:24px">
             test(<span style="color:red">test_function</span>, name, properties)
               			        </code>
               			    </pre>                        
-                              <ul>
+                              <ul style="line-height:60px">
                                   <li>test_function must be an object, not a function call</li>
-                                  <li>test_function should be one of the assert methods supplied by testharness
+                                  <li>test_function should be testharness assert method
                                       <ul>
                                           <li>Can also be user defined if no assert method provides the needed functionality</li>
                                       </ul>
@@ -846,18 +862,18 @@
 
                          <section>
                               <h2>test() Argument 2: Name</h2>
-                              <pre style="font-size:24px">
-                                  <code class="html">
+                              <pre>
+                                  <code class="html" style="font-size:24px">
             test(test_function,<span style="color:red"> name</span>, properties)
                                   </code>
                               </pre>                        
-                              <ul>
+                              <ul style="line-height:60px">
                                   <li>Name is a string that identifies the test</li> 
                                   <li>Descriptive test name that conveys what is being tested</li>
               			        <li>Name will be displayed in the test results table</li>
                                   <li>Usage example:
-                                      <pre style="font-size:18px">
-                                          <code class="html">
+                                      <pre>
+                                          <code class="html" style="font-size:18px">
     test(function() {assert_true(true)}, <span class="highlight">"Assert_true with true"</span>, properties)
                                           </code>
                                       </pre>  
@@ -867,17 +883,17 @@
 
                           <section>
                               <h2>test() Argument 3: Properties</h2>
-                              <pre style="font-size:24px">
-                                  <code class="html">
+                              <pre>
+                                  <code class="html" style="font-size:24px">
             test(test_function, name,<span style="color:red"> properties</span>)
                                   </code>
                               </pre>                        
-                              <ul>
+                              <ul style="line-height:60px">
                                   <li>Properties is an object that overrides defaults</li>
                                   <li>Recognized properties include timeout and metadata</li>
                                   <li>Usage example:
-                                      <pre style="font-size:18px">
-                                          <code class="html">
+                                      <pre>
+                                          <code class="html" style="font-size:18px; line-height:16px">
  test(function() {assert_true(true)}, "Assert_true with true", <br><br> <span class="highlight">{timeout:1000,</span> <br><br> <span class="highlight">help: 'http://www.w3.org/TR/spec',</span> <br><br> <span class="highlight">author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],</span><br><br> <span class="highlight">assert: 'This should always be true.']}</span>)
                                           </code>
                                       </pre>                                
@@ -886,7 +902,7 @@
                           </section>
                       </section>
 
-              	    <section>
+              	    <section data-state="screenshotPage">
               	        <section>
           			        <h2>Assert methods</h2>
               			    <ul>
@@ -908,18 +924,18 @@
               			        </li>
               			    </ul>
               			    <br><br>
-              			    <p style="font-size:14px">Press down for example</p>
+              			    <p class="font5">Press down for more</p>
           			    </section>
 
           			    <section>
           			        <h2>Assert Example</h2>
-                              <pre style="font-size:24px">
-                                  <code class="html">
+                              <pre>
+                                  <code class="html" style="font-size:24px">
         assert_equals(actual, expected, description)
                                   </code>
                               </pre>
-                              <ul>
-                                  <li>actual: The actual value from the functionality being tested</li>
+                              <ul style="line-height:60px">
+                                  <li>actual: The actual value from functionality being tested</li>
                                   <li>expected: The expected value</li>
                                   <li>description (optional): Output only if the assertion fails</li>
                                   <li>Usage example:
@@ -932,18 +948,13 @@
                               </ul>    			        
           			    </section>
       				</section>
-
-
-                      <section data-state="screenshotPage">
-                          <br>
-                          	<h2>Sample Test Case</h2>
-                          	<section>
-              					<br><br>
+      				
+                    <section data-state="screenshotPage">
+                        <h2>Sample Test Case</h2>
+                            <section>
+              					<br>
               					<p style="font-size: 28pt">Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
-              					<br>
               					<p class="font4" style="color:red">Similar to Ref Test example, this time testing API instead of rendering</p>
-                                
-              					<br>
               					<br>
               					<p>Spec Links:</p>
               					<p style="font-size: 18pt">
@@ -951,17 +962,16 @@
               					    <br>
               					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
           					    </p>
-                                <br><br>
-                                <p style="font-size:14px">Press down for example</p>
+                                <br>
+                                <p class="font5">Press down for more</p>
                          </section> 
                          <section>
-                              <img src="assets/images/specAssertion.png">
+                              <img height="70%" width="70%" src="assets/images/specAssertion.png">
                          </section>       
 
                       </section>
                       
                       <section data-state="screenshotPage">
-                        <br>
           		        <h2>Step 1</h2>
           		        <br>
           			    <p class="font2">A JavaScript starter file was copied during Setup</p>
@@ -985,56 +995,46 @@
                       </section>
 
                       <section data-state="screenshotPage">
-                         <br>
           			     <h2>Step 2</h2>
               		     <p class="font2">Update Metadata</p>
-              		     <br>
-              		     <p class="font2">
-          			        <ul>
-          			            <li>Most items have been completed in the starter file</li>
-          			            <li>Update the author metadata to include your name/email</li>
-          			            <li>Add a line for the flags metadata
-          			                <ul>
-          			                    <li>Flags document a test's prerequisites</li>
-          			                    <li>Full list of flags is available on the CSSWG Wiki <a href="http://wiki.csswg.org/test/format#requirement-flags">Test Format</a> page</li>
-          			                    <li>In this case, the dom token should be used to indicate JavaScript is required</li>
-          			                </ul>
-          			            </li>
-          			            <li>Example:</li>
-          			            <pre style="width:800px">
-          			                <code class="html">
+
+      			        <ul style="line-height:60px">
+      			            <li>Update the author metadata</li>
+      			            <li>Add a line for the flags metadata
+      			                <ul>
+      			                    <li>Flags document a test's prerequisites</li>
+      			                    <li>Full list of flags is available on the CSSWG Wiki <a href="http://wiki.csswg.org/test/format#requirement-flags">Test Format</a> page</li>
+      			                </ul>
+      			            </li>
+      			            <li>Example:</li>
+      			            <pre style="width:800px">
+      			                <code class="html">
 &lt;title&gt;CSS Transforms API Test: transform translate&lt;/title&gt;
 &lt;link rel="author" <span class="highlight">title="Jim Tester" href="mailto:jimmyt@yahoo.com"&gt;</span>
 &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
 &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
 <span class="highlight">&lt;meta name="flags" content="dom"&gt;</span>
 &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt;  			                    
-          			                </code>
-          			            </pre>   
-            				    </ul> 
-            				</p>
+      			                </code>
+      			            </pre>   
+        				    </ul> 
                       </section>
 
                       <section data-state="screenshotPage">
-                         <br>
               			<h2>Step 3</h2>
           			    <br>
               		    <p class="font2">Import the W3C JavaScript Test Harness files</p> 
-              		    <br>
               		    <p class="font3">Add the following lines to the starter file above the style block</p>   
-              		    <br>            
-                          <div class="editorSmall">
-                              <div class="editorText">
-                                  <br>
-                                  <p class="tab1 editorHtml">&lt;script src=<span class="editorAttrVal">"/resources/testharness.js"</span>&gt;&lt;/script&gt;</p>
-                                  <p class="tab1 editorHtml">&lt;script src=<span class="editorAttrVal">"/resources/testharnessreport.js"</span>&gt;&gt;&lt;/script&gt;</p>
-                              </div>
-                          </div>
-                          <div class="bottomEditorNote">
-                              <p class="font5">Note: During test development, the path to the resources directory should match its location on your local machine</p>
-                              <br>
-                              <p class="font5" style="font-weight:bold; color:red">The path to these scripts must match example above before pushing to repo</p>
-                          </div>
+  			            <pre style="width:600px">
+			                <code class="html">
+...
+&lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
+&lt;script src="/resources/testharnessreport.js"&gt;&gt;&lt;/script&gt;
+...
+                            </code>
+			            </pre>
+                          <p class="font5">Note: During development, the path to the resources directory should match location on local machine</p>
+                          <p class="font5" style="font-weight:bold; color:red">The path to these scripts must match example above before pushing to repo</p>
                       </section>
                       
                       <section data-sate="screenshotPage">
@@ -1062,7 +1062,6 @@
                       </section>
 
                       <section data-state="screenshotPage">
-                         <br>
               			<h2>Step 4</h2>
           			    <br>
               		    <p class="font2">Add a div to be used as the test element to the body</p>
@@ -1082,7 +1081,6 @@
 
 
                       <section data-state="screenshotPage">
-                         <br>
               			<h2>Step 5</h2>
           			    <br>
               		    <p class="font2">Add a div with id="log" for test results</p>
@@ -1102,7 +1100,6 @@
                       </section>
                       
                       <section data-state="screenshotPage">
-                          <br>
                            <h2>Step 6</h2>
                            <br>
                            <p class="font2">Create a script block that will contain the JavaScript</p>
@@ -1150,7 +1147,6 @@
                       </section>
 
                       <section data-state="screenshotPage">
-                          <br>
                            <h2>Step 7</h2>
                            <br>
                            <p class="font2">Set the transform on the test element in JavaScript</p>
@@ -1172,12 +1168,10 @@
                       </section>
 
                       <section data-state="screenshotPage">
-                         <br>
           			     <h2>Step 8</h2>
-          			     <br>
               		     <p class="font2">Add a call to test() to your script block to create a test case</p>
               		     <p class="font3">Use assert_equals as the test_function</p>
-                         <pre>
+                         <pre style="width:1000px">
                              <code class="html">
 ...
 &lt;body&gt;
@@ -1188,11 +1182,11 @@
 document.getElementById("myDiv").style.transform = "translate(100px,100px)";
 
 // Verify that the transform was set as expected
-test(function() {assert_equals( // test arg1: test_function
-                document.getElementById("myDiv").style.transform, // assert_equals arg 1: actual
-                "translate(100px,100px)", // assert_equals arg 2: expected
-                "transform should be translate(100px,100px)")}, // assert_equals arg 3: description
-                "Transform_Translate_100px_100px");  // test arg2: name    
+test(function() {assert_equals( //test arg1: test_function
+        document.getElementById("myDiv").style.getPropertyCSSValue("transform").cssText, //assert_equals arg 1: actual
+        "translate(100px,100px)", //assert_equals arg 2: expected
+        "transform should be translate(100px,100px)")}, //assert_equals arg 3: description
+        "Transform_Translate_100px_100px");  //test arg2: name    
 &lt;/script&gt;    
 &lt;/body&gt;
 &lt;/html&gt;
@@ -1202,11 +1196,9 @@ test(function() {assert_equals( // test arg1: test_function
           			</section>    	
 
           			<section data-state="screenshotPage">
-          			      <br>
-                           <h2>CHECKPOINT</h2>
-                           <p class="font2">Complete File</p>
+                           <h2>Completed File</h2>
                            <pre>
-                               <code class="html">
+                               <code class="html" style="font-size:14px">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -1223,108 +1215,80 @@ test(function() {assert_equals( // test arg1: test_function
    &lt;div id="myDiv"&gt;&lt;/div&gt;
    &lt;div id="log"&gt;&lt;/div&gt;
    &lt;script&gt;
-       // Set the transform 
        document.getElementById("myDiv").style.transform = "translate(100px,100px)";
-
-       // Verify that the transform was set as expected
-       test(function() {assert_equals( // test arg1: test_function
-                       document.getElementById("myDiv").style.transform, // assert_equals arg 1: actual
-                       "translate(100px,100px)", // assert_equals arg 2: expected
-                       "transform should be translate(100px,100px)")}, // assert_equals arg 3: description
-                       "Transform_Translate_100px_100px");  // test arg2: name  
+       test(function() {assert_equals(
+               document.getElementById("myDiv").style.getPropertyCSSValue("transform").cssText,
+               "translate(100px,100px)", "transform should be translate(100px,100px)")},
+               "Transform_Translate_100px_100px");
    &lt;/script&gt;    
 &lt;/body&gt;
 &lt;/html&gt;                                   
-                                   
                                </code>
                            </pre>
                        </section>
 
                        <section data-state="screenshotPage">
-                          <br>
                    	     <h2>Passing test example</p>
-                   	     <br>
                    	     <img src="assets/images/jsTest_PASS.png">
                        </section>
 
                        <section data-state="screenshotPage">
-                          <br>
                    	     <h2>Failing test example</h2>
-                   	     <br>
-                    	     <img src="assets/images/jsTest_FAIL.png">
+                         <img src="assets/images/jsTest_FAIL.png">
                        </section>
 
                        <section data-state="screenshotPage">
                            <section>
-                            <br>
-                   	        <h2>Step 10 - OSX</h2>
-                   	        <p class="font5">Press the down-arrow for Windows instructions</p>
-                   	        <br>
-                   		    <p class="font2">Add your new test file to the repository</p>
-                   			<div class="console">
-                   			    <div class="consoleText">
-                     				    <br>
-                     				    <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span>/incoming</p>
-                     			        <p>$ hg add ttwf-js-tutorial-001.html</p>
-                     			        <p>$ hg commit -m "TTWF JavaScript tutorial"</p>
-                     			        <p>$ hg push</p>
-                     			    </div>
-                   		    </div>
-                                <div class="bottomNote2">
-                                    <br><br><br><br>
-                   		            <p class="noteText">Note: If you receive the following error:</p> 
-                   		            <p class="errorText">abort: push creates new remote head ...</p>
-                   		            <p class="noteText">Your local repository is out of sync with the test repository</p>
-                   		            <p class="noteText">Do the following to resolve the issue:</p>
-                   		    </div>  
-                   	        <br><br><br><br><br><br><br>
-                               <div class="console">
-                   			    <div class="consoleText">
-                     				    <br>
-                     			        <p>$ hg pull -u</p>
-                     			        <p>$ hg merge</p>
-                     			        <p>$ hg commit -m "Merge"</p>
-                     			        <p>$ hg push</p>
-                     			    </div>
-                   		    </div>          			       
+                   	           <h2>Step 10 - OSX</h2>
+                   	           <p class="font5">Press the down-arrow for Windows instructions</p>
+                   		       <p class="font3">Add your new test file to the repository</p>
+                   		       <pre>
+                   		           <code style="font-size:18px; line-height:22px; height:120px">
+$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span>/incoming
+$ hg add ttwf-js-tutorial-001.html
+$ hg commit -m "TTWF JavaScript tutorial"
+$ hg push
+                   		            </code>
+                   		       </pre>
+           		               <p class="font5" style="line-height:24px">If you receive the error:
+           		               <span class="errorText">abort: push creates new remote head ...</span><br>
+           		            Your local repository is out of sync with the test repository. To resolve:<br></p>
+                   		        <pre>
+                   		        <code style="font-size:18px; line-height:22px; height:120px">
+$ hg pull
+$ hg merge
+$ hg commit -m "Merge"
+$ hg push
+                   		        </code>
+                   		    </pre>         			       
                    	    </section>
                    	    <section>
-                   	        <br>
                    	        <h2>Step 10 - Windows</h2>
                    	        <p class="font5">Press the up-arrow for OSX instructions</p>
-                   	        <br>
-                   		    <p class="font2">Add your new test file to the repository</p>
-                   			<div class="console">
-                   			    <div class="dosText">
-                     				    <br>
-                     				    <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span>\incoming</p>
-                     			        <p>> hg add ttwf-js-tutorial-001.html</p>
-                     			        <p>> hg commit -m "TTWF JavaScript tutorial"</p>
-                     			        <p>> hg push</p>
-                     			    </div>
-                   		    </div>
-                               <div class="bottomNote2">
-                                <br><br><br>
-                   	            <p class="noteText">Note: If you receive the following error:</p> 
-                   	            <p class="errorText">abort: push creates new remote head ...</p>
-                   	            <p class="noteText">Your local repository is out of sync with the test repository</p>
-                   	            <p class="noteText">Do the following to resolve the issue:</p>
-                   	        </div>  
-                   	        <br><br><br><br><br><br><br>
-                               <div class="console">
-                   			    <div class="dosText">
-                     				    <br>
-                     			        <p>> hg pull -u</p>
-                     			        <p>> hg merge</p>
-                     			        <p>> hg commit -m "Merge"</p>
-                     			        <p>> hg push</p>
-                     			    </div>
-                   		    </div>      			               			    
+                   		    <p class="font3">Add your new test file to the repository</p>
+               		       <pre>
+               		           <code style="font-size:18px; line-height:22px; height:120px">
+> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span>\incoming
+> hg add ttwf-js-tutorial-001.html
+> hg commit -m "TTWF JavaScript tutorial"
+> hg push
+               		            </code>
+               		       </pre>
+       		               <p class="font5" style="line-height:24px">If you receive the error:
+       		               <span class="errorText">abort: push creates new remote head ...</span><br>
+       		            Your local repository is out of sync with the test repository. To resolve:<br></p>
+               		        <pre>
+               		        <code style="font-size:18px; line-height:22px; height:120px">
+> hg pull
+> hg merge
+> hg commit -m "Merge"
+> hg push
+               		        </code>
+               		    </pre>     			               			    
                    	    </section>
                        </section>
 
                        <section data-state="screenshotPage">
-                         <br>
                    	     <h2>Step 11</h2>
                    	     <br><br><br>
                    	     <h3>Ask the spec expert to review your test</h3>
@@ -1332,40 +1296,32 @@ test(function() {assert_equals( // test arg1: test_function
                        
                        <section data-state="screenshotPage">
                            <section>
-                            <br>
-                       	    <h2>Step 12 - OSX</h2>
-                       	    <br>
-                       	    <p class="font5">Press down-arrow for Windows instructions</p>
-                       	    <br>
-                       	    <p class="font2">Incorporate feedback & move test to the submitted folder</p>
-                       	    <br>
-                       		<div class="consoleLarge">
-                       		    <div class="consoleText">
-                       		        <br><br><br>
-                       			    <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span></p>
-                       		        <p>$ hg mv incoming/ttwf-js-tutorial-001.html submitted/ttwf-js-tutorial-001.html</p>
-                       		        <p>$ hg commit -m "moved the TTWF JavaScript tutorial to the submitted folder"</p>
-                       		        <p>$ hg push</p>
-                       		    </div>
-                       	    </div>
+                           	    <h2>Step 12 - OSX</h2>
+                           	    <p class="font5">Press down-arrow for Windows instructions</p>
+                           	    <p class="font3">Incorporate feedback & move test to the submitted folder</p>
+                           	    <br>
+                           	    <pre>
+                           	        <code style="font-size:18px; line-height:22px; height:120px">
+$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/<span class="localPath">yourName</span>
+$ hg mv incoming/ttwf-js-tutorial-001.html submitted/ttwf-js-tutorial-001.html
+$ hg commit -m "moved the TTWF JavaScript tutorial to the submitted folder"
+$ hg push                       	            
+                           	        </code>
+                           	    </pre>
                            </section>
+                           
                            <section>
-                               <br>
                                <h2>Step 12 - Windows</h2>
-                               <br>
-                       	    <p class="font5">Press down-arrow for OSX instructions</p>
-                       	    <br>
-                       	    <p class="font2">Incorporate feedback & move test to the submitted folder</p>
-                       	    <br>
-                       		<div class="consoleLarge">
-                       		    <div class="dosText">
-                       		        <br><br><br>
-                       			    <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span></p>
-                       		        <p>> hg mv incoming\ttwf-js-tutorial-001.html submitted\ttwf-js-tutorial-001.html</p>
-                       		        <p>> hg commit -m "moved the TTWF JavaScript tutorial to the submitted folder"</p>
-                       		        <p>> hg push</p>
-                       		    </div>
-                       	    </div>
+                       	       <p class="font5">Press down-arrow for OSX instructions</p>
+                           	   <p class="font2">Incorporate feedback & move test to the submitted folder</p>
+                          	   <pre>
+                      	           <code style="font-size:18px; line-height:22px; height:120px">
+> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span>
+> hg mv incoming\ttwf-js-tutorial-001.html submitted\ttwf-js-tutorial-001.html
+> hg commit -m "moved the TTWF JavaScript tutorial to the submitted folder"
+> hg push                       	            
+                      	            </code>
+                      	        </pre>
                            </section>          		        
                        </section>  
 
@@ -1377,71 +1333,75 @@ test(function() {assert_equals( // test arg1: test_function
                        </section>                 		    		     
 
                        <section>
+                           <br><br><br><br><br>
                            <h2>Reference Slides</h2>
                        </section>
 
                        <section data-state="screenshotPage">
-                           <br>
                            <h2>Mercurial Command Reference</h2>
                            <br>
-                           <ul>
-                               <li>Basic Commands:
-                                   <ul>
-                                       <li>hg pull   (gets the latest changes from the CSSWG Test repo)</li>
+                           <section>
+                               <ul>
+                                   <li>Basic Commands:
                                        <ul>
-                                           <li>To update after pull, use: hg pull -u (alleviates need to do hg update)</li>
-                                       </ul>                                
-                                       <li>hg update (applies the latest changes pulled to your local repo)</li>
-                                       <li>hg status (displays list of locally changed files)</li>
-                                       <li>hg add    (stages a new or modified local file for commit)</li>
-                                       <li>hg remove (stages the removal of a local file for commit)</li>
-                                       <li>hg merge  (merges local changes with updates pulled from CSSWG Test repo)</li>
-                                       <li>hg commit (commits local changes to local repository)</li>
+                                           <li>hg pull   (gets the latest changes from the CSSWG Test repo)</li>
                                            <ul>
-                                               <li>To include commit message, use: hg commit -m "<span style="font-style:italic">Commit message here</span>"</li>
-                                           </ul>
-                                       <li>hg push   (pushes local changes to the CSSWG Test repository)</li>
-                                   </ul>
-                               </li>
-                               <li>See next slide for typical usage scenarios</li>
-                       </section>
-                       <section data-state="screenshotPage">
-                           <br>
-                           <h2>Mercurial Command Reference</h2>
-                           <ul>
-                               <li>User wants to update their local repo:
-                                   <ul>
-                                       <li>hg pull -u  (pulls and applies latest changes from CSSWG repo to local repo)</li>
-                                   </ul>
-                               </li>
-                               <li>User wants to push local changes:
-                                   <ul>
-                                       <li>hg status (check which files are stages for commit)</li>
-                                       <li>hg add <span style="font-style:italic">fileName</span> (stages file for commit, repeat for each file)</li>
-                                       <li>hg status (confirm all files are stages for commit)</li>
-                                       <li>hg commit -m "<span style="font-style:italic">Commit message here</span>" (Commit to local repo)</li>
-                                       <li>hg push (pushes locally committed changes to CSSWG Test repo)
-                                   </ul>
-                               </li> 
-                               <li>User gets error message during push
-                                   <pre>
-                                       <code class="html">
+                                               <li>To update after pull, use: hg pull -u (alleviates need to do hg update)</li>
+                                           </ul>                                
+                                           <li>hg update (applies the latest changes pulled to your local repo)</li>
+                                           <li>hg status (displays list of locally changed files)</li>
+                                           <li>hg add    (stages a new or modified local file for commit)</li>
+                                           <li>hg remove (stages the removal of a local file for commit)</li>
+                                           <li>hg merge  (merges local changes with updates pulled from CSSWG Test repo)</li>
+                                           <li>hg commit (commits local changes to local repository)</li>
+                                               <ul>
+                                                   <li>To include commit message, use: hg commit -m "<span style="font-style:italic">Commit message here</span>"</li>
+                                               </ul>
+                                           <li>hg push   (pushes local changes to the CSSWG Test repository)</li>
+                                       </ul>
+                                   </li>
+                                </ul>
+                                <br><br>
+                                <p class="font5">Press down for more</p>
+                           </section>
+                           <section>
+                               <ul>
+                                   <li>User wants to update their local repo:
+                                       <ul>
+                                           <li>hg pull -u  (pulls and applies latest changes from CSSWG repo to local repo)</li>
+                                       </ul>
+                                   </li>
+                                   <li>User wants to push local changes:
+                                       <ul>
+                                           <li>hg status (check which files are stages for commit)</li>
+                                           <li>hg add <span style="font-style:italic">fileName</span> (stages file for commit, repeat for each file)</li>
+                                           <li>hg status (confirm all files are stages for commit)</li>
+                                           <li>hg commit -m "<span style="font-style:italic">Commit message here</span>" (Commit to local repo)</li>
+                                           <li>hg push (pushes locally committed changes to CSSWG Test repo)
+                                       </ul>
+                                   </li> 
+                                </ul>
+                                <br><br><br>
+                                <p class="font5">Press down for more</p>
+                            </section>
+                            <section>
+                               <ul>
+                                   <li>User gets error message during push
+                                       <pre>
+                                           <code style="font-size:18px">
 abort: push creates new remote head ...
-                                        </code>
-                                    </pre>
-                                   <ul>
-                                       <li>hg pull (gets newest changes from CSSWG Test repo)</li>
-                                       <li>hg merge (merges newest changes from CSSWG Test repo with local changes)</li>
-                                       <li>hg commit -m "Merge" (commits the merge to local repo)</li>
-                                       <li>hg push (pushes changes to CSSWG Test repo)</li>
-                                   </ul>
-                               </li>
-                           </ul>
-                       </section>
-          		    
-                    
-                   
-		
+                                            </code>
+                                        </pre>
+                                        <ul>
+                                            <li>hg pull (gets newest changes from CSSWG Test repo)</li>
+                                            <li>hg merge (merges newest changes from CSSWG Test repo with local changes)</li>
+                                            <li>hg commit -m "Merge" (commits the merge to local repo)</li>
+                                            <li>hg push (pushes changes to CSSWG Test repo)</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </section>
+                        </section>
 			</div>
 
 			<!-- The navigational controls UI -->
