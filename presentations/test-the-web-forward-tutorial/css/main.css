@@ -205,7 +205,7 @@ body {
 }
 
 .reveal code {
-	font-family: Monaco;
+	font-family: Monaco, monospace;
 	line-height: 14pt;
 }
 
@@ -933,8 +933,12 @@ body {
 	        transition: background 800ms ease;
 }
 
+.fullPage .slides {
+	top: 40%;
+}
+
 .screenshotPage .slides {
-	top: 55%;
+	top: 45%;
 }
 
 .expandPageWide .slides {

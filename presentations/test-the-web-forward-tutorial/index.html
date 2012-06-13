@@ -68,10 +68,10 @@
 					<blockquote>
 					<ul>
 					    <li>Two files: Test file + Reference file</li>
-					    <li>Test file uses the feature you're test</li>
-					    <li>Reference file is an exact visual match without using the feature you're testing'</li>
+					    <li>Test file uses the feature you're testing</li>
+					    <li>Reference file is an exact visual match without using the feature you're testing</li>
 						<li>Self-describing (works both manually and with automation)</li>
-						<li> Cross-browser & cross-platform</li>
+						<li> Cross-browser &amp; cross-platform</li>
 					</ul>
 					</blockquote>
 				</section>
@@ -83,7 +83,7 @@
     				    <br>
     				    
     				    <ul>
-    				    <li>CSSWG Test Repository</li>
+    				    <li style="list-style-type: none">CSSWG Test Repository</li>
     				    <ul>
     				        <li>test</li>
     				        <ul>
@@ -91,7 +91,7 @@
 						        <ul>
 						            <li>ttwf</li>
 						            <ul>
-						                <li>your_csswg_id</li>
+						                <li><tt><em>your_csswg_id</em></tt></li>
 						                <ul>
 						                    <li>incoming</li>
     						                <li>submitted</li>
@@ -100,7 +100,7 @@
 						        </ul>
 						    </ul>
 						</ul>
-						</li>
+						</ul>
 					</section>
 					<section>
 					    <img src="assets/images/directoryStructure.png"/>
@@ -111,7 +111,7 @@
     				<h2>Sample Test Case</h2>
     				<section>
     					<br><br>
-    					<p style="font-size: 28pt">Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
+    					<p style="font-size: 28pt">Basic test for the transform property described in the CSS3 Transforms spec using the <code>translate()</code> function</p>
     					<br>
     					<br>
     					<p>Spec Links:</p>
@@ -257,57 +257,10 @@
                   </section>
 
                   <section data-state="screenshotPage">
-              	     <h2>Step 4</h2>
-              	     <p class="font2">Open the ttwf-reftest-starter-001.html file in a editor</p>
-              	     					    <pre>
-                     					    <code class="html">
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-    &lt;title&gt;Test File&lt;/title&gt;
-    &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
-    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
-    &lt;link rel="help" href="additional spec link"&gt;
-    &lt;link rel="match" href="path to reference file"&gt;
-    &lt;meta name="assert" content="Statement describing what the test case is asserting&gt;
-    &lt;<span class="styleTag">style type</span>="text/css"&gt;
-         /* Positioned container allows for the self-describing statement to still 
-            be visible in the case of failure */
-         <span class="styleTag">.container</span> {
-              <span class="cssProperty">position: absolute;
-         }
-         <span class="styleTag">.greenSquare</span> {
-             <span class="cssProperty">position: absolute;
-             top: 0;
-             left: 0;
-             width: 100<span class="px">px</span>;
-             height: 100<span class="px">px</span>;
-             /* Add fil color green here */
-             /* Add CSS transform here */
-         }
-         /* This div should only be visible if the test fails */
-         <span class="styleTag">.redSquare</span> {
-             /* It is approximately the same size as the test div, but with a 1px margin */
-             <span class="cssProperty">position: absolute;
-             width: 98<span class="px">px</span>;
-             height: 98<span class="px">px</span>;
-             /* Add fill color red */
-             /* Add top and left to position the div so it is hidden behind the green square */
-         }
-     &lt;/<span class="styleTag">style</span>&gt;
-     &lt;/head&gt;
-     &lt;body&gt;
-         &lt;p&gt;The test passes if ...&lt;/p&gt;
-         &lt;div class="container"&gt;
-            &lt;!-- This is the square that should not be visible if the test passes --&gt;
-            &lt;div class="redSquare"&gt;&lt;/div&gt;
-            &lt;!-- This is the square being tested with the transform --&gt;
-            &lt;div class="greenSquare"&gt;&lt;/div&gt;
-         &lt;/div&gt;
-     &lt;/body&gt;
-&lt;/html&gt;
-                                                 </code>
-                     					    </pre>
+                     <br>
+                     <h2>Step 4</h2>
+              	     <br>
+                     <p class="font2">Open the ttwf-reftest-starter-001.html file in a editor</p>
                   </section>
 
                   <section data-state="screenshotPage">
@@ -411,8 +364,7 @@
                              <span class="highlight">transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
                          }
                          . . .
-                     &lt;/<span class="styleTag">style</span>&gt;    
-             </span>				        
+                     &lt;/<span class="styleTag">style</span>&gt;</span>				        
                  				    </code>
                  				    </pre>
 
@@ -435,21 +387,20 @@
                              <span class="highlight">top: 101<span class="px">px</span>;</span>
                              <span class="highlight">left: 101<span class="px">px</span>;</span>
                          }
-                     &lt;/<span class="styleTag">style</span>&gt;    
-         </span>				        
+                     &lt;/<span class="styleTag">style</span>&gt;</span>				        
                  				    </code>
                  				    </pre>
 
                          </section>
 
-                         <section data-state="screenshotPage">
-                                 <h2>Step 8</h2>
-                        	     <br>
-                        	     <p class="font2">Add green & red fill colors to denote passing & failing conditions</p>
-                        	      <pre>
-              				    <code class="html">
-          <span class="expand2">
-                 &lt;<span class="styleTag">style type</span>="text/css"&gt;
+                         <section>
+                             <section data-state="screenshotPage">
+                                    <h2>Step 8.1</h2>
+                        	        <br>
+                        	        <p class="font2">Add green fill color to denote passing condition</p>
+                        	        <pre>
+              				            <code class="html">
+                <span class="expand2">
                       <span class="styleTag">.greenSquare</span> {
                           <span class="cssProperty">position: absolute;
                           top: 0;
@@ -458,20 +409,32 @@
                           height: 100<span class="px">px</span>;
                           transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);
                           <span class="highlight">background: green;</span>
-                      }
-                       <span class="styleTag">.redSquare</span> {
-                           <span class="cssProperty">position: absolute;
-                           width: 98<span class="px">px</span>;
-                           height: 98<span class="px">px</span>;
-                           top: 101<span class="px">px</span>;
-                           left: 101<span class="px">px</span>;
-                           <span class="highlight">background: red;</span>
-                       }
-                  &lt;/<span class="styleTag">style</span>&gt;    
-          </span>				        
+                      }</span>				        
               				    </code>
               				    </pre>
                         </section>
+                        <section data-state="screenshotPage">
+                            <h2>Step 8.2</h2>
+                    	    <br>
+                    	    <p class="font2">Add the red fill color to denote failing condition</p>
+                    	    <pre>
+          				    <code class="html">
+                <span class="expand2">
+                   <span class="styleTag">.redSquare</span> {
+                       <span class="cssProperty">position: absolute;
+                       width: 98<span class="px">px</span>;
+                       height: 98<span class="px">px</span>;
+                       top: 101<span class="px">px</span>;
+                       left: 101<span class="px">px</span>;
+                       <span class="highlight">background: red;</span>
+                   }
+              &lt;/<span class="styleTag">style</span>&gt;</span>				        
+          				    </code>
+          				    </pre>
+                    </section>
+                        
+                        
+                       </section>
                         <section data-state="screenshotPage">
                             <br>
                              <h2>Step 9</h2>
@@ -495,36 +458,7 @@
                              <h2>Step 10</h2>
                              <br>
                              <p class="font2">Open the reftests/ttwf-reftest-tutorial-starter-ref.html file in an editor</p>
-                             <pre>
-                         	<code class="html">
-     &lt;!DOCTYPE html&gt;
-     &lt;html&gt;
-         &lt;head&gt;
-         &lt;title&gt;Reference File&lt;/title&gt;
-         &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
-         &lt;<span class="styleTag">style type</span>="text/css"&gt;
-             <span class="styleTag">.container</span> {
-                  <span class="cssProperty">position: absolute;
-             }
-             <span class="styleTag">.greenSquare</span> {
-                 <span class="cssProperty">position: absolute;
-                 width: 100<span class="px">px</span>;
-                 height: 100<span class="px">px</span>;
-                 /* Position the div so its identical to the div in the test file */
-                 /* Add fill color to match the test file */
-             }
-         &lt;/<span class="styleTag">style</span>&gt;
-         &lt;/head&gt;
-             &lt;body&gt;
-                 &lt;p&gt;The test passes if...&lt;/p&gt;
-                 &lt;div class="container"&gt;
-                    &lt;div class="greenSquare"&gt;&lt;/div&gt;
-                 &lt;/div&gt;
-             &lt;/body&gt;
-         &lt;/html&gt;
-                                     </code>
-         					    </pre>
-
+    
                         </section>
 
                         <section data-state="screenshotPage">
@@ -565,8 +499,7 @@
                              <span class="highlight">left: 100;</span>
                              <span class="highlight">background: green;</span>
                          }
-                     &lt;/<span class="styleTag">style</span>&gt;
- </span>				        
+                     &lt;/<span class="styleTag">style</span>&gt;</span>				        
      				    </code>
      				    </pre>
 
@@ -594,12 +527,49 @@
                          <h2>Step 14</h2>
                          <br>
                          <p class="font2">Examine your test and reference files in the browser and confirm they are identical</p>
-                         <img src="assets/images/comparison.png">
+                         <img src="assets/images/testFile.png">
+                         <img src="assets/images/refFile.png">
                     </section>
                     <section>
                          <h3>Failing test example</h3>
                          <br>
                          <img src="assets/images/failingRefTest.png">
+                    </section>
+                    
+                     <section>
+                         <h2>Vendor prefixes</h2>
+                         
+                         <section>
+                             <br>
+                             <ul>
+                                 <li>You may need to add a vendor prefix to the CSS property you're testing</li>
+                                 <li>If the prefix is necessary, your test will appear to fail without it</li>
+                                 <li>However, do not include vendor prefixes when pushing tests to the W3C</li>
+                             </ul>    
+                             <br>
+                             <p class="font5">Press the down-arrow for a vendor-prefixed version of this tutorial</p>
+                        </section>
+                        
+                        <section>
+                            <pre>
+                            <code class="html">
+                              <span class="expand2">
+                        <span class="styleTag">.greenSquare</span> {
+                          <span class="cssProperty">position: absolute;
+                              top: 0;
+                              left: 0;
+                              width: 100<span class="px">px</span>;
+                              height: 100<span class="px">px</span>;
+                              <span class="highlight">-webkit-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                              <span class="highlight">-moz-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                              <span class="highlight">-ms-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                              <span class="highlight">-o-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                              background: green;
+                          }</span> 
+                            </code>
+                            </pre>
+                        </section>
+                        
                     </section>
                     
                     <section data-state="screenshotPage">
@@ -1062,7 +1032,7 @@
                       </section>
 
                       <section data-state="screenshotPage">
-              			<h2>Step 4</h2>
+                         <h2>Step 4</h2>
           			    <br>
               		    <p class="font2">Add a div to be used as the test element to the body</p>
               		    <br>
