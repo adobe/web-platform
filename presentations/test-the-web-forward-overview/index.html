@@ -424,9 +424,10 @@
                 </section>
     			
 				<!-- Begin JS TEST -->
-				<section data-state="largePage">
+				<section>
 					<h2>JavaScript Test Overview</h2>
-					<ul  style="line-height:50px">
+					<br>
+					<ul>
 					    <li>JavaScript tests programmatically verify functionality</li>
 					    <li>JavaScript tests have some advantages over Ref Tests
 					        <ul>
@@ -443,23 +444,31 @@
 					            <li>Avoids introducing additional technologies (JS)</li>
 					        </ul>
 					    </li>
-					    <li>JavaScript tests can be used in conjunction with Ref Tests
-					        <ul>
-					            <li>Test can have both a reference file and a JavaScript section</li>
-					            <li>Ref Test portion supports suites without script engines</li>
-					        </ul>
-					    </li>
-					    <li>JavaScript tests best used in the following scenarios:
-					        <ul>
-					            <li>Testing a JS API or behavior (ex: CSSOM spec)</li>
-					            <li>Adding automation to Ref Tests</li>
-					        </ul>
-					    </li>
-					    <li>W3C provides a framework (testharness) to simplify and standardize JS test creation</li>
+					</ul>
+			    </section>
+				
+				<section>
+				    <h2>JavaScript Test Overview (cont'd)</h2>
+				    <br>
+                    <ul>
+    					<li>JavaScript can be used in conjunction with Ref Tests
+    					    <ul>
+    				            <li>Test can have both a reference file and a JavaScript section</li>
+    				            <li>Ref Test portion supports suites without script engines</li>
+    				        </ul>
+    				    </li>
+    				    <li>Self-describing RefTests are the preferred test format</li>
+    				    <li>JavaScript tests should used in the following scenarios:
+    				        <ul>
+    				            <li>Testing a JS API or behavior (ex: CSSOM spec)</li>
+    				            <li>Adding automation to Ref Tests</li>
+    				        </ul>
+    				    </li>
+    				    <li>W3C provides a framework (testharness) to simplify and standardize JS test creation</li>
 					</ul>
 				</section>
 				
-				<section data-state="largePage">
+				<section>
 				    <section>
 				        <h3>testharness</h3>
 				        <p>testharness.js and testharnessreport.js</p>
@@ -469,24 +478,27 @@
 
 &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;
                             </code>
-                        </pre>
-				        
+                        </pre>    
     				    <ul>
-    				        <li>JavaScript framework that provides an API for making common test assertions</li>
+    				        <li>JavaScript API for making common test assertions</li>
     				        <li>Should be used by all JavaScript tests</li>
-    				        <li>Path must be to a resources directory at the root level (/resources/...) prior to pushing to the test repository</li>
-    				        <li>An element must exist in test file with id="log" to be used as a container for test results</li>
+    				        <li>Path must be to resources directory at root level</li>
+    				        <li>Element with id="log" must exist in test file
+    				            <ul>
+    				                <li>Test results table will be added to this element</li>
+    				            </ul>
+    				        </li>
     				    </ul>
 				    </section>
 				</section>
 				
-				<section data-state="largePage">
+				<section>
 			        <section>
     			        <h2>The test function</h2>
         			    <br>
         			    <pre style="font-size:24px">
         			        <code class="html">
-                test(test_function, name, properties)
+            test(test_function, name, properties)
         			        </code>
         			    </pre>
         			    <ul>
@@ -510,45 +522,42 @@
                         <h2>test() Argument 1: test_function</h2>
         			    <pre style="font-size:24px">
         			        <code class="html">
-                test(<span style="color:red">test_function</span>, name, properties)
+            test(<span style="color:red">test_function</span>, name, properties)
         			        </code>
         			    </pre>                        
                         <ul>
-                            <li>The test_function argument must be a function object, not a function call</li>
-                            <li>The test_function will typically be one of the assert methods supplied by testharness
+                            <li>test_function must be an object, not a function call</li>
+                            <li>test_function will typically be one of the assert methods supplied by testharness
                                 <ul>
                                     <li>Can also be user defined if no assert method provides the needed functionality</li>
                                 </ul>
                             </li>
-                            <li>The evaluation of the assertion will determine PASS/FAIL for the test</li>
-                            <br>
+                            <li>Result from the assertion will determine PASS/FAIL</li>
                             <li>Usage example:
                                 <pre style="font-size:18px">
                                     <code>
-                    test(function() {assert_true(true)}, name, properties)
+            test(function() {assert_true(true)}, name, properties)
                                     </code>
                                 </pre>  
                             </li>                            
     			        </ul>                   
-                        
                     </section>
                                  
                    <section>
                         <h2>test() Argument 2: Name</h2>
                         <pre style="font-size:24px">
                             <code class="html">
-                test(test_function,<span style="color:red"> name</span>, properties)
+            test(test_function,<span style="color:red"> name</span>, properties)
                             </code>
                         </pre>                        
                         <ul>
                             <li>Name is a string that identifies the test</li> 
-                            <li>Should be a descriptive test name that conveys what is being tested</li>
+                            <li>Descriptive test name that conveys what is being tested</li>
         			        <li>Name will be displayed in the test results table</li>
-        			        <br>
                             <li>Usage example:
                                 <pre style="font-size:18px">
                                     <code class="html">
-            test(function() {assert_true(true)}, "Assert_true with true", properties)
+    test(function() {assert_true(true)}, "Assert_true with true", properties)
                                     </code>
                                 </pre>  
                             </li>
@@ -559,33 +568,16 @@
                         <h2>test() Argument 3: Properties</h2>
                         <pre style="font-size:24px">
                             <code class="html">
-                test(test_function, name,<span style="color:red"> properties</span>)
+            test(test_function, name,<span style="color:red"> properties</span>)
                             </code>
                         </pre>                        
                         <ul>
-                            <li>Properties is an object that overrides default test properties</li>
-                            <li>Recognized properties include the following:
-    			                <ul>
-    			                    <li>timeout
-    			                        <ul style="font-size:28px">
-    			                            <li>timeout defines how long testharness will wait while executing a test case</li>
-    			                            <li>This is specific to synchronous test, async_tests also have a timeout used slightly differently</li>
-    			                        </ul>
-    			                    </li>
-    			                    <li>author / help/ assert metadata 
-    			                        <ul style="font-size:28px">
-    			                            <li>Allows test author to define per-test case metadata</li>
-    			                            <li>Overrides the metadata defined in the head</li>
-    			                            <li>Each parameter accepts a single value or an array</li>
-    			                        </ul>
-    			                    </li>
-    			                </ul>
-                            </li>
-                            <br>
+                            <li>Properties is an object that overrides defaults</li>
+                            <li>Recognized properties include timeout and metadata</li>
                             <li>Usage example:
                                 <pre style="font-size:18px">
                                     <code class="html">
- test(function() {assert_true(true)}, "Assert_true with true", <br><br> {timeout:1000, <br><br> help: 'http://www.w3.org/TR/spec', <br><br> author: ['John Doe &lt;john@doe.com&lt;mailto:john@doe.com&gt;&gt;', 'Fred Smith http://smith.com/fred'],<br><br> assert: 'This should always be true.']})
+ test(function() {assert_true(true)}, "Assert_true with true", <br><br> {timeout:1000, <br><br> help: 'http://www.w3.org/TR/spec', <br><br> author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br> assert: 'This should always be true.']})
                                     </code>
                                 </pre>                                
                             </li>    			                    
@@ -593,20 +585,19 @@
                     </section>
                 </section>
                   
-        	    <section data-state="largePage">
+        	    <section>
         	        <section>
     			        <h2>Assert methods</h2>
         			    <ul>
-        			        <li>testharness.js provides a number of assert methods to use for making test assertions
+        			        <li>testharness.js provides a number of assert methods
         			            <ul>
-        			                <li>Full list is provided in the comment section of the testharness.js file</li>
-        			                <li>Whenever possible, these methods should be used</li>
+        			                <li>Full list is provided in the comment section of testharness.js</li>
+        			                <li>Typically supplied as the test_function for test()</li>
         			            </ul>
         			        </li>
         			        <li>All assert methods contain an optional "description" argument that is only output if the assertion fails
         			            <ul>
-        			                <li>The description will be added to the default output from testharness</li>
-        			                <li>The description should be used to provide additional debug information in the case of a failure</li>
+        			                <li>Used to provide additional debug information</li>
         			            </ul>
         			        </li>
         			        <li>All asserts must be located in a test()
@@ -621,18 +612,17 @@
     			        <h2>Assert Example</h2>
                         <pre style="font-size:24px">
                             <code class="html">
-            assert_equals(actual, expected, description)
+        assert_equals(actual, expected, description)
                             </code>
                         </pre>
                         <ul>
-                            <li>actual: The actual value based on the functionality being tests</li>
-                            <li>expected: The expected value, evaluated against actual value to determine if they are the same</li>
-                            <li>description (optional): Output only if the assertion fails, used to provide additional debug info</li>
-                            <br>
+                            <li>actual: The actual value from the functionality being tested</li>
+                            <li>expected: The expected value</li>
+                            <li>description (optional): Output only if the assertion fails</li>
                             <li>Usage example:
                                 <pre style="font-size:18px">
                                     <code class="html">
-    assert_equals(getActualData("myElement"), 100, "Expected value for myElement is 100")
+ assert_equals(getActualData("myElement"), 100, "Expected value for myElement is 100")
                                     </code>
                                 </pre>                                
                             </li>                            
@@ -644,7 +634,7 @@
     				<h2>Sample Test Case</h2>
     				<section>
     					<br>
-    					<p>Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
+    					<p>API test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
     					<br><br>
     					<p>Spec Links:</p>
     					<p style="font-size: 16pt">
@@ -652,183 +642,92 @@
     					    <br>
     					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
 					    </p>
-					    <br>
-					    <p style="color:red; font-style:italic; font-size: 16pt">Build upon Ref Test example to add JavaScript verification</p>
 					</section>
 					<section>
 					    <img src="assets/images/specAssertion.png">
 					</section>
-	            </section>
-
-				<section data-state="largePage">
-				    <section>
-				        <h3>Examine the code (head)</h3>
-					    <pre style="font-size: 14px">
-					        <code class="html">
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
+	            </section>			
+			    
+			    <section>
+			        <h3>Metadata</h3>
+			        <section>
+    			        <pre>
+    			            <code class="html">
 &lt;head&gt;
-    &lt;title&gt;CSS Transforms Test: translate function&lt;/title&gt;
+    &lt;title&gt;CSS Transforms API Test: transform translate&lt;/title&gt;
     &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
     &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
     &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
-    &lt;link rel="match" href="reftest/ttwf-reftest-tutorial-ref.html"&gt;
-    &lt;meta name="assert" content="This transform moves the element by 100 pixels in both the X and Y directions."&gt;
+    &lt;meta name="flags" content="dom"&gt;
+    &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt;	
+...    
+&lt;/head&gt;                
+    			            </code>
+    			        </pre>
+    			        <ul>
+    			            <li>JavaScript tests have similar requirements as RefTest</li>
+    			            <li>flags metadata "dom" used to specify that JavaScript is required</li>
+    			            <li>JSON metadata supports build system (not shown)</li>
+    			    </section>
+    			    <section>
+    			        <pre>
+    			            <code class="html">
+&lt;head&gt;
+...    
     &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
     &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
-    &lt;style type="text/css"&gt;
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
-        .results {
-            position: absolute;
-            top: 225px;
-            width: 100%;
-        }    
-        .container {
-            position: relative;
-        }
-        .greenSquare {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background: green;
-            transform: translate(100px,100px);
-        }
-        .redSquare {
-            position: absolute;
-            top: 101px;
-            left: 101px;
-            width: 98px;
-            height: 98px;
-            background: red;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-                            </code>
-                        </pre>
-                    </section>
-                
-                    <section>
-                        <h3>Examine the Code (Body)</h3>
-                        <pre>
-                            <code>
-...
-    &lt;body&gt;
-        &lt;div class="results"&gt;
-            &lt;p&gt;The test passes if there is a green square at 100,100 and no red is visible&lt;/p&gt;&lt;br&gt;
-            &lt;div id="log"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class="container"&gt;
-            &lt;div class="redSquare"&gt;&lt;/div&gt;
-            &lt;div id="myDiv" class="greenSquare"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;script type="text/javascript"&gt;
-            function checkElementPosition(elemID) {
-                return document.getElementById(elemID).getBoundingClientRect().left + "," +
-                       document.getElementById(elemID).getBoundingClientRect().top;            
-            }    
-            test(function() {assert_equals(checkElementPosition("myDiv"), "100,100", "myDiv should be at 100,100")}, 
-                            "Transform_Translate_100px_100px");
-        &lt;/script&gt;    
-    &lt;/body&gt;
-&lt;/html&gt;					    
-					        </code>
-					    </pre>
-				    </section>
-			    </section>				
+&lt;/head&gt;    			                
+    			            </code>
+    			        </pre>
+    			        <ul>
+    			            <li>testharness.js and testharnessreport.js imported</li>
+    			            <li>Path to both scripts is based on resources directory at root level
+    			                <ul>
+    			                    <li>This is the required path before submitting to CSSWG Test Repository</li>
+    			                </ul>
+    			            </li>
+    			        </ul>
+    			    </section>
+			    </section>
 			    
-			    <section data-state="largePage">
-			        <h3>Positioning</h3>
+			    <section>
+			        <h3>Body</h3>
 			        <pre>
 			            <code class="html">
-&lt;style type="text/css"&gt;
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
+&lt;body&gt;
+    &lt;div id="myDiv"&gt;&lt;/div&gt;
+    &lt;div id="log"&gt;&lt;/div&gt;    
 
-    .results {
-        position: absolute;
-        top: 225px;
-        width: 100%;
-    }    
-...
-&lt;/style&gt;
-                        </code>
-                    </pre>
-                    <br>
-                    <ul>
-                        <li>Not required for the test</li> 
-                        <li>Simplifies the code by removing offsets caused by margins/padding</li>
-                        <li>Results container positioned below test element to avoid interference</li>
-                        <li>Test could also omit these styles and account for offsets in expected value</li>
-                    </ul>
+    &lt;script&gt;
+        // Set the transform 
+        document.getElementById("myDiv").style.transform = "translate(100px,100px)";
+
+        // Verify that the transform was set as expected
+        test(function() {assert_equals(
+                        document.getElementById("myDiv").style.transform, // Actual
+                        "translate(100px, 100px)",  // Expected
+                        "transform should be translate(100px,100px)")}, // Description
+                        "Transform_Translate_100px_100px"); // name
+    &lt;/script&gt;
+&lt;/body&gt;			                
+			            </code>
+			        </pre>
+			        <ul style="font-size:30px">
+			            <li>div "myDiv" used as test element - translate applied in JS</li>
+			            <li>div "log" used as container for test results</li>
+			            <li>test() uses assert_equals as test_function</li>
+                        <li>assert_equals actual value supplied by transform</li>
+			        </ul>
 			    </section>
  			    
-			    <section data-state="largePage">
-				    <h3>User Defined Function</h3>
-                    <pre>
-                        <code class="html">
-...
-        function checkElementPosition(elemID) {
-            return document.getElementById(elemID).getBoundingClientRect().left + "," +
-                   document.getElementById(elemID).getBoundingClientRect().top;            
-        }    
-...
-                        </code>
-                    </pre>
-                    <br>
-                    <ul>
-                        <li>User defined function to get the actual value of the element being tested</li>
-                        <li>Uses the DOM function getBoundingClientRect() to get the x,y coordinates of an element based on its ID</li> 
-                        <li>Returns a string that consists of "X,Y"</li>
-                    </ul>
-			    </section>
-
-			    <section data-state="largePage">
-				    <h3>Test Case</h3>
-				    <p>test() with assert_equals</p>
-                        <pre>
-                            <code class="html">
-&lt;body&gt;
-... 
-    test(function() {assert_equals(checkElementPosition("myDiv"), "100,100", "myDiv should be at 100,100")}, 
-                    "Transform_Translate_100px_100px");
-...    
-&lt;/body&gt;
-&lt;/html&gt;
-                            </code>
-                        </pre>
-				    <ul>
-				        <li>assert_equals(actual, expected, description)
-				            <ul>
-				                <li>actual = checkElementPosition("myDiv")</li>
-				                <li>expected = "100,100"</li>
-				                <li>description = "myDiv should be at 100,100"</li>
-				            </ul>
-				        </li>
-				        <br>				        
-				        <li>test(test_function, name, properties)
-				            <ul>
-				                <li>test_function = assert_equals(checkElementPosition("myDiv"), "100,100", "myDiv should be at 100,100")</li>
-				                <li>name = "Transform_Translate_100px_100px"</li>
-				                <li>properties = <span style="font-style:italic">not specified</span></li>
-				            </ul>
-				        </li>
-				    </ul>
-				        
-			    </section>   
-                
-    			<section>
-    			    <section data-state="largePage">
+    			<section data-state="largePage">
+    			    <section>
     				    <h3>Test Results</h3>
     				    <p>PASS</p>
     				    <img src="assets/images/jsTest_PASS.png"/>
     			    </section>
     			    
-                    <section data-state="largePage">
+                    <section>
     				    <h3>Test Results</h3>
     				    <p>FAIL</p>
     				    <img src="assets/images/jsTest_FAIL.png"/>
@@ -836,7 +735,7 @@
                 </section>                                                    
     			
     			<section>
-    			    <h1>Q & A</h1>
+    			    <h1>Questions & Answers</h1>
     			</section>
 		
 			</div>
