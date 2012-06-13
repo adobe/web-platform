@@ -1,4 +1,4 @@
-<!doctype html>  
+<!doctype HTML>  
 <html lang="en">
 	
 	<head>
@@ -39,17 +39,16 @@
 				 <section data-state="screenshotPage">
                     <h2>Setup</h2>
                     <p class="font2">Complete all steps before proceeding</p>
-                    <br>
                     <ul>
-                        <li>Step 1: Create a CSSWG Test Manager Account<br><a href="https://test.csswg.org/shepherd/register/" style="font-size:18px">https://test.csswg.org/shepherd/register/</a> 
+                        <li>Step 1: Create a CSSWG Test Manager Account<br><a href="https://test.csswg.org/shepherd/register/" style="font-size:16px">https://test.csswg.org/shepherd/register/</a> 
                             <ul>
                                 <li>Select the check box next to "Request Repository Write Access"</li>
                             </ul>
                         </li>
-                        <li>Step 2: Install Mercurial<br><a href="http://wiki.csswg.org/tools/hg/install" style="font-size:18px">http://wiki.csswg.org/tools/hg/install</a></li>
-                        <li>Step 3: Setup Mercurial Preferences<br><a href="http://wiki.csswg.org/tools/hg#setting-up-mercurial-preferences" style="font-size:20px">http://wiki.csswg.org/tools/hg#setting-up-mercurial-preferences</a></li>   
-                        <li>Step 4: Clone the CSSWG Test Suite Repository<br><a href="http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository" style="font-size:20px">http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository</a></li>
-                        <li>Step 5: Clone the Resources directory<br><a href="http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository" style="font-size:20px">http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository</a></li>
+                        <li>Step 2: Install Mercurial<br><a href="http://wiki.csswg.org/tools/hg/install" style="font-size:16px">http://wiki.csswg.org/tools/hg/install</a></li>
+                        <li>Step 3: Setup Mercurial Preferences<br><a href="http://wiki.csswg.org/tools/hg#setting-up-mercurial-preferences" style="font-size:16px">http://wiki.csswg.org/tools/hg#setting-up-mercurial-preferences</a></li>   
+                        <li>Step 4: Clone the CSSWG Test Suite Repository<br><a href="http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository" style="font-size:16px">http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository</a></li>
+                        <li>Step 5: Clone the Resources directory<br><a href="http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository" style="font-size:16px">http://wiki.csswg.org/tools/hg#initial-clone-of-the-central-repository</a></li>
                     </ul>
                 </section>
 				
@@ -123,7 +122,7 @@
                           <p class="font5">Press down-arrow for Windows instructions</p>
               	        <br>
               		    <p class="font2">Update your local CSSWG test repository</p>
-              		    <p style="font-size:22px">Complete this step unless you just cloned the repository in the previous step</p>
+              		    <p style="font-size:22px">Complete this step unless you just cloned the repository during setup</p>
               		    <br>
 
               	        <p style="font-size:30px">From a terminal window, type the following:</p>
@@ -151,7 +150,7 @@
                           <p class="font5">Press up-arrow for OSX instructions</p>
               	        <br>
               		    <p class="font2">Update your local CSSWG test repository</p>
-              		    <p style="font-size:22px">Complete this step unless you just cloned the repository in the previous step</p>
+              		    <p style="font-size:22px">Complete this step unless you just cloned the repository during setup</p>
               		    <br>
 
               	        <p style="font-size:30px">From a DOS command window, type the following:</p>
@@ -620,7 +619,7 @@
                   	        <br><br><br><br><br><br><br>
                               <div class="console">
                   			    <div class="consoleText">
-                    				    <br>
+                    				    <p class="localPath">Only complete these steps if you received the error message above</p>
                     			        <p>$ hg pull -u</p>
                     			        <p>$ hg merge</p>
                     			        <p>$ hg commit -m "Merge"</p>
@@ -654,7 +653,7 @@
                   	        <br><br><br><br><br><br><br>
                               <div class="console">
                   			    <div class="dosText">
-                    				    <br>
+                    				    <p class="localPath">Only complete these steps if you received the error message above</p>
                     			        <p>> hg pull -u</p>
                     			        <p>> hg merge</p>
                     			        <p>> hg commit -m "Merge"</p>
@@ -666,8 +665,8 @@
                       <section data-state="screenshotPage">
                          <br>
                   	     <h2>Step 16</h2>
-                  	     <br>
-                  	     <h3>Ask someone to review your test</h3>
+                  	     <br><br>
+                  	     <h3>Ask the spec expert to review your test</h3>
                       </section>
                       <section data-state="screenshotPage">
                           <section>
@@ -719,29 +718,221 @@
                           <h1>W3C JavaScript Test Tutorial</h1>
                       </section>
 
-                      <section data-state="screenshotPage">
-                         <br>
-                      	<h2>JavaScript Test Overview</h2>
-                      	<br>
-                      	<ul>
-                      	    <li>In most cases, JavaScript is the preferred method for writing tests</li>
-                      	    <li>JavaScript tests have some advantages over Ref Tests
-                      	        <ul>
-                      	            <li>Robust</li>
-                      	            <li>Flexible</li>
-                      	            <li>Performant</li>
-                      	            <li>Powerful</li>
-                      	        </ul>
-                      	    </li>
-                      	    <li>W3C provides a framework (testharness) to simplify and standardize test creation
-                      	        <ul>
-                      	            <li>Includes an API for making common test assertions</li>
-                      	            <li>Formats results and displays debug information for failures</li>
-                      	        </ul>
-                      	    </li>
-                      	    <li>JavaScript tests are best when used in conjunction with some number of Ref Tests that verify final rendering</li>
-                      	</ul>
+      				<section>
+      					<h2>JavaScript Test Overview</h2>
+      					<br>
+      					<ul>
+      					    <li>JavaScript tests programmatically verify functionality</li>
+      					    <li>JavaScript tests have some advantages over Ref Tests
+      					        <ul>
+      					            <li>Robust</li>
+      					            <li>Flexible</li>
+      					            <li>Performant</li>
+      					            <li>Powerful</li>
+      					        </ul>
+      					    </li>
+      					    <li>Ref Tests have some advantages over JavaScript tests
+      					        <ul>
+      					            <li>Tests verify complete rendering</li>
+      					            <li>Easy to understand</li>
+      					            <li>Avoids introducing additional technologies (JS)</li>
+      					        </ul>
+      					    </li>
+      					</ul>
+      			    </section>
+
+      				<section>
+      				    <h2>JavaScript Test Overview (cont'd)</h2>
+      				    <br>
+                          <ul>
+          					<li>JavaScript can be used in conjunction with Ref Tests
+          					    <ul>
+          				            <li>Test can have both a reference file and a JavaScript section</li>
+          				            <li>Ref Test portion supports suites without script engines</li>
+          				            <li>JavaScript section adds automation</li>
+          				        </ul>
+          				    </li>
+          				    <li>Self-describing RefTests are the preferred test format</li>
+          				    <li>JavaScript tests should used in the following scenarios:
+          				        <ul>
+          				            <li>Testing a JavaScript API or behavior (ex: CSSOM spec)</li>
+          				            <li>Adding automation to Ref Tests</li>
+          				        </ul>
+          				    </li>
+          				    <li>W3C provides a framework (testharness) to simplify and standardize JS test creation</li>
+      					</ul>
+      				</section>
+
+      				<section data-state="screenshotPage">
+      				    <br>
+  				        <h3>testharness</h3>
+  				        <p>testharness.js and testharnessreport.js</p>
+  				        <pre style="font-size:24px">
+  				            <code class="html">
+&lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
+
+&lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;
+                              </code>
+                          </pre>    
+      				    <ul>
+      				        <li>JavaScript API for making common test assertions</li>
+      				        <li>Documented in the comment section of testharness.js</li>
+      				        <li>Should be used by all JavaScript tests</li>
+      				        <li>Path must be to resources directory at root level
+      				            <ul>
+      				                <li>Locally, resources directory can be located anywhere</li> 
+      				                <li>Prior to pushing to CSSWG Test repository, the path must match example above</li>
+      				            </ul>
+      				        </li>
+      				        <li>Element with id="log" must exist in test file
+      				            <ul>
+      				                <li>Test results table will be added to this element</li>
+      				            </ul>
+      				        </li>
+      				    </ul>
+      				</section>
+
+      				<section>
+      			        <section>
+          			        <h2>The test function</h2>
+              			    <br>
+              			    <pre style="font-size:24px">
+              			        <code class="html">
+            test(test_function, name, properties)
+              			        </code>
+              			    </pre>
+              			    <ul>
+              			        <li>Used for synchronous tests
+              			            <ul>
+              			                <li>async_test() is also defined by testharness for asychronous testing</li>
+              			            </ul>
+              			        </li>
+              			        <li>Documented and implemented in testharness.js</li>
+              			        <li>Used to define an individual test case in a file
+              			            <ul>
+              			                <li>Common for a file to have multiple calls to test()</li>
+              			            </ul>
+              			        </li>   
+              			        <li>testharness will display PASS/FAIL for each call to test()</li>
+              			    </ul>
+              			    <br><br>
+              			    <p style="font-size:14px">Press down for example</p>
+                          </section>
+
+                          <section>
+                              <h2>test() Argument 1: test_function</h2>
+              			    <pre style="font-size:24px">
+              			        <code class="html">
+            test(<span style="color:red">test_function</span>, name, properties)
+              			        </code>
+              			    </pre>                        
+                              <ul>
+                                  <li>test_function must be an object, not a function call</li>
+                                  <li>test_function should be one of the assert methods supplied by testharness
+                                      <ul>
+                                          <li>Can also be user defined if no assert method provides the needed functionality</li>
+                                      </ul>
+                                  </li>
+                                  <li>Result from the assertion will determine PASS/FAIL</li>
+                                  <li>Usage example:
+                                      <pre style="font-size:18px">
+                                          <code>
+            test(<span class="highlight">function() {assert_true(true)}</span>, name, properties)
+                                          </code>
+                                      </pre>  
+                                  </li>                            
+          			        </ul>                   
+                          </section>
+
+                         <section>
+                              <h2>test() Argument 2: Name</h2>
+                              <pre style="font-size:24px">
+                                  <code class="html">
+            test(test_function,<span style="color:red"> name</span>, properties)
+                                  </code>
+                              </pre>                        
+                              <ul>
+                                  <li>Name is a string that identifies the test</li> 
+                                  <li>Descriptive test name that conveys what is being tested</li>
+              			        <li>Name will be displayed in the test results table</li>
+                                  <li>Usage example:
+                                      <pre style="font-size:18px">
+                                          <code class="html">
+    test(function() {assert_true(true)}, <span class="highlight">"Assert_true with true"</span>, properties)
+                                          </code>
+                                      </pre>  
+                                  </li>
+                              </ul>       			                                   
+                          </section>
+
+                          <section>
+                              <h2>test() Argument 3: Properties</h2>
+                              <pre style="font-size:24px">
+                                  <code class="html">
+            test(test_function, name,<span style="color:red"> properties</span>)
+                                  </code>
+                              </pre>                        
+                              <ul>
+                                  <li>Properties is an object that overrides defaults</li>
+                                  <li>Recognized properties include timeout and metadata</li>
+                                  <li>Usage example:
+                                      <pre style="font-size:18px">
+                                          <code class="html">
+ test(function() {assert_true(true)}, "Assert_true with true", <br><br> <span class="highlight">{timeout:1000,</span> <br><br> <span class="highlight">help: 'http://www.w3.org/TR/spec',</span> <br><br> <span class="highlight">author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],</span><br><br> <span class="highlight">assert: 'This should always be true.']}</span>)
+                                          </code>
+                                      </pre>                                
+                                  </li>    			                    
+          			        </ul>
+                          </section>
                       </section>
+
+              	    <section>
+              	        <section>
+          			        <h2>Assert methods</h2>
+              			    <ul>
+              			        <li>testharness.js provides a number of assert methods
+              			            <ul>
+              			                <li>Full list is provided in the comment section of testharness.js</li>
+              			                <li>Typically supplied as the test_function for test()</li>
+              			            </ul>
+              			        </li>
+              			        <li>All assert methods contain an optional "description" argument that is only output if the assertion fails
+              			            <ul>
+              			                <li>Used to provide additional debug information</li>
+              			            </ul>
+              			        </li>
+              			        <li>All asserts must be located in a test()
+              			            <ul>
+              			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
+              			            </ul>
+              			        </li>
+              			    </ul>
+              			    <br><br>
+              			    <p style="font-size:14px">Press down for example</p>
+          			    </section>
+
+          			    <section>
+          			        <h2>Assert Example</h2>
+                              <pre style="font-size:24px">
+                                  <code class="html">
+        assert_equals(actual, expected, description)
+                                  </code>
+                              </pre>
+                              <ul>
+                                  <li>actual: The actual value from the functionality being tested</li>
+                                  <li>expected: The expected value</li>
+                                  <li>description (optional): Output only if the assertion fails</li>
+                                  <li>Usage example:
+                                      <pre style="font-size:16px">
+                                          <code class="html">
+ assert_equals(getActualData("myElement"), 100, "Expected value for myElement is 100")
+                                          </code>
+                                      </pre>                                
+                                  </li>                            
+                              </ul>    			        
+          			    </section>
+      				</section>
+
 
                       <section data-state="screenshotPage">
                           <br>
@@ -749,7 +940,8 @@
                           	<section>
               					<br><br>
               					<p style="font-size: 28pt">Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
-              					<p class="font4" style="color:red">Same as Ref Test example</p>
+              					<br>
+              					<p class="font4" style="color:red">Similar to Ref Test example, this time testing API instead of rendering</p>
                                 
               					<br>
               					<br>
@@ -759,7 +951,8 @@
               					    <br>
               					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
           					    </p>
-                          
+                                <br><br>
+                                <p style="font-size:14px">Press down for example</p>
                          </section> 
                          <section>
                               <img src="assets/images/specAssertion.png">
@@ -768,31 +961,57 @@
                       </section>
                       
                       <section data-state="screenshotPage">
-                         <br>
+                        <br>
           		        <h2>Step 1</h2>
           		        <br>
           			    <p class="font2">A JavaScript starter file was copied during Setup</p>
           			    <p class="font2">Open the <span style="color:red">ttwf-js-tutorial-001.html</span> file in an editor</p>
-          			    <img src="assets/images/jsTestStarter.png">
+                        <pre>
+                            <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;CSS Transforms API Test: transform translate&lt;/title&gt;
+    &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
+    &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt;   
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;                  
+                            </code>
+                        </pre>
                       </section>
 
                       <section data-state="screenshotPage">
-                          <br>
+                         <br>
           			     <h2>Step 2</h2>
-          			     <br>
-              		     <p class="font2">Review metadata</p>
+              		     <p class="font2">Update Metadata</p>
               		     <br>
               		     <p class="font2">
           			        <ul>
           			            <li>Most items have been completed in the starter file</li>
-          			            <li>Update the author metadata to include your name and email address</li>
-          			            <li>Note the following differences from the Ref Test metadata:
+          			            <li>Update the author metadata to include your name/email</li>
+          			            <li>Add a line for the flags metadata
           			                <ul>
-          			                    <li>Additional flag was used: "dom"</li>
-          			                    <li>No match metadata is required - only needed for Ref Tests</li>
+          			                    <li>Flags document a test's prerequisites</li>
+          			                    <li>Full list of flags is available on the CSSWG Wiki <a href="http://wiki.csswg.org/test/format#requirement-flags">Test Format</a> page</li>
+          			                    <li>In this case, the dom token should be used to indicate JavaScript is required</li>
           			                </ul>
           			            </li>
-            				    </ul>
+          			            <li>Example:</li>
+          			            <pre style="width:800px">
+          			                <code class="html">
+&lt;title&gt;CSS Transforms API Test: transform translate&lt;/title&gt;
+&lt;link rel="author" <span class="highlight">title="Jim Tester" href="mailto:jimmyt@yahoo.com"&gt;</span>
+&lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+&lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
+<span class="highlight">&lt;meta name="flags" content="dom"&gt;</span>
+&lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt;  			                    
+          			                </code>
+          			            </pre>   
+            				    </ul> 
             				</p>
                       </section>
 
@@ -812,214 +1031,233 @@
                               </div>
                           </div>
                           <div class="bottomEditorNote">
-                              <p class="font5">Note: The path to the resources directory should match its location on your local machine</p>
+                              <p class="font5">Note: During test development, the path to the resources directory should match its location on your local machine</p>
                               <br>
-                              <p class="font5">The path to these scripts must be updated to match the above before pushing to the test repo</p>
+                              <p class="font5" style="font-weight:bold; color:red">The path to these scripts must match example above before pushing to repo</p>
                           </div>
+                      </section>
+                      
+                      <section data-sate="screenshotPage">
+                          <h2>Checkpoint</h2>
+                          <br>
+                          <p class="font2">The head block of your started file should appear as follows</p>
+                          <p class="font3">With your actual name and email address for the author metadata</p>
+                          <pre>
+                              <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;CSS Transforms API Test: transform translate&lt;/title&gt;
+  &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+  &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+  &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
+  &lt;meta name="flags" content="dom"&gt;
+  &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt; 
+  &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
+  &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
+&lt;/head&gt; 
+...                                 
+                              </code>
+                          </pre>
                       </section>
 
                       <section data-state="screenshotPage">
                          <br>
               			<h2>Step 4</h2>
           			    <br>
-              		    <p class="font2">Add a div element with id="log" for test results</p>
+              		    <p class="font2">Add a div to be used as the test element to the body</p>
               		    <br>
-                          <div class="editor">
-             				    <div class="editorText">
-                 				    <br><br>
-                 				    <p class="tab1 editorHtml">&lt;body&gt;</p>
-                 				    <p class="tab2 editorHtml">...</p>
-                 			        <p class="tab2 editorHtml">&lt;div id=<span class="editorAttrVal">"log"</span>&gt;&lt;/div&gt;</span>
-                 			        <p class="tab1 editorHtml">&lt;/body&gt;
-             			        </div>
-             			     <br><br>
-             			     <p class="font3">testharness will add an HTML table that contains a row for the test results from each test case in the file to this element</p>
+              		    <pre style="width:600px">
+              		        <code class="html">
+...
+&lt;body&gt;
+    &lt;div id="myDiv"&gt;&lt;/div&gt;
+&lt;body&gt;
+...
+              		        </code>
+              		    </pre>
+              		    <br>
+              		    <p class="font2">The transform will be applied to this element</p>
+                      </section>
+
+
+                      <section data-state="screenshotPage">
+                         <br>
+              			<h2>Step 5</h2>
+          			    <br>
+              		    <p class="font2">Add a div with id="log" for test results</p>
+              		    <br>
+              		    <pre style="width:600px">
+              		        <code class="html">
+...
+&lt;body&gt;
+    &lt;div id="myDiv"&gt;&lt;/div&gt;
+    <span class="highlight">&lt;div id="log"&gt;&lt;/div&gt;</span>
+&lt;body&gt;
+...
+              		        </code>
+              		    </pre>
+             			     <br>
+             			     <p class="font3">testharness will add an HTML table that contains test results to this element</p>
                       </section>
                       
-                      <section data-state="screenshotPage">
-                          <br>
-                           <h2>Step 5</h2>
-                           <br>
-                           <p class="font2">Set margins and padding to 0px</p>
-                           <br>
-                           <div class="editor">
-                               <div class="editorText">
-                      	         <br><br>
-                      		     <p class="tab1 editorHtml">&lt;style&gt;</p>
-                      		     <p class="tab2 editorHtml">* {</p>
-                      	         <p class="tab3 editorHtml">margin: 0px;</p>
-                      	         <p class="tab3 editorHtml">padding: 0px;</p>
-                      	         <p class="tab2 editorHtml">}</p>
-                      	         <p class="tab1 editorHtml">&lt;/style&gt;
-                      	     </div>
-                           </div>
-                           <br><br><br><br><br><br>
-                           <p class="font3">This is not required, but simplifies the code</p>
-                      </section>    		    
-
                       <section data-state="screenshotPage">
                           <br>
                            <h2>Step 6</h2>
                            <br>
                            <p class="font2">Create a script block that will contain the JavaScript</p>
                            <br>
-                           <div class="editor">
-                      	     <div class="editorText">
-                      	         <br><br>
-                      		     <p class="tab1 editorHtml">&lt;body&gt;</p>
-                      		     <p class="tab2 editorHtml">...</p>        			            
-                      		     <p class="tab2 editorHtml">&lt;script&gt;</p>
-                      		     <p class="tab2 editorHtml">&lt;/script&gt;</p>
-                      			 <p class="tab1 editorHtml">&lt;/body&gt;</p>
-                      		 </div>
-                      	 </div>
+             		       <pre style="width:600px">
+             		           <code class="html">
+...
+&lt;body&gt;
+   &lt;div id="myDiv"&gt;&lt;/div&gt;
+   &lt;div id="log"&gt;&lt;/div&gt;
+   <span class="highlight">&lt;script&gt;</span>
+   <span class="highlight">&lt;/script&gt;</span>
+&lt;body&gt;
+...
+             		        </code>
+             		    </pre>
                       </section>
 
-                      <section data-state="screenshotPage">
-                          <br>
-                          <p class="font2">Test file should now appear as follows:</p>
-                          <img src="jsTest_step6.png">
+                      <section>
+                          <h2>CHECKPOINT</h2>
+                          <p class="font2">Starter file should now appear as follows</p>
+                          <pre>
+                              <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;CSS Transforms API Test: transform translate&lt;/title&gt;
+  &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+  &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+  &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
+  &lt;meta name="flags" content="dom"&gt;
+  &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt; 
+  &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
+  &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="myDiv"&gt;&lt;/div&gt;
+  &lt;div id="log"&gt;&lt;/div&gt;
+  &lt;script&gt; 
+  &lt;/script&gt;    
+&lt;/body&gt;
+&lt;/html&gt;                              
+                              </code>
+                          </pre>
                       </section>
 
                       <section data-state="screenshotPage">
                           <br>
                            <h2>Step 7</h2>
                            <br>
-                           <p class="font2">Create a function inside the script block that will return the x,y position of an element</p>
+                           <p class="font2">Set the transform on the test element in JavaScript</p>
                            <br>
-                           <div class="editor">
-                      	 <div class="editorText">
-                      	     <br>
-                      	     <p class="tab1 editorHtml">&lt;script&gt;
-                      	     <p class="tab2 editorHtml">function checkElementPosition(elemID) {</p>
-                      	     <p class="tab3 editorHtml"><span class="editorReserveWord">return</span> document.getElementById(elemID).getBoundingClientRect().top +</p>
-                      	     <p class="tab3 editorHtml">"," +  document.getElementById(elemID).getBoundingClientRect().left;</p>
-                      	     <p class="tab2 editorHtml">}</p>
-                      		 <p class="tab1 editorHtml">&lt;/script&gt;
-                      	 </div>
-                      	 </div>
+                           <pre style="width:800px">
+                               <code class="html">
+...
+&lt;body&gt;
+   &lt;div id="myDiv"&gt;&lt;/div&gt;
+   &lt;div id="log"&gt;&lt;/div&gt;
+   &lt;script&gt;
+       // Set the transform 
+       <span class="highlight">document.getElementById("myDiv").style.transform = "translate(100px,100px)";</span> 
+   &lt;/script&gt;    
+&lt;/body&gt;
+&lt;/html&gt;
+                            </code>
+                        </pre>
                       </section>
-                      <section data-state="screenshotPage">
-          			    <p class="font1">The <span style="color:red">test</span> function</p>
-          			    <br>
-          			    <ul>
-          			        <li>Documented and implemented in testharness.js</li>
-          			        <li>Function signature: <span style="color:red">test(test_function, name, properties)</span></li>
-          			        <li>Used to define an individual test case in a file
-          			            <ul>
-          			                <li>Multiple calls to test() are common in a single file</li>
-          			            </ul>
-          			        </li>
-          			        <li>The function argument must be a function object, not a function call</li>
-          			        <li>The return value of the function object passed to test() (argument 1) determines Pass/Fail
-          			            <ul>
-          			                <li>The assert methods in testharness.js are typically used as the function supplied to test(), but can also be user defined</li>
-          			            </ul>
-          			        </li>
-          			        <li>The name passed to test() (argument 2) should a be descriptive test name that conveys what is being tested
-          			            <ul>
-          			                <li>Name will be displayed in the test results table</li>
-          			            </ul>
-          			        </li>
-          			        <li>Properties (argument 3) is an object that overrides default test properties
-          			            <ul>
-          			                <li>timeout is the only currently recognized property</li>
-          			            </ul>
-          			        </li>
-          			    </ul>
-          		    </section>
 
                       <section data-state="screenshotPage">
-                          <br>
+                         <br>
           			     <h2>Step 8</h2>
           			     <br>
-              		     <p class="font2">Add a call to the test function to your script block</p>
-              		     <p class="font3" style="color:red">test(test_function, name, properties)</p>
-              		     <br>
-              		     <div class="editor">
-               			     <div class="editorText">
-                   			     <br><br>
-                   			     <p class="tab1 editorHtml">&lt;script&gt;
-                       		     <p class="tab2 editorHtml">...</p>
-                       		     <p class="tab2 editorHtml">test(function, "Test CSS transform translate on a div");</p>
-                       			 <p class="tab1 editorHtml">&lt;/script&gt;
-                       		 </div>
-               			 </div>
-               			 <br><br><br><br><br><br>
-               			 <p class="font4">No need to specify properties in this case</p>
+              		     <p class="font2">Add a call to test() to your script block to create a test case</p>
+              		     <p class="font3">Use assert_equals as the test_function</p>
+                         <pre>
+                             <code class="html">
+...
+&lt;body&gt;
+&lt;div id="myDiv"&gt;&lt;/div&gt;
+&lt;div id="log"&gt;&lt;/div&gt;
+&lt;script&gt;
+// Set the transform 
+document.getElementById("myDiv").style.transform = "translate(100px,100px)";
+
+// Verify that the transform was set as expected
+test(function() {assert_equals( // test arg1: test_function
+                document.getElementById("myDiv").style.transform, // assert_equals arg 1: actual
+                "translate(100px,100px)", // assert_equals arg 2: expected
+                "transform should be translate(100px,100px)")}, // assert_equals arg 3: description
+                "Transform_Translate_100px_100px");  // test arg2: name    
+&lt;/script&gt;    
+&lt;/body&gt;
+&lt;/html&gt;
+                            </code>
+                         </pre>
+                        <p class="font3">Comments on test arguments added for clarity, can be omitted</p>  
           			</section>    	
 
           			<section data-state="screenshotPage">
-          			    <br>
-          			    <p class="font2">testharness.js assert methods</p>
-          			    <br>
-          			    <ul>
-          			        <li>testharness.js provides a number of assert methods to use for testing
-          			            <ul>
-          			                <li>Full list is provided in the comment section of the testharness.js file</li>
-          			                <li>Whenever possible, these methods should be used</li>
-          			            </ul>
-          			        </li>
-          			        <li>All assert methods contain an optional "description" argument that is only output if the assertion fails
-          			            <ul>
-          			                <li>The description will be added to the default output from testharness</li>
-          			                <li>The description should be used to provide additional debug information in the case of a failure</li>
-          			            </ul>
-          			        </li>
-          			        <li>All asserts must be located in a test()
-          			            <ul>
-          			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
-          			            </ul>
-          			    </ul>
-          			</section>		
-
-                      <section data-state="screenshotPage">
-                          <br>
-          			     <h2>Step 9</h2>
-          			     <br>
-              		     <p class="font2">Add assert_equals as the test_function for test()</p>
-              		     <p class="font3" style="color:red">assert_equals(actual, expected, description)</p>
-              		     <br>
-              		     <div class="editorSmall">
-                 			     <div class="editorText">
-                                     <br>    			         
-                 			         <p class="tab2 editorHtml">test(function() {assert_equals(checkElementPosition(<span class="editorAttrVal">"myDiv"</span>), <span class="editorAttrVal">"50,50"</span>,</p>
-                 			         <p class="tab2 editorHtml"><span class="editorAttrVal">"myDiv should be at 50,50"</span>)}, <span class="editorAttrVal">"Test transform translate on SVG rect"</span>);</p>
-                     		     </div>
-                 			 </div>
-               			 <br><br><br>
-               			 <div style="text-align:left; line-height:20px; font-size:18px">
-               			     <p>Arguments used for assert_equals:</p>
-               			     <p>actual = assert_equals(checkElementPosition("myDiv")</p>
-                  		     <p>expected = "50,50"</p>
-                  		     <p>description = "myDiv should be at 50,50"</p>
-                  		</div>
-          			</section>
-          			
-          			<section data-state="screenshotPage">
           			      <br>
-                           <h2 style="line-height:10px">Final file</h2>
-                           <img src="assets/images/jsTestFinal.png">
+                           <h2>CHECKPOINT</h2>
+                           <p class="font2">Complete File</p>
+                           <pre>
+                               <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+   &lt;title&gt;CSS Transforms API Test: transform translate&lt;/title&gt;
+   &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+   &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+   &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
+   &lt;meta name="flags" content="dom"&gt;
+   &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt; 
+   &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
+   &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+   &lt;div id="myDiv"&gt;&lt;/div&gt;
+   &lt;div id="log"&gt;&lt;/div&gt;
+   &lt;script&gt;
+       // Set the transform 
+       document.getElementById("myDiv").style.transform = "translate(100px,100px)";
+
+       // Verify that the transform was set as expected
+       test(function() {assert_equals( // test arg1: test_function
+                       document.getElementById("myDiv").style.transform, // assert_equals arg 1: actual
+                       "translate(100px,100px)", // assert_equals arg 2: expected
+                       "transform should be translate(100px,100px)")}, // assert_equals arg 3: description
+                       "Transform_Translate_100px_100px");  // test arg2: name  
+   &lt;/script&gt;    
+&lt;/body&gt;
+&lt;/html&gt;                                   
+                                   
+                               </code>
+                           </pre>
                        </section>
 
                        <section data-state="screenshotPage">
                           <br>
                    	     <h2>Passing test example</p>
                    	     <br>
-                   	     <img src="assets/images/passingJSTestExample.png">
+                   	     <img src="assets/images/jsTest_PASS.png">
                        </section>
 
                        <section data-state="screenshotPage">
                           <br>
                    	     <h2>Failing test example</h2>
                    	     <br>
-                    	     <img src="assets/images/failingJSTestExample.png">
+                    	     <img src="assets/images/jsTest_FAIL.png">
                        </section>
 
                        <section data-state="screenshotPage">
                            <section>
+                            <br>
                    	        <h2>Step 10 - OSX</h2>
-                   	        <br>
                    	        <p class="font5">Press the down-arrow for Windows instructions</p>
                    	        <br>
                    		    <p class="font2">Add your new test file to the repository</p>
@@ -1033,7 +1271,7 @@
                      			    </div>
                    		    </div>
                                 <div class="bottomNote2">
-                                    <br><br><br>
+                                    <br><br><br><br>
                    		            <p class="noteText">Note: If you receive the following error:</p> 
                    		            <p class="errorText">abort: push creates new remote head ...</p>
                    		            <p class="noteText">Your local repository is out of sync with the test repository</p>
@@ -1051,8 +1289,8 @@
                    		    </div>          			       
                    	    </section>
                    	    <section>
-                   	        <h2>Step 10 - Windows</h2>
                    	        <br>
+                   	        <h2>Step 10 - Windows</h2>
                    	        <p class="font5">Press the up-arrow for OSX instructions</p>
                    	        <br>
                    		    <p class="font2">Add your new test file to the repository</p>
@@ -1088,12 +1326,13 @@
                        <section data-state="screenshotPage">
                          <br>
                    	     <h2>Step 11</h2>
-                   	     <br>
-                   	     <h3>Ask someone to review your test</h3>
+                   	     <br><br><br>
+                   	     <h3>Ask the spec expert to review your test</h3>
                        </section>
                        
                        <section data-state="screenshotPage">
                            <section>
+                            <br>
                        	    <h2>Step 12 - OSX</h2>
                        	    <br>
                        	    <p class="font5">Press down-arrow for Windows instructions</p>
@@ -1111,6 +1350,7 @@
                        	    </div>
                            </section>
                            <section>
+                               <br>
                                <h2>Step 12 - Windows</h2>
                                <br>
                        	    <p class="font5">Press down-arrow for OSX instructions</p>
@@ -1130,10 +1370,10 @@
                        </section>  
 
                        <section data-state="screenshotPage">
-                           <br>
+                           <br><br>
                            <h2>Congratulations!</h2>
                            <br><br>
-                           <p class="font1">You have completed your first two W3C tests!</p>
+                           <p class="font1">You have completed both a W3C RefTest and JavaScript Test</p>
                        </section>                 		    		     
 
                        <section>
@@ -1168,14 +1408,13 @@
                        <section data-state="screenshotPage">
                            <br>
                            <h2>Mercurial Command Reference</h2>
-                           <br>
                            <ul>
-                               <li>User wants to update their local repo to match the CSSWG Test repo:
+                               <li>User wants to update their local repo:
                                    <ul>
                                        <li>hg pull -u  (pulls and applies latest changes from CSSWG repo to local repo)</li>
                                    </ul>
                                </li>
-                               <li>User makes local changes, wants to get them into CSSWG Test repo:
+                               <li>User wants to push local changes:
                                    <ul>
                                        <li>hg status (check which files are stages for commit)</li>
                                        <li>hg add <span style="font-style:italic">fileName</span> (stages file for commit, repeat for each file)</li>
@@ -1184,7 +1423,12 @@
                                        <li>hg push (pushes locally committed changes to CSSWG Test repo)
                                    </ul>
                                </li> 
-                               <li>User attempts to push, gets error message "abort: push creates new remote head ..."
+                               <li>User gets error message during push
+                                   <pre>
+                                       <code class="html">
+abort: push creates new remote head ...
+                                        </code>
+                                    </pre>
                                    <ul>
                                        <li>hg pull (gets newest changes from CSSWG Test repo)</li>
                                        <li>hg merge (merges newest changes from CSSWG Test repo with local changes)</li>
