@@ -221,24 +221,23 @@
     			
     			<section  data-state="expandPageWide">
     			    <h3>The Test</h3>
-    			    <section>
+    			    <section data-state="expandPageWide">
     				    <p>Test element with the transform applied</p>
     				    <pre>
     				    <code class="html">
 <span class="expand2">
-                    &lt;<span class="styleTag">style type</span>="text/css"&gt;
-                        <span class="styleTag">.greenSquare</span> {
-                            <span class="cssProperty">position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100<span class="px">px</span>;
-                            height: 100<span class="px">px</span>;
-                            background: green;</span>
-                            transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);
-                        }
-                        . . .
-                    &lt;/<span class="styleTag">style</span>&gt;    
-</span>				        
+                &lt;<span class="styleTag">style type</span>="text/css"&gt;
+                    <span class="styleTag">.greenSquare</span> {
+                        <span class="cssProperty">position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100<span class="px">px</span>;
+                        height: 100<span class="px">px</span>;
+                        background: green;</span>
+                        transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);
+                    }
+                    . . .
+                &lt;/<span class="styleTag">style</span>&gt;</span>				        
     				    </code>
     				    </pre>
     			    </section>
@@ -266,7 +265,7 @@
                 
                 <section  data-state="expandPageWide">
     			    <h3>Visible failure</h3>
-    			    <section>
+    			    <section data-state="expandPageWide">
     			        <p>Element is only visible when the test fails</p>
     			         <pre>
         				    <code class="html">
@@ -286,13 +285,14 @@
         				    </code>
         				    </pre>
     			    </section>
-    			    <section>
+    			    <section data-state="expandPageWide">
     				    <p>Failing test example</p>
     				    <img src="assets/images/failingRefTest.png"/>
     			    </section>
     			</section>
     			
-    			<section  data-state="expandPageWide">
+    			<section data-state="expandPageWide">
+    			    <section data-state="expandPageWide">
     			    <h3>Self Description</h3>
     			    <p style="font-size: 24pt">Simple statement of how the page renders when the test passes</p>
     				<br>
@@ -308,18 +308,20 @@
     			    </code>
     			    </pre>
                 </section>
+                </section>
                 
                 <section  data-state="expandPageWide">
+                    <section data-state="expandPageWide">
         		    <h3>Add the elements</h3>
         		    <p>Test file</p>
         		     <pre>
     				 <code class="html">
 <span class="expand2">
-    &lt;body&gt;
-        . . .
-        &lt;div class="redSquare"&gt;&lt;/div&gt;
-        &lt;div class="greenSquare"&gt;&lt;/div&gt;
-    &lt;/body&gt;
+                &lt;body&gt;
+                    . . .
+                    &lt;div class="redSquare"&gt;&lt;/div&gt;
+                    &lt;div class="greenSquare"&gt;&lt;/div&gt;
+                &lt;/body&gt;
 </span>    				        
     			    </code>
     			    </pre>
@@ -327,14 +329,54 @@
                      <pre>
     				 <code class="html">
 <span class="expand2">
-    &lt;body&gt;
-        . . .
-        &lt;div class="greenSquare"&gt;&lt;/div&gt;
-    &lt;/body&gt;
+                &lt;body&gt;
+                    . . .
+                    &lt;div class="greenSquare"&gt;&lt;/div&gt;
+                &lt;/body&gt;
 </span>    				        
     			    </code>
     			    </pre>
                 </section>
+                </section>
+                
+                <section data-state="expandPageWide">
+                    <br>
+                    <h2>Vendor prefixes</h2>
+               
+                   <section data-state="expandPageWide">
+                       <br>
+                       <blockquote>
+                       <ul>
+                           <li>You may need to add a vendor prefix to the CSS property you're testing</li>
+                           <li>If the prefix is necessary, your test will appear to fail without it</li>
+                           <li>However, do not include vendor prefixes when pushing tests to the W3C</li>
+                       </ul>   
+                       </blockquote> 
+                       <br>
+                       
+                  </section>
+              
+                  <section data-state="expandPageWide">
+                      <pre>
+                      <code class="html">
+                        <span class="expand2">
+                <span class="styleTag">.greenSquare</span> {
+                    <span class="cssProperty">position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100<span class="px">px</span>;
+                    height: 100<span class="px">px</span>;
+                    <span class="highlight">-webkit-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                    <span class="highlight">-moz-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                    <span class="highlight">-ms-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                    <span class="highlight">-o-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                    background: green;
+                }</span> 
+                      </code>
+                      </pre>
+                  </section>
+                      
+                  </section>
     			
 				<!-- Begin JS TEST -->
 
