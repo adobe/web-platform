@@ -63,25 +63,21 @@
     				    <br>
     				    
     				    <ul>
-    				    <li>CSSWG Test Repository</li><!-- It would be nice if this line wouldn't have the list item marker -->
+    				    <li style="list-style-type: none;">CSSWG Test Repository</li>
     				    <ul>
-    				        <li><tt>test</tt></li>
-    				        <ul>
-    				            <li><tt>contributors</tt></li>
+    				        <li><tt>contributors</tt></li>
+						    <ul>
+						        <li><tt>ttwf</tt></li>
 						        <ul>
-						            <li><tt>ttwf</tt></li>
+						            <li><tt><em>your_csswg_id</em></tt></li>
 						            <ul>
-						                <li><tt><em>your_csswg_id</em></tt></li>
-						                <ul>
-						                    <li><tt>incoming</tt></li>
-                                            <!-- Why is there no mention of the reftest folder seen in the picture? -->
-    						                <li><tt>submitted</tt></li>
-						                </ul>
+						                <li><tt>incoming</tt></li>
+    						            <li><tt>submitted</tt></li>
 						            </ul>
 						        </ul>
 						    </ul>
 						</ul>
-						</li>
+					
 					</section>
 					<section>
 					    <img src="assets/images/directoryStructure.png"/>
@@ -95,10 +91,10 @@
     					<br>
     					<br>
     					<p>Spec Links:</p>
-    					<p style="font-size: 18pt">
-    					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
+    					<p style="font-size: 16pt">
+    					    <a href="http://www.w3.org/TR/css3-transforms/css3-transforms/#transform-property" target="top">http://www.w3.org/TR/css3-transforms/css3-transforms/#transform-property</a>
     					    <br>
-    					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
+    					    <a href="http://www.w3.org/TR/css3-transforms/css3-transforms/#two-d-transform-functions" target="top">http://www.w3.org/TR/css3-transforms/css3-transforms/#two-d-transform-functions</a>
 					    </p>
 					</section>
 					<section>
@@ -108,12 +104,9 @@
 				
 				<section data-state="screenshotPage">
     			    <h3>Sample files</h3>
-                    <!-- Make sure the images will be visible on the projector - they seem to be too tall. -->
-    			    <p>Test</p>
-    				<img src="assets/images/001a.png"/>
-    			    <p>Reference</p>
-    			    <img src="assets/images/001b.png"/>
-    			</section>
+    			    <img src="assets/images/001a.png">
+    			    <img src="assets/images/001b.png">
+            	</section>
 			
 				<section data-state="expandPageWide">
 				    <h3>Required Metadata: Title</h3>
@@ -204,7 +197,7 @@
 &lt;html&gt;
 &lt;head&gt;
     . . .   
-    &lt;link rel="match" href="reftest/ttwf-reftest-tutorial-ref.html"&gt;
+    &lt;link rel="match" href="reference/ttwf-reftest-tutorial-ref.html"&gt;
     . . .
 </span>
                         </code>
@@ -354,6 +347,7 @@
                 </section>
     			
 				<!-- Begin JS TEST -->
+
 				<section>
 					<h2>JavaScript Test Overview</h2>
 					<br>
@@ -370,13 +364,13 @@
 					    <li>Ref Tests have some advantages over JavaScript tests
 					        <ul>
 					            <li>Verify complete rendering</li>
-					            <li>Easier to understand</li>
+					            <li>Easy to understand</li>
 					            <li>Avoid introducing additional technologies (JS)</li>
 					        </ul>
 					    </li>
 					</ul>
 			    </section>
-				
+			    
 				<section>
 				    <h2>JavaScript Test Overview (cont'd)</h2>
 				    <br>
@@ -388,7 +382,7 @@
     				        </ul>
     				    </li>
     				    <li>Self-describing RefTests are the preferred test format</li>
-    				    <li>JavaScript tests should be used in the following scenarios
+    				    <li>JavaScript tests should be used in the following scenarios:
     				        <ul>
     				            <li>Testing a JS API or behavior (ex: CSSOM spec)</li>
     				            <li>Adding automation to Ref Tests</li>
@@ -396,194 +390,192 @@
     				    </li>
     				    <li>W3C provides a framework (<tt>testharness.js</tt>) to simplify and standardize JS test creation</li>
 					</ul>
-				</section>
-				
-				<section>
-				    <section>
-				        <h3>testharness</h3>
-				        <p><tt>testharness.js</tt> and <tt>testharnessreport.js</tt></p>
-				        <pre style="font-size:24px">
-				            <code class="html">
-&lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
+				</section>	    
 
-&lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;
+
+    				<section>
+    			        <h3>testharness</h3>
+    			        <p><tt>testharness.js</tt> and <tt>testharnessreport.js</tt></p>
+    			        <pre>
+    			            <code class="html">
+    &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
+
+    &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;
                             </code>
                         </pre>    
     				    <ul>
     				        <li>JavaScript API for making common test assertions</li>
     				        <li>Should be used by all JavaScript tests</li>
-    				        <li>Path should point to the <tt>/resources</tt> directory at root level</li>
+    				        <li>Path must be to <tt>/resources</tt> directory at root level</li>
     				        <li>Element with <code>id="log"</code> must exist in test file
     				            <ul>
     				                <li>Test results table will be added to this element</li>
     				            </ul>
     				        </li>
     				    </ul>
-				    </section>
-				</section>
-				
-				<section>
-			        <section>
-    			        <h2>The test function</h2>
-        			    <br>
-        			    <pre style="font-size:24px">
-                        <!-- ^ Why is this <pre/> tag needed at all? -->
-        			        <code class="html">
-            test(test_function, name, properties)
-        			        </code>
-        			    </pre>
-        			    <ul>
-        			        <li>Used for synchronous tests
-        			            <ul>
-        			                <li><code>async_test()</code> is also provided by testharness for asychronous testing</li>
-        			            </ul>
-        			        </li>
-        			        <li>Documented and implemented in <tt>testharness.js</tt></li>
-        			        <li>Used to define an individual test case in a file
-        			            <ul>
-        			                <li>Common for a file to have multiple calls to <code>test()</code></li>
-        			            </ul>
-        			        </li>   
-        			        <li>testharness will display PASS/FAIL for each call to <code>test()</code></li>
-        			         
-        			    </ul>
-                    </section>
-                    
-                    <section>
-                        <h2>test() Argument 1: test_function</h2>
-        			    <pre style="font-size:24px">
-        			        <code class="html">
-            test(<span style="color:red">test_function</span>, name, properties)
-        			        </code>
-        			    </pre>                        
-                        <ul>
-                            <li><code>test_function</code> must be an object, not a function call</li>
-                            <li><code>test_function</code> will typically be one of the assert methods supplied by testharness
-                                <ul>
-                                    <li>Can also be user defined if no assert method provides the needed functionality</li>
-                                </ul>
-                            </li>
-                            <li>Result from the assertion will determine PASS/FAIL</li>
-                            <li>Usage example:
-                                <pre style="font-size:18px">
-                                    <code>
-            test(function() {assert_true(true)}, name, properties)
-                                    </code>
-                                </pre>  
-                            </li>                            
-    			        </ul>                   
-                    </section>
-                                 
-                   <section>
-                        <h2>test() Argument 2: Name</h2>
-                        <pre style="font-size:24px">
-                            <code class="html">
-            test(test_function,<span style="color:red"> name</span>, properties)
-                            </code>
-                        </pre>                        
-                        <ul>
-                            <li><code>name</code> is a string that identifies the test</li> 
-                            <li>Descriptive test name that conveys what is being tested</li>
-        			        <li>Name will be displayed in the test results table</li>
-                            <li>Usage example:
-                                <pre style="font-size:18px">
-                                    <code class="html">
-    test(function() {assert_true(true)}, "Assert_true with true", properties)
-                                    </code>
-                                </pre>  
-                            </li>
-                        </ul>       			                                   
-                    </section>
+    				</section>
 
-                    <section>
-                        <h2>test() Argument 3: Properties</h2>
-                        <pre style="font-size:24px">
-                            <code class="html">
-            test(test_function, name,<span style="color:red"> properties</span>)
-                            </code>
-                        </pre>                        
-                        <ul>
-                            <li><code>properties</code> is an object that overrides defaults</li>
-                            <li>Recognized properties include <code>timeout</code> and <code>metadata</code></li>
-                            <li>Usage example:
-                                <pre style="font-size:18px">
-                                    <code class="html">
- test(function() {assert_true(true)}, "Assert_true with true", <br><br> {timeout:1000, <br><br> help: 'http://www.w3.org/TR/spec', <br><br> author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br> assert: 'This should always be true.']})
-                                    </code>
-                                </pre>                                
-                            </li>    			                    
-    			        </ul>
-                    </section>
-                </section>
-                  
-        	    <section>
-        	        <section>
-    			        <h2>Assert methods</h2>
-        			    <ul>
-        			        <li><tt>testharness.js</tt> provides a number of assert methods
-        			            <ul>
-        			                <li>Full list is provided in the comment section of <tt>testharness.js</tt></li>
-        			                <li>Typically supplied as the <code>test_function</code> for <code>test()</code></li>
-        			            </ul>
-        			        </li>
-        			        <li>All assert methods accept an optional <code>description</code> argument that is only output if the assertion fails
-        			            <ul>
-        			                <li>Used to provide additional debug information</li>
-        			            </ul>
-        			        </li>
-        			        <li>All asserts must be located in a call to <code>test()</code>
-        			            <ul>
-        			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
-        			            </ul>
-        			        </li>
-        			    </ul>
-    			    </section>
-    			    
-    			    <section>
-    			        <h2>Assert Example</h2>
-                        <pre style="font-size:24px">
-                            <code class="html">
-        assert_equals(actual, expected, description)
-                            </code>
-                        </pre>
-                        <ul>
-                            <li><code>actual</code>: The actual value from the functionality being tested</li>
-                            <li><code>expected</code>: The expected value</li>
-                            <li><code>description</code> (optional): Output only if the assertion fails</li>
-                            <li>Usage example:
-                                <pre style="font-size:18px">
-                                    <code class="html">
- assert_equals(getActualData("myElement"), 100, "Expected value for myElement is 100")
-                                    </code>
-                                </pre>                                
-                            </li>                            
-                        </ul>    			        
-    			    </section>
-				</section>
-
-            	<section>
-    				<h2>Sample Test Case</h2>
     				<section>
-    					<br>
-    					<p>API test for the transform property described in the CSS3 Transforms spec using the <code>translate()</code> function</p>
-    					<br><br>
-    					<p>Spec Links:</p>
-    					<p style="font-size: 16pt">
-    					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
-    					    <br>
-    					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
-					    </p>
-					</section>
-					<section>
-					    <img src="assets/images/specAssertion.png">
-					</section>
-	            </section>			
-			    
-			    <section>
-			        <h3>Metadata</h3>
-			        <section>
-    			        <pre style="width:1000px;">
-    			            <code class="html" style="line-height:26px; font-size:18px">
+    			        <section>
+        			        <h2>The test function</h2>
+            			    <br>
+            			    <pre>
+            			        <code class="html">
+            test(test_function, name, properties)
+            			        </code>
+            			    </pre>
+            			    <ul>
+            			        <li>Used for synchronous tests
+            			            <ul>
+            			                <li><code>async_test()</code> is also provided by testharness for asychronous testing</li>
+            			            </ul>
+            			        </li>
+            			        <li>Documented and implemented in <tt>testharness.js</tt></li>
+            			        <li>Used to define an individual test case in a file
+            			            <ul>
+            			                <li>Common for a file to have multiple calls to <code>test()</code></li>
+            			            </ul>
+            			        </li>   
+            			        <li>testharness will display PASS/FAIL for each call to <code>test()</code></li>
+
+            			    </ul>
+                        </section>
+
+                        <section>
+                            <h2>test() Argument 1: test_function</h2>
+            			    <pre>
+            			        <code class="html">
+            test(<span style="color:red">test_function</span>, name, properties)
+            			        </code>
+            			    </pre>                        
+                            <ul>
+                                <li><code>test_function</code> must be an object, not a function call</li>
+                                <li><code>test_function</code> will typically be one of the assert methods supplied by testharness
+                                    <ul>
+                                        <li>Can also be user defined if no assert method provides the needed functionality</li>
+                                    </ul>
+                                </li>
+                                <li>Result from the assertion will determine PASS/FAIL</li>
+                                <li>Usage example:
+                                    <pre style="font-size:18px">
+                                        <code>
+            test(function() {assert_true(true)}, name, properties)
+                                        </code>
+                                    </pre>  
+                                </li>                            
+        			        </ul>                   
+                        </section>
+
+                       <section>
+                            <h2>test() Argument 2: Name</h2>
+                            <pre>
+                                <code class="html">
+            test(test_function,<span style="color:red"> name</span>, properties)
+                                </code>
+                            </pre>                        
+                            <ul>
+                                <li><code>name</code> is a string that identifies the test</li> 
+                                <li>Descriptive test name that conveys what is being tested</li>
+            			        <li><code>name</code> will be displayed in the test results table</li>
+                                <li>Usage example:
+                                    <pre style="font-size:18px">
+                                        <code class="html">
+        test(function() {assert_true(true)}, "Assert_true with true", properties)
+                                        </code>
+                                    </pre>  
+                                </li>
+                            </ul>       			                                   
+                        </section>
+
+                        <section>
+                            <h2>test() Argument 3: Properties</h2>
+                            <pre>
+                                <code class="html">
+                test(test_function, name,<span style="color:red"> properties</span>)
+                                </code>
+                            </pre>                        
+                            <ul>
+                                <li><code>properties</code> is an object that overrides defaults</li>
+                                <li>Recognized properties include <code>timeout</code> and metadata</li>
+                                <li>Usage example:
+                                    <pre style="font-size:18px">
+                                        <code class="html">
+ test(function() {assert_true(true)}, "Assert_true with true", <br><br> {timeout:1000, <br><br> help: 'http://www.w3.org/TR/spec', <br><br> author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br> assert: 'This should always be true.']})
+                                        </code>
+                                    </pre>                                
+                                </li>    			                    
+        			        </ul>
+                        </section>
+                    </section>
+
+            	    <section>
+            	        <section>
+        			        <h2>Assert methods</h2>
+            			    <ul>
+            			        <li><tt>testharness.js</tt> provides multiple assert methods
+            			            <ul>
+            			                <li>Full list is provided in the comment section of <tt>testharness.js</tt></li>
+            			                <li>Typically supplied as the <code>test_function</code> for <code>test()</code></li>
+            			            </ul>
+            			        </li>
+            			        <li>All assert methods contain an optional <code>description</code> argument that is only output if the assertion fails
+            			            <ul>
+            			                <li>Used to provide additional debug information</li>
+            			            </ul>
+            			        </li>
+            			        <li>All asserts must be located in a <code>test()</code>
+            			            <ul>
+            			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
+            			            </ul>
+            			        </li>
+            			    </ul>
+        			    </section>
+
+        			    <section>
+        			        <h2>Assert Example</h2>
+                            <pre>
+                                <code class="html">
+        assert_equals(actual, expected, description)
+                                </code>
+                            </pre>
+                            <ul>
+                                <li><code>actual</code>: The actual value from the functionality being tested</li>
+                                <li><code>expected</code>: The expected value</li>
+                                <li><code>description</code> (optional): Output only if the assertion fails</li>
+                                <li>Usage example:
+                                    <pre style="font-size:18px">
+                                        <code class="html">
+     assert_equals(getActualData("myElement"), 100, "Expected value for myElement is 100")
+                                        </code>
+                                    </pre>                                
+                                </li>                            
+                            </ul>    			        
+        			    </section>
+    				</section>
+
+                	<section>
+        				<h2>Sample Test Case</h2>
+        				<section>
+        					<br>
+        					<p>API test for the transform property described in the CSS3 Transforms spec using the <code>translate()</code> function</p>
+        					<br><br>
+        					<p>Spec Links:</p>
+        					<p style="font-size: 16pt">
+        					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
+        					    <br>
+        					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
+    					    </p>
+    					</section>
+    					<section>
+    					    <img src="assets/images/specAssertion.png">
+    					</section>
+    	            </section>			
+
+    			    <section>
+    			        <h3>Metadata</h3>
+    			        <section>
+        			        <pre style="width:975px">
+        			            <code class="html" style="line-height:26px; font-size:18px">
 &lt;head&gt;
   &lt;title&gt;CSS Transforms API Test: transform translate&lt;/title&gt;
   &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
@@ -594,33 +586,34 @@
   &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt;	
 ...    
 &lt;/head&gt;                
-    			            </code>
-    			        </pre>
-    			        <ul>
-    			            <li>JavaScript tests have similar requirements as RefTest</li>
-    			            <li><code>dom</code> token in <code>flags</code> metadata specifies that JavaScript is required</li>
-    			            <li>Build system supports JSON metadata (not shown here)<!-- Maybe I got it wrong, but the initial phrasing was really strange --></li>
-    			    </section>
-    			    <section>
-    			        <pre>
-    			            <code class="html" style="line-height:26px">
+        			            </code>
+        			        </pre>
+        			        <ul style="line-height:60px">
+        			            <li>JavaScript tests have similar requirements as RefTest</li>
+        			            <li><code>dom</code> token in <code>flags</code> metadata specifies that JavaScript is required</li>
+        			            <li>JSON metadata supports build system (not shown)</li>
+        			    </section>
+        			    <section>
+        			        <pre>
+        			            <code class="html" style="line-height:26px; font-size:24px">
 &lt;head&gt;
 ...    
     &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
     &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
 &lt;/head&gt;    			                
     			            </code>
-    			        </pre>
-    			        <ul>
-    			            <li><tt>testharness.js</tt> and <tt>testharnessreport.js</tt> imported</li>
-    			            <li>Path to both scripts points at <tt>/resources</tt> directory at root level
-    			                <ul>
-    			                    <li>This is the required path before submitting to CSSWG Test Repository</li>
-    			                </ul>
-    			            </li>
-    			        </ul>
-    			    </section>
-			    </section>
+        			        </pre>
+        			        <ul>
+        			            <li><tt>testharness.js</tt> and <tt>testharnessreport.js</tt> imported</li>
+        			            <li>Path to both scripts points at <code>/resources</code> directory at root level
+        			                <ul>
+        			                    <li>This is the required path before submitting to CSSWG Test Repository</li>
+        			                </ul>
+        			            </li>
+        			        </ul>
+        			    </section>
+    			    </section>				
+
 			    
 			    <section data-state="largePage">
 			        <h3>Body</h3>
@@ -645,11 +638,10 @@
 			            </code>
 			        </pre>
 			        <ul style="font-size:28px">
-			            <li><code>myDiv</code> div used as test element - translation applied in JS</li>
+			            <li><code>myDiv</code> div used as test element - translate applied in JS</li>
 			            <li><code>log</code> div used as container for test results</li>
-			            <li><code>test()</code> uses <code>assert_equals()</code> as <code>test_function</code></li>
-                        <li><code>assert_equals</code> actual value supplied by transform
-                            <!-- What does this line mean? --></li>
+			            <li><code>test()</code> uses <code>assert_equals</code> as <code>test_function</code></li>
+                        <li></code>assert_equals</code> actual argument supplied by API call</li>
 			        </ul>			        
 			    </section>
  			    

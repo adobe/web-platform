@@ -205,7 +205,7 @@ body {
 }
 
 .reveal code {
-	font-family: Monaco;
+	font-family: Monaco, monospace;
 	line-height: 14pt;
 }
 
@@ -228,7 +228,7 @@ body {
 .reveal a:not(.image) {
 	color: hsl(185, 85%, 50%);
 	text-decoration: none;
-	line-height: 35px;
+	line-height: 40px;
 
 	-webkit-transition: all .2s ease;
 	   -moz-transition: all .2s ease;
@@ -933,8 +933,12 @@ body {
 	        transition: background 800ms ease;
 }
 
+.fullPage .slides {
+	top: 40%;
+}
+
 .screenshotPage .slides {
-	top: 35%;
+	top: 45%;
 }
 
 .expandPageWide .slides {
