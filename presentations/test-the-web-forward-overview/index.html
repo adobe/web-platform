@@ -231,24 +231,23 @@
     			
     			<section  data-state="expandPageWide">
     			    <h3>The Test</h3>
-    			    <section>
+    			    <section data-state="expandPageWide">
     				    <p>Test element with the transform applied</p>
     				    <pre>
     				    <code class="html">
 <span class="expand2">
-                    &lt;<span class="styleTag">style type</span>="text/css"&gt;
-                        <span class="styleTag">.greenSquare</span> {
-                            <span class="cssProperty">position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100<span class="px">px</span>;
-                            height: 100<span class="px">px</span>;
-                            background: green;</span>
-                            transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);
-                        }
-                        . . .
-                    &lt;/<span class="styleTag">style</span>&gt;    
-</span>				        
+                &lt;<span class="styleTag">style type</span>="text/css"&gt;
+                    <span class="styleTag">.greenSquare</span> {
+                        <span class="cssProperty">position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100<span class="px">px</span>;
+                        height: 100<span class="px">px</span>;
+                        background: green;</span>
+                        transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);
+                    }
+                    . . .
+                &lt;/<span class="styleTag">style</span>&gt;</span>				        
     				    </code>
     				    </pre>
     			    </section>
@@ -276,7 +275,7 @@
                 
                 <section  data-state="expandPageWide">
     			    <h3>Visible failure</h3>
-    			    <section>
+    			    <section data-state="expandPageWide">
     			        <p>Element is only visible when the test fails</p>
     			         <pre>
         				    <code class="html">
@@ -296,13 +295,14 @@
         				    </code>
         				    </pre>
     			    </section>
-    			    <section>
+    			    <section data-state="expandPageWide">
     				    <p>Failing test example</p>
     				    <img src="assets/images/failingRefTest.png"/>
     			    </section>
     			</section>
     			
-    			<section  data-state="expandPageWide">
+    			<section data-state="expandPageWide">
+    			    <section data-state="expandPageWide">
     			    <h3>Self Description</h3>
     			    <p style="font-size: 24pt">Simple statement of how the page renders when the test passes</p>
     				<br>
@@ -318,18 +318,20 @@
     			    </code>
     			    </pre>
                 </section>
+                </section>
                 
                 <section  data-state="expandPageWide">
+                    <section data-state="expandPageWide">
         		    <h3>Add the elements</h3>
         		    <p>Test file</p>
         		     <pre>
     				 <code class="html">
 <span class="expand2">
-    &lt;body&gt;
-        . . .
-        &lt;div class="redSquare"&gt;&lt;/div&gt;
-        &lt;div class="greenSquare"&gt;&lt;/div&gt;
-    &lt;/body&gt;
+                &lt;body&gt;
+                    . . .
+                    &lt;div class="redSquare"&gt;&lt;/div&gt;
+                    &lt;div class="greenSquare"&gt;&lt;/div&gt;
+                &lt;/body&gt;
 </span>    				        
     			    </code>
     			    </pre>
@@ -337,14 +339,54 @@
                      <pre>
     				 <code class="html">
 <span class="expand2">
-    &lt;body&gt;
-        . . .
-        &lt;div class="greenSquare"&gt;&lt;/div&gt;
-    &lt;/body&gt;
+                &lt;body&gt;
+                    . . .
+                    &lt;div class="greenSquare"&gt;&lt;/div&gt;
+                &lt;/body&gt;
 </span>    				        
     			    </code>
     			    </pre>
                 </section>
+                </section>
+                
+                <section data-state="expandPageWide">
+                    <br>
+                    <h2>Vendor prefixes</h2>
+               
+                   <section data-state="expandPageWide">
+                       <br>
+                       <blockquote>
+                       <ul>
+                           <li>You may need to add a vendor prefix to the CSS property you're testing</li>
+                           <li>If the prefix is necessary, your test will appear to fail without it</li>
+                           <li>However, do not include vendor prefixes when pushing tests to the W3C</li>
+                       </ul>   
+                       </blockquote> 
+                       <br>
+                       
+                  </section>
+              
+                  <section data-state="expandPageWide">
+                      <pre>
+                      <code class="html">
+                        <span class="expand2">
+                <span class="styleTag">.greenSquare</span> {
+                    <span class="cssProperty">position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100<span class="px">px</span>;
+                    height: 100<span class="px">px</span>;
+                    <span class="highlight">-webkit-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                    <span class="highlight">-moz-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                    <span class="highlight">-ms-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                    <span class="highlight">-o-transform: translate(100<span class="px">px</span>,100<span class="px">px</span>);</span>
+                    background: green;
+                }</span> 
+                      </code>
+                      </pre>
+                  </section>
+                      
+                  </section>
     			
 				<!-- Begin JS TEST -->
 
@@ -365,6 +407,7 @@
 					        <ul>
 					            <li>Verify complete rendering</li>
 					            <li>Easy to understand</li>
+					            <li>Works for clients that don't support JavaScript</li>
 					            <li>Avoid introducing additional technologies (JS)</li>
 					        </ul>
 					    </li>
@@ -378,7 +421,7 @@
     					<li>JavaScript can be used in conjunction with Ref Tests
     					    <ul>
     				            <li>Test can have both a reference file and a JavaScript section</li>
-    				            <li>Ref Test portion supports suites without script engines</li>
+    				            <li>Ref Test portion supports clients without script engines</li>
     				        </ul>
     				    </li>
     				    <li>Self-describing RefTests are the preferred test format</li>
@@ -407,9 +450,9 @@
     				        <li>JavaScript API for making common test assertions</li>
     				        <li>Should be used by all JavaScript tests</li>
     				        <li>Path must be to <tt>/resources</tt> directory at root level</li>
-    				        <li>Element with <code>id="log"</code> must exist in test file
+    				        <li>Element with <code>id="log"</code> should exist in test file
     				            <ul>
-    				                <li>Test results table will be added to this element</li>
+    				                <li>Test results table will be added to this element, if it exists</li>
     				            </ul>
     				        </li>
     				    </ul>
@@ -475,12 +518,12 @@
                             </pre>                        
                             <ul>
                                 <li><code>name</code> is a string that identifies the test</li> 
-                                <li>Descriptive test name that conveys what is being tested</li>
+                                <li><code>name</code> should be short, unique, and must not change</li>
             			        <li><code>name</code> will be displayed in the test results table</li>
                                 <li>Usage example:
                                     <pre style="font-size:18px">
                                         <code class="html">
-        test(function() {assert_true(true)}, "Assert_true with true", properties)
+        test(function() {assert_true(true)}, "test_name", properties)
                                         </code>
                                     </pre>  
                                 </li>
@@ -500,12 +543,28 @@
                                 <li>Usage example:
                                     <pre style="font-size:18px">
                                         <code class="html">
- test(function() {assert_true(true)}, "Assert_true with true", <br><br> {timeout:1000, <br><br> help: 'http://www.w3.org/TR/spec', <br><br> author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br> assert: 'This should always be true.']})
+ test(function() {assert_true(true)}, "test_name", <br><br> {timeout:1000, <br><br> help: 'http://www.w3.org/TR/spec#section', <br><br> author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br> assert: 'This should always be true.'})
                                         </code>
                                     </pre>                                
                                 </li>    			                    
         			        </ul>
                         </section>
+                        
+                        <section>
+                            <h2>Per-test Metadata</h2>
+                           <pre style="font-size:18px">
+                               <code class="html">
+test(function() {assert_true(true)}, "test_name", <br><br>{ help: 'http://www.w3.org/TR/spec#section', <br><br>author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br>assert: 'This test something.', 'This also tests something else.'})
+                               </code>
+                           </pre>
+                            <ul>
+                                <li>Used when a file contains multiple calls to <code>test()</code></li>
+                                <li>Only needed when an individual test's metadata is different than what is defined in <code>head</code></li>
+                                <li><code>name</code> passed to <code>test()</code> should be short, unique, and must not change</li>
+                                <li><code>assert</code> metadata should be used for descriptive info</li>
+                            </ul>
+                        </section>
+                        
                     </section>
 
             	    <section>
@@ -523,7 +582,7 @@
             			                <li>Used to provide additional debug information</li>
             			            </ul>
             			        </li>
-            			        <li>All asserts must be located in a <code>test()</code>
+            			        <li>All asserts must be located in a call to <code>test()</code>
             			            <ul>
             			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
             			            </ul>
@@ -545,7 +604,7 @@
                                 <li>Usage example:
                                     <pre style="font-size:18px">
                                         <code class="html">
-     assert_equals(getActualData("myElement"), 100, "Expected value for myElement is 100")
+ assert_equals(getActualData("myElement"), 100, "Expected value for myElement is 100")
                                         </code>
                                     </pre>                                
                                 </li>                            
@@ -561,9 +620,9 @@
         					<br><br>
         					<p>Spec Links:</p>
         					<p style="font-size: 16pt">
-        					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
+        					    <a href="http://www.w3.org/TR/css3-transforms/css3-transforms/#transform-property" target="top">http://www.w3.org/TR/css3-transforms/css3-transforms/#transform-property</a>
         					    <br>
-        					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
+        					    <a href="http://www.w3.org/TR/css3-transforms/css3-transforms/#two-d-transform-functions" target="top">http://www.w3.org/TR/css3-transforms/css3-transforms/#two-d-transform-functions</a>
     					    </p>
     					</section>
     					<section>

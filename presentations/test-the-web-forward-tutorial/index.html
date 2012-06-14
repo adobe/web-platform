@@ -711,9 +711,10 @@
       					    </li>
       					    <li>Ref Tests have some advantages over JavaScript tests
       					        <ul>
-      					            <li>Tests verify complete rendering</li>
+      					            <li>Verify complete rendering</li>
       					            <li>Easy to understand</li>
-      					            <li>Avoids introducing additional technologies (JS)</li>
+      					            <li>Works for clients that don't support JavaScript</li>
+      					            <li>Avoid introducing additional technologies (JS)</li>
       					        </ul>
       					    </li>
       					</ul>
@@ -722,7 +723,7 @@
       				<section>
       				    <h2>JavaScript Test Overview (cont'd)</h2>
       				    <br>
-                          <ul>
+                          <ul style="line-height:60px">
           					<li>JavaScript can be used in conjunction with Ref Tests
           					    <ul>
           				            <li>Test can have both a reference file and a JavaScript section</li>
@@ -731,13 +732,13 @@
           				        </ul>
           				    </li>
           				    <li>Self-describing RefTests are the preferred test format</li>
-          				    <li>JavaScript tests should used in the following scenarios:
+          				    <li>JavaScript tests should be used in the following scenarios
           				        <ul>
           				            <li>Testing a JavaScript API or behavior (ex: CSSOM spec)</li>
           				            <li>Adding automation to Ref Tests</li>
           				        </ul>
           				    </li>
-          				    <li>W3C provides a framework (testharness) to simplify and standardize JS test creation</li>
+          				    <li>W3C provides a framework (<tt>testharness.js</tt>) to simplify and standardize JS test creation</li>
       					</ul>
       				</section>
 
@@ -745,7 +746,7 @@
       				    <br>
   				        <h3>testharness</h3>
   				        <section>
-      				        <p style="font-size:24px">testharness.js and testharnessreport.js</p>
+      				        <p style="font-size:24px"><tt>testharness.js</tt> and <tt>testharnessreport.js</tt></p>
       				        <pre>
       				            <code class="html" style="font-size:24px; line-height:26px">
 &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
@@ -754,7 +755,7 @@
                             </pre>    
           				    <ul style="line-height:60px">
           				        <li>JavaScript API for making common test assertions</li>
-          				        <li>Documented in the comment section of testharness.js</li>
+          				        <li>Documented in the comment section of <tt>testharness.js</tt></li>
           				        <li>Should be used by all JavaScript tests</li>
           				    </ul>
           				    <br><br>
@@ -762,15 +763,15 @@
       				    </section>
       				    <section>
       				        <ul>
-          				        <li>Path must be to resources directory at root level
+          				        <li>Path must be to <tt>/resources</tt> directory at root level
           				            <ul>
           				                <li>Locally, resources directory can be located anywhere</li> 
           				                <li>Prior to pushing to CSSWG Test repository, the path must match example above</li>
           				            </ul>
           				        </li>
-          				        <li>Element with id="log" must exist in test file
+          				        <li>Element with <code>id="log"</code> should exist in test file
           				            <ul>
-          				                <li>Test results table will be added to this element</li>
+          				                <li>Test results table will be added to this element, if it exists</li>
           				            </ul>
           				        </li>
       				        </ul>
@@ -788,16 +789,16 @@
               			    <ul style="line-height:60px">
               			        <li>Used for synchronous tests
               			            <ul>
-              			                <li>async_test() is also defined by testharness for asychronous testing</li>
+              			                <li><code>async_test()</code> is also defined by testharness for asychronous testing</li>
               			            </ul>
               			        </li>
-              			        <li>Documented and implemented in testharness.js</li>
+              			        <li>Documented and implemented in <tt>testharness.js</tt></li>
               			        <li>Used to define an individual test case in a file
               			            <ul>
-              			                <li>Common for a file to have multiple calls to test()</li>
+              			                <li>Common for a file to have multiple calls to <code>test()</code></li>
               			            </ul>
               			        </li>   
-              			        <li>testharness will display PASS/FAIL for each call to test()</li>
+              			        <li><tt>testharness.js</tt> will display PASS/FAIL for each call to <code>test()</code></li>
               			    </ul>
               			    <br><br>
               			    <p class="font5">Press down for more</p>
@@ -811,8 +812,8 @@
               			        </code>
               			    </pre>                        
                               <ul style="line-height:60px">
-                                  <li>test_function must be an object, not a function call</li>
-                                  <li>test_function should be testharness assert method
+                                  <li><code>test_function</code> must be an object, not a function call</li>
+                                  <li><code>test_function</code> should be testharness assert method
                                       <ul>
                                           <li>Can also be user defined if no assert method provides the needed functionality</li>
                                       </ul>
@@ -836,13 +837,13 @@
                                   </code>
                               </pre>                        
                               <ul style="line-height:60px">
-                                  <li>Name is a string that identifies the test</li> 
-                                  <li>Descriptive test name that conveys what is being tested</li>
-              			        <li>Name will be displayed in the test results table</li>
+                                  <li><code>name</code> is a string that identifies the test</li> 
+                                  <li><code>name</code> should be short, unique, and must not change</li>
+              			          <li><code>name</code> will be displayed in the test results table</li>
                                   <li>Usage example:
                                       <pre>
                                           <code class="html" style="font-size:18px">
-    test(function() {assert_true(true)}, <span class="highlight">"Assert_true with true"</span>, properties)
+    test(function() {assert_true(true)}, <span class="highlight">"test_name"</span>, properties)
                                           </code>
                                       </pre>  
                                   </li>
@@ -857,35 +858,50 @@
                                   </code>
                               </pre>                        
                               <ul style="line-height:60px">
-                                  <li>Properties is an object that overrides defaults</li>
-                                  <li>Recognized properties include timeout and metadata</li>
+                                  <li><code>properties</code> is an object that overrides defaults</li>
+                                  <li>Recognized properties include <code>timeout</code> and metadata</li>
                                   <li>Usage example:
                                       <pre>
                                           <code class="html" style="font-size:18px; line-height:16px">
- test(function() {assert_true(true)}, "Assert_true with true", <br><br> <span class="highlight">{timeout:1000,</span> <br><br> <span class="highlight">help: 'http://www.w3.org/TR/spec',</span> <br><br> <span class="highlight">author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],</span><br><br> <span class="highlight">assert: 'This should always be true.']}</span>)
+ test(function() {assert_true(true)}, "test_name", <br><br> <span class="highlight">{timeout:1000,</span> <br><br> <span class="highlight">help: 'http://www.w3.org/TR/spec#section',</span> <br><br> <span class="highlight">author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],</span><br><br> <span class="highlight">assert: 'This should always be true.'}</span>)
                                           </code>
                                       </pre>                                
                                   </li>    			                    
           			        </ul>
                           </section>
+
+                          <section>
+                              <h2>Per-test Metadata</h2>
+                             <pre style="font-size:18px">
+                                 <code class="html">
+  test(function() {assert_true(true)}, "test_name", <br><br>{ help: 'http://www.w3.org/TR/spec#section', <br><br>author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br>assert: 'This test something.', 'This also tests something else.'})
+                                 </code>
+                             </pre>
+                              <ul>
+                                  <li>Used when a file contains multiple calls to <code>test()</code></li>
+                                  <li>Only needed when an individual test's metadata is different than what is defined in <code>head</code></li>
+                                  <li><code>name</code> passed to <code>test()</code> should be short, unique, and must not change</li>
+                                  <li><code>assert</code> metadata should be used for descriptive info</li>
+                              </ul>
+                          </section>                          
                       </section>
 
               	    <section data-state="screenshotPage">
               	        <section>
           			        <h2>Assert methods</h2>
-              			    <ul>
-              			        <li>testharness.js provides a number of assert methods
+              			    <ul style="line-height:60px">
+              			        <li><tt>testharness.js</tt> provides a number of assert methods
               			            <ul>
-              			                <li>Full list is provided in the comment section of testharness.js</li>
-              			                <li>Typically supplied as the test_function for test()</li>
+              			                <li>Full list is provided in the comment section of <tt>testharness.js</tt></li>
+              			                <li>Typically supplied as the <code>test_function</code> for <code>test()</code></li>
               			            </ul>
               			        </li>
-              			        <li>All assert methods contain an optional "description" argument that is only output if the assertion fails
+              			        <li>All assert methods contain an optional <code>description</code> argument that is only output if the assertion fails
               			            <ul>
               			                <li>Used to provide additional debug information</li>
               			            </ul>
               			        </li>
-              			        <li>All asserts must be located in a test()
+              			        <li>All asserts must be located in a call to <code>test()</code>
               			            <ul>
               			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
               			            </ul>
@@ -903,9 +919,9 @@
                                   </code>
                               </pre>
                               <ul style="line-height:60px">
-                                  <li>actual: The actual value from functionality being tested</li>
-                                  <li>expected: The expected value</li>
-                                  <li>description (optional): Output only if the assertion fails</li>
+                                  <li><code>actual</code>: The actual value from the functionality being tested</li>
+                                  <li><code>expected</code>: The expected value</li>
+                                  <li><code>description</code> (optional): Output only if the assertion fails</li>
                                   <li>Usage example:
                                       <pre style="font-size:16px">
                                           <code class="html">
@@ -921,14 +937,14 @@
                         <h2>Sample Test Case</h2>
                             <section>
               					<br>
-              					<p style="font-size: 28pt">Basic test for the transform property described in the CSS3 Transforms spec using the translate() function</p>
+              					<p style="font-size: 28pt">Basic test for the transform property described in the CSS3 Transforms spec using the <code>translate()</code> function</p>
               					<p class="font4" style="color:red">Similar to Ref Test example, this time testing API instead of rendering</p>
               					<br>
               					<p>Spec Links:</p>
               					<p style="font-size: 18pt">
-              					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
-              					    <br>
-              					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
+            					    <a href="http://www.w3.org/TR/css3-transforms/css3-transforms/#transform-property" target="top">http://www.w3.org/TR/css3-transforms/css3-transforms/#transform-property</a>
+            					    <br>
+            					    <a href="http://www.w3.org/TR/css3-transforms/css3-transforms/#two-d-transform-functions" target="top">http://www.w3.org/TR/css3-transforms/css3-transforms/#two-d-transform-functions</a>
           					    </p>
                                 <br>
                                 <p class="font5">Press down for more</p>
@@ -967,11 +983,11 @@
               		     <p class="font2">Update Metadata</p>
 
       			        <ul style="line-height:60px">
-      			            <li>Update the author metadata</li>
-      			            <li>Add a line for the flags metadata
+      			            <li>Update the <code>author</code> metadata</li>
+      			            <li>Add a line for the <code>flags</code> metadata
       			                <ul>
-      			                    <li>Flags document a test's prerequisites</li>
-      			                    <li>Full list of flags is available on the CSSWG Wiki <a href="http://wiki.csswg.org/test/format#requirement-flags">Test Format</a> page</li>
+      			                    <li><code>flags</code> document a test's prerequisites</li>
+      			                    <li>Full list of <code>flags</code> is available on the CSSWG Wiki <a href="http://wiki.csswg.org/test/format#requirement-flags">Test Format</a> page</li>
       			                </ul>
       			            </li>
       			            <li>Example:</li>
@@ -992,7 +1008,7 @@
               			<h2>Step 3</h2>
           			    <br>
               		    <p class="font2">Import the W3C JavaScript Test Harness files</p> 
-              		    <p class="font3">Add the following lines to the starter file above the style block</p>   
+              		    <p class="font3">Add the following lines to the starter file above the <code>style</code> block</p>   
   			            <pre style="width:600px">
 			                <code class="html">
 ...
@@ -1001,15 +1017,16 @@
 ...
                             </code>
 			            </pre>
-                          <p class="font5">Note: During development, the path to the resources directory should match location on local machine</p>
-                          <p class="font5" style="font-weight:bold; color:red">The path to these scripts must match example above before pushing to repo</p>
+                          <p class="font5">Note: During development, the path to the <code>resources</code> directory should match the directory's location on the local machine</p>
+                          <br>
+                          <p class="font5" style="font-weight:bold; color:red">The path to these scripts must point to the <code>/resources</code> directory before pushing to the CSSWG Test repository</p>
                       </section>
                       
                       <section data-sate="screenshotPage">
                           <h2>Checkpoint</h2>
                           <br>
-                          <p class="font2">The head block of your started file should appear as follows</p>
-                          <p class="font3">With your actual name and email address for the author metadata</p>
+                          <p class="font2">The <code>head</code> block of your starter file should appear as follows</p>
+                          <p class="font3">With your actual name and email address for the <code>author</code> metadata</p>
                           <pre>
                               <code class="html">
 &lt;!DOCTYPE html&gt;
@@ -1032,7 +1049,7 @@
                       <section data-state="screenshotPage">
                          <h2>Step 4</h2>
           			    <br>
-              		    <p class="font2">Add a div to be used as the test element to the body</p>
+              		    <p class="font2">Add a <code>div</code> to be used as the test element to the <code>body</code></p>
               		    <br>
               		    <pre style="width:600px">
               		        <code class="html">
@@ -1044,14 +1061,14 @@
               		        </code>
               		    </pre>
               		    <br>
-              		    <p class="font2">The transform will be applied to this element</p>
+              		    <p class="font2">The <code>transform</code> will be applied to this element</p>
                       </section>
 
 
                       <section data-state="screenshotPage">
               			<h2>Step 5</h2>
           			    <br>
-              		    <p class="font2">Add a div with id="log" for test results</p>
+              		    <p class="font2">Add a <code>div</code> with <code>id="log"</code> for test results</p>
               		    <br>
               		    <pre style="width:600px">
               		        <code class="html">
@@ -1064,13 +1081,13 @@
               		        </code>
               		    </pre>
              			     <br>
-             			     <p class="font3">testharness will add an HTML table that contains test results to this element</p>
+             			     <p class="font3"><tt>testharness.js</tt> will add an HTML table that contains test results to this element</p>
                       </section>
                       
                       <section data-state="screenshotPage">
                            <h2>Step 6</h2>
                            <br>
-                           <p class="font2">Create a script block that will contain the JavaScript</p>
+                           <p class="font2">Create a <code>script</code> block that will contain the JavaScript</p>
                            <br>
              		       <pre style="width:600px">
              		           <code class="html">
@@ -1117,7 +1134,7 @@
                       <section data-state="screenshotPage">
                            <h2>Step 7</h2>
                            <br>
-                           <p class="font2">Set the transform on the test element in JavaScript</p>
+                           <p class="font2">Set the <code>transform</code> on the test element in JavaScript</p>
                            <br>
                            <pre style="width:800px">
                                <code class="html">
@@ -1137,8 +1154,8 @@
 
                       <section data-state="screenshotPage">
           			     <h2>Step 8</h2>
-              		     <p class="font2">Add a call to test() to your script block to create a test case</p>
-              		     <p class="font3">Use assert_equals as the test_function</p>
+              		     <p class="font2">Add a call to <code>test()</code> to your <code>script</code> block</p>
+              		     <p class="font3">Use <code>assert_equals</code> as the <code>test_function</code></p>
                          <pre style="width:1000px">
                              <code class="html">
 ...
