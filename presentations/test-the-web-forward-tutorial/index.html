@@ -85,17 +85,15 @@
     				    <ul>
     				    <li style="list-style-type: none;">CSSWG Test Repository</li>
     				    <ul>
-    				        <li><tt>test</tt></li>
     				        <ul>
-    				            <li><tt>contributors</tt></li>
+    				        <li><tt>contributors</tt></li>
+						    <ul>
+						        <li><tt>ttwf</tt></li>
 						        <ul>
-						            <li><tt>ttwf</tt></li>
+						            <li><tt><em>your_csswg_id</em></tt></li>
 						            <ul>
-						                <li><tt><em>your_csswg_id</em></tt></li>
-						                <ul>
-						                    <li><tt>incoming</tt></li>
-    						                <li><tt>submitted</tt></li>
-						                </ul>
+						                <li><tt>incoming</tt></li>
+    						            <li><tt>submitted</tt></li>
 						            </ul>
 						        </ul>
 						    </ul>
@@ -115,10 +113,10 @@
     					<br>
     					<br>
     					<p>Spec Links:</p>
-    					<p style="font-size: 18pt">
-    					    <a href="http://dev.w3.org/csswg/css3-transforms/#transform-property" target="top">http://dev.w3.org/csswg/css3-transforms/#transform-property</a>
+    					<p style="font-size: 16pt">
+    					    <a href="http://www.w3.org/TR/css3-transforms/#transform-property" target="top">http://www.w3.org/TR/css3-transforms/css3-transforms/#transform-property</a>
     					    <br>
-    					    <a href="http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions" target="top">http://dev.w3.org/csswg/css3-transforms/#two-d-transform-functions</a>
+    					    <a href="http://www.w3.org/TR/css3-transforms/css3-transforms/#two-d-transform-functions" target="top">http://www.w3.org/TR/css3-transforms/css3-transforms/#two-d-transform-functions</a>
 					    </p>
 					</section>
 					<section>
@@ -234,7 +232,7 @@
                 				     <br>
                 				     <br>
                 				     <p><span class="localPath">From your incoming directory created in previous step</span></p>
-                			         <p>$ cp -R ../../samples/* .</p>
+                			         <p>$ cp -R ../../samples/ttwf-reftest-tutorial-starter* .</p>
                 			     </div>
               		     </div>
                       </section>
@@ -250,7 +248,7 @@
                 				     <br>
                 				     <br>
                 				     <p><span class="localPath">From your incoming directory created in previous step</span></p>
-                			         <p>> xcopy /e ..\..\samples .</p>
+                			         <p>> xcopy /e ..\..\samples\ttwf-reftest-tutorial-starter .</p>
                 			     </div>
               		     </div>                        
                       </section>
@@ -303,7 +301,7 @@
        &lt;html&gt;
            &lt;head&gt;
               . . .
-              &lt;link rel="match" href="reftest/ttwf-reftest-tutorial-starter-ref.html"&gt;
+              &lt;link rel="match" href="reference/ttwf-reftest-tutorial-starter-ref.html"&gt;
               . . .
                            </span>		        
                        				    </code>
@@ -457,7 +455,7 @@
                             <br>
                              <h2>Step 10</h2>
                              <br>
-                             <p class="font2">Open the reftests/ttwf-reftest-tutorial-starter-ref.html file in an editor</p>
+                             <p class="font2">Open the reference/ttwf-reftest-tutorial-starter-ref.html file in an editor</p>
     
                         </section>
 
@@ -664,7 +662,7 @@
                     				    <p>$ hg merge</p>
                     				    <p>$ hg commit -m "merging"</p>
                     			        <p>$ hg mv incoming/ttwf-reftest-tutorial-001.html submitted/ttwf-reftest-tutorial-001.html</p>
-                    			        <p>$ hg mv incoming/reftest/ttwf-reftest-tutorial-ref.html submitted/reftest/ttwf-reftest-tutorial-ref.html</p>
+                    			        <p>$ hg mv incoming/reference/ttwf-reftest-tutorial-ref.html submitted/reference/ttwf-reftest-tutorial-ref.html</p>
                     			        <p>$ hg commit -m "moved the TTWF reftest tutorial to the submitted folder"</p>
                     			        <p>$ hg push</p>
                     			    </div>
@@ -685,7 +683,7 @@
                     				    <p>> hg merge</p>
                     				    <p>> hg commit -m "merging"</p>
                     			        <p>> hg mv incoming\ttwf-reftest-tutorial-001.html submitted\ttwf-reftest-tutorial-001.html</p>
-                    			        <p>> hg mv incoming\reftest/ttwf-reftest-tutorial-ref.html submitted\reftest\ttwf-reftest-tutorial-ref.html</p>
+                    			        <p>> hg mv incoming\reference/ttwf-reftest-tutorial-ref.html submitted\reference\ttwf-reftest-tutorial-ref.html</p>
                     			        <p>> hg commit -m "moved the TTWF reftest tutorial to the submitted folder"</p>
                     			        <p>> hg push</p>
                     			    </div>
