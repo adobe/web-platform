@@ -471,7 +471,7 @@
                                 <li>Usage example:
                                     <pre style="font-size:18px">
                                         <code class="html">
-        test(function() {assert_true(true)}, "Assert_true with true", properties)
+        test(function() {assert_true(true)}, "test_name", properties)
                                         </code>
                                     </pre>  
                                 </li>
@@ -506,7 +506,7 @@ test(function() {assert_true(true)}, "test_name", <br><br>{ help: 'http://www.w3
                                </code>
                            </pre>
                             <ul>
-                                <li>Used when a file contains multiple calls to test()</li>
+                                <li>Used when a file contains multiple calls to <code>test()</code></li>
                                 <li>Only needed when an individual test's metadata is different than what is defined in <code>head</code></li>
                                 <li><code>name</code> passed to <code>test()</code> should be short, unique, and must not change</li>
                                 <li><code>assert</code> metadata should be used for descriptive info</li>
@@ -530,7 +530,7 @@ test(function() {assert_true(true)}, "test_name", <br><br>{ help: 'http://www.w3
             			                <li>Used to provide additional debug information</li>
             			            </ul>
             			        </li>
-            			        <li>All asserts must be located in a <code>test()</code>
+            			        <li>All asserts must be located in a call to <code>test()</code>
             			            <ul>
             			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
             			            </ul>
