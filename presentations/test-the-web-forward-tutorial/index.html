@@ -977,7 +977,7 @@
     &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
     &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
     &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
-    &lt;meta name="assert" content="The transform should be translated (100px,100px)"&gt;   
+    &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt;   
 &lt;/head&gt;
 &lt;body&gt;
 &lt;/body&gt;
@@ -1006,7 +1006,7 @@
 &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
 &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
 <span class="highlight">&lt;meta name="flags" content="dom"&gt;</span>
-&lt;meta name="assert" content="The transform should be translated (100px,100px)"&gt;  			                    
+&lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt;  			                    
       			                </code>
       			            </pre>   
         				    </ul> 
@@ -1045,7 +1045,7 @@
   &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
   &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
   &lt;meta name="flags" content="dom"&gt;
-  &lt;meta name="assert" content="The transform should be translated (100px,100px)"&gt; 
+  &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt; 
   &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
   &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
 &lt;/head&gt; 
@@ -1124,7 +1124,7 @@
   &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
   &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
   &lt;meta name="flags" content="dom"&gt;
-  &lt;meta name="assert" content="The transform should be translated (100px,100px)"&gt; 
+  &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt; 
   &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
   &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
 &lt;/head&gt;
@@ -1178,7 +1178,7 @@ document.getElementById("myDiv").style.transform = "translate(100px,100px)";
 test(function() {assert_equals( //test arg1: test_function
         document.getElementById("myDiv").style.getPropertyCSSValue("transform").cssText, //assert_equals arg 1: actual
         "translate(100px,100px)", //assert_equals arg 2: expected
-        "transform should be translated (100px,100px)")}, //assert_equals arg 3: description
+        "transform should be translate(100px,100px)")}, //assert_equals arg 3: description
         "Transform_Translate_100px_100px");  //test arg2: name    
 &lt;/script&gt;    
 &lt;/body&gt;
@@ -1200,7 +1200,7 @@ test(function() {assert_equals( //test arg1: test_function
    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
    &lt;meta name="flags" content="dom"&gt;
-   &lt;meta name="assert" content="The transform should be translated (100px,100px)"&gt; 
+   &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt; 
    &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
    &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
 &lt;/head&gt;
@@ -1211,7 +1211,7 @@ test(function() {assert_equals( //test arg1: test_function
        document.getElementById("myDiv").style.transform = "translate(100px,100px)";
        test(function() {assert_equals(
                document.getElementById("myDiv").style.getPropertyCSSValue("transform").cssText,
-               "translate(100px,100px)", "transform should be translated (100px,100px)")},
+               "translate(100px,100px)", "transform should be translate(100px,100px)")},
                "Transform_Translate_100px_100px");
    &lt;/script&gt;    
 &lt;/body&gt;
