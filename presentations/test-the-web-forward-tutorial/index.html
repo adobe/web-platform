@@ -137,9 +137,9 @@
               		    <div class="console">
               		        <div class="consoleText">
               			        <br><br>
-              		            <p>$ cd <span class="localPath">[path to repo]</span>/test</p>
-              		            <p>$ hg pull -u</p>
-              		            <p>$ ls -lR contributors/ttwf/samples</p>
+              		            <p><tt>$ cd <span class="localPath">[path to repo]</span>/test</tt></p>
+              		            <p><tt>$ hg pull -u</tt></p>
+              		            <p><tt>$ ls -lR contributors/ttwf/samples</tt></p>
               		        </div>
               	        </div>
               	        <br><br><br>
@@ -161,13 +161,13 @@
               		    <p style="font-size:22px">Complete this step unless you just cloned the repository during setup</p>
               		    <br>
 
-              	        <p style="font-size:30px">From a DOS command window, type the following:</p>
+              	        <p style="font-size:30px">From a command prompt, type the following:</p>
               		    <div class="console">
               		        <div class="dosText">
               			        <br><br>
-              		            <p>> cd <span class="localPath">[path to repo]</span>\test</p>
-              		            <p>> hg pull -u</p>
-              		            <p>> dir contributors\ttwf\samples</p>
+              		            <p><tt>> cd <span class="localPath">[path to repo]</span>\test</tt></p>
+              		            <p><tt>> hg pull -u</tt></p>
+              		            <p><tt>> dir contributors\ttwf\samples</tt></p>
               		        </div>
               	        </div>
               	        <br><br><br>
@@ -193,9 +193,9 @@
               			 <div class="console">
               			     <div class="consoleText">
                 				     <br><br><br>
-                				     <p>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/</p>
-                				     <p>$ mkdir -p <span class="localPath">yourName</span>/incoming</p>
-                				     <p>$ cd <span class="localPath">yourName</span>/incoming</p>
+                				     <p><tt>$ cd <span class="localPath">[path to repo]</span>/test/contributors/ttwf/</tt></p>
+                				     <p><tt>$ mkdir -p <span class="localPath">yourName</span>/incoming</tt></p>
+                				     <p><tt>$ cd <span class="localPath">yourName</span>/incoming</tt></p>
                 			     </div>
               		     </div>
               	    </section>
@@ -211,9 +211,9 @@
                  				     <br>
                  				     <br>
                  				     <br>
-                 				     <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf</p>
-                 				     <p>> mkdir <span class="localPath">yourName</span>\incoming</p>
-                 				     <p>> cd <span class="localPath">yourName</span>\incoming</p>
+                 				     <p><tt>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf</tt></p>
+                 				     <p><tt>> mkdir <span class="localPath">yourName</span>\incoming</tt></p>
+                 				     <p><tt>> cd <span class="localPath">yourName</span>\incoming</tt></p>
                  			    </div>
               		    </div>
               	    </section>
@@ -232,7 +232,7 @@
                 				     <br>
                 				     <br>
                 				     <p><span class="localPath">From your incoming directory created in previous step</span></p>
-                			         <p>$ cp -R ../../samples/ttwf-reftest-tutorial-starter* .</p>
+                			         <p><tt>$ cp -R ../../samples/ttwf-reftest-tutorial-starter/* .</tt></p>
                 			     </div>
               		     </div>
                       </section>
@@ -248,7 +248,7 @@
                 				     <br>
                 				     <br>
                 				     <p><span class="localPath">From your incoming directory created in previous step</span></p>
-                			         <p>> xcopy /e ..\..\samples\ttwf-reftest-tutorial-starter .</p>
+                			         <p><tt>> xcopy /e ..\..\samples\ttwf-reftest-tutorial-starter .</tt></p>
                 			     </div>
               		     </div>                        
                       </section>
@@ -258,7 +258,7 @@
                      <br>
                      <h2>Step 4</h2>
               	     <br>
-                     <p class="font2">Open the ttwf-reftest-starter-001.html file in a editor</p>
+                     <p class="font2">Open the <tt>ttwf-reftest-starter-001.html</tt> file in a editor</p>
                   </section>
 
                   <section data-state="screenshotPage">
@@ -266,7 +266,7 @@
               	     <h2>Step 5.1 </h2>
               	     <br>
               	     <p class="font2">Add the test metadata</p>
-              	     <p class="font3">Title & Author</p>
+              	     <p class="font3">Title &amp; Author</p>
               	     				    <pre>
                      					<code class="html">
                      <span class="expand">
@@ -455,7 +455,7 @@
                             <br>
                              <h2>Step 10</h2>
                              <br>
-                             <p class="font2">Open the reference/ttwf-reftest-tutorial-starter-ref.html file in an editor</p>
+                             <p class="font2">Open the <tt>reference/ttwf-reftest-tutorial-starter-ref.html</tt> file in an editor</p>
     
                         </section>
 
@@ -464,7 +464,7 @@
                              <h2>Step 11</h2>
                              <br>
                              <p class="font2">Add the reference metadata</p>
-                             <p class="font3">Title & Author</p>
+                             <p class="font3">Title &amp; Author</p>
                              <pre>
                                  
         <span class="expand">
@@ -540,7 +540,7 @@
                          <section>
                              <br>
                              <ul>
-                                 <li>You may need to add a vendor prefix to the CSS property you're testing</li>
+                                 <li>You may need to add a vendor prefix to the CSS property you're developing tests</li>
                                  <li>If the prefix is necessary, your test will appear to fail without it</li>
                                  <li>However, do not include vendor prefixes when pushing tests to the W3C</li>
                              </ul>    
@@ -567,6 +567,14 @@
                             </code>
                             </pre>
                         </section>
+                        <section>
+                            <br>
+                            <p>As an alternative, you can use -prefix-free during test development</p>
+                            <br>
+                            <a href="http://leaverou.github.com/prefixfree/">http://leaverou.github.com/prefixfree</a>
+                        <section>
+                            
+                        </section>
                         
                     </section>
                     
@@ -576,7 +584,7 @@
                   	        <h2>Step 15 - OSX</h2>
                   	        <p class="font5">Press the down-arrow for Windows instructions</p>
                   	        <br>
-                  		    <p class="font2">Add your new test & reference file to the repository</p>
+                  		    <p class="font2">Add your new test &amp; reference file to the repository</p>
                   			<div class="console">
                   			    <div class="consoleText">
                     				    <br>
@@ -652,7 +660,7 @@
                   		    <h2>Step 17 - OSX</h2>
                   		    <p class="font5">Press down-arrow for Windows instructions</p>
                   		    <br>
-                  		    <p class="font2">Incorporate feedback & move test to the submitted folder</p>
+                  		    <p class="font2">Incorporate feedback &amp; move test to the submitted folder</p>
                   		    <br>
                   			<div class="consoleLarge">
                   			    <div class="consoleText">
@@ -673,7 +681,7 @@
                   	        <h2>Step 17 - Windows</h2>
                   		    <p class="font5">Press down-arrow for OSX instructions</p>
                   		    <br>
-                  		    <p class="font2">Incorporate feedback & move test to the submitted folder</p>
+                  		    <p class="font2">Incorporate feedback &amp; move test to the submitted folder</p>
                   		    <br>
                   			<div class="consoleLarge">
                   			    <div class="dosText">
@@ -822,7 +830,7 @@
                                   <li>Usage example:
                                       <pre style="font-size:18px">
                                           <code>
-            test(<span class="highlight">function() {assert_true(true)}</span>, name, properties)
+            test(<span class="highlight">function() { assert_true(true) }</span>, name, properties)
                                           </code>
                                       </pre>  
                                   </li>                            
@@ -843,7 +851,7 @@
                                   <li>Usage example:
                                       <pre>
                                           <code class="html" style="font-size:18px">
-    test(function() {assert_true(true)}, <span class="highlight">"test_name"</span>, properties)
+    test(function() { assert_true(true) }, <span class="highlight">"test_name"</span>, properties)
                                           </code>
                                       </pre>  
                                   </li>
@@ -863,7 +871,7 @@
                                   <li>Usage example:
                                       <pre>
                                           <code class="html" style="font-size:18px; line-height:16px">
- test(function() {assert_true(true)}, "test_name", <br><br> <span class="highlight">{timeout:1000,</span> <br><br> <span class="highlight">help: 'http://www.w3.org/TR/spec#section',</span> <br><br> <span class="highlight">author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],</span><br><br> <span class="highlight">assert: 'This should always be true.'}</span>)
+ test(function() { assert_true(true) }, "test_name", <br><br> <span class="highlight">{timeout:1000,</span> <br><br> <span class="highlight">help: 'http://www.w3.org/TR/spec#section',</span> <br><br> <span class="highlight">author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],</span><br><br> <span class="highlight">assert: 'This should always be true.'}</span>)
                                           </code>
                                       </pre>                                
                                   </li>    			                    
@@ -874,7 +882,7 @@
                               <h2>Per-test Metadata</h2>
                              <pre style="font-size:18px">
                                  <code class="html">
-  test(function() {assert_true(true)}, "test_name", <br><br>{ help: 'http://www.w3.org/TR/spec#section', <br><br>author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br>assert: 'This test something.', 'This also tests something else.'})
+  test(function() { assert_true(true) }, "test_name", <br><br>{ help: 'http://www.w3.org/TR/spec#section', <br><br>author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br>assert: 'This test something.', 'This also tests something else.'})
                                  </code>
                              </pre>
                               <ul>
@@ -893,7 +901,7 @@
               			        <li><tt>testharness.js</tt> provides a number of assert methods
               			            <ul>
               			                <li>Full list is provided in the comment section of <tt>testharness.js</tt></li>
-              			                <li>Typically supplied as the <code>test_function</code> for <code>test()</code></li>
+              			                <li>Typically used in the <code>test_function</code> for <code>test()</code></li>
               			            </ul>
               			        </li>
               			        <li>All assert methods contain an optional <code>description</code> argument that is only output if the assertion fails
@@ -938,7 +946,7 @@
                             <section>
               					<br>
               					<p style="font-size: 28pt">Basic test for the transform property described in the CSS3 Transforms spec using the <code>translate()</code> function</p>
-              					<p class="font4" style="color:red">Similar to Ref Test example, this time testing API instead of rendering</p>
+              					<p class="font4" style="color:#FF6B6B">Similar to Ref Test example, this time testing API instead of rendering</p>
               					<br>
               					<p>Spec Links:</p>
               					<p style="font-size: 18pt">
@@ -1019,7 +1027,7 @@
 			            </pre>
                           <p class="font5">Note: During development, the path to the <code>resources</code> directory should match the directory's location on the local machine</p>
                           <br>
-                          <p class="font5" style="font-weight:bold; color:red">The path to these scripts must point to the <code>/resources</code> directory before pushing to the CSSWG Test repository</p>
+                          <p class="font5" style="font-weight:bold; color:#FF6B6B">The path to these scripts must point to the <code>/resources</code> directory before pushing to the CSSWG Test repository</p>
                       </section>
                       
                       <section data-sate="screenshotPage">
@@ -1049,7 +1057,7 @@
                       <section data-state="screenshotPage">
                          <h2>Step 4</h2>
           			    <br>
-              		    <p class="font2">Add a <code>div</code> to be used as the test element to the <code>body</code></p>
+              		    <p class="font2">Add a <code>div</code> to be used as the test element to the <code>&lt;body&gt;</code></p>
               		    <br>
               		    <pre style="width:600px">
               		        <code class="html">
@@ -1068,7 +1076,7 @@
                       <section data-state="screenshotPage">
               			<h2>Step 5</h2>
           			    <br>
-              		    <p class="font2">Add a <code>div</code> with <code>id="log"</code> for test results</p>
+              		    <p class="font2">Add a <code>&lt;div&gt;</code> with <code>id="log"</code> for test results</p>
               		    <br>
               		    <pre style="width:600px">
               		        <code class="html">
@@ -1087,7 +1095,7 @@
                       <section data-state="screenshotPage">
                            <h2>Step 6</h2>
                            <br>
-                           <p class="font2">Create a <code>script</code> block that will contain the JavaScript</p>
+                           <p class="font2">Create a <code>&lt;script&gt;</code> block that will contain the JavaScript</p>
                            <br>
              		       <pre style="width:600px">
              		           <code class="html">
@@ -1104,7 +1112,7 @@
                       </section>
 
                       <section>
-                          <h2>CHECKPOINT</h2>
+                          <h2>Checkpoint</h2>
                           <p class="font2">Starter file should now appear as follows</p>
                           <pre>
                               <code class="html">
@@ -1155,7 +1163,7 @@
                       <section data-state="screenshotPage">
           			     <h2>Step 8</h2>
               		     <p class="font2">Add a call to <code>test()</code> to your <code>script</code> block</p>
-              		     <p class="font3">Use <code>assert_equals</code> as the <code>test_function</code></p>
+              		     <p class="font3">Use <code>assert_equals</code> inside <code>test_function</code></p>
                          <pre style="width:1000px">
                              <code class="html">
 ...
@@ -1283,7 +1291,7 @@ $ hg push
                            <section>
                            	    <h2>Step 12 - OSX</h2>
                            	    <p class="font5">Press down-arrow for Windows instructions</p>
-                           	    <p class="font3">Incorporate feedback & move test to the submitted folder</p>
+                           	    <p class="font3">Incorporate feedback &amp; move test to the submitted folder</p>
                            	    <br>
                            	    <pre>
                            	        <code style="font-size:18px; line-height:22px; height:120px">
@@ -1298,7 +1306,7 @@ $ hg push
                            <section>
                                <h2>Step 12 - Windows</h2>
                        	       <p class="font5">Press down-arrow for OSX instructions</p>
-                           	   <p class="font2">Incorporate feedback & move test to the submitted folder</p>
+                           	   <p class="font2">Incorporate feedback &amp; move test to the submitted folder</p>
                           	   <pre>
                       	           <code style="font-size:18px; line-height:22px; height:120px">
 > cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span>
@@ -1329,20 +1337,20 @@ $ hg push
                                <ul>
                                    <li>Basic Commands:
                                        <ul>
-                                           <li>hg pull   (gets the latest changes from the CSSWG Test repo)</li>
+                                           <li><tt>hg pull</tt>   (gets the latest changes from the CSSWG Test repo)</li>
                                            <ul>
-                                               <li>To update after pull, use: hg pull -u (alleviates need to do hg update)</li>
+                                               <li>To update after pull, use: <tt>hg pull -u</tt> (alleviates need to do hg update)</li>
                                            </ul>                                
-                                           <li>hg update (applies the latest changes pulled to your local repo)</li>
-                                           <li>hg status (displays list of locally changed files)</li>
-                                           <li>hg add    (stages a new or modified local file for commit)</li>
-                                           <li>hg remove (stages the removal of a local file for commit)</li>
-                                           <li>hg merge  (merges local changes with updates pulled from CSSWG Test repo)</li>
-                                           <li>hg commit (commits local changes to local repository)</li>
+                                           <li><tt>hg update (applies the latest changes pulled to your local repo)</tt></li>
+                                           <li><tt>hg status (displays list of locally changed files)</tt></li>
+                                           <li><tt>hg add    (stages a new or modified local file for commit)</tt></li>
+                                           <li><tt>hg remove (stages the removal of a local file for commit)</tt></li>
+                                           <li><tt>hg merge  (merges local changes with updates pulled from CSSWG Test repo)</tt></li>
+                                           <li><tt>hg commit (commits local changes to local repository)</tt></li>
                                                <ul>
-                                                   <li>To include commit message, use: hg commit -m "<span style="font-style:italic">Commit message here</span>"</li>
+                                                   <li>To include commit message, use: <tt>hg commit -m "</tt><span style="font-style:italic">Commit message here</span>"</li>
                                                </ul>
-                                           <li>hg push   (pushes local changes to the CSSWG Test repository)</li>
+                                           <li><tt>hg push</tt>   (pushes local changes to the CSSWG Test repository)</li>
                                        </ul>
                                    </li>
                                 </ul>
@@ -1353,16 +1361,16 @@ $ hg push
                                <ul>
                                    <li>User wants to update their local repo:
                                        <ul>
-                                           <li>hg pull -u  (pulls and applies latest changes from CSSWG repo to local repo)</li>
+                                           <li><tt>hg pull -u </tt> (pulls and applies latest changes from CSSWG repo to local repo)</li>
                                        </ul>
                                    </li>
                                    <li>User wants to push local changes:
                                        <ul>
-                                           <li>hg status (check which files are stages for commit)</li>
-                                           <li>hg add <span style="font-style:italic">fileName</span> (stages file for commit, repeat for each file)</li>
-                                           <li>hg status (confirm all files are stages for commit)</li>
-                                           <li>hg commit -m "<span style="font-style:italic">Commit message here</span>" (Commit to local repo)</li>
-                                           <li>hg push (pushes locally committed changes to CSSWG Test repo)
+                                           <li><tt>hg status (check which files are stages for commit)</tt></li>
+                                           <li><tt>hg add <span style="font-style:italic">fileName</span> (stages file for commit, repeat for each file)</tt></li>
+                                           <li><tt>hg status (confirm all files are stages for commit)</tt></li>
+                                           <li><tt>hg commit -m "<span style="font-style:italic">Commit message here</span>" (Commit to local repo)</tt></li>
+                                           <li><tt>hg push (pushes locally committed changes to CSSWG Test repo)</tt>
                                        </ul>
                                    </li> 
                                 </ul>
@@ -1378,10 +1386,10 @@ abort: push creates new remote head ...
                                             </code>
                                         </pre>
                                         <ul>
-                                            <li>hg pull (gets newest changes from CSSWG Test repo)</li>
-                                            <li>hg merge (merges newest changes from CSSWG Test repo with local changes)</li>
-                                            <li>hg commit -m "Merge" (commits the merge to local repo)</li>
-                                            <li>hg push (pushes changes to CSSWG Test repo)</li>
+                                            <li><tt>hg pull (gets newest changes from CSSWG Test repo)</tt></li>
+                                            <li><tt>hg merge (merges newest changes from CSSWG Test repo with local changes)</tt></li>
+                                            <li><tt>hg commit -m "Merge" (commits the merge to local repo)</tt></li>
+                                            <li><tt>hg push (pushes changes to CSSWG Test repo)</tt></li>
                                         </ul>
                                     </li>
                                 </ul>
