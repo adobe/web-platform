@@ -387,9 +387,28 @@
                   
                   <section data-state="expandPageWide">
                       <br>
-                      <p>As an alternative, you can use -prefix-free during test development</p>
-                      <br>
-                      <a href="http://leaverou.github.com/prefixfree/">http://leaverou.github.com/prefixfree</a>
+                      <p>We recommend a script to use during test development:</p>
+                      <p style="font-size: 18pt">
+                          <a href="http://leaverou.github.com/prefixfree/">http://leaverou.github.com/prefixfree</a>
+                      </p>
+                      <p>The prefixfree.jsapi.js extension can be used for unprefixed JS APIs tests:</p>
+                      <p style="font-size: 18pt">
+                          <a href="https://github.com/LeaVerou/prefixfree/tree/gh-pages/plugins">https://github.com/LeaVerou/prefixfree/tree/gh-pages/plugins</a>
+                      </p>
+                      <pre>
+                      <code class="html">
+  <span class="expand2">
+        . . .
+        
+        &lt;-- Remember to remove before pushing to W3C test suite --&gt;
+            
+        &lt;script src="prefixfree.js"&gt;&lt;/script&gt;
+        &lt;script src="plugins/prefixfree.jsapi.js"&gt;&lt;/script&gt;
+        
+        . . .
+  </span>    				        
+      			    </code>
+      			    </pre>
                   </section>
                       
                   </section>

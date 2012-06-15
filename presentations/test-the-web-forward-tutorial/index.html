@@ -534,10 +534,10 @@
                          <img src="assets/images/failingRefTest.png">
                     </section>
                     
-                     <section>
+                     <section data-state="screenshotPage">
                          <h2>Vendor prefixes</h2>
                          
-                         <section>
+                         <section data-state="screenshotPage">
                              <br>
                              <ul>
                                  <li>You may need to add a vendor prefix to the CSS property you're developing tests</li>
@@ -548,7 +548,7 @@
                              <p class="font5">Press the down-arrow for a vendor-prefixed version of this tutorial</p>
                         </section>
                         
-                        <section>
+                        <section data-state="screenshotPage">
                             <pre>
                             <code class="html">
                               <span class="expand2">
@@ -566,13 +566,30 @@
                           }</span> 
                             </code>
                             </pre>
+                            <p class="font5">Press the down-arrow for an alternative to adding vendor prefixes manually</p>
                         </section>
-                        <section>
-                            <br>
-                            <p>As an alternative, you can use -prefix-free during test development</p>
-                            <br>
-                            <a href="http://leaverou.github.com/prefixfree/">http://leaverou.github.com/prefixfree</a>
-                        </section>
+                        <section data-state="screenshotPage">
+                              <br>
+                              <p>We recommend a script to use during test development:</p>
+                              <p style="font-size: 18pt">
+                                  <a href="http://leaverou.github.com/prefixfree/">http://leaverou.github.com/prefixfree</a>
+                              </p>
+                              <p>The prefixfree.jsapi.js extension can be used for unprefixed JS APIs tests:</p>
+                              <p style="font-size: 18pt">
+                                  <a href="https://github.com/LeaVerou/prefixfree/tree/gh-pages/plugins">https://github.com/LeaVerou/prefixfree/tree/gh-pages/plugins</a>
+                              </p>
+                              <p class="font4">During test development, include the scripts is your tests like this:</p>
+                              <pre>
+                              <code class="html">
+          <span class="expand2">
+            &lt;-- Remember to remove before pushing to W3C test suite --&gt;
+
+            &lt;script src="prefixfree.js"&gt;&lt;/script&gt;
+            &lt;script src="plugins/prefixfree.jsapi.js"&gt;&lt;/script&gt;
+        </span>    				        
+              			    </code>
+              			    </pre>
+                          </section>
                             
                         </section>
                         
