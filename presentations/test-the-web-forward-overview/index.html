@@ -564,6 +564,7 @@
                             </pre>                        
                             <ul>
                                 <li><code>properties</code> is an object that overrides defaults</li>
+                                <li>This argument is optional</li>
                                 <li>Recognized properties include <code>timeout</code> and metadata</li>
                                 <li>Usage example:
                                     <pre style="font-size:18px">
@@ -573,23 +574,7 @@
                                     </pre>                                
                                 </li>    			                    
         			        </ul>
-                        </section>
-                        
-                        <section>
-                            <h2>Per-test Metadata</h2>
-                           <pre style="font-size:18px">
-                               <code class="html">
-test(function() {assert_true(true)}, "test_name", <br><br>{ help: 'http://www.w3.org/TR/spec#section', <br><br>author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br>assert: 'This test something.', 'This also tests something else.'})
-                               </code>
-                           </pre>
-                            <ul>
-                                <li>Used when a file contains multiple calls to <code>test()</code></li>
-                                <li>Only needed when an individual test's metadata is different than what is defined in <code>head</code></li>
-                                <li><code>name</code> passed to <code>test()</code> should be short, unique, and must not change</li>
-                                <li><code>assert</code> metadata should be used for descriptive info</li>
-                            </ul>
-                        </section>
-                        
+                        </section>                        
                     </section>
 
             	    <section>
