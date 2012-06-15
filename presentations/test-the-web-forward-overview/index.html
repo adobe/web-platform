@@ -402,8 +402,8 @@
         
         &lt;-- Remember to remove before pushing to W3C test suite --&gt;
             
-        &lt;script src="prefixfree.js"&gt;&lt;/script&gt;
-        &lt;script src="plugins/prefixfree.jsapi.js"&gt;&lt;/script&gt;
+        &lt;script src="prefixfree.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
+        &lt;script src="plugins/prefixfree.jsapi.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
         
         . . .
   </span>    				        
@@ -466,9 +466,9 @@
     			        <p><tt>testharness.js</tt> and <tt>testharnessreport.js</tt></p>
     			        <pre>
     			            <code class="html">
-    &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
+    &lt;<span class="styleTag">script src</span>="/resources/testharness.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
 
-    &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;
+    &lt;<span class="styleTag">script src</span>="/resources/testharnessreport.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
                             </code>
                         </pre>    
     				    <ul>
@@ -527,7 +527,7 @@
                                 <li>Usage example:
                                     <pre style="font-size:18px">
                                         <code>
-            test(function() {assert_true(true)}, name, properties)
+            test(<span class="highlight">function() {assert_true(true)}</span>, name, properties)
                                         </code>
                                     </pre>  
                                 </li>                            
@@ -548,7 +548,7 @@
                                 <li>Usage example:
                                     <pre style="font-size:18px">
                                         <code class="html">
-        test(function() {assert_true(true)}, "test_name", properties)
+        test(function() {assert_true(true)}, <span class="highlight">"test_name"</span>, properties)
                                         </code>
                                     </pre>  
                                 </li>
@@ -559,7 +559,7 @@
                             <h2>test() Argument 3: Properties</h2>
                             <pre>
                                 <code class="html">
-                test(test_function, name,<span style="color:red"> properties</span>)
+            test(test_function, name,<span style="color:red"> properties</span>)
                                 </code>
                             </pre>                        
                             <ul>
@@ -568,7 +568,7 @@
                                 <li>Usage example:
                                     <pre style="font-size:18px">
                                         <code class="html">
- test(function() {assert_true(true)}, "test_name", <br><br> {timeout:1000, <br><br> help: 'http://www.w3.org/TR/spec#section', <br><br> author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br> assert: 'This should always be true.'})
+ test(function() { assert_true(true) }, "test_name", <br><br> <span class="highlight">{timeout:1000,</span> <br><br> <span class="highlight">help: 'http://www.w3.org/TR/spec#section',</span> <br><br> <span class="highlight">author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],</span><br><br> <span class="highlight">assert: 'This test something.', 'This also tests something else.'}</span>)
                                         </code>
                                     </pre>                                
                                 </li>    			                    
@@ -682,8 +682,8 @@ test(function() {assert_true(true)}, "test_name", <br><br>{ help: 'http://www.w3
         			            <code class="html" style="line-height:26px; font-size:24px">
 &lt;head&gt;
 ...    
-    &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
-    &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
+    &lt;<span class="styleTag">script src</span>="/resources/testharness.js"&gt;&lt;/<span class="styleTag">script</span>&gt;
+    &lt;<span class="styleTag">script src</span>="/resources/testharnessreport.js"&gt;&lt;/<span class="styleTag">script</span>&gt;    
 &lt;/head&gt;    			                
     			            </code>
         			        </pre>
@@ -699,25 +699,25 @@ test(function() {assert_true(true)}, "test_name", <br><br>{ help: 'http://www.w3
     			    </section>				
 
 			    
-			    <section data-state="largePage">
+			    <section data-state="largePage" style="left:-5%">
 			        <h3>Body</h3>
-			        <pre style="width:900px">
-			            <code class="html" style="line-height:22px; font-size:14px">
+			        <pre style="width:1150px">
+			            <code class="html" style="line-height:22px; font-size:18px">
 &lt;body&gt;
     &lt;div id="myDiv"&gt;&lt;/div&gt;
     &lt;div id="log"&gt;&lt;/div&gt;    
 
-    &lt;script&gt;
+    &lt;<span class="styleTag">script</span>&gt;
         // Set the transform 
         document.getElementById("myDiv").style.transform = "translate(100px,100px)";
 
         // Verify that the transform was set as expected
         test(function() {assert_equals(
-                document.getElementById("myDiv").style.getPropertyCSSValue("transform").cssText, // Actual
-                "translate(100px, 100px)",  // Expected
-                "transform should be translate(100px,100px)")}, // Description
-                "Transform_Translate_100px_100px"); // name
-    &lt;/script&gt;
+            document.getElementById("myDiv").style.getPropertyCSSValue("transform").cssText, //Actual
+            "translate(100px, 100px)",  //Expected
+            "transform should be translate(100px,100px)")}, //Description
+            "Transform_Translate_100px_100px"); //name
+    &lt;<span class="styleTag">/script</span>&gt;
 &lt;/body&gt;			                
 			            </code>
 			        </pre>
