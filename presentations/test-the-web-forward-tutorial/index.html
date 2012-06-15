@@ -584,8 +584,8 @@
           <span class="expand2">
             &lt;-- Remember to remove before pushing to W3C test suite --&gt;
 
-            &lt;script src="prefixfree.js"&gt;&lt;/script&gt;
-            &lt;script src="plugins/prefixfree.jsapi.js"&gt;&lt;/script&gt;
+            &lt;<span class="styleTag">script src</span>="prefixfree.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
+            &lt;<span class="styleTag">script src</span>="plugins/prefixfree.jsapi.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
         </span>    				        
               			    </code>
               			    </pre>
@@ -623,7 +623,7 @@
                               <div class="console">
                   			    <div class="consoleText">
                     				    <p class="localPath">Only complete these steps if you received the error message above</p>
-                    			        <p>$ hg pull -u</p>
+                    			        <p>$ hg pull</p>
                     			        <p>$ hg merge</p>
                     			        <p>$ hg commit -m "Merge"</p>
                     			        <p>$ hg push</p>
@@ -640,8 +640,8 @@
                   			    <div class="dosText">
                     				    <br>
                     				    <p>> cd <span class="localPath">[path to repo]</span>\test\contributors\ttwf\<span class="localPath">yourName</span>\incoming</p>
-                    			        <p>$ hg add ttwf-reftest-tutorial-001.html</p>
-                    			        <p>$ hg add reftest</p>
+                    			        <p>> hg add ttwf-reftest-tutorial-001.html</p>
+                    			        <p>> hg add reftest</p>
                     			        <p>> hg commit -m "TTWF reftest tutorial"</p>
                     			        <p>> hg push</p>
                     			    </div>
@@ -657,7 +657,7 @@
                               <div class="console">
                   			    <div class="dosText">
                     				    <p class="localPath">Only complete these steps if you received the error message above</p>
-                    			        <p>> hg pull -u</p>
+                    			        <p>> hg pull</p>
                     			        <p>> hg merge</p>
                     			        <p>> hg commit -m "Merge"</p>
                     			        <p>> hg push</p>
@@ -774,8 +774,8 @@
       				        <p style="font-size:24px"><tt>testharness.js</tt> and <tt>testharnessreport.js</tt></p>
       				        <pre>
       				            <code class="html" style="font-size:24px; line-height:26px">
-&lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
-&lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;
+&lt;<span class="styleTag">script src</span>="/resources/testharness.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
+&lt;<span class="styleTag">script src</span>="/resources/testharnessreport.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
                                 </code>
                             </pre>    
           				    <ul style="line-height:60px">
@@ -814,7 +814,7 @@
               			    <ul style="line-height:60px">
               			        <li>Used for synchronous tests
               			            <ul>
-              			                <li><code>async_test()</code> is also defined by testharness for asychronous testing</li>
+              			                <li><code>async_test()</code> is also defined by <tt>testharness.js</tt> for asychronous testing</li>
               			            </ul>
               			        </li>
               			        <li>Documented and implemented in <tt>testharness.js</tt></li>
@@ -840,7 +840,7 @@
                                   <li><code>test_function</code> must be an object, not a function call</li>
                                   <li><code>test_function</code> should be testharness assert method
                                       <ul>
-                                          <li>Can also be user defined if no assert method provides the needed functionality</li>
+                                          <li>If no built-in assert methods provide the needed functionality, take a look in <tt>testharness.js</tt> for how to write your own</li>
                                       </ul>
                                   </li>
                                   <li>Result from the assertion will determine PASS/FAIL</li>
@@ -884,6 +884,7 @@
                               </pre>                        
                               <ul style="line-height:60px">
                                   <li><code>properties</code> is an object that overrides defaults</li>
+                                  <li><code>properties</code> is an optional argument</li>
                                   <li>Recognized properties include <code>timeout</code> and metadata</li>
                                   <li>Usage example:
                                       <pre>
@@ -893,22 +894,9 @@
                                       </pre>                                
                                   </li>    			                    
           			        </ul>
-                          </section>
-
-                          <section>
-                              <h2>Per-test Metadata</h2>
-                             <pre style="font-size:18px">
-                                 <code class="html">
-  test(function() { assert_true(true) }, "test_name", <br><br>{ help: 'http://www.w3.org/TR/spec#section', <br><br>author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],<br><br>assert: 'This test something.', 'This also tests something else.'})
-                                 </code>
-                             </pre>
-                              <ul>
-                                  <li>Used when a file contains multiple calls to <code>test()</code></li>
-                                  <li>Only needed when an individual test's metadata is different than what is defined in <code>head</code></li>
-                                  <li><code>name</code> passed to <code>test()</code> should be short, unique, and must not change</li>
-                                  <li><code>assert</code> metadata should be used for descriptive info</li>
-                              </ul>
-                          </section>                          
+          			        <p class="font5">For detail on how to define per-test metadata, see the CSSWG <a href="http://wiki.csswg.org/test/scripttest">Script Test Wiki Page</a></p>
+          			        
+                          </section>                        
                       </section>
 
               	    <section data-state="screenshotPage">
@@ -1037,8 +1025,8 @@
   			            <pre style="width:600px">
 			                <code class="html">
 ...
-&lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
-&lt;script src="/resources/testharnessreport.js"&gt;&gt;&lt;/script&gt;
+&lt;<span class="styleTag">script src</span>="/resources/testharness.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
+&lt;<span class="styleTag">script src</span>="/resources/testharnessreport.js"&gt;&gt;&lt;<span class="styleTag">/script</span>&gt;
 ...
                             </code>
 			            </pre>
@@ -1063,8 +1051,8 @@
   &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
   &lt;meta name="flags" content="dom"&gt;
   &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt; 
-  &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
-  &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
+  &lt;<span class="styleTag">script src</span>="/resources/testharness.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
+  &lt;<span class="styleTag">script src</span>="/resources/testharnessreport.js"&gt;&lt;<span class="styleTag">/script</span>&gt;    
 &lt;/head&gt; 
 ...                                 
                               </code>
@@ -1112,7 +1100,7 @@
                       <section data-state="screenshotPage">
                            <h2>Step 6</h2>
                            <br>
-                           <p class="font2">Create a <code>&lt;script&gt;</code> block that will contain the JavaScript</p>
+                           <p class="font2">Create a <code>&lt;<span class="styleTag">script</span>&gt;</code> block that will contain the JavaScript</p>
                            <br>
              		       <pre style="width:600px">
              		           <code class="html">
@@ -1120,8 +1108,8 @@
 &lt;body&gt;
    &lt;div id="myDiv"&gt;&lt;/div&gt;
    &lt;div id="log"&gt;&lt;/div&gt;
-   <span class="highlight">&lt;script&gt;</span>
-   <span class="highlight">&lt;/script&gt;</span>
+   <span class="highlight">&lt;<span class="styleTag">script</span>&gt;</span>
+   <span class="highlight">&lt;<span class="styleTag">/script</span>&gt;</span>
 &lt;body&gt;
 ...
              		        </code>
@@ -1142,14 +1130,14 @@
   &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
   &lt;meta name="flags" content="dom"&gt;
   &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt; 
-  &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
-  &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
+  &lt;<span class="styleTag">script src</span>="/resources/testharness.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
+  &lt;<span class="styleTag">script src</span>="/resources/testharnessreport.js"&gt;&lt;<span class="styleTag">/script</span>&gt;    
 &lt;/head&gt;
 &lt;body&gt;
   &lt;div id="myDiv"&gt;&lt;/div&gt;
   &lt;div id="log"&gt;&lt;/div&gt;
-  &lt;script&gt; 
-  &lt;/script&gt;    
+  &lt;<span class="styleTag">script</span>&gt; 
+  &lt;<span class="styleTag">/script</span>&gt;    
 &lt;/body&gt;
 &lt;/html&gt;                              
                               </code>
@@ -1167,10 +1155,10 @@
 &lt;body&gt;
    &lt;div id="myDiv"&gt;&lt;/div&gt;
    &lt;div id="log"&gt;&lt;/div&gt;
-   &lt;script&gt;
+   &lt;<span class="styleTag">script</span>&gt;
        // Set the transform 
        <span class="highlight">document.getElementById("myDiv").style.transform = "translate(100px,100px)";</span> 
-   &lt;/script&gt;    
+   &lt;<span class="styleTag">/script</span>&gt;    
 &lt;/body&gt;
 &lt;/html&gt;
                             </code>
@@ -1187,7 +1175,7 @@
 &lt;body&gt;
 &lt;div id="myDiv"&gt;&lt;/div&gt;
 &lt;div id="log"&gt;&lt;/div&gt;
-&lt;script&gt;
+&lt;<span class="styleTag">script</span>&gt;
 // Set the transform 
 document.getElementById("myDiv").style.transform = "translate(100px,100px)";
 
@@ -1197,7 +1185,7 @@ test(function() {assert_equals( //test arg1: test_function
         "translate(100px,100px)", //assert_equals arg 2: expected
         "transform should be translate(100px,100px)")}, //assert_equals arg 3: description
         "Transform_Translate_100px_100px");  //test arg2: name    
-&lt;/script&gt;    
+&lt;<span class="styleTag">/script</span>&gt;    
 &lt;/body&gt;
 &lt;/html&gt;
                             </code>
@@ -1218,19 +1206,19 @@ test(function() {assert_equals( //test arg1: test_function
    &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
    &lt;meta name="flags" content="dom"&gt;
    &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt; 
-   &lt;script src="/resources/testharness.js"&gt;&lt;/script&gt;
-   &lt;script src="/resources/testharnessreport.js"&gt;&lt;/script&gt;    
+   &lt;<span class="styleTag">script src</span>="/resources/testharness.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
+   &lt;<span class="styleTag">script src</span>="/resources/testharnessreport.js"&gt;&lt;<span class="styleTag">/script</span>&gt;    
 &lt;/head&gt;
 &lt;body&gt;
    &lt;div id="myDiv"&gt;&lt;/div&gt;
    &lt;div id="log"&gt;&lt;/div&gt;
-   &lt;script&gt;
+   &lt;<span class="styleTag">script</span>&gt;
        document.getElementById("myDiv").style.transform = "translate(100px,100px)";
        test(function() {assert_equals(
                document.getElementById("myDiv").style.getPropertyCSSValue("transform").cssText,
                "translate(100px,100px)", "transform should be translate(100px,100px)")},
                "Transform_Translate_100px_100px");
-   &lt;/script&gt;    
+   &lt;<span class="styleTag">/script</span>&gt;    
 &lt;/body&gt;
 &lt;/html&gt;                                   
                                </code>
