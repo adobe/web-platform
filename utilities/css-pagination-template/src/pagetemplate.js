@@ -63,35 +63,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }           
     
     /*
-        Return the overflow property of a NamedFlow. 
-        This is a wrapper to work around pre-layout false negative NamedFlow.overflow values.
+        Return the overset property of a NamedFlow.
+        When the content of a named flow is fully rendered, its 'overset' property is true.
+        Otherwise, it is false.
         
-        @param {string} flow The named flow identifier
+        @param {string} flowName The named flow identifier
         @return {boolean} 
     */                     
-    TemplateMachine.prototype.doesFlowOverflow = function(flow){
-        /*
-            The initial overflow of NamedFlows cannot be determined until after layout. 
-            A NamedFlow's intial overflow property is false, until it has been laid out in at least one region.
-            
-            The template selection algorithm relies on NamedFlow.overflow to pick a template.
-            Since a template that isn't yet laid out, lies and says its overflow is 'false', we're mocking the 
-            initial overflow value and setting it to 'true'. This is done in order to begin the layout, then decide later, 
-            based on the real NamedFlow.overflow value if there's more content to be laid out.
-        */                                   
-        
-        // if the workaround flag is tripped, rely on the real overflow value 
-        if (!this.namedFlows[flow].mockOverflow){ 
-            // return the real overflow value
-            return this.namedFlows[flow].flow.overset
-        }    
-        else{                       
-            // making sure to never check agains the mock again
-            this.namedFlows[flow].mockOverflow = false         
-            
-            // telling the algoritm that the NamedFlow, which hasn't yet been laid out, overflows.
-            return true
-        }
+    TemplateMachine.prototype.doesFlowOverflow = function(flowName){
+        return this.namedFlows[flowName].flow.overset                                
     }
    
     /*
@@ -175,21 +155,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             }
         } 
         
-        // what if the template chosen doesn't satisfy all overflowing named flows?
-        // remember we're using mockOverflow 
-        if (flows.length !== templateOptions[templateName].flows){
-            
-            // pick out the named flows NOT satisfied by this template
-            var orphanFlows = flows.filter(function(item){
-                return templateOptions[templateName].flows.indexOf(item) < 0
-            })     
-              
-            // un-trip the mockOverflow flag for the unsatisfied flows to make sure 
-            // we revisit them on the next run to pick other templates that might suit them
-            this.resetMockOverflowToggle(orphanFlows)
-        }
-             
-        
         // return the best Template object instance
         return this.templates.filter( function(t){ return t.name === templateName }).shift()
     };
@@ -258,9 +223,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     // remove the requried named flow form the list of unsatisfied named flows
                     flows.splice(index, 1)                                        
 
-                    // reset the NamedFlow.overflow for the unhandled named flows
-                    this.resetMockOverflowToggle(flows)
-
                     return template    
                 }                                    
             }
@@ -271,15 +233,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         
         return template
     } 
-    
-    TemplateMachine.prototype.resetMockOverflowToggle = function(flows) {
-        // un-trip the mockOverflow flag for the unsatisfied flows to make sure 
-        // we revisit them on the next run to pick other templates that might suit them
-        flows.map(function(item){
-            this.namedFlows[item].mockOverflow = true
-        }, this)    
-    };
-    
     
     /*
         Get all the available templates that apply to all or some of the flows.
@@ -384,7 +337,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 
                 this.namedFlows[flowName] = { 
                     "flow": flow,
-                    "mockOverflow": true, // workaround for pre-layout NamedFlow.overflow false negatives
                     "templates": [template]
                 }  
             } 
