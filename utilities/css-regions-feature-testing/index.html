@@ -82,7 +82,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             runsLink = document.createElement('a') 
         
         // Link to aggregated test results on Browserscope.org
-        resultsLink.href = 'http://www.browserscope.org/user/tests/table/' + _bTestKey + '?o=html'   
+        resultsLink.href = 'http://www.browserscope.org/user/tests/table/' + _bTestKey + '?o=html&v=3'   
         resultsLink.textContent = 'Results on Browserscope'  
         
         // Link to test runs table on Browserscope.org
@@ -96,7 +96,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     function showResultsTable(){
         var resultsWidget = document.createElement('script')
         resultsWidget.src = 'http://www.browserscope.org/user/tests/table/'+ _bTestKey +'?o=js&v=3'
-        resultsWidget.src = 'http://www.browserscope.org/user/tests/table/'+ _bTestKey +'?o=js&v=top-all'
         resultsWidget.type = 'text/javascript' 
         
         document.body.appendChild(resultsWidget)     
