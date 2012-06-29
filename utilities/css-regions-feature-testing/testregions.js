@@ -80,10 +80,14 @@ $(function () {
         ok(prefixMethod(document, "getFlowByName")("article").name === "article");
     })
 
-    test("NamedFlow should have contentNodes property", function() {
+    test("NamedFlow should have getContent() function", function() {
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
-        ok(namedFlow.contentNodes, "NamedFlow.contentNodes");
-        equal(namedFlow.contentNodes.length, 1, "NamedFlow.contentNodes has one node");
+        equal(typeof(namedFlow.getContent), "function", "NamedFlow.getContent is a function");
+    })
+    
+    test("NamedFlow getContent() should return NodeList", function() {
+        var namedFlow = prefixMethod(document, "getFlowByName")("article");
+        equal(namedFlow.getContent().length, 1, "NamedFlow.getContent() has one node");
     })
 
     test("NamedFlow should have getRegionsByContentNode() function", function() {
