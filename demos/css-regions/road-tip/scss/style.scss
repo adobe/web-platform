@@ -1,0 +1,539 @@
+/*     
+Copyright (C) 2012 Adobe Systems, Incorporated. All rights reserved.
+
+The contents of this package are subject to various licenses. 
+You will find the license information either directly in the files 
+or the directory will contain the appropriate license for the components of that directory.
+ 
+Unless otherwise noted, code and content is licensed under a 
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
+*/
+
+@import 'typography';   
+
+@mixin flowfrom($name){    
+    -webkit-flow-from: #{$name};
+    -moz-flow-from: #{$name};
+    -ms-flow-from: #{$name};
+    -o-flow-from: #{$name};
+    flow-from: #{$name};
+}      
+
+@mixin flowinto($name){
+    -webkit-flow-into: $name;
+    -moz-flow-into: $name;
+    -ms-flow-into: $name;
+    -o-flow-into: $name;
+    flow-into: $name;
+}
+
+$pageBackground: white;
+
+@mixin aspect($width: 1280px, $height: 670px){
+    #viewport,
+    .page{
+        width: $width;
+        height: $height;
+    }
+}
+
+@mixin helperfont(){
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden; 
+    margin:0; 
+    background: url(../thirdparty/images/black_linen_v2.png) top left repeat;
+} 
+
+#viewport, #viewport > div, #viewport .page{
+    width: 100%;
+    height: 100%;  
+} 
+
+
+#viewport {
+    &>div{ 
+        display: table;
+    }
+    
+    .error{ 
+        @include helperfont();
+        background: #ffc;
+        padding: 15px 30px;
+        margin: 0;
+    }
+}
+
+#content{  
+    @include flowinto(article); 
+    
+    &::first-letter{
+        font-size:2.5em;
+    };
+    
+    h1{   
+        @include flowinto(title);
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        line-height: 1em;  
+        color: #ceccc5;   
+        text-shadow:2px 2px 5px #333;
+    } 
+    
+    h1 span{
+        display:block;
+        width:100%;             
+        text-transform:uppercase; 
+    }  
+    
+    
+    h1 span:last-child{
+        position:absolute;
+        top:60%;        
+        color:#769eb3;   
+        font-style:italic;
+        text-shadow:none;
+    }  
+    
+    blockquote{
+        padding:0;
+        margin:0;
+    }
+    
+    blockquote:nth-of-type(1){
+        @include flowinto(quote-start);
+        font-weight:light;
+        font-size:1.6em;
+    }
+    
+    blockquote:nth-of-type(2){
+        padding-top:1em;   
+        -webkit-region-break-inside: avoid;
+    }
+    
+    p{  
+        font-size:1.1em;              
+        padding:0;
+        margin:0 0 2ex;  
+        color:#7e8083;  
+        text-align:justify;
+    }
+    
+    p:last-of-type{
+        margin-bottom:0;
+    }
+}
+
+#license{  
+    @include flowinto(article);  
+    @include helperfont();
+    
+    display: block;
+    background: whitesmoke;
+    color: gray;  
+    padding: 5px 10px;
+    margin: 1.4em 0 0;
+    font-size: 0.8em; 
+    
+    a{
+        color: #444;
+
+        &:hover{
+            text-decoration: none;
+        }
+    }
+}   
+
+.region{    
+    @include flowfrom("article"); 
+    overflow: auto;
+    -webkit-region-overflow: break;
+}
+
+/* region assignment */       
+.page:nth-child(1){     
+    
+    .region:nth-child(2),
+    .region:nth-child(4){  
+        @include flowfrom("article"); 
+    }
+    
+    .region:nth-child(1){
+        @include flowfrom("title"); 
+        overflow: visible;
+    }
+    
+    .region:nth-child(3){
+        @include flowfrom("quote-start"); 
+    }
+}  
+
+.page{           
+    position:relative;
+    width: 100%;
+    height: 100%;
+    background-color: $pageBackground;      
+} 
+
+.region{   
+    position:absolute;  
+}   
+
+.page:nth-child(1){
+    
+    &:before{       
+        position: absolute;    
+        overflow: hidden;
+        width: 100%;
+        height: 55%;
+        content: ".";     
+        background: black right bottom url(../images/cover-medium.jpg) no-repeat;
+        -webkit-background-size: 100% auto;
+        top: 0;
+        left: 0;
+    }      
+
+    .region:nth-child(1){
+        width: 25%;      
+        height: 90%; 
+        top: 5%;
+        left: 2%;
+    } 
+    
+    .region:nth-child(2),
+    .region:nth-child(3),
+    .region:nth-child(4){
+        left:31.5%;  
+        width:30%;  
+    }  
+    
+    .region:nth-child(2){ 
+        height: 15%;
+        bottom: 25%;       
+        padding:1% 1% 0;
+    }
+    
+    .region:nth-child(3){
+        height: 15%;  
+        left: 28%; 
+        width: 35%;
+        bottom: 5%;  
+    }  
+    
+    .region:nth-child(4){
+        height: 35%; 
+        padding:1% 1% 0 3%; 
+        left: 63%; 
+        bottom: 5%;
+    }
+}
+
+.page:nth-child(2),
+.page:nth-child(3){        
+    background: url(../images/route_2.png) center top repeat-x, url(../images/footer-medium.jpg) center bottom no-repeat;
+    background-color: $pageBackground;
+    
+    .region:nth-child(1),
+    .region:nth-child(2),
+    .region:nth-child(3){
+        width:30%;
+        height:60%; 
+        top:19%;
+    }
+    
+    .region:nth-child(1){
+        left:4%;
+    } 
+    
+    .region:nth-child(2){
+        left: 37%;
+    }   
+    
+    .region:nth-child(3){
+        left: 70%;
+        width: 25%;
+    }
+    
+    .region:nth-child(4){ 
+        display:none;
+    }
+}  
+
+.page:nth-child(3){
+    background: url(../images/route_2.png) center top repeat-x;
+    background-color: $pageBackground;
+}
+
+@media screen and (min-width: 1300px){      
+    
+    .page:nth-child(1){
+        &:before{       
+            background-image:url(../images/cover-full.jpg); 
+        }
+    } 
+    
+    .page:nth-child(2){
+        background: url(../images/route_2.png) center top repeat-x, url(../images/footer-full.jpg) center bottom no-repeat;
+        -webkit-background-size:auto auto, 100% auto;
+        background-color: $pageBackground;
+    }
+            
+    #content{
+        h1{
+            font-size:7.5em;  
+            line-height:0.9em;
+        }
+    }
+} 
+
+@media screen and (orientation:portrait) and (min-width: 650px){
+    #content{
+        h1{
+            font-size:7em;  
+            line-height:0.9em;
+        }
+    }  
+}
+
+@media screen and (orientation:portrait){ 
+    
+    #content{
+        h1 span:last-child{
+            bottom:20%;
+        }
+        
+        span:last-child{
+            text-shadow:none;
+            bottom:20%;
+        }
+        
+        
+        blockquote:nth-of-type(2){
+            padding-top:0;
+        }
+    }
+    
+    .page:nth-child(n+1){
+        .region:nth-child(1),
+        .region:nth-child(3){
+            height:78%; 
+        }
+        .region:nth-child(4),
+        .region:nth-child(2){
+            display:none;
+        }
+    }  
+    
+    .page:nth-child(1){
+        &:before{       
+            height: 55%;
+            -webkit-background-size: cover;
+        }
+    }   
+    
+    .page:nth-child(1){
+        .region:nth-child(1),
+        .region:nth-child(2),
+        .region:nth-child(3),
+        .region:nth-child(4){
+            display: block;
+        }
+        .region:nth-child(1){
+            width:50%;      
+            height:90%; 
+            top: 5%;
+            left:2%;
+        } 
+          
+        .region:nth-child(2),
+        .region:nth-child(3),
+        .region:nth-child(4){
+            left:55%;  
+            width:36%;
+        }  
+        .region:nth-child(2),
+        .region:nth-child(4){
+            padding:1% 2% 0;
+        }
+        
+        .region:nth-child(2){
+            background-color:$pageBackground;
+            top:48%;
+            height:15%;
+        }
+        
+        .region:nth-child(3){
+            top:68%; 
+            height:10%; 
+            width:45%;
+            left:47%;
+        }
+        
+        .region:nth-child(4){ 
+            height:15%;
+            top:80%;
+        }
+    }
+    
+    blockquote:nth-of-type(2){ 
+        @include flowinto(quote-end);     
+    }
+    
+    .page:nth-child(2){
+        .region:nth-child(4){  
+            display: block;
+            height: 100px; 
+            @include flowfrom("quote-end"); 
+        }
+    }
+    
+    .page:nth-child(2){
+        .region:nth-child(1),
+        .region:nth-child(2),
+        .region:nth-child(3),
+        .region:nth-child(4){
+            width:42.5%;  
+            display: block;
+        } 
+        
+        .region:nth-child(1),
+        .region:nth-child(2),
+        .region:nth-child(4){
+             left:5%;
+        }
+        
+        .region:nth-child(1),
+        .region:nth-child(3){
+            top:10%;
+        }     
+        
+        .region:nth-child(1){
+            left:5%;
+            height:28%;
+            padding-bottom:2%;
+        } 
+        
+        .region:nth-child(2){ 
+            height:35%;
+            top:50%;
+            padding-top:3%;
+        }    
+        
+        .region:nth-child(3){
+            left: 52.5%;   
+            height:78%;  
+        } 
+        
+        .region:nth-child(4){
+            width:42.5%;
+            top:40%;  
+            height:10%;
+        }
+    }
+}
+
+@media screen and (max-width: 480px){
+    
+    #content{
+        h1{
+            font-size: 2.5em;
+            
+            span, 
+            span:last-child{
+                word-spacing:0;  
+                letter-spacing:-1px;
+                display: inline-block;
+                width: auto; 
+                top: 0;
+                position: relative; 
+                text-shadow:2px 2px 5px #333;
+            }      
+        }
+        
+        blockquote:nth-of-type(1){
+            font-size:1.4em;
+        }
+        
+        blockquote:nth-of-type(2){ 
+            @include flowinto(article); 
+            -webkit-region-break-inside: avoid;     
+        }
+        
+    }
+    
+    .page:nth-child(n+1){
+        .region:nth-child(2),
+        .region:nth-child(3),
+        .region:nth-child(4){
+            display:none;
+        }                  
+
+        .region:nth-child(1){
+            width: 80%; 
+            height: 80%;
+            top: 10%;
+            left: 10%;
+        }        
+    }
+    
+    .page:nth-child(1){
+        .region:nth-child(1){
+            height: 60%;
+            top: 20%;
+            width: 60%;  
+        } 
+        
+        .region:nth-child(2){
+            @include flowfrom("quote-start");
+            display: block;
+            height: 30%;
+            left: 10%;
+            top: 65%;
+            width: 80%;
+        } 
+    }
+    
+    .page:nth-child(2),
+    .page:nth-child(3){ 
+        
+        background:$pageBackground url(../images/footer-medium.jpg) left bottom no-repeat;
+        -webkit-background-size: 200% auto;        
+        
+        .region:nth-child(1){
+            width: 85%;
+            height: 60%;
+            top: 10%;
+            left: 7.5%;
+        }    
+    }
+     
+    .page:nth-child(2){
+        background-position: left bottom;
+    }                                   
+    .page:nth-child(3){
+        background-position: right bottom;
+    } 
+}
+
+@media screen and (orientation:portrait) and (max-width: 480px){
+    
+    .page:nth-child(2),
+    .page:nth-child(3){ 
+        .region:nth-child(1){
+            height: 70%; 
+        } 
+    }
+    
+    .page:nth-child(1){
+        .region:nth-child(1){
+            top: 20%; 
+            width: 80%;
+        }        
+    }
+}
