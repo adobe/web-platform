@@ -90,14 +90,14 @@ $(function () {
         equal(namedFlow.getContent().length, 1, "NamedFlow.getContent() has one node");
     })
 
-    test("NamedFlow should have getRegionsByContentNode() function", function() {
+    test("NamedFlow should have getRegionsByContent() function", function() {
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
-        equal(typeof(namedFlow.getRegionsByContentNode), "function", "NamedFlow.getRegionsByContentNode is a function");
+        equal(typeof(namedFlow.getRegionsByContent), "function", "NamedFlow.getRegionsByContent is a function");
     })
-    test("NamedFlow getRegionsByContentNode() should return NodeList", function() {
+    test("NamedFlow getRegionsByContent() should return NodeList", function() {
         $flow.html('Foo');
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
-        var theRegions = namedFlow.getRegionsByContentNode($flow.contents()[0]);
+        var theRegions = namedFlow.getRegionsByContent($flow.contents()[0]);
 
         equal(theRegions.length, 1, "One region for the content");
         equal(theRegions[0], $region.get(0), "Same region is returned");
