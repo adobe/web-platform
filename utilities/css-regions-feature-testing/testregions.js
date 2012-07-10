@@ -102,6 +102,37 @@ $(function () {
         equal(theRegions.length, 1, "One region for the content");
         equal(theRegions[0], $region.get(0), "Same region is returned");
     })
+    test("NamedFlow should have firstEmptyRegionIndex property", function(){
+        var namedFlow = prefixMethod(document, "getFlowByName")("article");
+        
+        // no regions - but namedFlow still exists because we have content
+        $region.css("flow-from", "none");
+        equal(namedFlow.firstEmptyRegionIndex, "-1", "Region chain has no regions");
+
+        // one region, no content
+        $region.css("flow-from", "article");
+        $flow.html('');
+        equal(namedFlow.firstEmptyRegionIndex, "0", "Region chain contains one region with no content");
+        
+        // one region with content
+        $flow.html('Foo');
+        equal(namedFlow.firstEmptyRegionIndex, "-1", "All the regions in the region chain are filled by content");
+        
+        var $otherRegion = $('<div />').css("flow-from", "article"); 
+        $("body").append($otherRegion);
+        $region.css(
+            {
+                "width": "20px",
+                "height": "20px"
+            }
+        );
+        $flow.html('x');
+        
+        // two regions, content flows only into first one
+        equal(namedFlow.firstEmptyRegionIndex, "1", "Content fills first region, second region remains empty");
+        $otherRegion.remove();    
+        
+    })
     
     test("Element should have regionOverflow property", function(){   
         $region.css(
