@@ -51,7 +51,7 @@ tbody th {
 thead th {
   text-align: left;
   vertical-align: top;
-  height: 200px;
+  height: 100px;
   position: relative;
   white-space: nowrap; }
   thead th span.short {
@@ -82,7 +82,7 @@ thead th {
 .table-bordered thead th {
   border-left: none;
   width: 40px !important;
-  height: 120px !important;
+  height: 70px !important;
   position: relative; }
 
 .table-bordered tbody th {

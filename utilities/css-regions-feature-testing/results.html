@@ -95,10 +95,22 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             htmlContent += '</div>';
             $("#action-well").html(htmlContent);
 
-            $("#" + browserTableID).addClass("alert");
+            // Would rather do this by changing the class, but there is an issue with:
+            // Changing a class on a column in a table styled by Bootstrap in Chrome. 
+            // Will track down issue and report to relevant project.
+            $("#" + browserTableID).css("background-color", "#fcf8e3");
             $("thead th").css("background-color", "#FFF");
+            
 
 
+
+
+        }
+
+        function forceRedraw(el) {
+          var t = el.ownerDocument.createTextNode(' ');
+          el.appendChild(t);
+          setTimeout(function() { el.removeChild(t); }, 0);
         }
 
         function createTableShell() {
