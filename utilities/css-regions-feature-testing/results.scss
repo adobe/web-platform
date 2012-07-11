@@ -1,0 +1,192 @@
+@import 'all';
+
+body{
+	padding: 10px 20px;
+}
+nav{
+	background-color: #eee;
+	padding-top: 5px;
+
+	#browser-selector{
+		float: left;
+		margin: 4px 10px 0 10px;
+	}
+
+	.nav{
+		margin-left: 20px;
+	}
+}
+
+header{
+	h1{
+		margin-bottom: 20px;
+	}
+	ul{
+		margin-top: 20px;
+	}
+}
+
+
+
+#action-well{
+	height: 180px;
+	h2{
+		text-align: center;
+	}
+	form{
+		margin: 0 auto;
+		text-align: center;
+		display: block;
+			max-width: 150px;
+
+		.btn{
+			margin-top: 20px;
+		}
+
+		label{
+			max-width: 120px;
+			margin-top: 20px;
+		}
+
+	}
+	#test-results{
+		color: #000;
+		font-size: 120%;
+		#support-results{
+			font-size: 140%;
+			line-height: 1.2;
+			margin-top: 30px;
+			margin-bottom: 30px;
+			#support-precentage{
+				display:block;
+				float: right;
+				margin-top: -25px;
+				margin-right: 35px;
+				font-size: 200%;
+			}
+		}
+	}	
+
+}
+
+// .column-title-row{
+// 	th{
+// 		font-size: 20px;
+// 		vertical-align: bottom;
+// 		border-bottom: 5px solid #CCC;
+// 		&:first-child{
+// 			border: none;
+// 		}	
+// 	}
+// }
+
+
+
+tbody{
+	th{
+		white-space:nowrap;
+		border-right: 1px solid #CCC;
+	}
+}
+
+
+thead{
+	th{
+		
+		text-align: left;
+		vertical-align: top;
+		height: 200px;
+		position: relative;
+		white-space:nowrap;
+		span.short{
+			position: absolute;
+			display: block;
+			width: 200px;
+			
+			overflow: hidden;
+			left: 0;
+			bottom: 70px;
+			@include transform(rotate(320deg));
+		}
+		span.long{
+			position: absolute;
+			display: block;
+			top: -10px;
+		}
+
+		span.disabled{
+			display:none;
+		}
+	}
+}
+
+.table{
+	table-layout:fixed;
+	width: auto;
+	border-right: none;
+	border-top: none;
+}
+.table-bordered thead th{
+	border-left: none;
+	width: 40px !important;
+	height: 120px !important;
+	position: relative;
+}
+
+.table-bordered tbody th{
+	border-left: none;
+}
+
+.table-bordered td{
+	border-left: none;
+	width: 40px !important;
+	text-align: center;
+}
+
+td{
+	
+
+	&.count{
+		text-align: right;
+		padding-right: 20px;
+		width: 50px;
+	}
+
+	&.success{
+
+		background-color: #FFF;
+		span{
+			color: #FFF;
+		}
+		span:after{
+			color: #A3F687;
+			content: '✓';
+			display: block;
+			font-size: 20px;
+		}
+	}
+	&.fail{
+		background-color: #FFF;
+		span{
+			color: #FFF;
+		}
+		span:after{
+			color: #999;
+			content: '✖';
+			display: block;
+			font-size: 20px;
+		}
+	}
+
+	&.blank{
+		background-color: #FFF;
+		span{
+			color: #FFF;
+		}
+		span:after{
+			color: #000;
+			content: '-';
+			display: block;
+		}
+	}
+}

@@ -1,0 +1,305 @@
+<!--
+Copyright (C) 2012 Adobe Systems, Incorporated. All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>CSS Regions Test Suite - Browserscope Results</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="results.css" type="text/css" media="screen">
+
+	<script type="text/javascript" src="qunit/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="temp.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var results = massageTestResults(bscope_results);
+            createTableShell();
+            createTableHeader(results);
+            //createColumnGroups(results);
+            createTableRows(results);
+            $('#run-tests').submit(runTests);
+            $('#browser-selector a').click(notImplemented);
+            $('#browsers').click(notImplemented);
+            $('.test-title-row .short').mouseover( function(e) {
+                    var shortSpan = $(e.target);
+                    shortSpan.next().removeClass("disabled");
+                }
+            );
+            $('.test-title-row .short').mouseout( function(e) {
+                    var shortSpan = $(e.target);
+                    shortSpan.next().addClass("disabled");
+                }
+            );
+
+
+
+        });
+
+        function notImplemented() {
+            alert("Not implemented yet")
+            return false;
+        }
+
+        function runTests() {
+
+            changeActionWell();
+            return false;
+        }
+
+        function changeActionWell(){
+            $("#action-well").toggleClass("alert-info");
+
+            var browserBeingUsed = "Chrome 20";
+            var browserTableID = convertToID(browserBeingUsed);
+
+
+
+            var htmlContent ='<div id="test-results">';
+            htmlContent += '<p>Browserscope thinks that you are using <strong>' + browserBeingUsed + '</strong> for your browser.  <a href="#">No?</a></p>';
+            htmlContent += '<p id="support-results">Your Browser supports<br /> <span id="support-precentage">88%</span> of CSS Regions features</p>';
+            htmlContent += '<p>Thank you for sharing your results</p>';
+            htmlContent += '</div>';
+            $("#action-well").html(htmlContent);
+
+            $("#" + browserTableID).addClass("alert");
+            $("#" + browserTableID + " td").css("background", "transparent");
+
+
+        }
+
+        function createTableShell() {
+            var tableShell = '<table class="table table-bordered" id="bscope-results"></table>';
+            $("#results_panel").append(tableShell);
+        }
+
+        function massageTestResults(results) {
+            var outputResults = new Object();
+
+            var newResults = [];
+            for (var index in results.results){
+                var obj = results.results[index];
+                    if (obj.count === "0"){
+                        continue;
+                    }
+
+                var newSubResults = [];
+                for (var testIndex in obj.results){
+                    var subResultsArray = [];
+                    var subResultsFromObj = obj.results[testIndex];
+                    var testTitle = testIndex.split(":");
+                    subResultsFromObj.name = testTitle[1];
+                    subResultsFromObj.type = testTitle[0];
+                    newSubResults.push(subResultsFromObj);
+                }
+                newSubResults.sort(testSort);
+                obj.results = newSubResults;
+                obj.name = index;
+                newResults.push(obj);
+            }
+            newResults.sort(browserSort);
+            outputResults.results = newResults;
+            return outputResults;
+        }
+
+        function createColumnGroups(results) {
+            var i = 0;
+            
+            var columns = {};
+            for (var index in results.results){
+                var obj = results.results[index];
+
+                for (var testIndex in obj.results){
+                    var test = obj.results[testIndex]
+
+                    if (!(test.type in columns)){
+                         columns[test.type] = 0;
+                    }
+
+                    columns[test.type] = columns[test.type] + 1;
+                }
+                break;
+            }
+
+            var htmlContent = "";
+            for (var column in columns){
+                var count = columns[column];
+                htmlContent += '<colgroup span="' + count + '">' + column  + '</colgroup>';
+            }
+            $("#bscope-results").prepend(htmlContent);
+
+            var htmlContent = '<tr class="column-title-row"><th />';
+            var i = 0;
+            for (var column in columns){
+                i++;
+                var count = columns[column];
+                htmlContent += '<th class="col'+ i +'" colspan="' + count + '">' + column  + '</th>';
+            }
+            htmlContent += '</tr>';
+            $("#bscope-results thead").prepend(htmlContent);
+
+            console.log(columns);
+        }
+
+        function createTableHeader(results) {
+            var i = 0;
+            var htmlContent = "<thead>";
+            
+
+            for (var index in results.results){
+                var obj = results.results[index];
+
+                var row = '<tr class="test-title-row"><th />'
+
+
+                for (var testIndex in obj.results){
+                    var test = obj.results[testIndex];
+                    var cell = '<th><span class="short">' + convertToShortString(test.name) + '</span><span class="alert long disabled">' + test.name + '</span></th>';
+                    row += cell;
+                }
+                row +=  '</tr>'
+
+                htmlContent += row;
+                break;
+            }
+            htmlContent += "</thead>";
+            $("#bscope-results").prepend(htmlContent);
+        }
+
+        function createTableRows(results) {
+            var i = 0;
+            var htmlContent = "<tbody>";
+            
+
+            for (var index in results.results){
+                var obj = results.results[index];
+
+                var row = '<tr id="' + convertToID(obj.name) + '">'
+                row += '<th>' + obj.name + '</th>';
+
+
+                for (var testIndex in obj.results){
+                    var test = obj.results[testIndex];
+
+                    var cellClass = "blank";
+                    if (test.result === "1"){
+                        cellClass = "success";
+                    }
+                    if (test.result === "0"){
+                        cellClass = "fail";
+                    }
+
+                    var cell = '<td class="' + cellClass + '"><span>' + test.result + '</span></td>';
+                    row += cell;
+                }
+                row += '</tr>'
+                htmlContent += row;
+            }
+            htmlContent += "</tbody>";
+            $("#bscope-results").append(htmlContent);
+
+        }
+        function convertToID (str){
+            return str.replace(/\s+/g, '-').toLowerCase();
+        }
+
+        function convertToShortString(str) {
+            return str.substring(0,20) + "...";
+        }
+
+        function testSort(a,b) {
+            if (a.type < b.type){
+                return -1;
+            }    
+            if (a.type > b.type){
+                return 1;
+            } 
+            if (a.name < b.name){
+                return -1;
+            }    
+            if (a.name > b.name){
+                return 1;
+            } 
+            return 0;
+        }
+
+        function browserSort(a,b) {
+            if (a.name < b.name){
+                return -1;
+            }    
+            if (a.name > b.name){
+                return 1;
+            } 
+            return 0;
+        }
+    </script>
+	
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <header class="span6">
+                <h1 id="bscope-test-title">CSS Regions Support</h1>
+                <div id="bscope-test-desc">Test CSS Regions support across browsers using the test suite compatible with the latest CSS Regions Working Draft from the W3C.</div>
+
+                <ul>
+                    <li><a href="http://dev.w3.org/csswg/css3-regions/" target="_blank">CSS Regions W3C Specification →</a></li>
+                    <li><a href="http://www.adobe.com/devnet/html5/articles/css3-regions.html" target="_blank">CSS Regions: Rich Page Layouts with HTML &amp; CSS3 →</a></li>
+                    </ul>
+            </header>
+            <div id="action-well" class="alert alert-info span5">
+                <h2>Check CSS Regions Support in your browser</h2>
+
+                <form id="run-tests">
+                    <input class="btn btn-primary btn-large" type="submit" name="submit" value="Run Tests" /><br />
+                    <label class="checkbox">
+                        <input type="checkbox" name="publish" value="publish">
+                        Publish my results
+                      </label>
+                </form>    
+            </div>
+        </div>
+
+        <nav>
+            <div id="browser-selector" class="btn-group">
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                    All Browsers
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                </ul>
+            </div>
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a id="features" href="#">Features</a>
+                </li>
+                <li><a id="browsers"  href="#">Browser Support</a></li>
+            </ul>
+        </nav>
+
+        <div id="results_panel">
+
+        </div>
+    </div>
+</body>
+</html>

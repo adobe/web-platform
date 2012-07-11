@@ -1,0 +1,125 @@
+body {
+  padding: 10px 20px; }
+
+nav {
+  background-color: #eee;
+  padding-top: 5px; }
+  nav #browser-selector {
+    float: left;
+    margin: 4px 10px 0 10px; }
+  nav .nav {
+    margin-left: 20px; }
+
+header h1 {
+  margin-bottom: 20px; }
+header ul {
+  margin-top: 20px; }
+
+#action-well {
+  height: 180px; }
+  #action-well h2 {
+    text-align: center; }
+  #action-well form {
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    max-width: 150px; }
+    #action-well form .btn {
+      margin-top: 20px; }
+    #action-well form label {
+      max-width: 120px;
+      margin-top: 20px; }
+  #action-well #test-results {
+    color: #000;
+    font-size: 120%; }
+    #action-well #test-results #support-results {
+      font-size: 140%;
+      line-height: 1.2;
+      margin-top: 30px;
+      margin-bottom: 30px; }
+      #action-well #test-results #support-results #support-precentage {
+        display: block;
+        float: right;
+        margin-top: -25px;
+        margin-right: 35px;
+        font-size: 200%; }
+
+tbody th {
+  white-space: nowrap;
+  border-right: 1px solid #CCC; }
+
+thead th {
+  text-align: left;
+  vertical-align: top;
+  height: 200px;
+  position: relative;
+  white-space: nowrap; }
+  thead th span.short {
+    position: absolute;
+    display: block;
+    width: 200px;
+    overflow: hidden;
+    left: 0;
+    bottom: 70px;
+    -moz-transform: rotate(320deg);
+    -o-transform: rotate(320deg);
+    -ms-transform: rotate(320deg);
+    -webkit-transform: rotate(320deg);
+    transform: rotate(320deg); }
+  thead th span.long {
+    position: absolute;
+    display: block;
+    top: -10px; }
+  thead th span.disabled {
+    display: none; }
+
+.table {
+  table-layout: fixed;
+  width: auto;
+  border-right: none;
+  border-top: none; }
+
+.table-bordered thead th {
+  border-left: none;
+  width: 40px !important;
+  height: 120px !important;
+  position: relative; }
+
+.table-bordered tbody th {
+  border-left: none; }
+
+.table-bordered td {
+  border-left: none;
+  width: 40px !important;
+  text-align: center; }
+
+td.count {
+  text-align: right;
+  padding-right: 20px;
+  width: 50px; }
+td.success {
+  background-color: #FFF; }
+  td.success span {
+    color: #FFF; }
+  td.success span:after {
+    color: #A3F687;
+    content: '✓';
+    display: block;
+    font-size: 20px; }
+td.fail {
+  background-color: #FFF; }
+  td.fail span {
+    color: #FFF; }
+  td.fail span:after {
+    color: #999;
+    content: '✖';
+    display: block;
+    font-size: 20px; }
+td.blank {
+  background-color: #FFF; }
+  td.blank span {
+    color: #FFF; }
+  td.blank span:after {
+    color: #000;
+    content: '-';
+    display: block; }
