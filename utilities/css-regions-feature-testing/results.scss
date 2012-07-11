@@ -92,30 +92,25 @@ tbody{
 
 thead{
 	th{
-		
+		padding: 0;
 		text-align: left;
 		vertical-align: top;
-		height: 100px;
-		position: relative;
+		
 		white-space:nowrap;
-		span.short{
-			position: absolute;
-			display: block;
-			width: 200px;
-			
-			overflow: hidden;
-			left: 0;
-			bottom: 70px;
-			@include transform(rotate(320deg));
-		}
-		span.long{
-			position: absolute;
-			display: block;
-			top: -10px;
-		}
 
-		span.disabled{
-			display:none;
+		div{
+			margin: 0;
+			padding: 0;
+			position: relative;
+			span{
+				position: absolute;
+				display: block;
+				width: 200px;
+				overflow: hidden;
+				left: 0;
+				bottom: 60px;
+				@include transform(rotate(320deg));
+			}
 		}
 	}
 }

@@ -157,7 +157,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             for (var index in results.results){
                 var obj = results.results[index];
                 columns += '<col id="' + convertToID(obj.name) + '">';
-                row += '<th><span class="short" style="z-index:' + i + '">' + obj.name + '</span></th>';
+                row += '<th><div><span style="z-index:' + i + '">' + obj.name + '</span></div></th>';
                 i--;
             }
 

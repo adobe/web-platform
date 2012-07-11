@@ -49,29 +49,26 @@ tbody th {
   border-right: 1px solid #CCC; }
 
 thead th {
+  padding: 0;
   text-align: left;
   vertical-align: top;
-  height: 100px;
-  position: relative;
   white-space: nowrap; }
-  thead th span.short {
-    position: absolute;
-    display: block;
-    width: 200px;
-    overflow: hidden;
-    left: 0;
-    bottom: 70px;
-    -moz-transform: rotate(320deg);
-    -o-transform: rotate(320deg);
-    -ms-transform: rotate(320deg);
-    -webkit-transform: rotate(320deg);
-    transform: rotate(320deg); }
-  thead th span.long {
-    position: absolute;
-    display: block;
-    top: -10px; }
-  thead th span.disabled {
-    display: none; }
+  thead th div {
+    margin: 0;
+    padding: 0;
+    position: relative; }
+    thead th div span {
+      position: absolute;
+      display: block;
+      width: 200px;
+      overflow: hidden;
+      left: 0;
+      bottom: 60px;
+      -moz-transform: rotate(320deg);
+      -o-transform: rotate(320deg);
+      -ms-transform: rotate(320deg);
+      -webkit-transform: rotate(320deg);
+      transform: rotate(320deg); }
 
 .table {
   table-layout: fixed;
@@ -82,7 +79,7 @@ thead th {
 .table-bordered thead th {
   border-left: none;
   width: 40px !important;
-  height: 70px !important;
+  height: 76px !important;
   position: relative; }
 
 .table-bordered tbody th {
