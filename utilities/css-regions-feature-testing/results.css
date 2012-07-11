@@ -97,29 +97,23 @@ td.count {
   text-align: right;
   padding-right: 20px;
   width: 50px; }
-td.success {
-  background-color: #FFF; }
-  td.success span {
-    color: #FFF; }
-  td.success span:after {
-    color: #A3F687;
-    content: '✓';
-    display: block;
-    font-size: 20px; }
-td.fail {
-  background-color: #FFF; }
-  td.fail span {
-    color: #FFF; }
-  td.fail span:after {
-    color: #999;
-    content: '✖';
-    display: block;
-    font-size: 20px; }
-td.blank {
-  background-color: #FFF; }
-  td.blank span {
-    color: #FFF; }
-  td.blank span:after {
-    color: #000;
-    content: '-';
-    display: block; }
+td.success span {
+  color: #FFF; }
+td.success span:after {
+  color: #A3F687;
+  content: '✓';
+  display: block;
+  font-size: 20px; }
+td.fail span {
+  color: #FFF; }
+td.fail span:after {
+  color: #999;
+  content: '✖';
+  display: block;
+  font-size: 20px; }
+td.blank span {
+  color: #FFF; }
+td.blank span:after {
+  color: #000;
+  content: '-';
+  display: block; }

@@ -154,7 +154,8 @@ td{
 
 	&.success{
 
-		background-color: #FFF;
+
+
 		span{
 			color: #FFF;
 		}
@@ -166,7 +167,6 @@ td{
 		}
 	}
 	&.fail{
-		background-color: #FFF;
 		span{
 			color: #FFF;
 		}
@@ -179,7 +179,6 @@ td{
 	}
 
 	&.blank{
-		background-color: #FFF;
 		span{
 			color: #FFF;
 		}

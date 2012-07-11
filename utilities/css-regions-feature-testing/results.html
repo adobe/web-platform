@@ -32,11 +32,24 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <script type="text/javascript" src="temp.js"></script>
 
     <script type="text/javascript">
+
+        var hash = {"Document should return a flow by name":"Document returns flow",   
+            "Element should have regionOverflow property":"Element.regionOverflow",   
+            "NamedFlow getContent() should return NodeList":"NodeList = NamedFlow.getContent()",   
+            "NamedFlow should have getContent() function":"NamedFlow.getContent()",   
+            "NamedFlow should have name property":"NamedFlow.name",   
+            "NamedFlow should have overset property":"NamedFlow.overset",   
+            "regionLayoutUpdate event is thrown":"regionLayoutUpdate event",   
+            "Named flow - content should be pulled to a flow":"Named flow pulls content",   
+            "Region - should consume from flow":"Region consumes flow",   
+            "Region properties - region-overflow property":"Region.region-overflow exists",   
+            "Basic @region rule support":"Basic @region support"};
+
+
         $(document).ready(function() {
             var results = massageTestResults(bscope_results);
             createTableShell();
             createTableHeader(results);
-            //createColumnGroups(results);
             createTableRows(results);
             $('#run-tests').submit(runTests);
             $('#browser-selector a').click(notImplemented);
@@ -83,7 +96,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             $("#action-well").html(htmlContent);
 
             $("#" + browserTableID).addClass("alert");
-            $("#" + browserTableID + " td").css("background", "transparent");
+            $("thead th").css("background-color", "#FFF");
 
 
         }
@@ -122,98 +135,61 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             return outputResults;
         }
 
-        function createColumnGroups(results) {
-            var i = 0;
-            
-            var columns = {};
-            for (var index in results.results){
-                var obj = results.results[index];
-
-                for (var testIndex in obj.results){
-                    var test = obj.results[testIndex]
-
-                    if (!(test.type in columns)){
-                         columns[test.type] = 0;
-                    }
-
-                    columns[test.type] = columns[test.type] + 1;
-                }
-                break;
-            }
-
-            var htmlContent = "";
-            for (var column in columns){
-                var count = columns[column];
-                htmlContent += '<colgroup span="' + count + '">' + column  + '</colgroup>';
-            }
-            $("#bscope-results").prepend(htmlContent);
-
-            var htmlContent = '<tr class="column-title-row"><th />';
-            var i = 0;
-            for (var column in columns){
-                i++;
-                var count = columns[column];
-                htmlContent += '<th class="col'+ i +'" colspan="' + count + '">' + column  + '</th>';
-            }
-            htmlContent += '</tr>';
-            $("#bscope-results thead").prepend(htmlContent);
-
-            console.log(columns);
-        }
 
         function createTableHeader(results) {
-            var i = 0;
+            var i = results.results.length;
             var htmlContent = "<thead>";
             
-
+            var row = '<tr class="test-title-row"><th />';
+            var columns = '<col>';
             for (var index in results.results){
                 var obj = results.results[index];
-
-                var row = '<tr class="test-title-row"><th />'
-
-
-                for (var testIndex in obj.results){
-                    var test = obj.results[testIndex];
-                    var cell = '<th><span class="short">' + convertToShortString(test.name) + '</span><span class="alert long disabled">' + test.name + '</span></th>';
-                    row += cell;
-                }
-                row +=  '</tr>'
-
-                htmlContent += row;
-                break;
+                columns += '<col id="' + convertToID(obj.name) + '">';
+                row += '<th><span class="short" style="z-index:' + i + '">' + obj.name + '</span></th>';
+                i--;
             }
-            htmlContent += "</thead>";
+
+            row +=  '</tr>'
+            htmlContent += row + "</thead>";
             $("#bscope-results").prepend(htmlContent);
+            $("#bscope-results").prepend(columns);
         }
 
         function createTableRows(results) {
             var i = 0;
             var htmlContent = "<tbody>";
             
+            var testArray = [];
+            for (var i = 0; i < results.results.length; i++){
+                var browserArray = [];
+                var obj = results.results[i];
 
-            for (var index in results.results){
-                var obj = results.results[index];
+                for (var j = 0; j < obj.results.length; j++){
+                    var row = '<tr><th>' + shortenTestName(obj.results[j].name) + '</th>'
 
-                var row = '<tr id="' + convertToID(obj.name) + '">'
-                row += '<th>' + obj.name + '</th>';
+                    for (var k = 0; k < results.results.length; k++){
+                        var test = results.results[k].results[j];
 
+                        var cellClass = "blank";
+                        if (test.result === "1"){
+                            cellClass = "success";
+                        }
+                        if (test.result === "0"){
+                            cellClass = "fail";
+                        }
 
-                for (var testIndex in obj.results){
-                    var test = obj.results[testIndex];
+                        var cell = '<td class="' + cellClass + '"><span>' + test.result + '</span></td>';
+                        row += cell;
 
-                    var cellClass = "blank";
-                    if (test.result === "1"){
-                        cellClass = "success";
                     }
-                    if (test.result === "0"){
-                        cellClass = "fail";
-                    }
+                    
 
-                    var cell = '<td class="' + cellClass + '"><span>' + test.result + '</span></td>';
-                    row += cell;
-                }
-                row += '</tr>'
-                htmlContent += row;
+                    row += "</tr>";
+                    htmlContent += row;
+                    
+                }    
+                break;
+
             }
             htmlContent += "</tbody>";
             $("#bscope-results").append(htmlContent);
@@ -252,6 +228,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             } 
             return 0;
         }
+
+        function shortenTestName (longname) {
+            return hash[$.trim(longname)];
+            
+        }
+          
+
+
     </script>
 	
 </head>
