@@ -104,7 +104,7 @@ td.success span {
   -ms-user-select: none;
   user-select: none; }
 td.success span:after {
-  color: #0F0;
+  color: #0A0;
   content: '✓';
   display: block;
   font-size: 20px; }
