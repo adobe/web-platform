@@ -79,7 +79,7 @@ thead th {
 .table-bordered thead th {
   border-left: none;
   width: 40px !important;
-  height: 76px !important;
+  height: 70px !important;
   position: relative; }
 
 .table-bordered tbody th {
@@ -95,22 +95,46 @@ td.count {
   padding-right: 20px;
   width: 50px; }
 td.success span {
-  color: #FFF; }
+  color: #FFF;
+  font-size: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 td.success span:after {
-  color: #A3F687;
+  color: #0F0;
   content: '✓';
   display: block;
   font-size: 20px; }
 td.fail span {
-  color: #FFF; }
+  color: #FFF;
+  font-size: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 td.fail span:after {
   color: #999;
   content: '✖';
   display: block;
   font-size: 20px; }
 td.blank span {
-  color: #FFF; }
+  color: #FFF;
+  font-size: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 td.blank span:after {
   color: #000;
   content: '-';
   display: block; }
+
+#qunit {
+  display: none; }
