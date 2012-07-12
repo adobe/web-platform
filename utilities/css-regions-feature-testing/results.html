@@ -36,31 +36,65 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <script type="text/javascript" src="results.js"></script>
 
     <script type="text/javascript">
+    jQuery.support.cors = true;
+    var browserscopeURL = "http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBiQzuQQDA?o=json&v=";
+    var browserscopeV = "0";
+    var currentBrowserChoice = "browsers-family";
 
 
-        $(document).ready(function() {
-            var results = massageTestResults(bscope_results);
-            createTableShell();
-            createTableHeader(results);
-            createTableRows(results);
-            $('#run-tests').submit(runTests);
-            $('#browsers').click(notImplemented);
-            $('.test-title-row .short').mouseover( function(e) {
-                    var shortSpan = $(e.target);
-                    shortSpan.next().removeClass("disabled");
-                }
-            );
-            $('.test-title-row .short').mouseout( function(e) {
-                    var shortSpan = $(e.target);
-                    shortSpan.next().addClass("disabled");
-                }
-            );
+    var browserScopeVersions = {
+        "browsers-all": {urlFlag:"3", label:"All Browsers", depth:"version"},
+        "browsers-major": {urlFlag:"1", label:"Major Versions", depth:"major"},
+        "browsers-family": {urlFlag:"0", label:"Browser Families", depth:"browser"}
+    };
 
-            $('#test-display-toggle').click(showTests);
+    $(document).ready(function() {
+        getData(browserscopeV);
+
+        $('#run-tests').submit(runTests);
+        $('#browsers').click(notImplemented);
+        $('#test-display-toggle').click(showTests);
+        $("#browser-selector a").click(toggleBrowsers);
 
 
+    });
 
-        });
+    function getData(version) {
+        console.log(browserscopeURL + version);
+        $.ajax({
+                url: browserscopeURL + version, 
+                cache: false,
+                crossDomain: true,
+                dataType: "jsonp"}
+                ).done(getDataHandler);
+    }
+
+    function getDataHandler(result) {
+        var bscope_results = massageTestResults(result);
+        drawTable(bscope_results);
+        console.log(bscope_results);
+    }
+
+    function toggleBrowsers (e) {
+        e.preventDefault();
+        currentBrowserChoice = e.currentTarget.id
+        var version = browserScopeVersionTranslate(e.currentTarget.id);
+        var label = browserScopeLabelTranslate(e.currentTarget.id);
+        getData(version);
+        $("#browser-current").html(label);
+    }
+
+    function browserScopeVersionTranslate (menuselection) {
+        return browserScopeVersions[menuselection].urlFlag;
+    }
+
+    function browserScopeLabelTranslate (menuselection) {
+        return browserScopeVersions[menuselection].label;
+    }
+
+    function browserScopeDepthTranslate (menuselection) {
+        return browserScopeVersions[menuselection].depth;
+    }
 
     function runTests() {
 
@@ -111,13 +145,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }  
     
     // If the user agreed to publish results to BrowserScope.org, go for it!
-    QUnit.done = function(obj){   
+    QUnit.done = function(obj){
         if (QUnit.config.publishresults){
             
             var newScript = document.createElement('script'),
                 firstScript = document.getElementsByTagName('script')[0]
                 
-            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey + '?callback=processBrowserscopeCallback'
+            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey;
             firstScript.parentNode.insertBefore(newScript, firstScript)
         }
             
@@ -138,8 +172,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         $("#test-display-toggle").css("display","block");
         
-        changeActionWell();
-        console.log(obj);
+        var browserLabelDepth = browserScopeDepthTranslate(currentBrowserChoice);
+
+        changeActionWell(browserLabelDepth);
     }
 
     function showTests(e) {
@@ -148,7 +183,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }
 
     function processBrowserscopeCallback(e) {
-
+        console.log("Tests done");
     }
     
     
@@ -186,13 +221,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <nav>
             <div id="browser-selector" class="btn-group dropdown">
                 <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span class="current-target">All Browsers</span>
+                    <span id="browser-current">Browser Families</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a id="browsers-all" href="#">All Browsers</a></li>
-                    <li><a id="browsers-majors" href="#">Major Versions</a></li>
-                    <li><a id="browsers-families" href="#">Browser Families</a></li>
+                    <li><a id="browsers-major" href="#">Major Versions</a></li>
+                    <li><a id="browsers-family" href="#">Browser Families</a></li>
                 </ul>
             </div>
             <ul class="nav nav-tabs">

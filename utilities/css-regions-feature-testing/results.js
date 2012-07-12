@@ -129,16 +129,22 @@ function createTableRows(results) {
 }
 
 function drawTable(results) {
+    $("#results_panel").empty();
     createTableShell();
     createTableHeader(results);
     createTableRows(results);
 }
 
-function getUserBrowser() {
+function getUserBrowser(depth) {
+    if (typeof depth === "undefined") {
+        depth = "browser";
+    }
+    var result = "";
+
     var p = new UAParser();
-    console.log(p.result);
     var name = p.result.browser.name;
     var version = p.result.browser.version;
+    var major = p.result.browser.major
 
     if (name === "Safari") {
         var ua = navigator.userAgent;
@@ -152,17 +158,23 @@ function getUserBrowser() {
         version =  versionArray[0] + "." + versionArray[1] + "." + versionArray[2];
     }
 
-    return name + " " + version;
+    if (depth === "browser") {
+        result = name;
+    } else if (depth === "major") {
+        result = name + " "  + major;
+    } else {
+        result = name + " " + version;
+    }
+
+    return result;
 }
 
 
-function changeActionWell() {
+function changeActionWell(browserVersionDepth) {
     $("#action-well").toggleClass("alert-info");
 
-    var browserBeingUsed = getUserBrowser();
+    var browserBeingUsed = getUserBrowser(browserVersionDepth);
     var browserTableID = convertToID(browserBeingUsed);
-
-
 
     var htmlContent = '<div id="test-results">';
     htmlContent += '<p>We think that you are using <strong>' + browserBeingUsed + '</strong> for your browser.  <a href="#">No?</a></p>';
