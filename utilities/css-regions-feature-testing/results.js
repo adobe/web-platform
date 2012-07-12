@@ -1,6 +1,6 @@
 var hash = {"Document should return a flow by name":"Document returns flow",   
             "Element should have regionOverflow property":"Element.regionOverflow",   
-            "NamedFlow getContent() should return NodeList":"NodeList = NamedFlow.getContent()",   
+            "NamedFlow getContent() should return NodeList":"NodeList",   
             "NamedFlow should have getContent() function":"NamedFlow.getContent()",   
             "NamedFlow should have name property":"NamedFlow.name",   
             "NamedFlow should have overset property":"NamedFlow.overset",   
@@ -19,18 +19,18 @@ var hash = {"Document should return a flow by name":"Document returns flow",
             var p = new UAParser();
             console.log(p.result);
             var name = p.result.browser.name;
-            var major = p.result.browser.major;
+            var version = p.result.browser.version;
 
             if (name === "Safari"){
                   var ua = navigator.userAgent;
                   var versionString = "Version/";
                   var loc = ua.indexOf(versionString) + versionString.length;
                   console.log(loc);
-                  major = ua.substring(loc, loc+3);
+                  major = ua.substring(loc, loc+7);
             }
 
 
-            return name + " " + major;
+            return name + " " + version;
       }
 
 
@@ -43,9 +43,11 @@ var hash = {"Document should return a flow by name":"Document returns flow",
 
 
       var htmlContent ='<div id="test-results">';
-      htmlContent += '<p>Browserscope thinks that you are using <strong>' + browserBeingUsed + '</strong> for your browser.  <a href="#">No?</a></p>';
+      htmlContent += '<p>We think that you are using <strong>' + browserBeingUsed + '</strong> for your browser.  <a href="#">No?</a></p>';
       htmlContent += '<p id="support-results">Your Browser supports<br /> <span id="support-precentage">88%</span> of CSS Regions features</p>';
-      htmlContent += '<p>Thank you for sharing your results</p>';
+      if ($('#publish-results').is(':checked')) {
+        htmlContent += '<p>Thank you for sharing your results</p>';
+      }
       htmlContent += '</div>';
       $("#action-well").html(htmlContent);
 
