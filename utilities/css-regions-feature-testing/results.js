@@ -14,12 +14,30 @@ var hash = {"Document should return a flow by name":"Document returns flow",
       alert("Not implemented yet")
       return false;
 }
+      
+      function getUserBrowser() {
+            var p = new UAParser();
+            console.log(p.result);
+            var name = p.result.browser.name;
+            var major = p.result.browser.major;
+
+            if (name === "Safari"){
+                  var ua = navigator.userAgent;
+                  var versionString = "Version/";
+                  var loc = ua.indexOf(versionString) + versionString.length;
+                  console.log(loc);
+                  major = ua.substring(loc, loc+3);
+            }
+
+
+            return name + " " + major;
+      }
 
 
   function changeActionWell(){
       $("#action-well").toggleClass("alert-info");
 
-      var browserBeingUsed = "Chrome 20";
+      var browserBeingUsed = getUserBrowser();
       var browserTableID = convertToID(browserBeingUsed);
 
 
