@@ -30,6 +30,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link rel="stylesheet" href="results.css" type="text/css" media="screen">
 
 	<script type="text/javascript" src="qunit/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap-dropdown.js"></script>
     <script type="text/javascript" src="temp.js"></script>
     <script type="text/javascript" src="ua-parser.js"></script>
     <script type="text/javascript" src="results.js"></script>
@@ -43,7 +44,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             createTableHeader(results);
             createTableRows(results);
             $('#run-tests').submit(runTests);
-            $('#browser-selector a').click(notImplemented);
+            //$('#browser-selector a').click(notImplemented);
             $('#browsers').click(notImplemented);
             $('.test-title-row .short').mouseover( function(e) {
                     var shortSpan = $(e.target);
@@ -148,7 +149,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }
 
     function processBrowserscopeCallback(e) {
-        
+
     }
     
     
@@ -184,12 +185,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </div>
 
         <nav>
-            <div id="browser-selector" class="btn-group">
-                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-                    All Browsers
+            <div id="browser-selector" class="btn-group dropdown">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="current-target">All Browsers</span>
                     <span class="caret"></span>
-                </a>
+                </button>
                 <ul class="dropdown-menu">
+                    <li><a id="browsers-all" href="#">All Browsers</a></li>
+                    <li><a id="browsers-majors" href="#">Major Versions</a></li>
+                    <li><a id="browsers-families" href="#">Browser Families</a></li>
                 </ul>
             </div>
             <ul class="nav nav-tabs">

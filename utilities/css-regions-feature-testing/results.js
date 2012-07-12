@@ -72,12 +72,6 @@ var hash = {"Document should return a flow by name":"Document returns flow",
 
   }
 
-  function forceRedraw(el) {
-    var t = el.ownerDocument.createTextNode(' ');
-    el.appendChild(t);
-    setTimeout(function() { el.removeChild(t); }, 0);
-  }
-
   function createTableShell() {
       var tableShell = '<table class="table table-bordered" id="bscope-results"></table>';
       $("#results_panel").append(tableShell);
