@@ -1,13 +1,16 @@
 var hash = {"Document should return a flow by name":"Document returns flow",   
             "Element should have regionOverflow property":"Element.regionOverflow",   
-            "NamedFlow getContent() should return NodeList":"NodeList",   
+            "NamedFlow getContent() should return NodeList":"getContent() = NodeList",   
             "NamedFlow should have getContent() function":"NamedFlow.getContent()",   
             "NamedFlow should have name property":"NamedFlow.name",   
             "NamedFlow should have overset property":"NamedFlow.overset",   
             "regionLayoutUpdate event is thrown":"regionLayoutUpdate event",   
             "Named flow - content should be pulled to a flow":"Named flow pulls content",   
             "Region - should consume from flow":"Region consumes flow",   
-            "Region properties - region-overflow property":"Region.region-overflow exists",   
+            "Region properties - region-overflow property":"Region.region-overflow exists",
+            "NamedFlow should have firstEmptyRegionIndex property":"NamedFlow.firstEmptyRegionIndex",
+            "NamedFlow getRegionsByContent() should return NodeList":"getRegionsByContent() = NodeList",
+            "NamedFlow should have getRegionsByContent() function":"NamedFlow.getRegionsByContent()",   
             "Basic @region rule support":"Basic @region support"};
 
  function notImplemented() {
@@ -206,6 +209,11 @@ var hash = {"Document should return a flow by name":"Document returns flow",
   }
 
   function shortenTestName (longname) {
-      return hash[$.trim(longname)];
+      var results = hash[$.trim(longname)]
+      if (typeof results === "undefined") {
+        results = longname;
+      }
+
+      return results;
       
   }            
