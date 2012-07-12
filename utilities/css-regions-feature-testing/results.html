@@ -56,6 +56,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 }
             );
 
+            $('#test-display-toggle').click(showTests);
+
 
 
         });
@@ -127,9 +129,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         container.appendChild(resultsLink)    
         container.appendChild(runsLink)
 
-        $("#qunit").css("display","block");
+        $("#test-display-toggle").css("display","block");
+        
         changeActionWell();
         console.log(obj);
+    }
+
+    function showTests(e) {
+        e.preventDefault();
+        $("#qunit").css("display","block");
     }
     
     
@@ -184,6 +192,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <div id="results_panel">
 
         </div>
+        <p><a id="test-display-toggle" href="#">Show test results.</a>
         <div id="qunit"></div>
     </div>
 

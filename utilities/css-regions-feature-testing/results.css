@@ -138,3 +138,6 @@ td.blank span:after {
 
 #qunit {
   display: none; }
+
+#test-display-toggle {
+  display: none; }
