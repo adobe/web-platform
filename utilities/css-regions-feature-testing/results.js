@@ -59,6 +59,7 @@ var hash = {"Document should return a flow by name":"Document returns flow",
       // Would rather do this by changing the class, but there is an issue with:
       // Changing a class on a column in a table styled by Bootstrap in Chrome. 
       // Will track down issue and report to relevant project.
+      console.log(browserTableID);
       $("#" + browserTableID).css("background-color", "#fcf8e3");
       $("thead th").css("background-color", "#FFF");
       
@@ -169,7 +170,9 @@ var hash = {"Document should return a flow by name":"Document returns flow",
 
   }
   function convertToID (str){
-      return str.replace(/\s+/g, '-').toLowerCase();
+      var result = str.replace(/\s+/g, '-').toLowerCase();
+      result = result.replace(/\./g, "-");
+      return result;
   }
 
   function convertToShortString(str) {

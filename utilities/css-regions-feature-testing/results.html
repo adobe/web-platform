@@ -117,7 +117,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             var newScript = document.createElement('script'),
                 firstScript = document.getElementsByTagName('script')[0]
                 
-            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey + '?callback=showResultsTable'
+            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey + '?callback=processBrowserscopeCallback'
             firstScript.parentNode.insertBefore(newScript, firstScript)
         }
             
@@ -145,6 +145,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     function showTests(e) {
         e.preventDefault();
         $("#qunit").css("display","block");
+    }
+
+    function processBrowserscopeCallback(e) {
+        
     }
     
     
