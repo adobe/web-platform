@@ -29,6 +29,11 @@ var hash = {"Document should return a flow by name":"Document returns flow",
                   major = ua.substring(loc, loc+7);
             }
 
+            var versionArray = version.split(".");
+            if (versionArray.length > 3){
+              version =  versionArray[0] + "." + versionArray[1] + "." + versionArray[2];
+            }
+
 
             return name + " " + version;
       }

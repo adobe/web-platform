@@ -105,9 +105,9 @@ thead{
 			span{
 				position: absolute;
 				display: block;
-				width: 200px;
+				width: 220px;
 				overflow: hidden;
-				left: 0;
+				left: -20px;
 				bottom: 60px;
 				@include transform(rotate(320deg));
 			}
@@ -124,7 +124,7 @@ thead{
 .table-bordered thead th{
 	border-left: none;
 	width: 40px !important;
-	height: 70px !important;
+	height: 140px !important;
 	position: relative;
 }
 
