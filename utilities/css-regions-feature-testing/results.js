@@ -13,9 +13,16 @@ var hash = {"Document should return a flow by name":"Document returns flow",
             "NamedFlow should have getRegionsByContent() function":"NamedFlow.getRegionsByContent()",   
             "Basic @region rule support":"Basic @region support"};
 
- function notImplemented() {
-      alert("Not implemented yet")
-      return false;
+function notImplemented() {
+    alert("Not implemented yet")
+    return false;
+}
+
+
+function drawTable(results) {
+    createTableShell();
+    createTableHeader(results);
+    createTableRows(results);
 }
       
       function getUserBrowser() {
