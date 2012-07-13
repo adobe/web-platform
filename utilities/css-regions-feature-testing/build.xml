@@ -30,8 +30,10 @@
 				<exclude name='.gitignore'/>
 				<exclude name='.git/**'/>
 				<exclude name='build.xml'/>
-				<exclude name='build.properties'/>
+				<exclude name='**.properties'/>
 				<exclude name='README.md'/>
+				<exclude name='**/*.scss'/>
+				<exclude name='**/.sass-cache/**'/>
 			</fileset>	
 		</copy>
 	</target>
