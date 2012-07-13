@@ -146,3 +146,15 @@ thead th {
 
 #test-display-toggle {
   display: none; }
+
+#chart {
+  position: relative;
+  top: 200px; }
+  #chart .bar {
+    background-color: #a3f687;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    width: 40px;
+    margin-right: 5px;
+    vertical-align: bottom; }

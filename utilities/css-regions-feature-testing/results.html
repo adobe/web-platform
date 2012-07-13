@@ -39,6 +39,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     var browserscopeURL = "http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBiQzuQQDA?o=json&v=";
     var browserscopeV = "0";
     var currentBrowserChoice = "browsers-family";
+    var bscope_results;
 
 
     var browserScopeVersions = {
@@ -51,16 +52,20 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         getData(browserscopeV);
 
         $('#run-tests').submit(runTests);
-        $('#browsers').click(notImplemented);
+        $('#browsers').click(showChart);
         $('#test-display-toggle').click(showTests);
         $("#browser-selector a").click(toggleBrowsers);
 
 
     });
 
+    function showChart(e){
+        e.preventDefault();
+        drawChart(bscope_results);
+    }
+
     function getData(version) {
         $("#waiting-indicator").show();
-        console.log(browserscopeURL + version);
         $.ajax({
                 url: browserscopeURL + version, 
                 cache: false,
@@ -70,10 +75,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }
 
     function getDataHandler(result) {
-        var bscope_results = massageTestResults(result);
+        bscope_results = massageTestResults(result);
         $("#waiting-indicator").hide();
         drawTable(bscope_results);
-        console.log(bscope_results);
     }
 
     function toggleBrowsers (e) {

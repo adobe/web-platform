@@ -65,10 +65,38 @@ function shortenTestName(longname) {
     return results;
 }
 
+function drawChart(results) {
+    $("#results_panel").empty();
+    var htmlContent = '<div id="chart">';
+    var i = results.results.length;
+    var index;
+    var j;
+
+    for (index in results.results) {
+        var obj = results.results[index];
+        var item = '<span class="bar" id="' + convertToID(obj.name) + '" class="">' + obj.summary_score + '%</span>';
+        htmlContent += item;
+    }
+    htmlContent += "</div>";
+    $("#results_panel").prepend(htmlContent);
+
+
+    for (j=0; j < results.results.length; j++) {
+
+        var obj = results.results[j];
+        var id = convertToID(obj.name);
+        $("#" + id).height(obj.summary_score * 2);
+        $("#" + id).css("left", j * 60);
+    }
+
+}
+
 function createTableShell() {
     var tableShell = '<table class="table table-bordered" id="bscope-results"></table>';
     $("#results_panel").append(tableShell);
 }
+
+
 
 function createTableHeader(results) {
     var i = results.results.length;
@@ -151,7 +179,6 @@ function getUserBrowser(depth) {
         var ua = navigator.userAgent;
         var versionString = "Version/";
         var loc = ua.indexOf(versionString) + versionString.length;
-        console.log(loc);
     }
 
     var versionArray = version.split(".");
@@ -191,7 +218,6 @@ function changeActionWell(browserVersionDepth) {
     // Would rather do this by changing the class, but there is an issue with:
     // Changing a class on a column in a table styled by Bootstrap in Chrome. 
     // Will track down issue and report to relevant project.
-    console.log(browserTableID);
     $("#" + browserTableID).css("background-color", "#fcf8e3");
     $("." + browserTableID).css("background-color", "#fcf8e3");
     $("thead th").css("background-color", "#FFF");
@@ -219,7 +245,6 @@ function massageTestResults(results) {
             subResultsFromObj.type = testTitle[0];
             newSubResults.push(subResultsFromObj);
         }
-
         newSubResults.sort(testSort);
         obj.results = newSubResults;
         obj.name = index;
@@ -227,8 +252,10 @@ function massageTestResults(results) {
     }
     newResults.sort(browserSort);
     outputResults.results = newResults;
+    console.log(outputResults);
     return outputResults;
 }
+
 
 if (!Object.keys) {
     Object.keys = function (obj) {
