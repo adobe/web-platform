@@ -51,7 +51,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         getData(browserscopeV);
 
         $('#run-tests').submit(runTests);
-        $('#browsers').click(showChart);
+        $('#browsers a').click(showChart);
+        $('#features a').click(showFeatures);
         $('#test-display-toggle').click(showTests);
         $("#browser-selector a").click(toggleBrowsers);
 
@@ -60,7 +61,16 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     function showChart(e){
         e.preventDefault();
+        $("#browsers").toggleClass("active");
+        $("#features").toggleClass("active");
         drawChart(bscope_results);
+    }
+
+    function showFeatures(e){
+        e.preventDefault();
+        $("#browsers").toggleClass("active");
+        $("#features").toggleClass("active");
+        drawTable(bscope_results);
     }
 
     function getData(version) {
@@ -251,10 +261,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </ul>
             </div>
             <ul class="nav nav-tabs">
-                <li class="active">
-                    <a id="features" href="#">Features</a>
-                </li>
-                <li><a id="browsers"  href="#">Browser Support</a></li>
+                <li id="features" class="active"><a href="#">Features</a></li>
+                <li id="browsers"><a  href="#">Browser Support</a></li>
             </ul>
         </nav>
         <div id="waiting-indicator">
