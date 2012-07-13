@@ -26,6 +26,8 @@ Sass is recommended here as it makes the CSS a lot easier to write.
 
 The chart data comes from [Browserscope](http://www.browserscope.org/). The main documentation for how to pull down tests is on their [API Documention](http://www.browserscope.org/user/tests/howto). The data comes from [our test results page](http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBiQzuQQDA?o=html&v=3&highlight=1).  By using the various [url flags](http://www.browserscope.org/user/tests/howto#urlparams) for their api, you can control what ranges of data you pull down and format. 
 
+The project has an ANT file for publishing to an FTP server. To use, copy sample.properties to build.properties and fill with approriate values.
+
 Workflow
 --------
 Here's what happens when a user comes to the page:
