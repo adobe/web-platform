@@ -60,6 +60,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     });
 
     function getData(version) {
+        $("#waiting-indicator").show();
         console.log(browserscopeURL + version);
         $.ajax({
                 url: browserscopeURL + version, 
@@ -71,6 +72,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     function getDataHandler(result) {
         var bscope_results = massageTestResults(result);
+        $("#waiting-indicator").hide();
         drawTable(bscope_results);
         console.log(bscope_results);
     }
@@ -237,7 +239,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <li><a id="browsers"  href="#">Browser Support</a></li>
             </ul>
         </nav>
-
+        <div id="waiting-indicator">
+            <img src="throbber.gif" width="16" height="16"/>
+            Retrieving records from Browserscope
+        </div>
         <div id="results_panel">
 
         </div>
