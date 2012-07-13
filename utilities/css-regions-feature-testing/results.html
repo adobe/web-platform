@@ -176,6 +176,22 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         var browserLabelDepth = browserScopeDepthTranslate(currentBrowserChoice);
 
         changeActionWell(browserLabelDepth);
+        var percent = calculatePercentage(_bTestResults);
+        $("#support-precentage").html(percent + "%");
+
+    }
+
+    function calculatePercentage(results) {
+        var i = 0;
+        var resultsLength = Object.keys(results).length;
+        for (value in results) {
+            if (results[value] === 1){
+                i++;
+            }
+        }
+        var percent = i/resultsLength * 100;
+        percent = percent.toString().split(".")[0];
+        return percent;
     }
 
     function showTests(e) {

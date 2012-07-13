@@ -179,7 +179,7 @@ function changeActionWell(browserVersionDepth) {
 
     var htmlContent = '<div id="test-results">';
     htmlContent += '<p>We think that you are using <strong>' + browserBeingUsed + '</strong> for your browser.  <a href="#">No?</a></p>';
-    htmlContent += '<p id="support-results">Your Browser supports<br /> <span id="support-precentage">88%</span> of CSS Regions features</p>';
+    htmlContent += '<p id="support-results">Your Browser supports<br /> <span id="support-precentage"></span> of CSS Regions features</p>';
 
     if ($('#publish-results').is(':checked')) {
         htmlContent += '<p>Thank you for sharing your results</p>';
@@ -228,5 +228,18 @@ function massageTestResults(results) {
     newResults.sort(browserSort);
     outputResults.results = newResults;
     return outputResults;
+}
+
+if (!Object.keys) {
+    Object.keys = function (obj) {
+        var keys = [],
+            k;
+        for (k in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, k)) {
+                keys.push(k);
+            }
+        }
+        return keys;
+    };
 }
 
