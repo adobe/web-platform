@@ -106,6 +106,7 @@ function createTableRows(results) {
 
             for (k = 0; k < results.results.length; k++) {
                 var test = results.results[k].results[j];
+                var browserClass = convertToID(results.results[k].name);
                 var cellClass = "blank";
 
                 if (test.result === "1") {
@@ -115,7 +116,7 @@ function createTableRows(results) {
                     cellClass = "fail";
                 }
 
-                var cell = '<td class="' + cellClass + '"><span>' + test.result + '</span></td>';
+                var cell = '<td class="' + cellClass + " " + browserClass + '"><span>' + test.result + '</span></td>';
                 row += cell;
             }
 
@@ -192,6 +193,7 @@ function changeActionWell(browserVersionDepth) {
     // Will track down issue and report to relevant project.
     console.log(browserTableID);
     $("#" + browserTableID).css("background-color", "#fcf8e3");
+    $("." + browserTableID).css("background-color", "#fcf8e3");
     $("thead th").css("background-color", "#FFF");
 }
 

@@ -90,11 +90,43 @@ thead th {
   width: 40px !important;
   text-align: center; }
 
-td.count {
+.table-bordered td.count {
   text-align: right;
   padding-right: 20px;
   width: 50px; }
-td.success span {
+.table-bordered td.success {
+  background-color: #a3f687; }
+  .table-bordered td.success span {
+    color: #FFF;
+    font-size: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  .table-bordered td.success span:after {
+    color: #0A0;
+    content: '✓';
+    display: block;
+    font-size: 20px; }
+.table-bordered td.fail {
+  background-color: #f7d6d6; }
+  .table-bordered td.fail span {
+    color: #FFF;
+    font-size: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  .table-bordered td.fail span:after {
+    color: #999;
+    content: '✖';
+    display: block;
+    font-size: 20px; }
+.table-bordered td.blank span {
   color: #FFF;
   font-size: 0;
   -webkit-touch-callout: none;
@@ -103,38 +135,11 @@ td.success span {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
-td.success span:after {
-  color: #0A0;
-  content: '✓';
-  display: block;
-  font-size: 20px; }
-td.fail span {
-  color: #FFF;
-  font-size: 0;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
-td.fail span:after {
-  color: #999;
-  content: '✖';
-  display: block;
-  font-size: 20px; }
-td.blank span {
-  color: #FFF;
-  font-size: 0;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
-td.blank span:after {
-  color: #000;
+.table-bordered td.blank span:after {
+  color: #555;
   content: '-';
-  display: block; }
+  display: block;
+  font-size: 20px; }
 
 #qunit {
   display: none; }
