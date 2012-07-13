@@ -158,7 +158,13 @@ thead th {
     bottom: 0;
     width: 40px;
     margin-right: 5px;
-    vertical-align: bottom; }
+    vertical-align: bottom;
+    -moz-border-radius: 5px 5px 0 0/5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0/5px 5px 0 0;
+    border-radius: 5px 5px 0 0/5px 5px 0 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; }
     #chart .bar span {
       padding-left: 5px;
       position: absolute;
