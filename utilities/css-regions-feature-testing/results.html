@@ -35,92 +35,98 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <script type="text/javascript" src="assets/js/results.js"></script>
 
     <script type="text/javascript">
-    var browserscopeURL = "http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBiQzuQQDA?o=json&v=";
-    var browserscopeV = "0";
-    var currentBrowserChoice = "browsers-family";
-    var bscope_results;
+        var browserscopeURL = "http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBiQzuQQDA?o=json&v=";
+        var browserscopeV = "0";
+        var currentBrowserChoice = "browsers-family";
+        var bscope_results;
 
+        $(document).ready(function() {
+            getData(browserscopeV);
 
-    var browserScopeVersions = {
-        "browsers-all": {urlFlag:"3", label:"All Browsers", depth:"version"},
-        "browsers-major": {urlFlag:"1", label:"Major Versions", depth:"major"},
-        "browsers-family": {urlFlag:"0", label:"Browser Families", depth:"browser"}
-    };
+            $('#run-tests').submit(runTests);
+            $('#browsers a').click(showChart);
+            $('#features a').click(showFeatures);
+            $('#test-display-toggle').click(showTests);
+            $("#browser-selector a").click(toggleBrowsers);
+        });
 
-    $(document).ready(function() {
-        getData(browserscopeV);
-
-        $('#run-tests').submit(runTests);
-        $('#browsers a').click(showChart);
-        $('#features a').click(showFeatures);
-        $('#test-display-toggle').click(showTests);
-        $("#browser-selector a").click(toggleBrowsers);
-
-
-    });
-
-    function showChart(e){
-        e.preventDefault();
-        $("#browsers").toggleClass("active");
-        $("#features").toggleClass("active");
-        drawChart(bscope_results);
-    }
-
-    function showFeatures(e){
-        e.preventDefault();
-        $("#browsers").toggleClass("active");
-        $("#features").toggleClass("active");
-        drawTable(bscope_results);
-    }
-
-    function getData(version) {
-        $("#waiting-indicator").show();
-        $.ajax({
-                url: browserscopeURL + version, 
-                cache: false,
-                crossDomain: true,
-                dataType: "jsonp"}
-                ).done(getDataHandler);
-    }
-
-    function getDataHandler(result) {
-        bscope_results = massageTestResults(result);
-        $("#waiting-indicator").hide();
-        drawTable(bscope_results);
-    }
-
-    function toggleBrowsers (e) {
-        e.preventDefault();
-        currentBrowserChoice = e.currentTarget.id
-        var version = browserScopeVersionTranslate(e.currentTarget.id);
-        var label = browserScopeLabelTranslate(e.currentTarget.id);
-        getData(version);
-        $("#browser-current").html(label);
-    }
-
-    function browserScopeVersionTranslate (menuselection) {
-        return browserScopeVersions[menuselection].urlFlag;
-    }
-
-    function browserScopeLabelTranslate (menuselection) {
-        return browserScopeVersions[menuselection].label;
-    }
-
-    function browserScopeDepthTranslate (menuselection) {
-        return browserScopeVersions[menuselection].depth;
-    }
-
-    function runTests() {
-
-        if ($('#publish-results').is(':checked')) {
-            QUnit.config.publishresults = true;  
+        function showChart(e){
+            e.preventDefault();
+            $("#browsers").toggleClass("active");
+            $("#features").toggleClass("active");
+            drawChart(bscope_results);
         }
 
-        QUnit.start();
-        return false;
-    }
-          
+        function showFeatures(e){
+            e.preventDefault();
+            $("#browsers").toggleClass("active");
+            $("#features").toggleClass("active");
+            drawTable(bscope_results);
+        }
 
+        function getData(version) {
+            $("#waiting-indicator").show();
+            $.ajax({
+                    url: browserscopeURL + version, 
+                    cache: false,
+                    crossDomain: true,
+                    dataType: "jsonp"}
+                    ).done(getDataHandler);
+        }
+
+        function getDataHandler(result) {
+            bscope_results = massageTestResults(result);
+            $("#waiting-indicator").hide();
+            drawTable(bscope_results);
+        }
+
+        function toggleBrowsers (e) {
+            e.preventDefault();
+            currentBrowserChoice = e.currentTarget.id
+            var version = browserScopeVersionTranslate(e.currentTarget.id);
+            var label = browserScopeLabelTranslate(e.currentTarget.id);
+            getData(version);
+            $("#browser-current").html(label);
+        }
+
+        function runTests() {
+            if ($('#publish-results').is(':checked')) {
+                QUnit.config.publishresults = true;  
+            }
+            QUnit.start();
+            return false;
+        }
+
+        function calculatePercentage(results) {
+            var i = 0;
+            var resultsLength = Object.keys(results).length;
+            for (value in results) {
+                if (results[value] === 1){
+                    i++;
+                }
+            }
+            var percent = i/resultsLength * 100;
+            percent = percent.toString().split(".")[0];
+            return percent;
+        }
+
+        function showTests(e) {
+            e.preventDefault();
+            $("#qunit").css("display","block");
+        }
+
+        function processBrowserscopeCallback(e) {
+            console.log("Tests done");
+        }
+
+        function handleTestRun(results) {
+            var browserLabelDepth = browserScopeDepthTranslate(currentBrowserChoice);
+            var percent = calculatePercentage(results);
+            changeActionWell(browserLabelDepth);
+            $("#support-precentage").html(percent + "%");
+            $("#test-display-toggle").css("display","block");
+            
+        }
 
     </script>
 
@@ -184,37 +190,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         container.appendChild(resultsLink)    
         container.appendChild(runsLink)
 
-        $("#test-display-toggle").css("display","block");
-        
-        var browserLabelDepth = browserScopeDepthTranslate(currentBrowserChoice);
-
-        changeActionWell(browserLabelDepth);
-        var percent = calculatePercentage(_bTestResults);
-        $("#support-precentage").html(percent + "%");
+        handleTestRun(_bTestResults);
 
     }
 
-    function calculatePercentage(results) {
-        var i = 0;
-        var resultsLength = Object.keys(results).length;
-        for (value in results) {
-            if (results[value] === 1){
-                i++;
-            }
-        }
-        var percent = i/resultsLength * 100;
-        percent = percent.toString().split(".")[0];
-        return percent;
-    }
-
-    function showTests(e) {
-        e.preventDefault();
-        $("#qunit").css("display","block");
-    }
-
-    function processBrowserscopeCallback(e) {
-        console.log("Tests done");
-    }
+    
     
     
     </script>

@@ -1,5 +1,5 @@
 /*jslint plusplus: true, sloppy: true, vars: true, browser: true, devel: true */ /*global  $, UAParser*/
-var hash = { "Document should return a flow by name": "Document returns flow",
+var testShortnames = { "Document should return a flow by name": "Document returns flow",
             "Element should have regionOverflow property": "Element.regionOverflow",
             "NamedFlow getContent() should return NodeList": "getContent() = NodeList",
             "NamedFlow should have getContent() function": "NamedFlow.getContent()",
@@ -13,6 +13,12 @@ var hash = { "Document should return a flow by name": "Document returns flow",
             "NamedFlow getRegionsByContent() should return NodeList": "getRegionsByContent() = NodeList",
             "NamedFlow should have getRegionsByContent() function": "NamedFlow.getRegionsByContent()",
             "Basic @region rule support": "Basic @region support"};
+
+var browserScopeVersions = {
+        "browsers-all": {urlFlag:"3", label:"All Browsers", depth:"version"},
+        "browsers-major": {urlFlag:"1", label:"Major Versions", depth:"major"},
+        "browsers-family": {urlFlag:"0", label:"Browser Families", depth:"browser"}
+};            
 
 function notImplemented() {
     alert("Not implemented yet");
@@ -57,7 +63,7 @@ function browserSort(a, b) {
 }
 
 function shortenTestName(longname) {
-    var results = hash[$.trim(longname)];
+    var results = testShortnames[$.trim(longname)];
     if (typeof results === "undefined") {
         results = longname;
     }
@@ -257,8 +263,19 @@ function massageTestResults(results) {
     }
     newResults.sort(browserSort);
     outputResults.results = newResults;
-    console.log(outputResults);
     return outputResults;
+}
+
+function browserScopeVersionTranslate (menuselection) {
+    return browserScopeVersions[menuselection].urlFlag;
+}
+
+function browserScopeLabelTranslate (menuselection) {
+    return browserScopeVersions[menuselection].label;
+}
+
+function browserScopeDepthTranslate (menuselection) {
+    return browserScopeVersions[menuselection].depth;
 }
 
 
