@@ -67,26 +67,31 @@ function shortenTestName(longname) {
 
 function drawChart(results) {
     $("#results_panel").empty();
-    var htmlContent = '<div id="chart">';
+    var htmlChart = '<div id="chart">';
+    var htmlLegend = '<div id="legend">';
     var i = results.results.length;
     var index;
     var j;
 
     for (index in results.results) {
         var obj = results.results[index];
-        var item = '<span class="bar" id="' + convertToID(obj.name) + '" class="">' + obj.summary_score + '%</span>';
-        htmlContent += item;
+        var bar = '<span class="bar" id="' + convertToID(obj.name) + '"><span>' + obj.summary_score + '%</span></span>';
+        htmlChart += bar;
+
+        var legend = '<span class="legend"><span>' + obj.name + '</span></span>';
+        htmlLegend += legend;
     }
-    htmlContent += "</div>";
-    $("#results_panel").prepend(htmlContent);
+    htmlChart += "</div>";
+    htmlLegend += "</div>";
+    $("#results_panel").prepend(htmlChart);
+    $("#results_panel").append(htmlLegend);
 
 
     for (j=0; j < results.results.length; j++) {
-
         var obj = results.results[j];
         var id = convertToID(obj.name);
         $("#" + id).height(obj.summary_score * 2);
-        $("#" + id).css("left", j * 60);
+        $("#" + id).css("left", j * 45);
     }
 
 }

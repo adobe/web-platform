@@ -205,7 +205,8 @@ thead{
 
 #chart{
 	position: relative;
-	top: 200px;
+	top: 0;
+	height: 200px;
 	.bar{
 		background-color: #a3f687;
 		display: inline-block;
@@ -214,5 +215,30 @@ thead{
 		width: 40px;
 		margin-right: 5px;
 		vertical-align: bottom;
+		span{
+			padding-left: 5px;
+			position: absolute;
+			bottom: 0;
+			text-align: center;
+		}
+
+	}
+}
+#legend{
+	font-weight: bold;
+	.legend{
+		width: 45px;
+		height: 150px;
+		display: inline-block;
+		position: relative;
+		span{
+			left: -30px;
+			position: relative;
+			display: inline-block;
+			top: 80px;
+			width: 200px;
+			@include transform(rotate(55deg));
+			text-align: left;
+		}
 	}
 }
