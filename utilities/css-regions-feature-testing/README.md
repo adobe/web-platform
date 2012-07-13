@@ -15,3 +15,11 @@ A failing test means that the feature is not yet supported by the browser.
 Uses
 ----
 The feature detect page uses the [QUnit](https://github.com/jquery/qunit) and [-prefix-free](http://leaverou.github.com/prefixfree/) JavaScript frameworks.
+
+Maintenance
+-----------
+The look and feel of the page, components and icons of the table and chart comes from [Bootstrap](http://twitter.github.com/bootstrap/).
+
+The CSS that powers the results table and chart are powered by assets/css/results.css.  This file can be generated using 
+[Sass](http://sass-lang.com/) on results.scss.  It's not required, and futher changes can be done by editing the CSS, but 
+Sass is recommended here as it makes the CSS a lot easier to write.
