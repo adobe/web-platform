@@ -24,22 +24,115 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>CSS Regions Test Suite</title>
-	<link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen">
-    <style type="text/css">
-        #qunit-testrunner-toolbar a{
-            margin-left: 1.8em;  
-            font-weight: bold;
-            color: #366097;
-        }
-        #qunit-testrunner-toolbar a:visited{
-            color: purple;
-        }
-    </style>
+	<title>CSS Regions Test Suite - Browserscope Results</title>
+    <link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="assets/css/results.css" type="text/css" media="screen">
+
 	<script type="text/javascript" src="qunit/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="qunit/qunit.js"></script>
-	<script type="text/javascript"> 
-	
+    <script type="text/javascript" src="bootstrap/js/bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="assets/js/ua-parser.js"></script>
+    <script type="text/javascript" src="assets/js/results.js"></script>
+
+    <script type="text/javascript">
+        var browserscopeURL = "http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBiQzuQQDA?o=json&v=";
+        var browserscopeV = "0";
+        var currentBrowserChoice = "browsers-family";
+        var bscope_results;
+
+        $(document).ready(function() {
+            getData(browserscopeV);
+
+            $('#run-tests').submit(runTests);
+            $('#browsers a').click(showChart);
+            $('#features a').click(showFeatures);
+            $('#test-display-toggle').click(showTests);
+            $("#browser-selector a").click(toggleBrowsers);
+        });
+
+        function showChart(e){
+            e.preventDefault();
+            $("#browsers").toggleClass("active");
+            $("#features").toggleClass("active");
+            drawChart(bscope_results);
+        }
+
+        function showFeatures(e){
+            e.preventDefault();
+            $("#browsers").toggleClass("active");
+            $("#features").toggleClass("active");
+            drawTable(bscope_results);
+        }
+
+        function getData(version) {
+            $("#waiting-indicator").show();
+            $.ajax({
+                    url: browserscopeURL + version, 
+                    cache: false,
+                    crossDomain: true,
+                    dataType: "jsonp"}
+                    ).done(getDataHandler);
+        }
+
+        function getDataHandler(result) {
+            bscope_results = massageTestResults(result);
+            $("#waiting-indicator").hide();
+            drawTable(bscope_results);
+        }
+
+        function toggleBrowsers (e) {
+            e.preventDefault();
+            currentBrowserChoice = e.currentTarget.id
+            var version = browserScopeVersionTranslate(e.currentTarget.id);
+            var label = browserScopeLabelTranslate(e.currentTarget.id);
+            getData(version);
+            $("#browser-current").html(label);
+        }
+
+        function runTests() {
+            if ($('#publish-results').is(':checked')) {
+                QUnit.config.publishresults = true;  
+            }
+            QUnit.start();
+            return false;
+        }
+
+        function calculatePercentage(results) {
+            var i = 0;
+            var resultsLength = Object.keys(results).length;
+            for (value in results) {
+                if (results[value] === 1){
+                    i++;
+                }
+            }
+            var percent = i/resultsLength * 100;
+            percent = percent.toString().split(".")[0];
+            return percent;
+        }
+
+        function showTests(e) {
+            e.preventDefault();
+            $("#qunit").css("display","block");
+        }
+
+        function processBrowserscopeCallback(e) {
+            console.log("Tests done");
+        }
+
+        function handleTestRun(results) {
+            var browserLabelDepth = browserScopeDepthTranslate(currentBrowserChoice);
+            var percent = calculatePercentage(results);
+            changeActionWell(browserLabelDepth);
+            $("#support-precentage").html(percent + "%");
+            $("#test-display-toggle").css("display","block");
+            
+        }
+
+    </script>
+
+    <script type="text/javascript" src="qunit/qunit.js"></script>
+    <script type="text/javascript"> 
+    
     // Test key for BrowserScope test suite
     var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBiQzuQQDA'
     
@@ -53,7 +146,12 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     
     // Timeout for async tests
     QUnit.config.testTimeout = 1000
-    
+
+    //Setting tests to start on user input 
+    QUnit.config.autostart = false;
+
+    QUnit.config.publishresults = false;
+
     // Build-up the test results beacon for BrowserScope.org
     QUnit.testDone = function(obj){   
         var testName = obj.module + " : " + obj.name 
@@ -67,13 +165,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }  
     
     // If the user agreed to publish results to BrowserScope.org, go for it!
-    QUnit.done = function(obj){   
+    QUnit.done = function(obj){
         if (QUnit.config.publishresults){
             
             var newScript = document.createElement('script'),
                 firstScript = document.getElementsByTagName('script')[0]
                 
-            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey + '?callback=showResultsTable'
+            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey;
             firstScript.parentNode.insertBefore(newScript, firstScript)
         }
             
@@ -90,24 +188,74 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         runsLink.textContent = 'Test Runs on Browserscope'    
         
         container.appendChild(resultsLink)    
-        container.appendChild(runsLink)    
+        container.appendChild(runsLink)
+
+        handleTestRun(_bTestResults);
+
     }
+
     
-    function showResultsTable(){
-        var resultsWidget = document.createElement('script')
-        resultsWidget.src = 'http://www.browserscope.org/user/tests/table/'+ _bTestKey +'?o=js&v=3'
-        resultsWidget.type = 'text/javascript' 
-        
-        document.body.appendChild(resultsWidget)     
-    }  
+    
     
     </script>
-	<script type="text/javascript" src="prefix-free/prefixfree.min.js"></script>
-	<script type="text/javascript" src="prefix-free/prefixfree.jquery.js"></script>
-	<script type="text/javascript" src="testregions.js"></script>
+    <script type="text/javascript" src="prefix-free/prefixfree.min.js"></script>
+    <script type="text/javascript" src="prefix-free/prefixfree.jquery.js"></script>
+    <script type="text/javascript" src="assets/js/testregions.js"></script>
+	
 </head>
 <body>
-	<div id="qunit"></div>
-	<div id="qunit-fixture">test markup</div>
+    <div class="container">
+        <div class="row">
+            <header class="span6">
+                <h1 id="bscope-test-title">CSS Regions Support</h1>
+                <div id="bscope-test-desc">Test CSS Regions support across browsers using the test suite compatible with the latest CSS Regions Working Draft from the W3C.</div>
+
+                <ul>
+                    <li><a href="http://dev.w3.org/csswg/css3-regions/" target="_blank">CSS Regions W3C Specification →</a></li>
+                    <li><a href="http://www.adobe.com/devnet/html5/articles/css3-regions.html" target="_blank">CSS Regions: Rich Page Layouts with HTML &amp; CSS3 →</a></li>
+                    </ul>
+            </header>
+            <div id="action-well" class="alert alert-info span5">
+                <h2>Check CSS Regions Support in your browser</h2>
+
+                <form id="run-tests">
+                    <input class="btn btn-primary btn-large" type="submit" name="submit" value="Run Tests" /><br />
+                    <label class="checkbox">
+                        <input type="checkbox" name="publish" value="publish" id="publish-results">
+                        Publish my results
+                      </label>
+                </form>    
+            </div>
+        </div>
+
+        <nav>
+            <div id="browser-selector" class="btn-group dropdown">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span id="browser-current">Browser Families</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a id="browsers-all" href="#">All Browsers</a></li>
+                    <li><a id="browsers-major" href="#">Major Versions</a></li>
+                    <li><a id="browsers-family" href="#">Browser Families</a></li>
+                </ul>
+            </div>
+            <ul class="nav nav-tabs">
+                <li id="features" class="active"><a href="#">Features</a></li>
+                <li id="browsers"><a  href="#">Browser Support</a></li>
+            </ul>
+        </nav>
+        <div id="waiting-indicator">
+            <img src="assets/img/throbber.gif" width="16" height="16"/>
+            Retrieving records from Browserscope
+        </div>
+        <div id="results_panel">
+
+        </div>
+        <p><a id="test-display-toggle" href="#">Show test results.</a>
+        <div id="qunit"></div>
+    </div>
+
+    
 </body>
 </html>
