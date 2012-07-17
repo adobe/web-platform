@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Auto-sizing regions</title>
+	<link rel="stylesheet" type="text/css" href="assets/style.css" media="all">
+	<style type="text/css">
+	iframe {
+		-ms-flow-into: flow;
+	}
+
+	#top {
+		width: auto;
+		height: auto;
+		border-color: red;
+	}
+	#left {
+		float: left;
+		width: 30em;
+		height: auto;
+		max-height: 6em;
+		border-color: green;
+	}
+	#right {
+		float: right;
+		width: auto;
+		height: auto;
+		max-width: 15em;
+		border-color: blue;
+		-ms-overflow-style: auto;
+		overflow: auto;
+	}
+
+	.region {
+		-ms-flow-from: flow;
+		border: 4px solid lightgreen;
+		margin: 1em;
+	}
+	</style>
+</head>
+<body>
+	<h1>Auto-sizing regions</h1>
+	<div>
+		<div class="region" id="top"></div>
+		<div class="region" id="left"></div>
+		<div class="region" id="right"></div>
+		<h1>CSS Regions auto-sizing</h1>
+		<p>This sample tests CSS Regions auto-sizing as per the May 2012 Working Draft.</p>
+		<p>Given the styling of the regions in this page, three regions should be visible, with red,
+		green and blue borders and the layout should look as follows.</p>
+		<p>The <strong>top</strong> (red border) region should be as wide as the page. It should only
+		be as high as to contain the first heading and the blockquote about quotes (since the content
+		should break before the second heading).</p>
+		<p>The <strong>left</strong> (green border) region should start with the second heading and it
+		should be wider than it is tall (since the <code>max-height</code> is about half the 
+		<code>width</code> for this region).</p>
+		<p>The <strong>right</strong> (blue border) region should be as half as wide as the left region
+		but tall enough to accomodate for the whole remainder of the text. Another heading with some
+		text after it should be visible.</p>
+		<p>If the page is wide enough, this text should start flowing from between the left and right
+		regions and then continue after them.</p>
+		<h2>What comes next is just filler text</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+
+	<iframe src="assets/content-3-breaks.html"></iframe>
+	
+	<script type="text/javascript" src="assets/iechecker.js"></script>
+</body>
+</html>

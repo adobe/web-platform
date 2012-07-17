@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Region styling</title>
+	<link rel="stylesheet" type="text/css" href="assets/style.css" media="all">
+	<style type="text/css">
+	iframe {
+		-ms-flow-into: flow;
+	}
+	@-ms-region .region {
+		h1 {
+			background-color: gray;
+			color: white;
+		}
+
+		h2 {
+			font-style: italic;
+			font-size: 10px;
+		}
+	}
+	.region {
+		border: medium solid black;
+		display: block;
+		float: left;
+		width: 400px;
+		height: 304px;
+		margin: 1em;
+
+		-ms-flow-from: flow;
+	}
+	</style>
+</head>
+<body>
+	<h1>Region styling test</h1>
+	<p>If region styling works, the first heading below should be white on a gray background, while 
+	the second should be italic and with a smaller font-size than the paragraphs below him.</p>
+	<div class="region"></div>
+	<div class="region"></div>
+
+	<iframe src="assets/content-1.html" seamless="true"></iframe>
+	
+	<script type="text/javascript" src="assets/iechecker.js"></script>
+</body>
+</html>

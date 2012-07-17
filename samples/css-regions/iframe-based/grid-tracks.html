@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Regions and grid templates</title>
+	<link rel="stylesheet" type="text/css" href="assets/style.css" media="all">
+	<style type="text/css">
+	#small-flow {
+		-ms-flow-into: small-flow;
+	}
+	#big-flow {
+		-ms-flow-into: big-flow;
+	}
+	.cell {
+		border: 2px solid black;
+		margin: 0.2em;
+	}
+	#layout-container {
+		display: -ms-grid;
+		width: 800px;
+		height: 600px;
+		-ms-grid-columns: 1fr 1fr;
+		-ms-grid-rows: 2fr 1fr 2fr;
+	}
+	#cell-a {
+		-ms-grid-column: 1;
+		-ms-grid-row: 1;
+	}
+	#cell-b {
+		-ms-grid-column: 2;
+		-ms-grid-row: 1;
+		-ms-grid-row-span: 2;
+	}
+	#cell-d {
+		-ms-grid-row: 3;
+		-ms-grid-column: 1;
+		-ms-grid-column-span: 2;
+	}
+	#layout-container>blockquote {	
+		-ms-grid-row: 2;
+		-ms-grid-column: 1;
+		font-size: 150%;
+		font-style: italic;
+	}
+	.from-big {
+		-ms-flow-from: big-flow;
+		overflow: auto;
+		-ms-region-overflow: auto;
+	}
+	.from-small {
+		-ms-flow-from: small-flow;
+	}
+	</style>
+</head>
+<body>
+	<h1>Sample with regions flown into a grid layout</h1>
+	<div id="layout-container">
+		<div class="cell from-small" id="cell-a">Foo</div>
+		<div class="cell from-small" id="cell-b">Bar</div>
+		<div class="cell from-big" id="cell-d">Baz</div>
+		<blockquote>Some things are better served cold, in a nice looking grid.</blockquote>
+	</div>
+
+	<iframe src="assets/content-1.html" id="big-flow"></iframe>
+	<iframe src="assets/content-2-multicol.html" id="small-flow"></iframe>
+	
+	<script type="text/javascript" src="assets/iechecker.js"></script>
+</body>
+</html>

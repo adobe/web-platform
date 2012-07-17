@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS regions CSSOM</title>
+	<link rel="stylesheet" type="text/css" href="assets/style.css" media="all">
+	<style type="text/css">
+	#console {
+		border: medium solid black;
+		width: 400px;
+		height: 200px;
+	}
+	.pass, .fail {
+		margin: 0;
+		font-family: monospace;
+	}
+	.pass::before {
+		content: "PASS";
+		color: green;
+		font-weight: bold;
+		margin: 0 0.5em;
+	}
+	.fail::before {
+		content: "FAIL";
+		color: red;
+		font-weight: bold;
+		margin: 0 0.5em;
+	}
+	</style>
+</head>
+<body>
+	<h1>CSS Regions CSSOM test</h1>
+	<p>If region styling works, the first heading below should be white on a gray background, while 
+	the second should be italic and with a smaller font-size than the paragraphs below him.</p>
+	<div id="console"></div>
+
+	<iframe src="assets/content-1.html" id="content" seamless></iframe>
+	
+	<script type="text/javascript" src="assets/iechecker.js"></script>
+	<script type="text/javascript">
+	
+	(function() {
+		function pass(text) {
+			var line = document.createElement('p');
+			line.innerText = text;
+			line.classList.add('pass');
+
+			document.getElementById('console').appendChild(line);
+		}
+		function fail(text) {
+			var line = document.createElement('p');
+			line.innerText = text;
+			line.classList.add('fail');
+
+			document.getElementById('console').appendChild(line);
+		}
+
+		function searchForProperty(regEx, obj, desc) {
+			var propertyFound = false;
+			for (var prop in obj) {
+				if (prop.match(regEx)) {
+					propertyFound = true;
+					break;
+				}
+			}
+			report(propertyFound, desc);
+		}
+
+		function report(result, text) {
+			if (result) {
+				pass(text);
+			} else {
+				fail(text);
+			}
+		}
+
+		// Check for NamedFlow
+		searchForProperty(/getFlowByName/i, document, "getFlowByName found on document");
+
+		//check for Element.regionOverflow
+		searchForProperty(/regionOverflow/i, document.getElementById('console'), "regionOverflow found on element");
+
+		//check for Element.getRegionFlowRanges
+		searchForProperty(/getRegionFlowRanges/i, document.getElementById('console'), "getRegionFlowRanges() found on element");
+
+		// testing regionLayoutUpdate event
+		var newRegion = document.createElement('div');
+		var timeout = setTimeout(function() {
+			report(false, "regionLayoutUpdate event fired");
+			document.body.removeChild(newRegion);
+		}, 1000);
+		newRegion.addEventListener("msRegionLayoutUpdate", function(evt) {
+			console.log(evt);
+			clearTimeout(timeout);
+			report(true, "regionLayoutUpdate event fired");
+			document.body.removeChild(newRegion);
+		});
+		document.body.appendChild(newRegion);
+		newRegion.style.msFlowFrom = "flow";
+		document.getElementById("content").style.msFlowInto = "flow";
+	})();
+	</script>
+</body>
+</html>

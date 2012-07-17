@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Content in the second flow. Also, multi-col</title>
+	<style type="text/css">
+	body {
+		background-color: #E0E0FF;
+		font-family: Arial, Helvetica, sans-serif;
+		column-count: 2;
+		column-fill: balance;
+		column-gap: 1em;
+	}
+	</style>
+</head>
+<body>
+	<h1>The multi-column model</h1>
+	<p>Multi-column elements flow their contents into column boxes. This contrasts with the traditional
+	<p>Usually, columns are ordered in a single row, according to the inline direction of the element.
+	In the case of paginated media, a new row is created for the new page &ndash; since column
+	boxes should not break.</p>
+	CSS model where each element has a box in which the contents are laid out.</p>
+	<p>While traditionally the children of a multi-column elements where flowed into columns, new
+	CSS specs <em>(e.g. CSS regions)</em> enhance the type of content that can be flown into multiple
+	columns.</p>
+	<p>Currently, individual columns cannot be styled; for instance, the <code>background-color</code>
+	cannot be changed for a single column inside a multi-column element.</p>
+	
+	<h2>How to achieve multi-column?</h2>
+	<p>An element becomes multi-column either of the <code>colum-count</code> or <code>column-width</code>
+	CSS properties are not <code>auto</code>. Specifying a value for the any of these properties
+	turns the element into a multi-column element. Further use of CSS properties can specify how column
+	should be spaced, whether or not they should be visually separated, whether the content should be
+	balanced between columns and whether or not columns should be automatically generated.</p>
+</body>
+</html>

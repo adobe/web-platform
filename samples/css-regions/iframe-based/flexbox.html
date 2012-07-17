@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Regions and flexbox layout</title>
+	<link rel="stylesheet" type="text/css" href="assets/style.css" media="all">
+	<style type="text/css">
+	#small-flow {
+		-ms-flow-into: small-flow;
+	}
+	#big-flow {
+		-ms-flow-into: big-flow;
+		width: 600px;
+	}
+
+	#flexbox-parent {
+		display: -ms-flexbox;
+		-ms-flex-direction: row-reverse;
+		-ms-flex-align: center;
+		-ms-flex-pack: center;
+
+		border: 2px solid black;
+		width: calc(100%-4em);
+		height: 600px;
+		margin: 1em;
+	}
+
+	.from-big {
+		-ms-flow-from: big-flow;
+		height: 500px;
+		border: 1px solid orange;
+		-ms-flex: 1.2 0 auto;
+		margin: 0.5em;
+	}
+	.from-small {
+		-ms-flow-from: small-flow;
+		height: 400px;
+		border: 1px solid lightgreen;
+		-ms-flex: 1 0 auto;
+		margin: 0.5em;
+	}
+	</style>
+</head>
+<body>
+	<h1>CSS Regions and flexbox sample layout</h1>
+	<div id="flexbox-parent">
+		<div class="from-big"></div>
+		<div class="from-small"></div>
+		<div class="from-big"></div>	
+	</div>
+	
+	<iframe src="assets/content-1.html" id="small-flow"></iframe>
+	<iframe src="assets/content-2-multicol.html" id="big-flow"></iframe>
+
+	<script type="text/javascript" src="assets/iechecker.js"></script>
+</body>
+</html>

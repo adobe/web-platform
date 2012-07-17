@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Simple content flowing with CSS Regions</title>
+	<link rel="stylesheet" type="text/css" href="assets/style.css" media="all">
+	<style type="text/css">
+	#first {
+		-ms-flow-into: first;
+	}
+	#from-first {
+		-ms-flow-from: first;
+	}
+	#second {
+		-ms-flow-into: second
+	}
+	#from-second {
+		-ms-flow-from: second;
+	}
+	.region {
+		-ms-flow-from: content;
+		border: 1px solid black;
+		width: 400px;
+		height: 600px;
+		float: left;
+		margin: 2em;
+	}
+	</style>
+</head>
+<body>
+	<h1>Simple content flowing with CSS Regions</h1>
+	<p>You should see two pages of content below: some of it should have a lightgreen background and
+	some of it should have a light purple background.</p>
+
+	<div class="region" id="from-first"></div>
+	<div class="region" id="from-second"></div>
+	<iframe src="assets/content-1.html" id="first" seamless></iframe>
+	<iframe src="assets/content-2-multicol.html" id="second" seamless></iframe>
+	
+	<script type="text/javascript" src="assets/iechecker.js"></script>
+</body>
+</html>
