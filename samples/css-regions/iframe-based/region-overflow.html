@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Region overflow properties</title>
+	<link rel="stylesheet" type="text/css" href="assets/style.css" media="all">
+	<style type="text/css">
+	#first {
+		-ms-flow-into: first;
+	}
+	#second {
+		-ms-flow-into: second;
+	}
+	.region {
+		border: medium solid black;
+		display: block;
+		float: left;
+		width: 300px;
+		height: 404px;
+		margin: 1em;
+	}
+	.from-first {
+		-ms-flow-from: first;
+		-ms-region-overflow: auto;
+		overflow: visible;
+	}
+	.from-second {
+		-ms-flow-from: second;		
+		-ms-region-overflow: break;
+	}
+	</style>
+</head>
+<body>
+	<h1>region-overflow tests</h1>
+	<p>The content in the first region below should overflow the region. The content in the second
+	region below should not overflow.</p>
+	<div class="region from-first"></div>
+	<div class="region from-second"></div>
+
+	<iframe src="assets/content-1.html" id="first" seamless="true"></iframe>
+	<iframe src="assets/content-1.html" id="second" seamless="true"></iframe>
+	
+	<script type="text/javascript" src="assets/iechecker.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Pseudo-elements as regions</title>
+	<link rel="stylesheet" type="text/css" href="assets/style.css" media="all">
+	<style type="text/css">
+	iframe {
+		-ms-flow-into: flow;
+	}
+	.region::before {
+		content: "Before";
+		display: block;
+		width: 200px;
+		height: 200px;
+		border: thick solid orange;
+		-ms-flow-from: flow;
+	}
+	.region::after {
+		content: "After";
+		display: block;
+		width: 200px;
+		height: 300px;
+		background-color: yellow;
+		border: thick solid red;
+		-ms-flow-from: flow;
+	}
+	</style>
+</head>
+<body>
+	<h1>Pseudo-elements as regions</h1>
+	<div class="region">This is the element whose pseudo-elements before and after will be used as
+	regions. The before pseudo-element should have an orange border, while the after pseudo-element
+	should have a red border.</div>
+
+	<iframe src="assets/content-1.html" seamless="true"></iframe>
+	
+	<script type="text/javascript" src="assets/iechecker.js"></script>
+</body>
+</html>

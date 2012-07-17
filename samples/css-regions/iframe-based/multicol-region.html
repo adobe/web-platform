@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Multicol regions</title>
+	<link rel="stylesheet" type="text/css" href="assets/style.css" media="all">
+	<style type="text/css">
+	#small-flow {
+		-ms-flow-into: small-flow;
+	}
+	#big-flow {
+		-ms-flow-into: big-flow;
+	}
+
+	.region {
+		border: 2px solid black;
+		width: 800px;
+		height: 300px;
+		margin: 1em;
+	}
+	.multicol {
+		column-count: 2;
+	}
+
+	.from-big {
+		-ms-flow-from: big-flow;
+	}
+	.from-small {
+		-ms-flow-from: small-flow;
+	}
+	</style>
+</head>
+<body>
+	<h1>Sample with regions that are multicol elements</h1>
+	<h2>Content below should be on 2 columns as per the region container style</h2>
+	<div class="multicol region from-small"></div>
+	<h2>Content below should be on 2 columns as per the syling of the content itself</h2>
+	<div class="region from-big"></div>
+
+	<iframe src="assets/content-1.html" id="small-flow"></iframe>
+	<iframe src="assets/content-2-multicol.html" id="big-flow"></iframe>
+	
+	<script type="text/javascript" src="assets/iechecker.js"></script>
+</body>
+</html>
