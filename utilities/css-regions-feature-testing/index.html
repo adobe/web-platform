@@ -36,8 +36,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <script type="text/javascript">
         var browserscopeURL = "http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBiQzuQQDA?o=json&v=";
-        var browserscopeV = "0";
         var currentBrowserChoice = "browsers-major";
+        var browserscopeV = browserScopeVersionTranslate(currentBrowserChoice);
         var bscope_results;
 
         $(document).ready(function() {
@@ -232,7 +232,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <nav>
             <div id="browser-selector" class="btn-group dropdown">
                 <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span id="browser-current">Browser Families</span>
+                    <span id="browser-current">Major Versions</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
