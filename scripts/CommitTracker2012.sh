@@ -31,7 +31,7 @@
     read -p "$webkithome" -p "Please enter WebKit root directory: " webkithome
     webkithome="${webkithome:-/Users/lmcliste/code/WebKit}"
     # echo $webkithome
-
+ 
 # Make dir for results
     echo changing to results root directory... $resultsroot
     cd $resultsroot
