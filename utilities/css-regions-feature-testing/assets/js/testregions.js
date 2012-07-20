@@ -48,55 +48,86 @@ $(function () {
     
     module("CSS Regions basic", { "setup": setup, "teardown": teardown });
     
-    test("Named flow - content should be pulled to a flow", function(){ 
-        ok($flow.css("flow-into") == "article");
+    test("CSS flow-into support", function(){ 
+        ok($flow.css("flow-into") == "article", "Correct parsing for flow-into CSS property");
     })
     
-    test("Region - should consume from flow", function(){
-        ok($region.css("flow-from") == "article");
+    test("CSS flow-from support", function(){
+        ok($region.css("flow-from") == "article", "Correct parsing for flow-from CSS property");
     })
 
-    test("Region properties - region-overflow property", function() {
+    test("CSS region-overflow support", function() {
         equal($region.css('region-overflow'), 'auto', 'Initial default value for region-overflow');
         
         $region.css('region-overflow', 'break');
-        equal($region.css('region-overflow'), 'break', 'region-overflow: break');
+        equal($region.css('region-overflow'), 'break', 'Correct parsing for region-overflow CSS property');
     })
 
     //TODO Rework and re-enable tests once we get a resolution on intended test & current
     // implementation behavior.
     
     module("CSS OM", { "setup": setup, "teardown": teardown });
+    var flowByNameSupported = true;
     
-    test("Document should return a flow by name", function(){ 
-        ok(prefixMethod(document, "getFlowByName")("article"));
+    test("JavaScript getFlowByName() support", function(){
+        flowByNameSupported =  !!prefixMethod(document, "getFlowByName");
+        if (!flowByNameSupported) {
+            ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+            return;
+        }
+
+        ok(prefixMethod(document, "getFlowByName")("article"), "getFlowByName() returns an object");
     }) 
     
-    test("NamedFlow should have overset property", function(){ 
-        ok(prefixMethod(document, "getFlowByName")("article").overset === false);
+    test("Javascript NamedFlow.overset", function(){
+        if (!flowByNameSupported) {
+            ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+            return;
+        }
+        ok(prefixMethod(document, "getFlowByName")("article").overset === false,
+            "Initial value for NamedFlow.overset");
     })
     
-    test("NamedFlow should have name property", function(){
-        ok(prefixMethod(document, "getFlowByName")("article").name === "article");
+    test("JavaScript NamedFlow.name", function(){
+        if (!flowByNameSupported) {
+            ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+            return;
+        }
+        ok(prefixMethod(document, "getFlowByName")("article").name === "article",
+            "NamedFlow.name returns the name of the flow");
     })
 
-    test("NamedFlow should have getContent() function", function() {
+    test("JavaScript NamedFlow.getContent()", function() {
+        if (!flowByNameSupported) {
+            ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+            return;
+        }
+
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
-        equal(typeof(namedFlow.getContent), "function", "NamedFlow.getContent is a function");
-        equal(namedFlow.getContent().length, 1, "NamedFlow.getContent() has one node");
+        equal(typeof(namedFlow.getContent), "function", "NamedFlow.getContent() is a function");
+        equal(namedFlow.getContent().length, 1, "NamedFlow.getContent() returns a NodeList");
     })
 
-    test("NamedFlow should have getRegionsByContent() function", function() {
+    test("JavaScript NamedFlow.getRegionsByContent()", function() {
+        if (!flowByNameSupported) {
+            ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+            return;
+        }
+
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
-        equal(typeof(namedFlow.getRegionsByContent), "function", "NamedFlow.getRegionsByContent is a function");
+        equal(typeof(namedFlow.getRegionsByContent), "function", "NamedFlow.getRegionsByContent() is a function");
         
         $flow.html('Foo');
         var theRegions = namedFlow.getRegionsByContent($flow.contents()[0]);
         equal(theRegions.length, 1, "One region for the content");
         equal(theRegions[0], $region.get(0), "Same region is returned");
     })
-    
-    test("NamedFlow should have firstEmptyRegionIndex property", function(){
+
+    test("JavaScript NamedFlow.firstEmptyRegionIndex", function(){
+        if (!flowByNameSupported) {
+            ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+            return;
+        }
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
         
         // no regions - but namedFlow still exists because we have content
@@ -124,11 +155,10 @@ $(function () {
         
         // two regions, content flows only into first one
         equal(namedFlow.firstEmptyRegionIndex, "1", "Content fills first region, second region remains empty");
-        $otherRegion.remove();    
-        
+        $otherRegion.remove();        
     })
     
-    test("Element should have regionOverflow property", function(){   
+    test("JavaScript Element.regionOverflow", function(){   
         $region.css(
             {
                 "width": "20px",
@@ -138,7 +168,7 @@ $(function () {
         
         // lots of content, expect overflow
         $flow.html("Long text Long text Long text Long text ");
-        ok($region[0][prefixOM("regionOverflow")] == "overflow"); 
+        ok($region[0][prefixOM("regionOverflow")] == "overflow");
 
         // less content, expect fit
         $flow.html("x");
@@ -150,7 +180,8 @@ $(function () {
     })
 
     //TODO Write tests for getRegionFlowRanges() once this gets implemented
-    asyncTest("regionLayoutUpdate event is thrown", function(){
+
+    asyncTest("JavaScript regionLayoutUpdate event", function(){
 
         function handler(ev) {
             equal(ev.target, $region[0], "Event.target points to the region");
