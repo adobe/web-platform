@@ -83,25 +83,19 @@ $(function () {
     test("NamedFlow should have getContent() function", function() {
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
         equal(typeof(namedFlow.getContent), "function", "NamedFlow.getContent is a function");
-    })
-    
-    test("NamedFlow getContent() should return NodeList", function() {
-        var namedFlow = prefixMethod(document, "getFlowByName")("article");
         equal(namedFlow.getContent().length, 1, "NamedFlow.getContent() has one node");
     })
 
     test("NamedFlow should have getRegionsByContent() function", function() {
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
         equal(typeof(namedFlow.getRegionsByContent), "function", "NamedFlow.getRegionsByContent is a function");
-    })
-    test("NamedFlow getRegionsByContent() should return NodeList", function() {
+        
         $flow.html('Foo');
-        var namedFlow = prefixMethod(document, "getFlowByName")("article");
         var theRegions = namedFlow.getRegionsByContent($flow.contents()[0]);
-
         equal(theRegions.length, 1, "One region for the content");
         equal(theRegions[0], $region.get(0), "Same region is returned");
     })
+    
     test("NamedFlow should have firstEmptyRegionIndex property", function(){
         var namedFlow = prefixMethod(document, "getFlowByName")("article");
         
