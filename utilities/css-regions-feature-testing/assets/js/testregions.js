@@ -28,7 +28,8 @@ $(function () {
         if (obj[method]) {
             return obj[method].bind(obj);
         } else {
-            return obj[prefixOM(method)].bind(obj);
+            var result = obj[prefixOM(method)];
+            return result ? result.bind(obj) : null;
         }
     }
     
@@ -48,15 +49,15 @@ $(function () {
     
     module("CSS Regions basic", { "setup": setup, "teardown": teardown });
     
-    test("CSS flow-into support", function(){ 
+    test("CSS flow-into", function(){ 
         ok($flow.css("flow-into") == "article", "Correct parsing for flow-into CSS property");
     })
     
-    test("CSS flow-from support", function(){
+    test("CSS flow-from", function(){
         ok($region.css("flow-from") == "article", "Correct parsing for flow-from CSS property");
     })
 
-    test("CSS region-overflow support", function() {
+    test("CSS region-overflow", function() {
         equal($region.css('region-overflow'), 'auto', 'Initial default value for region-overflow');
         
         $region.css('region-overflow', 'break');
@@ -69,7 +70,7 @@ $(function () {
     module("CSS OM", { "setup": setup, "teardown": teardown });
     var flowByNameSupported = true;
     
-    test("JavaScript getFlowByName() support", function(){
+    test("JS document.getFlowByName()", function(){
         flowByNameSupported =  !!prefixMethod(document, "getFlowByName");
         if (!flowByNameSupported) {
             ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
@@ -79,7 +80,7 @@ $(function () {
         ok(prefixMethod(document, "getFlowByName")("article"), "getFlowByName() returns an object");
     }) 
     
-    test("Javascript NamedFlow.overset", function(){
+    test("JS NamedFlow.overset", function(){
         if (!flowByNameSupported) {
             ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
             return;
@@ -88,7 +89,7 @@ $(function () {
             "Initial value for NamedFlow.overset");
     })
     
-    test("JavaScript NamedFlow.name", function(){
+    test("JS NamedFlow.name", function(){
         if (!flowByNameSupported) {
             ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
             return;
@@ -97,7 +98,7 @@ $(function () {
             "NamedFlow.name returns the name of the flow");
     })
 
-    test("JavaScript NamedFlow.getContent()", function() {
+    test("JS NamedFlow.getContent()", function() {
         if (!flowByNameSupported) {
             ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
             return;
@@ -108,7 +109,7 @@ $(function () {
         equal(namedFlow.getContent().length, 1, "NamedFlow.getContent() returns a NodeList");
     })
 
-    test("JavaScript NamedFlow.getRegionsByContent()", function() {
+    test("JS NamedFlow.getRegionsByContent()", function() {
         if (!flowByNameSupported) {
             ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
             return;
@@ -123,7 +124,7 @@ $(function () {
         equal(theRegions[0], $region.get(0), "Same region is returned");
     })
 
-    test("JavaScript NamedFlow.firstEmptyRegionIndex", function(){
+    test("JS NamedFlow.firstEmptyRegionIndex", function(){
         if (!flowByNameSupported) {
             ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
             return;
@@ -158,7 +159,7 @@ $(function () {
         $otherRegion.remove();        
     })
     
-    test("JavaScript Element.regionOverflow", function(){   
+    test("JS Element.regionOverflow", function(){   
         $region.css(
             {
                 "width": "20px",
@@ -168,20 +169,20 @@ $(function () {
         
         // lots of content, expect overflow
         $flow.html("Long text Long text Long text Long text ");
-        ok($region[0][prefixOM("regionOverflow")] == "overflow");
+        ok($region[0][prefixOM("regionOverflow")] == "overflow", "regionOverflow is 'overflow'");
 
         // less content, expect fit
         $flow.html("x");
-        ok($region[0][prefixOM("regionOverflow")] == "fit"); 
+        ok($region[0][prefixOM("regionOverflow")] == "fit", "regionOverflow is 'fit'"); 
         
         // no content, expect empty
         $flow.html("");
-        ok($region[0][prefixOM("regionOverflow")] == "empty");
+        ok($region[0][prefixOM("regionOverflow")] == "empty", "regionOverflow is 'empty'");
     })
 
     //TODO Write tests for getRegionFlowRanges() once this gets implemented
 
-    asyncTest("JavaScript regionLayoutUpdate event", function(){
+    asyncTest("JS regionLayoutUpdate event", function(){
 
         function handler(ev) {
             equal(ev.target, $region[0], "Event.target points to the region");
