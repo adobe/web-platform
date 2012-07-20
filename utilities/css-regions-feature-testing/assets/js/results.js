@@ -1,19 +1,4 @@
 /*jslint plusplus: true, sloppy: true, vars: true, browser: true, devel: true */ /*global  $, UAParser*/
-var testShortnames = { "Document should return a flow by name": "Document returns flow",
-            "Element should have regionOverflow property": "Element.regionOverflow",
-            "NamedFlow getContent() should return NodeList": "getContent() = NodeList",
-            "NamedFlow should have getContent() function": "NamedFlow.getContent()",
-            "NamedFlow should have name property": "NamedFlow.name",
-            "NamedFlow should have overset property": "NamedFlow.overset",
-            "regionLayoutUpdate event is thrown": "regionLayoutUpdate event",
-            "Named flow - content should be pulled to a flow": "Named flow pulls content",
-            "Region - should consume from flow": "Region consumes flow",
-            "Region properties - region-overflow property": "Region.region-overflow exists",
-            "NamedFlow should have firstEmptyRegionIndex property": "NamedFlow.firstEmptyRegionIndex",
-            "NamedFlow getRegionsByContent() should return NodeList": "getRegionsByContent() = NodeList",
-            "NamedFlow should have getRegionsByContent() function": "NamedFlow.getRegionsByContent()",
-            "Basic @region rule support": "Basic @region support"};
-
 var browserScopeVersions = {
         "browsers-all": {urlFlag:"3", label:"All Browsers", depth:"version"},
         "browsers-major": {urlFlag:"1", label:"Major Versions", depth:"major"},
@@ -60,15 +45,6 @@ function browserSort(a, b) {
         return 1;
     }
     return 0;
-}
-
-function shortenTestName(longname) {
-    var results = testShortnames[$.trim(longname)];
-    if (typeof results === "undefined") {
-        results = longname;
-    }
-
-    return results;
 }
 
 function drawChart(results) {
@@ -141,7 +117,7 @@ function createTableRows(results) {
         var obj = results.results[i];
 
         for (j = 0; j < obj.results.length; j++) {
-            var row = '<tr><th>' + shortenTestName(obj.results[j].name) + '</th>';
+            var row = '<tr><th>' + obj.results[j].name + '</th>';
 
             for (k = 0; k < results.results.length; k++) {
                 var test = results.results[k].results[j];
