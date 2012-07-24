@@ -5,6 +5,7 @@
 
 import argparse
 from ConfigParser import SafeConfigParser
+import math
 import os
 import re
 from subprocess import Popen,PIPE,check_call
@@ -87,30 +88,28 @@ class Config(object):
     def people_regexp(self):
         def helper(l):
             return '|'.join([ re.escape(i) for i in l if len(i) > 0 ])
-        return helper(self.people.keys()) + '|' + helper(self.people.values())
+        return helper(self.people.iterkeys()) + '|' + helper(self.people.itervalues())
 
 
 class Counter(object):
     def __init__(self, data, config):
         self.data = data
-        self.count = 0
         self._config = config
+        self.count = 0
+        self.count_by_person = { k: 0 for k in self._config.people.iterkeys() }
 
     def start(self):
         self._next_commit()
         for line in self.data:
             if line.startswith('Author'):
-                if self._line_has_person(line):
-                    if self._config.verbose:
-                        print line
-                    self.count += 1
+                if self._count_line_if_match(line):
                     self._next_commit()
             elif line.strip().startswith('Patch by'):
-                if self._line_has_person(line):
-                    if self._config.verbose:
-                        print line
-                    self.count += 1
+                if self._count_line_if_match(line):
                     self._next_commit()
+            elif line.startswith('commit'):
+                if self._config.verbose:
+                    print line
 
     def _next_commit(self):
         for line in self.data:
@@ -119,8 +118,31 @@ class Counter(object):
                     print line
                 return
 
+    def _count_line_if_match(self, line):
+        person = self._line_has_person(line)
+        if person:
+            if self._config.verbose:
+                print line
+            self.count += 1
+            self.count_by_person[person] += 1
+            return True
+        else:
+            return False
+
     def _line_has_person(self, line):
-        return self._config.people_matcher.search(line)
+        match = self._config.people_matcher.search(line)
+        if match:
+            matched = match.group(0)
+            selector = matched.lower()
+            if self._config.people.has_key(selector):
+                return selector
+            else:
+                for (k,v) in self._config.people.iteritems():
+                    if v == matched:
+                        return k
+                raise StandardError, "Unexpected match of unknown value: {0}".format(matched)
+        else:
+            return None
 
 config = Config()
 
@@ -135,4 +157,12 @@ log = Popen(['git', 'log', 'origin/master', '--since="{0}"'.format(config.since)
 counter = Counter(log.stdout, config)
 counter.start()
 
-print('Counted {0} commits since {1}'.format(counter.count, config.since))
+max_digits = 1
+if counter.count > 0:
+    max_digits = int(math.log10(counter.count))+1
+print 'Commits since {0}'.format(config.since)
+breakdown = counter.count_by_person.items()
+breakdown.sort(key=lambda x: -x[1])
+for value in breakdown:
+    print '{0} {1}'.format(str(value[1]).rjust(max_digits), value[0])
+print '{0} total'.format(counter.count)
