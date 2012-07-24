@@ -14,6 +14,7 @@ import time
 class Config(object):
     def __init__(self):
         self.set_defaults()
+        self.parse_args()
 
     def set_defaults(self):
         home = os.getenv('HOME')
@@ -28,7 +29,7 @@ class Config(object):
             self.repository_root = None
         self.verbose = False
         # should we fetch the latest?
-        self.do_fetch = False
+        self.do_fetch = True
         # Date to start grabbing commits at.
         self.since = '01/01/{0}'.format(now.tm_year)
         # FIXME this must move to the config file!
@@ -58,8 +59,12 @@ class Config(object):
 
     def parse_args(self):
         parser = argparse.ArgumentParser(description='Count commits by the Adobe Web Platform Team')
-        parser.add_argument('--config')
-
+        parser.add_argument('--config', default=self.config_file, help='Path to config file')
+        parser.add_argument('--verbose', action='store_true', help='Turn on verbose mode')
+        parser.add_argument('--no-fetch', dest='no_fetch', action='store_true', help="Don't fetch from origin before counting")
+        parser.add_argument('--since', default=self.since, help='Start date for counting. Defaults to Jan 1st of the current year.')
+        parser.add_argument('--repo', dest='repository_root', default=self.repository_root, help='Path to WebKit git repository')
+        self.args = parser.parse_args()
 
     def people_regexp(self):
         def helper(l):
