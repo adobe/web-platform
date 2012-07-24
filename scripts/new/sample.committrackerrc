@@ -1,6 +1,35 @@
+# Sample configuration file for the commit tracker script
 [Options]
+# The path to your git checkout of the WebKit repository
+# note that this script will do a 'git fetch' in this repository, however, it
+# will not touch the working copy. If you wish for it not to do the fetch, set
+# the 'do_fetch' option to False in this file, or pass the --no-fetch command
+# line argument when invoking the script.
 repository_root=/Users/bjonesbe/Code/WebKit
 
+# Toggle verbose output, defaults to False
+# verbose=False
+
+# Toggle running a fetch on the repository before examining the history.
+# Defaults to True.
+# do_fetch=True
+
+# Set the start date for examining the history. Defaults to Janurary 1st of the
+# current year. Note that you can use any date format that Git can understand.
+# since=01/01/2012
+
+# Set the end date for examining the history. This is not set by default.
+# Note that you can use any date format that Git can understand.
+# until=02/01/2012
+
+# The people section is important, this is how the script knows who to look for
+# in the commit history.
+# The format is "Full Name=email address".
+# Use the name and email address that the person uses when they commit to the
+# WebKit tree.
+# Note that due to the way that Python parses this file, the Full Names will be
+# turned to lowercase in the script output, and all checks against the git log
+# output are case insensitive.
 [People]
 Alan Stearns=stearns@adobe.com
 Alexandru Chiculita=achicu@adobe.com
