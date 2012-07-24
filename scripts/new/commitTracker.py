@@ -35,6 +35,8 @@ class Config(object):
         self.do_fetch = True
         # Date to start grabbing commits at.
         self.since = '01/01/{0}'.format(now.tm_year)
+        # Date to stop grabbing commits at.
+        self.until = None
         # This should be set in the config file in the "People" section!
         # dictionary of people who's contributions we are looking for
         # name -> email address
@@ -46,6 +48,7 @@ class Config(object):
         parser.add_argument('--verbose', action='store_true', help='Turn on verbose mode')
         parser.add_argument('--no-fetch', dest='no_fetch', action='store_true', help="Don't fetch from origin before counting")
         parser.add_argument('--since', default=None, help='Start date for counting. Defaults to Jan 1st of the current year.')
+        parser.add_argument('--until', default=None, help='End date for counting.')
         parser.add_argument('--repo', dest='repository_root', default=None, help='Path to WebKit git repository')
         self.args = parser.parse_args()
 
@@ -73,6 +76,11 @@ class Config(object):
             self.since = self.args.since
         elif self.file.has_option('Options', 'since'):
             self.since = self.file.get('Options', 'since')
+
+        if self.args.until:
+            self.until = self.args.until
+        elif self.file.has_option('Options', 'until'):
+            self.until = self.file.get('Options', 'until')
 
         if self.args.repository_root:
             self.repository_root = self.args.repostitory_root
@@ -153,14 +161,24 @@ if config.do_fetch:
     check_call(['git', 'fetch', 'origin'])
 
 print "Processing log"
-log = Popen(['git', 'log', 'origin/master', '--since="{0}"'.format(config.since)], stdout=PIPE)
+git_log_command = ['git', 'log', 'origin/master']
+if config.since:
+    git_log_command.append('--since="{0}"'.format(config.since))
+if config.until:
+    git_log_command.append('--until="{0}"'.format(config.until))
+log = Popen(git_log_command, stdout=PIPE)
 counter = Counter(log.stdout, config)
 counter.start()
 
 max_digits = 1
 if counter.count > 0:
     max_digits = int(math.log10(counter.count))+1
-print 'Commits since {0}'.format(config.since)
+print 'Commits',
+if config.since:
+    print 'since {0}'.format(config.since),
+if config.until:
+    print 'until {0}'.format(config.until),
+print ':'
 breakdown = counter.count_by_person.items()
 breakdown.sort(key=lambda x: -x[1])
 for value in breakdown:
