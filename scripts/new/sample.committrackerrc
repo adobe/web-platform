@@ -1,4 +1,6 @@
-# Sample configuration file for the commit tracker script
+# Sample configuration file for the commit tracker script. You can put this in
+# $HOME/.committrackerrc or put it wherever you want and use the --config
+# option when running the script to tell it where to find the configuration.
 [Options]
 # The path to your git checkout of the WebKit repository
 # note that this script will do a 'git fetch' in this repository, however, it
