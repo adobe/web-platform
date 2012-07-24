@@ -3,10 +3,10 @@ repository_root=/Users/bjonesbe/Code/WebKit
 
 [People]
 Alan Stearns=stearns@adobe.com
+Alexandru Chiculita=achicu@adobe.com
 Arno Gourdol=
 Bear Travis=betravis@adobe.com
 Bem Jones-Bey=bjonesbe@adobe.com
-Alexandru Chiculita=achicu@adobe.com
 David Alcala=dalcala@adobe.com
 Dirk Schulze=krit@webkit.org
 Ethan Malasky=emalasky@adobe.com
@@ -14,6 +14,7 @@ Hans Muller=hmuller@adobe.com
 Jacob Goldstein=jacobg@adobe.com
 Larry McLister=lmcliste@adobe.com
 Max Vujovic=mvujovic@adobe.com
+Michelangelo De Simone=michelangelo@webkit.org
 Mihai Balan=mibalan@adobe.com
 Mihnea Ovidenie=mihnea@adobe.com
 Raul Hudea=rhudea@adobe.com
