@@ -68,6 +68,6 @@
 # Search for commits where we created the patch
     echo "looking for 'Patch by'..."
     
-    git log --since="01/01/2012" | grep "^[\\t ]*Patch by " | sed 's/ <.*//; s/\\t*//; s/ *//; s/^[\\t ]*Patch by //' -e 's/   //g' -e 's/  //g' -e 's/ /, /' | sort | uniq -c | sort -nr  | egrep 'Bear Travis|Mihnea|Chiculita|Raul Hudea|Max Vujovic|Hans Muller|Ethan Malasky|Arno Gourdol|Alan Stearns|Larry McLister|Jacob Goldstein|Dirk Schulze|Rebecca Hauck|Flex Mobile|David Alcala|Victor Carbune|Mihai Balan' > $store/$gitLogByPatch
+    git log --since="01/01/2012" | grep "^[\\t ]*Patch by " | sed 's/ <.*//; s/\\t*//; s/ *//; s/^[\\t ]*Patch by //' | sort | uniq -c | sort -nr  | egrep 'Bear Travis|Mihnea|Chiculita|Raul Hudea|Max Vujovic|Hans Muller|Ethan Malasky|Arno Gourdol|Alan Stearns|Larry McLister|Jacob Goldstein|Dirk Schulze|Rebecca Hauck|Flex Mobile|David Alcala|Victor Carbune|Mihai Balan' > $store/$gitLogByPatch
 
     open $store
