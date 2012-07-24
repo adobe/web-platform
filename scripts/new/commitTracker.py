@@ -2,44 +2,6 @@
 
 # Commit tracker
 
-################################################################################
-# FIXME all of the following should be in a config file and set via command
-# line args
-
-verbose = False
-
-# Date to start grabbing commits at.
-since='01/01/2012' 
-
-# repository
-# FIXME we really need a much better default than this, or it must be required
-# to be set
-repositoryRoot = '/Users/bjonesbe/Code/WebKit'
-
-# dictionary of people who's contributions we are looking for
-# name -> email address
-people = {
-    'Bear Travis': '',
-    'Mihnea': 'mihnea@adobe.com',
-    'Chiculita': 'achicu@adobe.com',
-    'Raul Hudea': '',
-    'Max Vujovic': '',
-    'Hans Muller': '',
-    'Ethan Malasky': '',
-    'Arno Gourdol': '',
-    'Alan Stearns': '',
-    'Larry McLister': '',
-    'Jacob Goldstein': '',
-    'Dirk Schulze': 'krit@webkit.org',
-    'Rebecca Hauck': '',
-    'Flex Mobile': '',
-    'David Alcala': '',
-    'Victor Carbune': '',
-    'Mihai Balan': '',
-    'Bem Jones-Bey': 'bjonesbe@adobe.com'
-}
-
-################################################################################
 
 import argparse
 from ConfigParser import SafeConfigParser
@@ -47,31 +9,82 @@ import os
 import re
 from subprocess import Popen,PIPE,check_call
 import sys
+import time
 
-def peopleRegexp():
-    return listToOrRegexp(people.keys()) + '|' + listToOrRegexp(people.values())
+class Config(object):
+    def __init__(self):
+        self.set_defaults()
 
-def listToOrRegexp(l):
-    return '|'.join([ re.escape(i) for i in l if len(i) > 0 ])
+    def set_defaults(self):
+        home = os.getenv('HOME')
+        now = time.localtime()
+        if home:
+            # configuration file
+            self.config_file = home + os.sep + '.committrackerrc'
+            # repository
+            self.repository_root = home + os.sep + 'Code' + os.sep + 'WebKit'
+        else:
+            self.config_file = None
+            self.repository_root = None
+        self.verbose = False
+        # should we fetch the latest?
+        self.do_fetch = False
+        # Date to start grabbing commits at.
+        self.since = '01/01/{0}'.format(now.tm_year)
+        # FIXME this must move to the config file!
+        # dictionary of people who's contributions we are looking for
+        # name -> email address
+        self.people = {
+            'Bear Travis': '',
+            'Mihnea': 'mihnea@adobe.com',
+            'Chiculita': 'achicu@adobe.com',
+            'Raul Hudea': '',
+            'Max Vujovic': '',
+            'Hans Muller': '',
+            'Ethan Malasky': '',
+            'Arno Gourdol': '',
+            'Alan Stearns': '',
+            'Larry McLister': '',
+            'Jacob Goldstein': '',
+            'Dirk Schulze': 'krit@webkit.org',
+            'Rebecca Hauck': '',
+            'Flex Mobile': '',
+            'David Alcala': '',
+            'Victor Carbune': '',
+            'Mihai Balan': '',
+            'Bem Jones-Bey': 'bjonesbe@adobe.com'
+        }
+        self.people_matcher = re.compile(self.people_regexp())
+
+    def parse_args(self):
+        argParser = argparse.ArgumentParser(description='Count commits by the Adobe Web Platform Team')
+        argParser.add_argument('--config')
+
+
+    def people_regexp(self):
+        def helper(l):
+            return '|'.join([ re.escape(i) for i in l if len(i) > 0 ])
+        return helper(self.people.keys()) + '|' + helper(self.people.values())
+
 
 class Counter(object):
-    def __init__(self, data):
+    def __init__(self, data, config):
         self.data = data
         self.count = 0
-        self._currentCommit = 'NONE'
+        self._config = config
 
     def start(self):
         self._nextCommit()
         for line in self.data:
             if line.startswith('Author'):
                 if self._lineHasPerson(line):
-                    if verbose:
+                    if self._config.verbose:
                         print line
                     self.count += 1
                     self._nextCommit()
             elif line.strip().startswith('Patch by'):
                 if self._lineHasPerson(line):
-                    if verbose:
+                    if self._config.verbose:
                         print line
                     self.count += 1
                     self._nextCommit()
@@ -79,23 +92,24 @@ class Counter(object):
     def _nextCommit(self):
         for line in self.data:
             if line.startswith('commit'):
-                if verbose:
+                if self._config.verbose:
                     print line
                 return
 
     def _lineHasPerson(self, line):
-        return peopleMatcher.search(line)
+        return self._config.people_matcher.search(line)
 
+config = Config()
 
-peopleMatcher = re.compile(peopleRegexp())
+os.chdir(config.repository_root)
 
-os.chdir(repositoryRoot)
-print "Fetching updates"
-check_call(['git', 'fetch', 'origin'])
+if config.do_fetch:
+    print "Fetching updates"
+    check_call(['git', 'fetch', 'origin'])
 
 print "Processing log"
-log = Popen(['git', 'log', 'origin/master', '--since="{0}"'.format(since)], stdout=PIPE)
-counter = Counter(log.stdout)
+log = Popen(['git', 'log', 'origin/master', '--since="{0}"'.format(config.since)], stdout=PIPE)
+counter = Counter(log.stdout, config)
 counter.start()
 
-print('Counted {0} commits since {1}'.format(counter.count, since))
+print('Counted {0} commits since {1}'.format(counter.count, config.since))
