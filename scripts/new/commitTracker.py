@@ -57,8 +57,8 @@ class Config(object):
         self.people_matcher = re.compile(self.people_regexp())
 
     def parse_args(self):
-        argParser = argparse.ArgumentParser(description='Count commits by the Adobe Web Platform Team')
-        argParser.add_argument('--config')
+        parser = argparse.ArgumentParser(description='Count commits by the Adobe Web Platform Team')
+        parser.add_argument('--config')
 
 
     def people_regexp(self):
@@ -74,29 +74,29 @@ class Counter(object):
         self._config = config
 
     def start(self):
-        self._nextCommit()
+        self._next_commit()
         for line in self.data:
             if line.startswith('Author'):
-                if self._lineHasPerson(line):
+                if self._line_has_person(line):
                     if self._config.verbose:
                         print line
                     self.count += 1
-                    self._nextCommit()
+                    self._next_commit()
             elif line.strip().startswith('Patch by'):
-                if self._lineHasPerson(line):
+                if self._line_has_person(line):
                     if self._config.verbose:
                         print line
                     self.count += 1
-                    self._nextCommit()
+                    self._next_commit()
 
-    def _nextCommit(self):
+    def _next_commit(self):
         for line in self.data:
             if line.startswith('commit'):
                 if self._config.verbose:
                     print line
                 return
 
-    def _lineHasPerson(self, line):
+    def _line_has_person(self, line):
         return self._config.people_matcher.search(line)
 
 config = Config()
