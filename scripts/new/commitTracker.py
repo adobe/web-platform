@@ -41,15 +41,18 @@ people = {
 
 ################################################################################
 
+import argparse
+from ConfigParser import SafeConfigParser
 import os
 import re
 from subprocess import Popen,PIPE,check_call
 import sys
 
-def filterAndEscape(l):
-    return [ re.escape(i) for i in l if len(i) > 0 ]
+def peopleRegexp():
+    return listToOrRegexp(people.keys()) + '|' + listToOrRegexp(people.values())
 
-peopleMatcher = re.compile('|'.join(filterAndEscape(people.keys())) + '|' + '|'.join(filterAndEscape(people.values())))
+def listToOrRegexp(l):
+    return '|'.join([ re.escape(i) for i in l if len(i) > 0 ])
 
 class Counter(object):
     def __init__(self, data):
@@ -83,10 +86,14 @@ class Counter(object):
     def _lineHasPerson(self, line):
         return peopleMatcher.search(line)
 
+
+peopleMatcher = re.compile(peopleRegexp())
+
 os.chdir(repositoryRoot)
-print("Fetching updates")
+print "Fetching updates"
 check_call(['git', 'fetch', 'origin'])
 
+print "Processing log"
 log = Popen(['git', 'log', 'origin/master', '--since="{0}"'.format(since)], stdout=PIPE)
 counter = Counter(log.stdout)
 counter.start()
