@@ -28,10 +28,6 @@ $(function () {
             result = ($element.css('flow-into') == 'test-flow');
             var bRect = $element[0].getBoundingClientRect();
 
-            console.log("CSS test: " + result);
-            console.log("Rect: ");
-            console.dir(bRect);
-
             return result && (bRect.top == 0 || bRect.left == 0 || bRect.bottom == 0 || bRect.right == 0);
         },
         prefixOM: function (name) {
