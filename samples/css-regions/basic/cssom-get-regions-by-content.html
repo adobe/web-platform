@@ -18,23 +18,13 @@
         -webkit-flow-from: article;
         width: 500px;
         height: 100px;
-        position: absolute;
-        visibility: hidden;
-        left: 0px;
-        top: 0px;
+        opacity: 0.0;
         margin: 0;
         padding: 0;
+        -webkit-transition: opacity 0.5s;
     }
-
     .visible{
-        position: static;
-        visibility: visible;
-        
-    }
-    .alwaysvisible {
-        -webkit-flow-from: article;
-        width: 100%;
-        height: 100px;
+        opacity: 1.0; 
     }
 
     .tableofcontents {
@@ -56,6 +46,16 @@
         width:60%;
         margin: 1% auto;
         min-width: 770px;
+    }
+
+    #regions-container {
+        position: relative;
+        -webkit-transition: height 0.5s;
+    }
+    #regions-scroller {
+        position: relative;
+        overflow: hidden;
+        -webkit-transition: -webkit-transform 0.5s;
     }
 
     ul {
@@ -85,6 +85,7 @@
         </ul>
     
         <div class="page" id="regions-container">
+            <div id="regions-scroller"></div>
         </div>
     </div>
 
@@ -166,7 +167,6 @@
 
     <script type="text/javascript" src="shared-script.js"></script>
     <script type="text/javascript">
-        var section = null;
         var namedFlow = document.webkitGetFlowByName("article");
         function ensureNoOverflow()
         {
@@ -174,8 +174,7 @@
             while (namedFlow.firstEmptyRegionIndex == -1) {
                 var newRegion = document.createElement("div");
                 newRegion.classList.add("region");
-                newRegion.classList.add("visible");
-                document.getElementById("regions-container").appendChild(newRegion);
+                document.getElementById("regions-scroller").appendChild(newRegion);
                 ++added;
 
                 // FIXME: Workaround for Webkit bug 92506
@@ -186,13 +185,32 @@
         }
 
         function makeRegionsVisibleForContent(content) {
-            specialRegions = namedFlow.getRegionsByContent(content);
-            var len = specialRegions.length;
-            for (var i = 0; i < len; ++i)
-                specialRegions[i].classList.add("visible");
+            contentRegions = namedFlow.getRegionsByContent(content);
+            var len = contentRegions.length;
+            var totalHeight = 0;
+            var contentTop = 0;
+            var regionsTop = document.querySelector('.region').getBoundingClientRect().top;
+
+
+            for (var i = 0; i < len; ++i) {
+                if (i == 0) {
+                    contentTop = contentRegions[i].getBoundingClientRect().top;
+                }
+                if (i == len - 1) {
+                    var rect = contentRegions[i].getBoundingClientRect();
+                    totalHeight = rect.top - contentTop + rect.height;
+                }
+                contentRegions[i].classList.add("visible");
+            }
+
+            var scroller = document.querySelector('#regions-scroller');
+            scroller.style.webkitTransform = "translateY(" + (regionsTop - contentTop) + "px)";
+
+            var container = document.querySelector('#regions-container');
+            container.style.height = totalHeight + "px";
         }
 
-        function revealSection()
+        function revealSection(section)
         {
             ensureNoOverflow();
             // make all regions invisible
@@ -204,24 +222,22 @@
             makeRegionsVisibleForContent(section);
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            document.addEventListener("click", function(evt) {
-                if (evt.target && evt.target.nodeName == "A") {
-                    var sectionId = evt.target.href;
-                    sectionId = sectionId.match(/#.*$/);
-                    section = document.querySelector(sectionId);
-                    revealSection();
-                }
-            })
-            
-            var tags = document.getElementsByTagName("a");
-            for (var i = 0; i < tags.length; ++i) {
-                tags[i].onclick = function(){return false;}
-            }
-            
-            section = document.querySelector("#introduction");
-            revealSection();
+        document.addEventListener("DOMContentLoaded", function() {    
+            var section = document.querySelector("#introduction");
+            revealSection(section);
         });
+
+        document.addEventListener("click", function(evt) {
+            if (evt.target && evt.target.nodeName == "A") {
+                var sectionId = evt.target.href;
+                sectionId = sectionId.match(/#.*$/);
+                section = document.querySelector(sectionId);
+                revealSection(section);
+
+                //cancel navigation
+                evt.preventDefault();
+            }
+        })
     </script>
 </body>
 </html>
