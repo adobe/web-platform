@@ -17,11 +17,12 @@
     .region{
         -webkit-flow-from: article;
         width: 500px;
-        height: 100px;
+        height: 16em;
         opacity: 0.0;
         margin: 0;
-        padding: 0;
+        padding: 0.25em 0;
         -webkit-transition: opacity 0.5s;
+        border-bottom: 4px double lightgray;
     }
     .visible{
         opacity: 1.0; 
@@ -34,14 +35,6 @@
         float: left;
     }
 
-    .page{
-        width: 60%;
-        padding: 30px;
-        min-width: 500px;
-        float: left;
-        border-left: 1px solid lightgray;
-    }
-
     .container {
         width:60%;
         margin: 1% auto;
@@ -49,17 +42,25 @@
     }
 
     #regions-container {
+        width: 60%;
+        padding: 30px;
+        padding-bottom: 10px;
+        min-width: 500px;
+        float: left;
+        border-left: 1px solid lightgray;
         position: relative;
+        overflow: hidden;
         -webkit-transition: height 0.5s;
     }
     #regions-scroller {
         position: relative;
-        overflow: hidden;
+        z-index: -100;
         -webkit-transition: -webkit-transform 0.5s;
     }
 
     ul {
         list-style-type: none; 
+        padding-left: 20px;
     }
 
     li {
@@ -72,16 +73,20 @@
 
     <div class="container">
         <article>
-            <h1>Using javascript to retrieve regions where content is flowed</h1>
+            <h1>Using JavaScript to retrieve regions where the content is flowed</h1>
              <section>
-                <p class="tip"><strong>Hint:</strong> Click on different parts on the table of contents to read different parts of the document.</p>
+                <p class="tip"><strong>Hint:</strong> Click on the chapter headings in the table of contents to read through the document.</p>
             </section>
         </article>
 
         <ul class="tableofcontents">
-            <li> <a href="#introduction">Introduction</a> </li>
-            <li> <a href="#chapter1">Typography demo</a> </li>
-            <li> <a href="#chapter2">Filler text</a> </li>
+            <li><strong>Table of Contents</strong></li>
+            <ul>
+                <li><a href="#text-intro">Introduction</a> </li>
+                <li><a href="#text-details">Sample details</a></li>
+                <li><a href="#text-typography">Typography sample</a> </li>
+                <li><a href="#text-filler">Filler text</a> </li>
+            </ul>
         </ul>
     
         <div class="page" id="regions-container">
@@ -93,73 +98,48 @@
 
     <article class="content">
        
-        <section id="introduction">
+        <section id="text-intro">
             <p>
-                When content is being flowed in a region chain, the regions in which it actually ends up flowing may vary. The actual regions in which certain content is being flowed can be fetched using the <code>getRegionsByContent</code> function, available on the <code>NamedFlow</code> object. 
+                When the contents of a named flow are flowed in a region chain, different bits of the named flow will end up in different regions. What will flow where depends on the amount of content in the named flow and the number and the geometry of the regions in the region chain.
             </p>
             <p>
-                <code>getRegionsByContent</code> receives a <code>contentNode</code> as a parameter, and returns a <code>NodeList</code> of regions in which the content is flowed.
+                To determine the actual region(s) in which a particular element is flowed, the <code>NamedFlow</code> object exposes the <code>getRegionsByContent()</code> method. The <code>getRegionsByContent()</code> method accepts a <code>Node</code> parameter and returns the list of the regions in which the given <code>Node</code> is flowed in the form of a <code>NodeList</code>.
+            </p>
+        </section>
+        <section id="text-details">
+             <p>
+                In this sample, you can use the table of contents on the left to select which sections of the document to display. The contents of the named flow consist of an <code>&lt;article&gt;</code> element with number of <code>&lt;section&gt;</code> children. Each item in the table of contents point to a section in the article. The named flow is flowed in a region chain composed of fixed sized <code>&lt;div&gt;</code> elements.
             </p>
             <p>
-                In this sample, you can select using the table of contents which sections of the document to display at one time. The regions in which the selected content is flowed become visible, while the rest are set to invisible. 
+                When selecting a section through the table of contents, the regions that contain the selected section are made visible and scrolled into view using JavaScript and a drop of CSS transitions for eye-candy :)
+            </p>
+            <p></p>
+        </section>
+        <section id="text-typography">
+            <p></p>
+            <p>
+                Jackdaws love my big sphinx of quartz. Jackdaws love my big sphinx of quartz. Jackdaws love my big sphinx of quartz.
+            </p>
+            <p>
+                The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+            </p>
+            <p>
+                Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs. Pack my box with five dozen liquor jugs.
+            </p>
+            <p>
+                When zombies arrive, quickly fax judge Pat. When zombies arrive, quickly fax judge Pat. When zombies arrive, quickly fax judge Pat. When zombies arrive, quickly fax judge Pat.
             </p>
         </section>
 
-        <section id="chapter1">
-            <p>
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-            </p>
-            <p>
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-            </p>
-            <p>
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-            </p>
-            <p>
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-            </p>
-            <p>
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-                The quick brown fox jumps over the lazy dog.
-            </p>
-        </section>
-
-        <section id="chapter2">
+        <section id="text-filler">
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula eget elit dapibus ultricies. Sed vitae sem in dolor porttitor dictum eu in turpis. Cras dui ligula, pellentesque vitae imperdiet at, molestie nec tortor. Fusce fringilla ante eget metus iaculis fringilla. Nulla facilisi. Cras porta interdum nulla elementum ornare. Morbi at arcu elit. Sed mattis aliquam purus ut molestie. Sed egestas lacus eget dui malesuada eget feugiat odio suscipit. Proin lobortis justo eget augue cursus in ultricies urna ultricies. Fusce ut libero sit amet enim scelerisque tempus. Ut elementum tempus dignissim. In vitae mauris magna, non faucibus tellus. Ut velit sem, auctor eget aliquet sed, sodales ut risus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula eget elit dapibus ultricies. Sed vitae sem in dolor porttitor dictum eu in turpis. Cras dui ligula, pellentesque vitae imperdiet at, molestie nec tortor. Fusce fringilla ante eget metus iaculis fringilla. Nulla facilisi.
         </p>
-
         <p>
-            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus libero libero, congue et tempor sit amet, condimentum sed erat. In rutrum, orci et laoreet lacinia, lacus mauris mattis turpis, vel dignissim urna risus eget turpis. Duis ligula tortor, vehicula ut porta vel, varius eget erat. Suspendisse sem nulla, placerat in viverra et, auctor id diam. Nulla consequat molestie enim a euismod. Nam interdum sapien non orci porttitor quis bibendum neque mattis. Sed at enim diam, dapibus rhoncus est. Sed adipiscing justo quis sapien aliquam facilisis. Integer eget diam ut neque placerat molestie quis ac odio. Sed laoreet bibendum tellus, aliquet ultricies nulla congue id. Vivamus vulputate ultricies dui a imperdiet. Morbi quis arcu purus, condimentum vulputate arcu. Quisque eros purus, pharetra non scelerisque in, varius a massa. Curabitur at ipsum ante, quis sollicitudin arcu.
+            Cras porta interdum nulla elementum ornare. Morbi at arcu elit. Sed mattis aliquam purus ut molestie. Sed egestas lacus eget dui malesuada eget feugiat odio suscipit. Proin lobortis justo eget augue cursus in ultricies urna ultricies. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus libero libero, congue et tempor sit amet, condimentum sed erat. In rutrum, orci et laoreet lacinia, lacus mauris mattis turpis, vel dignissim urna risus eget turpis. Duis ligula tortor, vehicula ut porta vel, varius eget erat. Suspendisse sem nulla, placerat in viverra et, auctor id diam. Nulla consequat molestie enim a euismod. Nam interdum sapien non orci porttitor quis bibendum neque mattis. Sed at enim diam, dapibus rhoncus est. Sed adipiscing justo quis sapien aliquam facilisis. Integer eget diam ut neque placerat molestie quis ac odio.
+        </p>
+        <p>
+            Sed laoreet bibendum tellus, aliquet ultricies nulla congue id. Vivamus vulputate ultricies dui a imperdiet. Morbi quis arcu purus, condimentum vulputate arcu. Quisque eros purus, pharetra non scelerisque in, varius a massa. Curabitur at ipsum ante, quis sollicitudin arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus libero libero, congue et tempor sit amet, condimentum sed erat. In rutrum, orci et laoreet lacinia, lacus mauris mattis turpis, vel dignissim urna risus eget turpis. Duis ligula tortor, vehicula ut porta vel, varius eget erat.
         </p>
         </section>
 
@@ -202,12 +182,12 @@
                 }
                 contentRegions[i].classList.add("visible");
             }
-
-            var scroller = document.querySelector('#regions-scroller');
-            scroller.style.webkitTransform = "translateY(" + (regionsTop - contentTop) + "px)";
-
+            // Set the height of the container to the total height of the visible regions
             var container = document.querySelector('#regions-container');
             container.style.height = totalHeight + "px";
+            // Scroll the region chain to make the selected regions visible in the page
+            var scroller = document.querySelector('#regions-scroller');
+            scroller.style.webkitTransform = "translateY(" + (regionsTop - contentTop) + "px)";
         }
 
         function revealSection(section)
@@ -223,7 +203,7 @@
         }
 
         document.addEventListener("DOMContentLoaded", function() {    
-            var section = document.querySelector("#introduction");
+            var section = document.querySelector("#text-intro");
             revealSection(section);
         });
 
@@ -233,8 +213,6 @@
                 sectionId = sectionId.match(/#.*$/);
                 section = document.querySelector(sectionId);
                 revealSection(section);
-
-                //cancel navigation
                 evt.preventDefault();
             }
         })
