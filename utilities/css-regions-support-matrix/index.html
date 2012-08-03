@@ -24,7 +24,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>CSS Regions Test Suite - Browserscope Results</title>
+	<title>CSS Regions Support Matrix - Browserscope Results</title>
     <link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css" media="screen">
     <link rel="stylesheet" href="assets/css/results.css" type="text/css" media="screen">
@@ -187,7 +187,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         runsLink.href = 'http://www.browserscope.org/browse?category=usertest_'+ _bTestKey  
         runsLink.textContent = 'Test Runs on Browserscope'    
         
-        container.appendChild(resultsLink)    
+        container.appendChild(resultsLink)
+        container.appendChild(document.createElement('br'))
         container.appendChild(runsLink)
 
         handleTestRun(_bTestResults);
@@ -204,7 +205,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <div class="row">
             <header class="span6">
                 <h1 id="bscope-test-title">CSS Regions Support</h1>
-                <div id="bscope-test-desc">Test CSS Regions support across browsers using the test suite compatible with the latest CSS Regions Working Draft from the W3C.</div>
+                <div id="bscope-test-desc">Check the support for CSS Regions across browsers. The matrix below contains the features in the latest CSS Regions Working Draft from the W3C.</div>
 
                 <ul>
                     <li><a href="http://dev.w3.org/csswg/css3-regions/" target="_blank">CSS Regions W3C Specification →</a></li>
