@@ -54,7 +54,7 @@ window.onload = function(){
         },
         {
             label: "3/1/2012",
-            value: "31",
+            value: "101",
         },
         {
             label: "4/1/2012",
@@ -62,7 +62,7 @@ window.onload = function(){
         }
     ];
     labels = [], data = [];
-    for (var i = commitdata.length - 1; i >= 0; i--) {
+    for (var i = 0; i < commitdata.length; i++) {
         labels.push(commitdata[i].label);
         data.push(commitdata[i].value);
     };
@@ -86,7 +86,6 @@ window.onload = function(){
         max = Math.max( max, committarget ),
         Y = (height - bottomgutter - topgutter) / max;
 
-    alert("max = "+max);
     function drawBaseline( startval, endval, attr ){
         var path = r.path()
             .attr( {stroke: "#aaa", "stroke-width": 2, "stroke-linejoin": "round"}),
@@ -108,8 +107,21 @@ window.onload = function(){
 
 
     r.drawGrid(leftgutter + X * .5 + .5, topgutter + .5, width - leftgutter - X, height - topgutter - bottomgutter, columncount, Math.floor( max/rowincrement) , "#000");
-    drawBaseline(0, committarget, false)
+    var baseline = drawBaseline(0, committarget, false);
 
+    // Draw the commit data path
+    var cp = r.path()
+        .attr( {"stroke": color, "stroke-width": 4, "stroke-linejoin": "round"}),
+        cpp = [];
+    for (var i = 0; i < data.length; i++) {
+        var x0 = leftgutter + X * ( i + .5 ),
+            y0 = height - bottomgutter - Y * data[i] + cp.attr("stroke-width");
+            if (!i) 
+                cpp.push(['M', x0, y0, 'C', x0, y0 ])
+            else
+                cpp.push([x0, y0])
+    }
+    cp.attr({path: cpp});
 
     circle.toFront();
 };
