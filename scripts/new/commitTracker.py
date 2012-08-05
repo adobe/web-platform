@@ -12,6 +12,9 @@ from subprocess import Popen,PIPE,check_call
 import sys
 import time
 
+
+import pdb
+
 class Config(object):
     def __init__(self):
         self.set_defaults()
@@ -42,6 +45,8 @@ class Config(object):
         # name -> email address
         self.people = { }
 
+        self.format = 'Normal'
+
     def parse_args(self):
         parser = argparse.ArgumentParser(description='Count commits by the Adobe Web Platform Team')
         parser.add_argument('--config', default=None, help='Path to config file, default is {0}'.format(self.config_file))
@@ -50,6 +55,7 @@ class Config(object):
         parser.add_argument('--since', default=None, help='Start date for counting. Defaults to Jan 1st of the current year.')
         parser.add_argument('--until', default=None, help='End date for counting.')
         parser.add_argument('--repo', dest='repository_root', default=None, help='Path to WebKit git repository')
+        parser.add_argument('--show-total', dest='show_total', action='store_true', default=None, help='Output only the total')
         self.args = parser.parse_args()
 
     def read_config(self):
@@ -63,9 +69,9 @@ class Config(object):
 
     def set_config(self):
         if self.args.verbose:
-            self.verbose = True
+            self.format = 'Verbose'
         elif self.file.has_option('Options', 'verbose'):
-            self.verbose = self.file.get_boolean('Options', 'verbose')
+            self.format = 'Verbose' if self.file.get_boolean('Options', 'verbose') else self.format
 
         if self.args.no_fetch:
             self.do_fetch = False
@@ -87,6 +93,20 @@ class Config(object):
         elif self.file.has_option('Options', 'repository_root'):
             self.repository_root = self.file.get('Options', 'repository_root')
 
+        if self.args.show_total:
+            self.format = 'Total'
+        elif self.file.has_option('Options','show_total'):
+            self.format = self.file.get('Options', 'show_total')
+
+        self.print_total = False
+        if (self.format == 'Verbose' or self.format == 'Total' or self.format == 'Normal'): self.print_total = True
+
+        self.print_normal = True;
+        if self.format == 'Total': self.print_normal = False
+
+        self.print_verbose = False;
+        if self.format == 'Verbose': self.print_verbose = True
+
         if self.file.has_section('People'):
             self.people = { person[0] : person[1] for person in self.file.items('People') }
 
@@ -97,6 +117,23 @@ class Config(object):
         def helper(l):
             return '|'.join([ re.escape(i) for i in l if len(i) > 0 ])
         return helper(self.people.iterkeys()) + '|' + helper(self.people.itervalues())
+
+    def print_verbose(self):
+        if self.format == 'Verbose':
+            return True
+        return False
+
+    # Normal text
+    def print_normal(self):
+        if self.format == 'Verbose' or self.format == 'Normal':
+            return True
+        return False   
+
+
+    def print_total(self):
+        if self.format == 'Verbose' or self.format == 'Total' or self.format == 'Normal':
+            return True
+        return False   
 
 
 class Counter(object):
@@ -116,21 +153,18 @@ class Counter(object):
                 if self._count_line_if_match(line):
                     self._next_commit()
             elif line.startswith('commit'):
-                if self._config.verbose:
-                    print line
+                if self._config.print_verbose: print line
 
     def _next_commit(self):
         for line in self.data:
             if line.startswith('commit'):
-                if self._config.verbose:
-                    print line
+                if self._config.print_verbose: print line
                 return
 
     def _count_line_if_match(self, line):
         person = self._line_has_person(line)
         if person:
-            if self._config.verbose:
-                print line
+            if self._config.print_verbose: print line
             self.count += 1
             self.count_by_person[person] += 1
             return True
@@ -155,12 +189,10 @@ class Counter(object):
 config = Config()
 
 os.chdir(config.repository_root)
-
 if config.do_fetch:
-    print "Fetching updates"
+    if config.print_normal: print 'Fetching updates'
     check_call(['git', 'fetch', 'origin'])
 
-print "Processing log"
 git_log_command = ['git', 'log', 'origin/master']
 if config.since:
     git_log_command.append('--since="{0}"'.format(config.since))
@@ -170,17 +202,22 @@ log = Popen(git_log_command, stdout=PIPE)
 counter = Counter(log.stdout, config)
 counter.start()
 
-max_digits = 1
-if counter.count > 0:
-    max_digits = int(math.log10(counter.count))+1
-print 'Commits',
-if config.since:
-    print 'since {0}'.format(config.since),
-if config.until:
-    print 'until {0}'.format(config.until),
-print ':'
-breakdown = counter.count_by_person.items()
-breakdown.sort(key=lambda x: -x[1])
-for value in breakdown:
-    print '{0} {1}'.format(str(value[1]).rjust(max_digits), value[0])
-print '{0} total'.format(counter.count)
+if config.print_normal:
+    max_digits = 1
+    if counter.count > 0:
+        max_digits = int(math.log10(counter.count))+1
+    print('Commits')
+    if config.since:
+        print( 'since {0}'.format(config.since)),
+    if config.until:
+        print( 'until {0}'.format(config.until)),
+    print ':'
+    breakdown = counter.count_by_person.items()
+    breakdown.sort(key=lambda x: -x[1])
+    for value in breakdown:
+        print( '{0} {1}'.format(str(value[1]).rjust(max_digits), value[0]) )
+
+if config.print_total:
+    print counter.count
+elif config.print_normal or config.print_verbose:
+    print( '{0} total'.format(counter.count))
