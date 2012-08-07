@@ -1,3 +1,7 @@
 [submodule "utilities/css-pagination-template/test/qunit"]
-	path = utilities/css-pagination-template/test/qunit
-	url = git://github.com/jquery/qunit.git
+    path = utilities/css-pagination-template/test/qunit
+    url = git://github.com/jquery/qunit.git  
+[submodule "utilities/css-pseudo-elements/test/qunit"]
+    path = utilities/css-pseudo-elements/test/qunit
+    url = git://github.com/jquery/qunit.git  
+	
