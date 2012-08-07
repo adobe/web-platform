@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+	html, body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	article {
+		-webkit-flow-into: article;
+	}
+	.region {
+		-webkit-flow-from: article;
+		-webkit-region-overflow: break;
+		overflow: hidden;
+		margin: 0 auto;
+		width: 50%;
+		border: thin solid lightgray;
+		height: 30%;
+		box-sizing: border-box;
+	}
+	.region:first-child {
+		margin-top: 1em;
+	}
+	#container {
+		height: 90%;
+		width: 100%;
+	}
+	#loupe {
+		width: 70%;
+		border: thick solid gray;
+		padding: 1em;
+	}
+	#warning {
+		position: fixed;
+		background-color: yellow;
+		font-weight: bold;
+		text-align: center;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+	}
+	@-webkit-region .region {
+		article {
+			color: gray;
+		}
+	}
+	@-webkit-region #loupe {
+		h1, h2, h3 {
+			color: red;
+			font-size: 175%;
+		}
+		article {
+			color: black;
+			font-size: 200%;
+		}
+	}
+	</style>
+	<script type="text/javascript">
+	function normalizePercent(value) {
+		if (value < 0) {
+			return 0;
+		} else if (value > 100) {
+			return 100;
+		} else {
+			return value;
+		}
+	}
+	document.addEventListener("DOMContentLoaded", function() {
+		window.addEventListener("mousemove", function(evt) {
+			var loupe = document.getElementById("loupe"),
+				totalHeight = loupe.getBoundingClientRect().height * 3;
+			var position = evt.clientY <= totalHeight ? evt.clientY : totalHeight ;
+			if (position < totalHeight * 0.15) {
+				position = totalHeight * 0.15;
+			}
+			if (position > totalHeight * 0.85) {
+				position = totalHeight * 0.85;
+			}
+
+			var loupeTop = (position - totalHeight * 0.15) / totalHeight;
+			loupeTop = normalizePercent(loupeTop * 100);
+			var loupeBottom = (totalHeight - position + totalHeight * 0.15) / totalHeight;
+			loupeBottom = normalizePercent(loupeBottom * 100 - 30);
+
+			var topRegion = document.getElementById("top");
+			var bottomRegion = document.getElementById("bottom");
+			
+
+			console.log("Normalized top height: " + loupeTop + "%");
+			console.log("Normalized bottom height: " + loupeBottom + "%");
+			
+			topRegion.style.height = loupeTop + "%";
+			bottomRegion.style.height = loupeBottom + "%";
+		});
+	});
+	</script>
+</head>
+<body>
+	<div id="warning">This sample is intended to be viewed in a WebKit prototype. Not for public
+		distribution (yet :) ).</div>
+	<article>
+		<h1>Region zoomable text</h1>
+		<p class='abstract'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<h2>Some more explanatory text here</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<h3>Making a case for a 3-level deep header</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</article>
+	<div id="container">
+		<div class="region" id="top"></div>
+		<div class="region" id="loupe"></div>
+		<div class="region" id="bottom"></div>
+	</div>
+</body>
+</html>
