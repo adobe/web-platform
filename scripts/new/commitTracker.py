@@ -11,9 +11,40 @@ import re
 from subprocess import Popen,PIPE,check_call
 import sys
 import time
-
+import json
+from datetime import datetime, timedelta
 
 import pdb
+def convert_to_builtin_type(obj):
+    #print 'default(', repr(obj), ')'
+    # Convert objects to a dictionary of their representation
+    d = {}
+    try:
+        if obj.__class__ and obj.__class__.__name__:
+            d['__class__'] = obj.__class__.__name__
+    except AttributeError, err:
+#        print 'ERROR:', err, " obj = ", obj
+        False
+    try:
+        if obj.__module__:
+            d['__module__'] = obj.__module__
+    except AttributeError, err:
+#        print 'ERROR:', err, " obj = ", obj
+        False
+    try:
+        d.update(obj.__dict__)
+    except AttributeError, err:
+#        print 'ERROR:', err, " obj = ", obj
+        False
+    return d
+
+def handler(obj):
+    if hasattr(obj, 'isoformat'):
+        return obj.isoformat()
+#    elif isinstance(obj, ...):
+#        return ...
+    else:
+        raise TypeError, 'Object of type %s with value of %s is not JSON serializable' % (type(obj), repr(obj))
 
 class Config(object):
     def __init__(self):
@@ -40,12 +71,16 @@ class Config(object):
         self.since = '01/01/{0}'.format(now.tm_year)
         # Date to stop grabbing commits at.
         self.until = None
+        self.until = '{0}/{1}/{2}'.format(now.tm_mon, now.tm_mday, now.tm_year)
+
+        self.weekly = False
         # This should be set in the config file in the "People" section!
         # dictionary of people who's contributions we are looking for
         # name -> email address
         self.people = { }
 
         self.format = 'Normal'
+        self.json_file = None
 
     def parse_args(self):
         parser = argparse.ArgumentParser(description='Count commits by the Adobe Web Platform Team')
@@ -56,6 +91,8 @@ class Config(object):
         parser.add_argument('--until', default=None, help='End date for counting.')
         parser.add_argument('--repo', dest='repository_root', default=None, help='Path to WebKit git repository')
         parser.add_argument('--show-total', dest='show_total', action='store_true', default=None, help='Output only the total')
+        parser.add_argument('--weekly', dest='weekly', action='store_true', default=None, help='Query for every week between since and until, inclusive')
+        parser.add_argument('--json-file', dest='json_file', default=None, help='File for writing JSON output')
         self.args = parser.parse_args()
 
     def read_config(self):
@@ -92,6 +129,16 @@ class Config(object):
             self.repository_root = self.args.repostitory_root
         elif self.file.has_option('Options', 'repository_root'):
             self.repository_root = self.file.get('Options', 'repository_root')
+
+        if self.args.json_file:
+            self.json_file = self.args.json_file
+        elif self.file.has_option('Options', 'json_file'):
+            self.json_file = self.file.get('Options', 'json_file')
+
+        if self.args.weekly:
+            self.weekly = self.args.weekly
+        elif self.file.has_option('Options', 'weekly'):
+            self.weekly = self.file.get('Options', 'weekly')
 
         if self.args.show_total:
             self.format = 'Total'
@@ -137,11 +184,19 @@ class Config(object):
 
 
 class Counter(object):
-    def __init__(self, data, config):
+    def __init__(self, data, config, since, until):
         self.data = data
         self._config = config
+        self.since = since
+        self.until = until
         self.count = 0
         self.count_by_person = { k: 0 for k in self._config.people.iterkeys() }
+#        pdb.set_trace()
+
+    def __repr__(self):
+        r = { 'total':self.count, 'people':self.count_by_person }
+        print '<MyObj(%s)>' % self.count
+        return '<MyObj(%s)>' % self.count
 
     def start(self):
         self._next_commit()
@@ -186,38 +241,94 @@ class Counter(object):
         else:
             return None
 
-config = Config()
+    def _json_struct(self):
+        json_struct = {}
+        now = time.localtime()
+        json_struct['since'] = self.since
+        json_struct['until'] = self.until
+#        json_struct['end'] = self._config.until or '{0}/{1}/{2}'.format(now.tm_mon,now.tm_mday,now.tm_year)
+        json_struct['people'] = self.count_by_person
+        json_struct['total'] = self.count
+        return json_struct
+#        print json.dumps( self, default=convert_to_builtin_type )       
 
+def _build_json_struct(config, counters):
+    json_struct = {}
+    json_struct['since'] = config.since
+    json_struct['until'] = config.until
+    json_struct['weekly'] = config.weekly
+    json_struct['results'] = [ x._json_struct() for x in counters]
+    pdb.set_trace()
+    return json_struct
+
+config = Config()
+try:
+    sincedate = datetime.strptime( config.since, '%m/%d/%y')
+except ValueError:
+    sincedate = datetime.strptime( config.since, '%m/%d/%Y')   
+print "until = ", config.until
+try:
+    untildate = datetime.strptime( config.until, '%m/%d/%y')
+except ValueError:
+    untildate = datetime.strptime( config.until, '%m/%d/%Y')
+counters = []
+currentuntildate = sincedate
+weekcount = 0
+
+print "dates = ", sincedate, " => ",untildate
 os.chdir(config.repository_root)
 if config.do_fetch:
     if config.print_normal: print 'Fetching updates'
     check_call(['git', 'fetch', 'origin'])
 
-git_log_command = ['git', 'log', 'origin/master']
-if config.since:
-    git_log_command.append('--since="{0}"'.format(config.since))
-if config.until:
-    git_log_command.append('--until="{0}"'.format(config.until))
-log = Popen(git_log_command, stdout=PIPE)
-counter = Counter(log.stdout, config)
-counter.start()
+while True:
 
-if config.print_normal:
-    max_digits = 1
-    if counter.count > 0:
-        max_digits = int(math.log10(counter.count))+1
-    print('Commits')
+    git_log_command = ['git', 'log', 'origin/master']
     if config.since:
-        print( 'since {0}'.format(config.since)),
+        git_log_command.append('--since="{0}"'.format(config.since))
     if config.until:
-        print( 'until {0}'.format(config.until)),
-    print ':'
-    breakdown = counter.count_by_person.items()
-    breakdown.sort(key=lambda x: -x[1])
-    for value in breakdown:
-        print( '{0} {1}'.format(str(value[1]).rjust(max_digits), value[0]) )
+        if config.weekly:
+            weekcount = weekcount + 1
+            currentuntildate = sincedate + timedelta( weeks=weekcount )
+            if currentuntildate > untildate:
+                currentuntildate = untildate
+        else:
+            currentuntildate = untildate
+        git_log_command.append('--until="{0}/{1}/{2}"'.format(currentuntildate.month, currentuntildate.day,currentuntildate.year))
 
-if config.print_total:
-    print counter.count
-elif config.print_normal or config.print_verbose:
-    print( '{0} total'.format(counter.count))
+    log = Popen(git_log_command, stdout=PIPE)
+    counter = Counter(log.stdout, config, sincedate, currentuntildate)
+    counter.start()
+
+    #pdb.set_trace()
+    if config.print_normal:
+        max_digits = 1
+        if counter.count > 0:
+            max_digits = int(math.log10(counter.count))+1
+        print('Commits')
+        if config.since:
+            print( 'since {0}'.format(sincedate)),
+        if currentuntildate:
+            print( 'until {0}'.format(currentuntildate)),
+        if config.weekly:
+            print( ', weekly'),
+        print ':'
+        breakdown = counter.count_by_person.items()
+        breakdown.sort(key=lambda x: -x[1])
+        for value in breakdown:
+            print( '{0} {1}'.format(str(value[1]).rjust(max_digits), value[0]) )
+
+    if config.print_total:
+        print counter.count
+    elif config.print_normal or config.print_verbose:
+        print( '{0} total'.format(counter.count))
+
+    counters.append( counter )
+
+    if config.weekly == False or untildate == currentuntildate:
+        break
+
+if False or config.json_file:
+    json_struct = _build_json_struct(config, counters)
+    json_string = 'commits = '+ json.dumps(json_struct, default=handler)
+    print json_string
