@@ -15,28 +15,7 @@ import json
 from datetime import datetime, timedelta
 
 import pdb
-def convert_to_builtin_type(obj):
-    #print 'default(', repr(obj), ')'
-    # Convert objects to a dictionary of their representation
-    d = {}
-    try:
-        if obj.__class__ and obj.__class__.__name__:
-            d['__class__'] = obj.__class__.__name__
-    except AttributeError, err:
-#        print 'ERROR:', err, " obj = ", obj
-        False
-    try:
-        if obj.__module__:
-            d['__module__'] = obj.__module__
-    except AttributeError, err:
-#        print 'ERROR:', err, " obj = ", obj
-        False
-    try:
-        d.update(obj.__dict__)
-    except AttributeError, err:
-#        print 'ERROR:', err, " obj = ", obj
-        False
-    return d
+
 
 def handler(obj):
     if hasattr(obj, 'isoformat'):
@@ -191,7 +170,6 @@ class Counter(object):
         self.until = until
         self.count = 0
         self.count_by_person = { k: 0 for k in self._config.people.iterkeys() }
-#        pdb.set_trace()
 
     def __repr__(self):
         r = { 'total':self.count, 'people':self.count_by_person }
@@ -250,7 +228,6 @@ class Counter(object):
         json_struct['people'] = self.count_by_person
         json_struct['total'] = self.count
         return json_struct
-#        print json.dumps( self, default=convert_to_builtin_type )       
 
 def _build_json_struct(config, counters):
     json_struct = {}
@@ -276,6 +253,7 @@ currentuntildate = sincedate
 weekcount = 0
 
 print "dates = ", sincedate, " => ",untildate
+origcwdu = os.getcwdu()
 os.chdir(config.repository_root)
 if config.do_fetch:
     if config.print_normal: print 'Fetching updates'
@@ -300,7 +278,6 @@ while True:
     counter = Counter(log.stdout, config, sincedate, currentuntildate)
     counter.start()
 
-    #pdb.set_trace()
     if config.print_normal:
         max_digits = 1
         if counter.count > 0:
@@ -328,7 +305,12 @@ while True:
     if config.weekly == False or untildate == currentuntildate:
         break
 
-if False or config.json_file:
+if config.json_file:
     json_struct = _build_json_struct(config, counters)
     json_string = 'commits = '+ json.dumps(json_struct, default=handler)
+    os.chdir(origcwdu)
+    f = open(config.json_file, 'w')
+    print f
+    f.write(json_string)
+    f.close()
     print json_string
