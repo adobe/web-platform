@@ -63,7 +63,7 @@ window.onload = function(){
         topgutter = 20,
         colorhue =  Math.random(),
         color = "hsl(" + [colorhue, .5, .5] + ")",
-        columncount  = commitdata.length, /* labels.length */
+        columncount  = 52,
         rowincrement = 50,
         r = Raphael("commit-holder", width, height),
         txt = {font: '12px Ubuntu, Arial', fill: "#fff"},
@@ -96,7 +96,7 @@ window.onload = function(){
 	circle.attr("stroke", "#f0f");
     */
 
-    r.drawGrid(leftgutter + X * .5 + .5, topgutter + .5, width - leftgutter - X, height - topgutter - bottomgutter, columncount, Math.floor( max/rowincrement) , "#000");
+    r.drawGrid(leftgutter + X * .5 + .5, topgutter + .5, width - leftgutter - X, height - topgutter - bottomgutter, 12, Math.floor( max/rowincrement) , "#000");
     var baseline = drawBaseline(0, committarget, false);
 
     // Draw the commit data path
