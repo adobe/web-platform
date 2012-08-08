@@ -1,4 +1,4 @@
-Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, color) {
+Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
 	// remember the grid
 	this.gridLocation = { x:x, y:y, w:w, h:h, wv:wv, hv:hv };
 
@@ -87,16 +87,16 @@ window.onload = function(){
         return path.toBack();
     };
 
-    /*
-	// Creates circle at x = 50, y = 40, with radius 10
-	circle = r.circle(250, 40, 50)
-	// Sets the fill attribute of the circle to red (#f00)
-	circle.attr("fill", color);
-	// Sets the stroke attribute of the circle to white
-	circle.attr("stroke", "#f0f");
-    */
-
-    r.drawGrid(leftgutter + X * .5 + .5, topgutter + .5, width - leftgutter - X, height - topgutter - bottomgutter, 12, Math.floor( max/rowincrement) , "#000");
+    r.drawGrid(leftgutter + X * .5 + .5  /* x */
+                , topgutter + .5  /* y */
+                , width - leftgutter - X /* w */
+                , height - topgutter - bottomgutter /* h */
+                , 12 /* wv */
+                , Math.floor( max/rowincrement)  /* hv */
+                , null /* wl */
+                , null /* hl */
+                , "#000" /* color */
+                );
     var baseline = drawBaseline(0, committarget, false);
 
     // Draw the commit data path
@@ -113,5 +113,4 @@ window.onload = function(){
     }
     cp.attr({path: cpp});
 
-    //circle.toFront();
 };
