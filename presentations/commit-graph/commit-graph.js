@@ -42,25 +42,14 @@ window.onload = function(){
         data.push($(this).html());
     });
 
-    // Replace table-based data with JSON-based input
-    var commitdata = [
-        {
-            label: "1/1/2012",
-            value: "0",
-        },
-        {
-            label: "2/1/2012",
-            value: "7",
-        },
-        {
-            label: "3/1/2012",
-            value: "101",
-        },
-        {
-            label: "4/1/2012",
-            value: "425",
-        }
-    ];
+    var results = commits.results,
+        commitdata = []
+
+    for (var i = 0; i < results.length; i++)
+    {
+        commitdata.push({label: results[i].until, value: results[i].total })
+    }
+
     labels = [], data = [];
     for (var i = 0; i < commitdata.length; i++) {
         labels.push(commitdata[i].label);
@@ -98,13 +87,14 @@ window.onload = function(){
         return path.toBack();
     };
 
+    /*
 	// Creates circle at x = 50, y = 40, with radius 10
 	circle = r.circle(250, 40, 50)
 	// Sets the fill attribute of the circle to red (#f00)
 	circle.attr("fill", color);
 	// Sets the stroke attribute of the circle to white
 	circle.attr("stroke", "#f0f");
-
+    */
 
     r.drawGrid(leftgutter + X * .5 + .5, topgutter + .5, width - leftgutter - X, height - topgutter - bottomgutter, columncount, Math.floor( max/rowincrement) , "#000");
     var baseline = drawBaseline(0, committarget, false);
@@ -123,5 +113,5 @@ window.onload = function(){
     }
     cp.attr({path: cpp});
 
-    circle.toFront();
+    //circle.toFront();
 };
