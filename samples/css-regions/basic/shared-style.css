@@ -36,8 +36,15 @@ article .tip{
     background: #ffffcc;
 
 }
+
 article .error{
     background: pink;
+}
+article .unsupported {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
 article .info{
