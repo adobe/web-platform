@@ -132,7 +132,7 @@ window.onload = function(){
                 , topgutter + .5  /* y */
                 , width - leftgutter - rightgutter - X /* w */
                 , height - topgutter - bottomgutter /* h */
-                , 11 /* wv */
+                , 12 /* wv */
                 , gridrowcount  /* hv */
                 , ['1/1','2/1','3/1','4/1','5/1','6/1','7/1','8/1','9/1','10/1','11/1','12/1'] /* wl */
                 , gridrowvals /* hl */
@@ -141,6 +141,7 @@ window.onload = function(){
     var baseline = drawBaseline(0, committarget, false);
 
     // Draw the commit data path
+    // TODO: make the x value line up accurately with the date
     var cp = r.path()
         .attr( {"stroke": color, "stroke-width": 4, "stroke-linejoin": "round"}),
         cpp = [];
