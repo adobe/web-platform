@@ -34,6 +34,15 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
             wlabels.push( );
         }
     }
+    for (i = 0; i < hl.length+1; i++)
+    {
+        if ( hl[i] ) {
+            var text = this.text( x + - .3 * columnWidth + .5
+                    , Math.round(y + h) - (i * rowHeight) + .5
+                    , hl[i]).attr( this.textattr ).attr({stroke: color});
+            wlabels.push( );
+        }
+    }
     return this.path(path.join(",")).attr({stroke: color});
 };
 
@@ -82,15 +91,15 @@ window.onload = function(){
 
     var width = 800,
         height = 250,
-        leftgutter = 20,
+        leftgutter = 40,
         rightgutter = 20,
         bottomgutter = 40,
         topgutter = 20,
         colorhue =  Math.random(),
-        color = "hsl(" + [colorhue, .5, .5] + ")",
+        color = "#bf3f6c", /*hsl(" + [colorhue, .5, .5] + ")", */
         columncount  = 52,
         rowincrement = 50,
-        r = Raphael("commit-holder", width, height),
+        r = Raphael("graph-holder", width, height),
         textattr = {font: '10px Ubuntu, Arial', fill: color},
         txt1 = {font: '10px Ubuntu, Arial', fill: "#fff"},
         txt2 = {font: '12px Ubuntu, Arial', fill: "#000"},
@@ -114,14 +123,17 @@ window.onload = function(){
         return path.toBack();
     };
 
+    var gridrowcount = Math.floor( max/rowincrement)
+        , gridrowvals = [];
+    for (var i = 0; i<gridrowcount+1; i++) gridrowvals[i] = i*rowincrement;
     r.drawGrid(leftgutter + X * .5 + .5  /* x */
                 , topgutter + .5  /* y */
                 , width - leftgutter - rightgutter - X /* w */
                 , height - topgutter - bottomgutter /* h */
                 , 11 /* wv */
-                , Math.floor( max/rowincrement)  /* hv */
+                , gridrowcount  /* hv */
                 , ['1/1','2/1','3/1','4/1','5/1','6/1','7/1','8/1','9/1','10/1','11/1','12/1'] /* wl */
-                , null /* hl */
+                , gridrowvals /* hl */
                 , "#000" /* color */
                 );
     var baseline = drawBaseline(0, committarget, false);
