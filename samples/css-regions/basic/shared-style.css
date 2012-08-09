@@ -63,6 +63,7 @@ article pre{
 article pre{
     padding:1em;
     margin-bottom: 2em;  
+    overflow-x: hidden;
 }
 
 article ul{
