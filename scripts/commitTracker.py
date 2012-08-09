@@ -310,7 +310,5 @@ if config.json_file:
     json_string = 'commits = '+ json.dumps(json_struct, default=handler)
     os.chdir(origcwdu)
     f = open(config.json_file, 'w')
-    print f
     f.write(json_string)
     f.close()
-    print json_string
