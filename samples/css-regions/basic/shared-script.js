@@ -25,31 +25,33 @@
     
     CSSRegions.prototype.hasOversetProperty = (function(){
         var test = document.createElement("span"),
-            hasOverset,
+            hasOverset = false,
             flow
             
         test.style['-webkit-flow-into'] = 'testflow'
             
         document.body.appendChild(test) 
-        
-        flow = document.webkitGetFlowByName('testflow')
-        
-        // older implementations used to have overflow not overset
-        hasOverset = (typeof flow.overset !== 'undefined')
-                                               
-        // cleanup                                 
-        test.style['-webkit-flow-into'] = 'none'
-        test.parentNode.removeChild(test)
-        flow = null
-        
-        return hasOverset;
+
+        // Make sure we don't bork if regions methods are missing
+        try {
+            flow = document.webkitGetFlowByName('testflow')    
+            // older implementations used to have overflow not overset
+            hasOverset = (typeof flow.overset !== 'undefined')
+        } catch(e) {
+        } finally {
+            // cleanup                                 
+            test.style['-webkit-flow-into'] = 'none'
+            test.parentNode.removeChild(test)
+            flow = null
+            return !!hasOverset
+        }
+
     })()
     
     
     var CSSRegions = new CSSRegions()
     
     var checkSupport = function(){
-        
         if (CSSRegions.isSupported && CSSRegions.hasOversetProperty){
             return 
         }
@@ -66,13 +68,12 @@
         var h = [],
             p = function(){ h.push.apply(h, arguments) }
             
-        p('<p class="error">')
+        p('<p class="unsupported error">')
             p('<strong>Warning:</strong> You need to use a <a href="http://nightly.webkit.org/" target="_blank">WebKit nightly</a> browser build to see this example working correctly.')
         p('</p>')
-        
+
         return h.join('')
     }
 
     document.addEventListener("DOMContentLoaded", checkSupport)
-    
 }()
