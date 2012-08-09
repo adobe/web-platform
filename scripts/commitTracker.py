@@ -224,7 +224,6 @@ class Counter(object):
         now = time.localtime()
         json_struct['since'] = self.since
         json_struct['until'] = self.until
-#        json_struct['end'] = self._config.until or '{0}/{1}/{2}'.format(now.tm_mon,now.tm_mday,now.tm_year)
         json_struct['people'] = self.count_by_person
         json_struct['total'] = self.count
         return json_struct
@@ -242,7 +241,6 @@ try:
     sincedate = datetime.strptime( config.since, '%m/%d/%y')
 except ValueError:
     sincedate = datetime.strptime( config.since, '%m/%d/%Y')   
-print "until = ", config.until
 try:
     untildate = datetime.strptime( config.until, '%m/%d/%y')
 except ValueError:
