@@ -235,7 +235,6 @@ def _build_json_struct(config, counters):
     json_struct['until'] = config.until
     json_struct['weekly'] = config.weekly
     json_struct['results'] = [ x._json_struct() for x in counters]
-    pdb.set_trace()
     return json_struct
 
 config = Config()
@@ -252,7 +251,6 @@ counters = []
 currentuntildate = sincedate
 weekcount = 0
 
-print "dates = ", sincedate, " => ",untildate
 origcwdu = os.getcwdu()
 os.chdir(config.repository_root)
 if config.do_fetch:
@@ -287,8 +285,6 @@ while True:
             print( 'since {0}'.format(sincedate)),
         if currentuntildate:
             print( 'until {0}'.format(currentuntildate)),
-        if config.weekly:
-            print( ', weekly'),
         print ':'
         breakdown = counter.count_by_person.items()
         breakdown.sort(key=lambda x: -x[1])
