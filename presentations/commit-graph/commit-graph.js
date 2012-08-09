@@ -2,10 +2,9 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
 	// remember the grid
 	this.gridLocation = { x:x, y:y, w:w, h:h, wv:wv, hv:hv };
 
-    var wlabels = null;
-    if ( wl ){
-        wlabels = this.set();
-    }
+    var wlabels = this.set()
+        ,hlabels = this.set();
+
     color = color || "#000";
     var path = ["M"
                 , Math.round(x) + .5, Math.round(y) + .5 /* TL */
@@ -20,11 +19,11 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
        path = path.concat(["M", Math.round(x) + .5, Math.round(y + i * rowHeight) + .5
                          , "H", Math.round(x + w) + .5]);
     }
-
     for (i = 1; i < wv; i++) {
         path = path.concat(["M", Math.round(x + i * columnWidth) + .5, Math.round(y) + .5, "V", Math.round(y + h) + .5]);
     }
 
+    /* x-axis labels */
     for (i = 0; i < wl.length+1; i++)
     {
         if ( wl[i] ) {
@@ -40,7 +39,7 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
             var text = this.text( x + - .3 * columnWidth + .5
                     , Math.round(y + h) - (i * rowHeight) + .5
                     , hl[i]).attr( this.textattr ).attr({stroke: color});
-            wlabels.push( );
+            hlabels.push( );
         }
     }
     return this.path(path.join(",")).attr({stroke: color});
@@ -101,8 +100,6 @@ window.onload = function(){
         rowincrement = 50,
         r = Raphael("graph-holder", width, height),
         textattr = {font: '10px Ubuntu, Arial', fill: color},
-        txt1 = {font: '10px Ubuntu, Arial', fill: "#fff"},
-        txt2 = {font: '12px Ubuntu, Arial', fill: "#000"},
         X = (width - leftgutter - rightgutter) / columncount,
         max = Math.max.apply(Math, data),
         committarget = 300,
