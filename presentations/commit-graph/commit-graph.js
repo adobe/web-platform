@@ -6,6 +6,8 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
         ,hlabels = this.set();
 
     color = color || "#000";
+
+    /* Start with the outer box */
     var path = ["M"
                 , Math.round(x) + .5, Math.round(y) + .5 /* TL */
             , "L"
@@ -15,10 +17,12 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
                 , Math.round(x) + .5, Math.round(y) + .5], /* TL, again */
         rowHeight = h / hv,
         columnWidth = w / wv;
+    /* then row markers */
     for (var i = 1; i < hv; i++) {
        path = path.concat(["M", Math.round(x) + .5, Math.round(y + i * rowHeight) + .5
                          , "H", Math.round(x + w) + .5]);
     }
+    /* then column markers */
     for (i = 1; i < wv; i++) {
         path = path.concat(["M", Math.round(x + i * columnWidth) + .5, Math.round(y) + .5, "V", Math.round(y + h) + .5]);
     }
@@ -33,6 +37,7 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
             wlabels.push( );
         }
     }
+    /* y-axis labels */
     for (i = 0; i < hl.length+1; i++)
     {
         if ( hl[i] ) {
@@ -148,5 +153,10 @@ window.onload = function(){
                 cpp.push([x0, y0])
     }
     cp.attr({path: cpp});
+
+    // Populate details
+    var details = $('#commit-details');
+
+    details.html("Total commits (as of "+labels[labels.length-1]+") : " + data[data.length-1]);
 
 };
