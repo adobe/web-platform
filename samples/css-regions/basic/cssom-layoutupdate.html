@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - NamedFlow API</title>
+    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
+    <meta charset="UTF-8">
+    <style type="text/css">
+    
+    body{
+        counter-reset: region-order;    
+    }                           
+    
+    article{
+        -webkit-flow-into: article;
+    }
+
+    article h1 em{
+        white-space: nowrap;
+        font-style: normal;
+    }
+
+    .region{          
+        position: relative;
+        -webkit-flow-from: article; 
+        float: left;
+        height: 600px; 
+    }          
+    
+    .region.highlight{
+        -webkit-animation: highlight 1.5s 1 ease-out;        
+    }
+    
+    @-webkit-keyframes highlight {
+    	0%   { background: yellow }
+    	100% { background: white }
+    }
+    
+    .region + .region{
+        padding-left: 3.5%;
+        margin-left: 4%;  
+    } 
+    
+    .page{
+        width: 70%;
+        margin: 5% auto;
+        padding: 50px;
+        min-width: 500px;
+    }  
+    
+    .region:nth-child(1){
+        width: 52%;
+    }     
+    
+    .region:nth-child(2),
+    .region:nth-child(3),
+    .region:nth-child(4),
+    .region:nth-child(5){
+        width: 38%;
+        height: 150px;
+    } 
+    
+    .region:nth-child(6){
+        float: none;  
+        width: 100%;   
+        margin: 0;  
+        padding: 50px 0 0;
+        border: none;
+    }
+    
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <div class="region"></div>
+        <div class="region"></div>
+    </div>
+
+
+    <article>
+        <h1>Create regions based on NamedFlow events</h1>
+
+        <section id="introduction">
+            <p class="tip">
+                <strong>Hint:</strong> resize the browser window to see regions being added or removed as neccessary to fit the content.
+            </p>
+        </section>
+        
+        <section>
+            <h2>Code sample</h2>
+<pre>
+flow = document.getFlowByName('article')
+flow.addEventListener('regionLayoutUpdate', handler)
+
+function handler(e){   
+     
+    // NamedFlow instance             
+    e.target        
+                         
+    // NodeList of Regions
+    e.target.getRegions()
+    
+     // positive integer or -1
+    e.target.firstEmptyRegionIndex
+    
+    // Boolean    
+    e.target.overset
+}
+</pre>
+        <p class="caption">
+            The event target is an instance of NamedFlow
+        </p> 
+        </section>   
+
+        <section>
+            <p>
+                Named flow trigger <code>regionLayoutUpdate</code> events as a result of reflowing their content through regions. 
+            </p>                                                                                                                  
+        </section> 
+        <section>
+            <h2>How many regions?</h2>
+            <p>Use the named flow's <code>getRegions()</code> method to get a collection of its associated regions.</p>
+            <p>The named flow's <code>firstEmptyRegionIndex</code> property returns the index of the first region which has no content flowing into it, or <code>-1</code> if all regions have content.</p>
+        </section>
+    </article>
+    <script type="text/javascript" src="shared-script.js"></script>
+    <script type="text/javascript">                                                      
+    
+            var namedFlow = document.webkitGetFlowByName("article"),
+
+                updateLayout = function(e){     
+                    var lastRegion, newRegion, emptyRegion,
+                    
+                        // the named flow instance
+                        namedFlow = e.target,      
+                        
+                        // get a collection of regions associated with this named flow
+                        regions = namedFlow.getRegions()
+
+                    // are there any empty regions ?
+                    if (namedFlow.firstEmptyRegionIndex !== -1){   
+
+                        emptyRegion = regions[namedFlow.firstEmptyRegionIndex] 
+                        emptyRegion.parentNode.removeChild(emptyRegion)
+                    }      
+                                                                                      
+                    // does the content fully fit in the available regions?
+                    if (namedFlow.overset){ 
+
+                        lastRegion = regions[regions.length - 1]
+                        newRegion = lastRegion.cloneNode(true) 
+                        lastRegion.parentNode.appendChild(newRegion)
+                        
+                        newRegion.classList.add('highlight')
+                    }
+                }
+
+        // handle layout changes if necessary        
+        namedFlow.addEventListener("webkitRegionLayoutUpdate", updateLayout)
+        
+        // boostrap layout
+        document.addEventListener("DOMContentLoaded", function(){
+            updateLayout.call(this, {target: namedFlow})  
+        })   
+    </script>
+</body>
+</html>
