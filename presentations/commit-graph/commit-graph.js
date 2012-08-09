@@ -20,12 +20,17 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
        path = path.concat(["M", Math.round(x) + .5, Math.round(y + i * rowHeight) + .5
                          , "H", Math.round(x + w) + .5]);
     }
+
     for (i = 1; i < wv; i++) {
         path = path.concat(["M", Math.round(x + i * columnWidth) + .5, Math.round(y) + .5, "V", Math.round(y + h) + .5]);
+    }
+
+    for (i = 0; i < wl.length+1; i++)
+    {
         if ( wl[i] ) {
-            var text = this.text( x + i * columnWidth + .5, 
-                    Math.round(y + h) + (.5 * rowHeight) + .5
-                    , wl[i]).attr( this.textattr );
+            var text = this.text( x + i * columnWidth + .5
+                    , Math.round(y + h) + (.5 * rowHeight) + .5
+                    , wl[i]).attr( this.textattr ).attr({stroke: color});
             wlabels.push( );
         }
     }
@@ -78,6 +83,7 @@ window.onload = function(){
     var width = 800,
         height = 250,
         leftgutter = 20,
+        rightgutter = 20,
         bottomgutter = 40,
         topgutter = 20,
         colorhue =  Math.random(),
@@ -88,7 +94,7 @@ window.onload = function(){
         textattr = {font: '10px Ubuntu, Arial', fill: color},
         txt1 = {font: '10px Ubuntu, Arial', fill: "#fff"},
         txt2 = {font: '12px Ubuntu, Arial', fill: "#000"},
-        X = (width - leftgutter) / columncount,
+        X = (width - leftgutter - rightgutter) / columncount,
         max = Math.max.apply(Math, data),
         committarget = 300,
         max = Math.max( max, committarget ),
@@ -110,7 +116,7 @@ window.onload = function(){
 
     r.drawGrid(leftgutter + X * .5 + .5  /* x */
                 , topgutter + .5  /* y */
-                , width - leftgutter - X /* w */
+                , width - leftgutter - rightgutter - X /* w */
                 , height - topgutter - bottomgutter /* h */
                 , 11 /* wv */
                 , Math.floor( max/rowincrement)  /* hv */
