@@ -172,6 +172,21 @@ $(function () {
                 equal(theRegions[0], $region.get(0), "Same region is returned");
             })
 
+            test("JS NamedFlow.getRegions()", function() {
+                if (!flowByNameSupported) {
+                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+                    return;
+                }
+
+                var namedFlow = Util.prefixMethod(document, "getFlowByName")("article");
+                equal(typeof(namedFlow.getRegions), "function", "NamedFlow.getRegions() is a function");
+                
+                setFlowContents("Foo");
+                var theRegions = namedFlow.getRegions($flow[0]);
+                equal(theRegions.length, 1, "One region for the content");
+                equal(theRegions[0], $region.get(0), "Same region is returned");
+            })
+
             test("JS NamedFlow.firstEmptyRegionIndex", function(){
                 if (!flowByNameSupported) {
                     ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
@@ -218,7 +233,7 @@ $(function () {
                 // lots of content, expect overflow
                 setFlowContents("Long text Long text Long text Long text ");
                 ok($region[0][Util.prefixOM("regionOverflow")] == "overflow", "regionOverflow is 'overflow'");
-
+            
                 // less content, expect fit
                 setFlowContents("x");
                 ok($region[0][Util.prefixOM("regionOverflow")] == "fit", "regionOverflow is 'fit'"); 
@@ -229,10 +244,17 @@ $(function () {
             })
 
             asyncTest("JS regionLayoutUpdate event", function(){
+                if (!flowByNameSupported) {
+                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+                    return;
+                }
+
+                var namedFlow = Util.prefixMethod(document, "getFlowByName")("article");
+                
                 function handler(ev) {
-                    equal(ev.target, $region[0], "Event.target points to the region");
-                    $region.unbind(Util.prefixOM("regionLayoutUpdate"), handler);
-                    start();
+                    equal(ev.target, namedFlow, "Event.target points to the named flow");
+                    namedFlow.removeEventListener(Util.prefixOM("regionLayoutUpdate"), handler);
+                    start();     
                 }
 
                 $region.css(
@@ -240,9 +262,10 @@ $(function () {
                         "width": "20px",
                         "height": "20px"
                     }
-                );
+                );    
+                
                 setFlowContents("M");
-                $region.bind(Util.prefixOM("regionLayoutUpdate"), handler);
+                namedFlow.addEventListener(Util.prefixOM("regionLayoutUpdate"), handler);
                 setFlowContents("Long text long text long text long long long longer very longe text");
             })
         }
