@@ -222,7 +222,7 @@ $(function () {
                 $otherRegion.remove();        
             })
             
-            test("JS Element.regionOverflow", function(){   
+            test("JS Element.regionOverset", function(){
                 $region.css(
                     {
                         "width": "20px",
@@ -232,15 +232,15 @@ $(function () {
                 
                 // lots of content, expect overflow
                 setFlowContents("Long text Long text Long text Long text ");
-                ok($region[0][Util.prefixOM("regionOverflow")] == "overflow", "regionOverflow is 'overflow'");
+                equal($region[0][Util.prefixOM("regionOverset")], "overset", "regionOverset is 'overset'");
             
                 // less content, expect fit
                 setFlowContents("x");
-                ok($region[0][Util.prefixOM("regionOverflow")] == "fit", "regionOverflow is 'fit'"); 
+                equal($region[0][Util.prefixOM("regionOverset")], "fit", "regionOverset is 'fit'"); 
                 
                 // no content, expect empty
                 setFlowContents("");
-                ok($region[0][Util.prefixOM("regionOverflow")] == "empty", "regionOverflow is 'empty'");
+                equal($region[0][Util.prefixOM("regionOverset")], "empty", "regionOverset is 'empty'");
             })
 
             asyncTest("JS regionLayoutUpdate event", function(){
