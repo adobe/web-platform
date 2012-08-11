@@ -6,7 +6,7 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
         ,hlabels = this.set();
 
     color = color || "#000";
-
+    this.monthCoords = [{ x: Math.round(x) + .5, y:0 }];
     /* Start with the outer box */
     var path = ["M"
                 , Math.round(x) + .5, Math.round(y) + .5 /* TL */
@@ -24,7 +24,9 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
     }
     /* then column markers */
     for (i = 1; i < wv; i++) {
-        path = path.concat(["M", Math.round(x + i * columnWidth) + .5, Math.round(y) + .5, "V", Math.round(y + h) + .5]);
+        var x0 = Math.round(x + i * columnWidth) + .5;
+        this.monthCoords[this.monthCoords.length] = {x: x0, y:0};
+        path = path.concat(["M", x0, Math.round(y) + .5, "V", Math.round(y + h) + .5]);
     }
 
     /* x-axis labels */
@@ -141,13 +143,21 @@ window.onload = function(){
     var baseline = drawBaseline(0, committarget, false);
 
     // Draw the commit data path
-    // TODO: make the x value line up accurately with the date
     var cp = r.path()
         .attr( {"stroke": color, "stroke-width": 4, "stroke-linejoin": "round"}),
         cpp = [];
     for (var i = 0; i < data.length; i++) {
-        var x0 = leftgutter + X * ( i + .5 ),
-            y0 = height - bottomgutter - Y * data[i] + cp.attr("stroke-width");
+
+        // Offset each point from its month's starting gridline, using r.monthCoords.
+        // This keeps points within the proper month and limits the stretching of time so that
+        // 28 day months and 30/31 day months can have the same x-range without minds exploding.
+        var splitlabel = labels[i].split('/');
+        var month = splitlabel[0]-1;
+        var pointdate = new Date(splitlabel[2],month,splitlabel[1]);
+        var monthstart = new Date(2012,month,1);
+        var delta = pointdate.getTime() - monthstart.getTime();
+        var x0 = r.monthCoords[month].x + (width * (delta/86400000) / 366);
+        var y0 = height - bottomgutter - Y * data[i] + cp.attr("stroke-width");
             if (!i) 
                 cpp.push(['M', x0, y0, 'C', x0, y0 ])
             else
