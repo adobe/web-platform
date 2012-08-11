@@ -7,6 +7,7 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
 
     color = color || "#000";
     this.monthCoords = [{ x: Math.round(x) + .5, y:0 }];
+
     /* Start with the outer box */
     var path = ["M"
                 , Math.round(x) + .5, Math.round(y) + .5 /* TL */
@@ -14,17 +15,20 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
                 , Math.round(x + w) + .5, Math.round(y) + .5 /* TR */
                 , Math.round(x + w) + .5, Math.round(y + h) + .5 /* BR */
                 , Math.round(x) + .5, Math.round(y + h) + .5 /* BL */
-                , Math.round(x) + .5, Math.round(y) + .5], /* TL, again */
-        rowHeight = h / hv,
-        columnWidth = w / wv;
+                , Math.round(x) + .5, Math.round(y) + .5] /* TL, again */
+    ,rowHeight = h / hv
+    ,columnWidth = w / wv;
+    this.rowHeight = rowHeight;
+    this.columnWidth = columnWidth;
+
     /* then row markers */
     for (var i = 1; i < hv; i++) {
-       path = path.concat(["M", Math.round(x) + .5, Math.round(y + i * rowHeight) + .5
+       path = path.concat(["M", Math.round(x) + .5, Math.round(y + i * this.rowHeight) + .5
                          , "H", Math.round(x + w) + .5]);
     }
     /* then column markers */
     for (i = 1; i < wv; i++) {
-        var x0 = Math.round(x + i * columnWidth) + .5;
+        var x0 = Math.round(x + i * this.columnWidth) + .5;
         this.monthCoords[this.monthCoords.length] = {x: x0, y:0};
         path = path.concat(["M", x0, Math.round(y) + .5, "V", Math.round(y + h) + .5]);
     }
@@ -33,8 +37,8 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
     for (i = 0; i < wl.length+1; i++)
     {
         if ( wl[i] ) {
-            var text = this.text( x + i * columnWidth + .5
-                    , Math.round(y + h) + (.5 * rowHeight) + .5
+            var text = this.text( x + i * this.columnWidth + .5
+                    , Math.round(y + h) + (.5 * this.rowHeight) + .5
                     , wl[i]).attr( this.textattr ).attr({stroke: color});
             wlabels.push( );
         }
@@ -43,8 +47,8 @@ Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, wl, hl, color) {
     for (i = 0; i < hl.length+1; i++)
     {
         if ( hl[i] ) {
-            var text = this.text( x + - .3 * columnWidth + .5
-                    , Math.round(y + h) - (i * rowHeight) + .5
+            var text = this.text( x + - .3 * this.columnWidth + .5
+                    , Math.round(y + h) - (i * this.rowHeight) + .5
                     , hl[i]).attr( this.textattr ).attr({stroke: color});
             hlabels.push( );
         }
@@ -69,16 +73,6 @@ $(function () {
 
 
 window.onload = function(){
-    // Grab the data
-    var labels = [],
-        data = [];
-    $("#data tfoot th").each(function () {
-        labels.push($(this).html());
-    });
-    $("#data tbody td").each(function () {
-        data.push($(this).html());
-    });
-
     var results = commits.results,
         commitdata = []
 
@@ -89,8 +83,11 @@ window.onload = function(){
 
     labels = [], data = [];
     for (var i = 0; i < commitdata.length; i++) {
-        var d = new Date( commitdata[i].label );
-        var l = d.getMonth()+1+'/'+(d.getDate()+1)+'/'+d.getFullYear();
+        var d = new Date( commitdata[i].label);
+        // Cheesy way to factor out time zones
+        d = new Date( d.getFullYear(), d.getUTCMonth(), d.getUTCDate() );
+        var l = d.getUTCMonth()+1+'/'+d.getUTCDate()+'/'+d.getFullYear();
+
         labels.push(l);
         data.push(commitdata[i].value);
     };
@@ -144,24 +141,27 @@ window.onload = function(){
 
     // Draw the commit data path
     var cp = r.path()
-        .attr( {"stroke": color, "stroke-width": 2, "stroke-linejoin": "round"}),
+        .attr( {"stroke": color, "stroke-width": 1.5, "stroke-linejoin": "round"}),
         cpp = [];
     for (var i = 0; i < data.length; i++) {
 
         // Offset each point from its month's starting gridline, using r.monthCoords.
         // This keeps points within the proper month and limits the stretching of time so that
         // 28 day months and 30/31 day months can have the same x-range without minds exploding.
+        //trace(labels[i]+" = "+data[i])
         var splitlabel = labels[i].split('/');
         var month = splitlabel[0]-1;
         var pointdate = new Date(splitlabel[2],month,splitlabel[1]);
         var monthstart = new Date(2012,month,1);
         var delta = pointdate.getTime() - monthstart.getTime();
-        var x0 = r.monthCoords[month].x + (width * (delta/86400000) / 366) + .5;
+        var days = Math.round(delta/86400000);
+        var pointx = r.monthCoords[month]['x'] + ((r.columnWidth/31) * days);
+
         var y0 = height - bottomgutter - Y * data[i] + cp.attr("stroke-width");
             if (!i) 
-                cpp.push(['M', x0, y0, 'C', x0, y0 ])
+                cpp.push(['M', pointx, y0, 'C', pointx, y0 ])
             else
-                cpp.push([x0, y0])
+                cpp.push([pointx, y0])
     }
     cp.attr({path: cpp});
 
