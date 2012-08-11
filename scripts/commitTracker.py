@@ -224,7 +224,7 @@ class Counter(object):
         now = time.localtime()
         json_struct['since'] = self.since
         json_struct['until'] = self.until
-        json_struct['people'] = self.count_by_person
+        #json_struct['people'] = self.count_by_person
         json_struct['total'] = self.count
         return json_struct
 
@@ -301,7 +301,8 @@ while True:
 
 if config.json_file:
     json_struct = _build_json_struct(config, counters)
-    json_string = 'commits = '+ json.dumps(json_struct, default=handler)
+    s = json.dumps(json_struct, default=handler, sort_keys=True, indent=4)
+    json_string = 'commits = '+ '\n'.join([l.rstrip() for l in  s.splitlines()])
     os.chdir(origcwdu)
     f = open(config.json_file, 'w')
     f.write(json_string)
