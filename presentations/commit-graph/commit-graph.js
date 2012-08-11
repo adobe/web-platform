@@ -144,7 +144,7 @@ window.onload = function(){
 
     // Draw the commit data path
     var cp = r.path()
-        .attr( {"stroke": color, "stroke-width": 4, "stroke-linejoin": "round"}),
+        .attr( {"stroke": color, "stroke-width": 2, "stroke-linejoin": "round"}),
         cpp = [];
     for (var i = 0; i < data.length; i++) {
 
@@ -156,7 +156,7 @@ window.onload = function(){
         var pointdate = new Date(splitlabel[2],month,splitlabel[1]);
         var monthstart = new Date(2012,month,1);
         var delta = pointdate.getTime() - monthstart.getTime();
-        var x0 = r.monthCoords[month].x + (width * (delta/86400000) / 366);
+        var x0 = r.monthCoords[month].x + (width * (delta/86400000) / 366) + .5;
         var y0 = height - bottomgutter - Y * data[i] + cp.attr("stroke-width");
             if (!i) 
                 cpp.push(['M', x0, y0, 'C', x0, y0 ])
