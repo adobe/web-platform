@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - Regions API</title>
+    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
+    <meta charset="UTF-8">
+    <style type="text/css">
+
+    article{
+        -webkit-flow-into: article;
+    }
+
+    article h1 em{
+        white-space: nowrap;
+        font-style: normal;
+    }
+
+    .region{
+        -webkit-flow-from: article; 
+        float: left;
+        height: 600px;
+    }
+
+    .region + .region{
+        border-left: 1px solid lightgray;
+        padding-left: 3.5%;
+        margin-left: 4%;
+    }
+
+    .page{
+        width: 70%;
+        margin: 5% auto;
+        padding: 50px;
+        min-width: 500px;
+    }
+
+    #region1{
+        width: 52%;
+    }
+
+    #region2 {
+        width: 32%;
+        height: 400px;
+    }
+    #region3 {
+        width: 32%;
+        height: 200px;
+    }
+    .highlight {
+        -webkit-animation: highlight 2s 1 ease-out;
+    }
+    @-webkit-keyframes highlight {
+        0%   { background: yellow }
+        100% { background: white }
+    }
+    
+    #regionState{
+        font-weight: bold;
+    }
+    #regionState.empty {
+        color: gray;
+    }
+    #regionState.fit {
+        color: green;
+    }
+    #regionState.overflow {
+        color: red;
+    }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <div id="region1" class="region"></div>
+        <div id="region2" class="region"></div>
+        <div id="region3" class="highlight region"></div>
+    </div>
+
+
+    <article>
+        <h1>Working with JavaScript and regions</h1>
+
+        <section id="introduction">
+            <p class="tip">
+                <strong>Hint:</strong> resize the browser window and check out the JavaScript source code of this page.
+            </p>
+            <p class="info">
+                The last region <span id="regionState" class="empty">is empty</span>.
+            </p>
+            <p>
+                Elements that act as regions expose a number of extra methods and properties. These can be used, for instance, to determine how the content fits in a certain region.
+            </p>
+        </section>
+        
+        <section>
+            <h2>Code sample</h2>
+<pre>
+var myRegion = document.querySelector('#region')
+    myRegion.regionOverset // 'empty', 'fit' or 'overset'
+</pre>
+        <p class="caption">
+            'myRegion' is a DOM element that has content flowed into it
+        </p> 
+        </section>   
+
+        <section>
+            <p>
+                If <code>regionOverset</code> is <code>empty</code>, then the content has been successfully fitted in previous regions and there's no content flowing in this region.
+            </p>
+            <p>
+                If <code>regionOverset</code> is <code>fit</code>, then the content has been successfully fitted in the region. If the region if the last one in the region chain, it also means the content fits without overflowing.
+            </p>
+            <p>
+                If <code>regionOverset</code> is <code>overset</code> the region is the last one in the region chain and is not able to fit the remaining content. The way overflowing content is rendered depends on the value of the <code>region-overflow</code> and <code>overflow</code> CSS properties.
+            </p>
+        </section>
+    </article>
+    <script type="text/javascript" src="shared-script.js"></script>
+    <script type="text/javascript">
+        function toggleClasses(elem, classes, states) {
+            for (var i = 0; i < classes.length; i++) {
+                if (states[i])
+                    elem.classList.add(classes[i])
+                else 
+                    elem.classList.remove(classes[i]);
+            }
+        }
+    
+        document.addEventListener("DOMContentLoaded", function(){
+            
+            var lastRegion = document.querySelector("#region3"),
+                tip = document.querySelector("#regionState"),
+                classes = ['empty', 'fit', 'overflow'],
+                updateTip = function(){
+                    switch(lastRegion.webkitRegionOverset) {
+                        case 'empty':
+                            toggleClasses(tip, classes, [true, false, false]);
+                            tip.innerHTML = 'is empty';
+                            break;
+                        case 'fit':
+                            toggleClasses(tip, classes, [false, true, false]);
+                            tip.innerHTML = 'fits the content';
+                            break;
+                        case 'overset':
+                            toggleClasses(tip, classes, [false, false, true]);
+                            tip.innerHTML = 'overflows';
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+            updateTip.call()
+            window.addEventListener("resize", updateTip)
+        })
+    </script>
+</body>
+</html>
