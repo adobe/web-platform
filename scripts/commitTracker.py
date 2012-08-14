@@ -58,7 +58,6 @@ class Config(object):
         # name -> email address
         self.people = { }
 
-        self.format = 'Normal'
         self.json_file = None
 
     def parse_args(self):
@@ -69,7 +68,6 @@ class Config(object):
         parser.add_argument('--since', default=None, help='Start date for counting. Defaults to Jan 1st of the current year.')
         parser.add_argument('--until', default=None, help='End date for counting.')
         parser.add_argument('--repo', dest='repository_root', default=None, help='Path to WebKit git repository')
-        parser.add_argument('--show-total', dest='show_total', action='store_true', default=None, help='Output only the total')
         parser.add_argument('--weekly', dest='weekly', action='store_true', default=None, help='Query for every week between since and until, inclusive')
         parser.add_argument('--json-file', dest='json_file', default=None, help='File for writing JSON output')
         self.args = parser.parse_args()
@@ -85,9 +83,9 @@ class Config(object):
 
     def set_config(self):
         if self.args.verbose:
-            self.format = 'Verbose'
+            self.verbose = True
         elif self.file.has_option('Options', 'verbose'):
-            self.format = 'Verbose' if self.file.get_boolean('Options', 'verbose') else self.format
+            self.verbose = self.file.get_boolean('Options', 'verbose')
 
         if self.args.no_fetch:
             self.do_fetch = False
@@ -119,20 +117,6 @@ class Config(object):
         elif self.file.has_option('Options', 'weekly'):
             self.weekly = self.file.get('Options', 'weekly')
 
-        if self.args.show_total:
-            self.format = 'Total'
-        elif self.file.has_option('Options','show_total'):
-            self.format = self.file.get('Options', 'show_total')
-
-        self.print_total = False
-        if (self.format == 'Verbose' or self.format == 'Total' or self.format == 'Normal'): self.print_total = True
-
-        self.print_normal = True;
-        if self.format == 'Total': self.print_normal = False
-
-        self.print_verbose = False;
-        if self.format == 'Verbose': self.print_verbose = True
-
         if self.file.has_section('People'):
             self.people = { person[0] : person[1] for person in self.file.items('People') }
 
@@ -143,24 +127,6 @@ class Config(object):
         def helper(l):
             return '|'.join([ re.escape(i) for i in l if len(i) > 0 ])
         return helper(self.people.iterkeys()) + '|' + helper(self.people.itervalues())
-
-    def print_verbose(self):
-        if self.format == 'Verbose':
-            return True
-        return False
-
-    # Normal text
-    def print_normal(self):
-        if self.format == 'Verbose' or self.format == 'Normal':
-            return True
-        return False   
-
-
-    def print_total(self):
-        if self.format == 'Verbose' or self.format == 'Total' or self.format == 'Normal':
-            return True
-        return False   
-
 
 class Counter(object):
     def __init__(self, data, config, since, until):
@@ -186,18 +152,18 @@ class Counter(object):
                 if self._count_line_if_match(line):
                     self._next_commit()
             elif line.startswith('commit'):
-                if self._config.print_verbose: print line
+                if self._config.verbose: print line
 
     def _next_commit(self):
         for line in self.data:
             if line.startswith('commit'):
-                if self._config.print_verbose: print line
+                if self._config.verbose: print line
                 return
 
     def _count_line_if_match(self, line):
         person = self._line_has_person(line)
         if person:
-            if self._config.print_verbose: print line
+            if self._config.verbose: print line
             self.count += 1
             self.count_by_person[person] += 1
             return True
@@ -236,15 +202,20 @@ def _build_json_struct(config, counters):
     json_struct['results'] = [ x._json_struct() for x in counters]
     return json_struct
 
+def _parse_date(date_string, desc=None):
+    d = None
+    try:
+        d = datetime.strptime( date_string, '%m/%d/%y')
+    except ValueError:
+        try:
+            d = datetime.strptime( date_string, '%m/%d/%Y')
+        except ValueError:
+            print 'Error parsing "{0}" date: {1}'.format(desc, date_string)
+    return d
+
 config = Config()
-try:
-    sincedate = datetime.strptime( config.since, '%m/%d/%y')
-except ValueError:
-    sincedate = datetime.strptime( config.since, '%m/%d/%Y')   
-try:
-    untildate = datetime.strptime( config.until, '%m/%d/%y')
-except ValueError:
-    untildate = datetime.strptime( config.until, '%m/%d/%Y')
+sincedate = _parse_date( config.since, "since" )
+untildate = _parse_date( config.until, "until" )
 counters = []
 currentuntildate = sincedate
 weekcount = 0
@@ -252,7 +223,7 @@ weekcount = 0
 origcwdu = os.getcwdu()
 os.chdir(config.repository_root)
 if config.do_fetch:
-    if config.print_normal: print 'Fetching updates'
+    print 'Fetching updates'
     check_call(['git', 'fetch', 'origin'])
 
 while True:
@@ -274,25 +245,20 @@ while True:
     counter = Counter(log.stdout, config, sincedate, currentuntildate)
     counter.start()
 
-    if config.print_normal:
-        max_digits = 1
-        if counter.count > 0:
-            max_digits = int(math.log10(counter.count))+1
-        print('Commits')
-        if config.since:
-            print( 'since {0}'.format(sincedate)),
-        if currentuntildate:
-            print( 'until {0}'.format(currentuntildate)),
-        print ':'
-        breakdown = counter.count_by_person.items()
-        breakdown.sort(key=lambda x: -x[1])
-        for value in breakdown:
-            print( '{0} {1}'.format(str(value[1]).rjust(max_digits), value[0]) )
-
-    if config.print_total:
-        print counter.count
-    elif config.print_normal or config.print_verbose:
-        print( '{0} total'.format(counter.count))
+    max_digits = 1
+    if counter.count > 0:
+        max_digits = int(math.log10(counter.count))+1
+    print('Commits'),
+    if config.since:
+        print( 'since {0}'.format(sincedate)),
+    if currentuntildate:
+        print( 'until {0}'.format(currentuntildate)),
+    print ':'
+    breakdown = counter.count_by_person.items()
+    breakdown.sort(key=lambda x: -x[1])
+    for value in breakdown:
+        print( '{0} {1}'.format(str(value[1]).rjust(max_digits), value[0]) )
+    print( '{0} total'.format(counter.count))
 
     counters.append( counter )
 

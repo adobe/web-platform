@@ -17,12 +17,21 @@ repository_root=/Users/bjonesbe/Code/WebKit
 # do_fetch=True
 
 # Set the start date for examining the history. Defaults to Janurary 1st of the
-# current year. Note that you can use any date format that Git can understand.
+# current year. Supported formats are MM/DD/YY and MM/DD/YYYY
 # since=01/01/2012
 
 # Set the end date for examining the history. This is not set by default.
 # Note that you can use any date format that Git can understand.
 # until=02/01/2012
+
+# Query for cumulative commits for each week between since and until.
+# Defaults to False.
+# weekly=True
+
+# Save output in JSON format to the specified path, relative to the current working
+# directory when the script was invoked.
+# Not set by default.
+# json_file=commit_results.json
 
 # The people section is important, this is how the script knows who to look for
 # in the commit history.
