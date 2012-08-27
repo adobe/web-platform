@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="ru-RU">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <style type="text/css">       
+    
+    article{
+        -webkit-flow-into: article;
+        font-size: 1.3em;
+    }        
+    
+    p{
+        margin: 0 0 2em;
+    }
+    
+    .region{
+        -webkit-flow-from: article;
+        width: 30%;
+        height: 300px;
+        float: left;
+        padding: 20px;
+        background: #eee;
+    }                              
+    
+    .region + .region{
+        margin-left: 40px;
+    }
+    
+    </style>
+</head>                 
+<body>   
+    <h1>Click events on CSS Regions - workaround</h1>
+    
+    <div class="region" id="region1"></div>
+    <div class="region" id="region2"></div>
+    <article>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </article>
+    
+    <script type="text/javascript">
+    
+        var namedFlow = document.webkitGetFlowByName('article'),
+            region1 = document.querySelector("#region1"),
+            region2 = document.querySelector("#region2")
+        
+                                   
+        
+        region1.addEventListener("click", function(e){
+            console.log("#region1 ", e)
+        }) 
+        
+        region2.addEventListener("click", function(e){
+            console.log("#region2 ", e)
+        })
+        
+        document.addEventListener("click", function(e){
+            
+            var regionsByContent = namedFlow.getRegionsByContent(e.target)
+
+            if (regionsByContent){
+                Array.prototype.forEach.call(regionsByContent, function(region){ 
+                    
+                    var computedStyle = window.getComputedStyle(region, null)
+                    console.log(computedStyle)
+ 
+                    // create a new event
+                    var event = document.createEvent("MouseEvents")
+
+                    // duplicate event properties into the new event
+                    event.initMouseEvent(e.type, e.bubbles, e.cancelable, e.view, 
+                                         e.detail, e.screenX, e.screenY, e.clientX, e.clientY, 
+                                         e.ctrlKey, e.altKey, e.shiftKey, e.metaKey, 
+                                         e.button, e.relatedTarget); 
+                                         
+                    // dispatch new event
+                    region.dispatchEvent(event)
+                })
+
+            }
+        }, true)
+    
+    </script>
+</body>
+</html>
