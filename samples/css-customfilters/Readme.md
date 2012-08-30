@@ -1,17 +1,17 @@
-CSS Shaders Samples
+CSS Custom Filters Samples
 ===================
 
 About
 -----
 
-CSS Shaders bring cinematic visual effects to HTML, using simple CSS syntax.
+CSS Custom Filters bring cinematic visual effects to HTML, using simple CSS syntax.
 They expand the visual effects and interactivity possible with Web content.
 We think CSS shaders can be both visually pleasing and, perhaps more importantly,
 provide enhanced user experience by offering very organic and natural user
 interaction feedback.
 
 We have put together a set of demos for you. They showcase some of the concepts
-we [propose](https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html) with CSS Shaders.
+we [propose](https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html) with CSS Custom Filters.
 
 Requirements
 ------------
