@@ -1,0 +1,135 @@
+<!--
+Copyright 2012 Adobe Systems, Incorporated
+This work is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License http://creativecommons.org/licenses/by-nc-sa/3.0/ .
+Permissions beyond the scope of this license, pertaining to the examples of code included within this work are available at Adobe http://www.adobe.com/communities/guidelines/ccplus/commercialcode_plus_permission.html .
+-->
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
+	<link rel="stylesheet" type="text/css" href="../resources/template-style.css" media="all" />
+	<style>
+	    body {
+		width: 740px;
+	    }
+
+	    #css3-img {
+		right: 80px
+	    }
+	    #container {
+		position: relative;
+	    }
+	    #content {
+		padding-left: 80px;
+		padding-right: 80px;
+	    }
+	    .courtain {
+		position: absolute;
+		left: -10px;
+		top: -10px;
+		bottom: -40px;
+		right: -10px;
+
+		-webkit-transition: -webkit-filter ease-in-out 1s;
+
+		border-top: 5px solid white;
+		background: -webkit-linear-gradient(top, rgba(169, 3, 41, 1) 0%, rgba(143, 2, 34, 1) 95%, rgba(143, 2, 34, 0.4) 95%, rgba(109, 0, 25, 0.0) 100%);
+
+		font-weight: bold;
+		font-size: 190px;
+		padding-top: 130px;
+		color: white;
+		cursor: pointer;
+	    }
+
+	    .courtain.left {
+		-webkit-filter: custom(url(shaders/curtain.vs) url(shaders/multiply.fs), 40 8 detached, t 0.0, direction -1);
+		text-align: right;
+		padding-right: 10px;
+	    }
+
+	    .open .courtain.left {
+		-webkit-filter: custom(url(shaders/curtain.vs) url(shaders/multiply.fs), 40 8 detached, t 1.0, direction -1);
+	    }
+
+	    .courtain.right {
+		-webkit-filter: custom(url(shaders/curtain.vs) url(shaders/multiply.fs), 40 8 detached, t 0.0, direction 1);
+		text-align: left;
+		padding-left: 10px;
+	    }
+
+	    .open .courtain.right {
+		-webkit-filter: custom(url(shaders/curtain.vs) url(shaders/multiply.fs), 40 8 detached, t 1.0, direction 1);
+	    }
+
+	    #content {
+		-webkit-filter: custom(url(shaders/flag.vs) url(shaders/grayscale.fs), 20 20, phase 50.0, amplitude 100.0, txf rotateX(45deg), amount 1);
+		-webkit-transition: -webkit-filter linear 1s;
+	    }
+
+	    .open #content {
+		-webkit-filter: custom(url(shaders/flag.vs) url(shaders/grayscale.fs), 20 20, phase 270.0, amplitude 40.0, txf rotateX(0deg), amount 0);
+	    }
+
+	</style>
+
+
+    </head>
+    <body>
+
+	<h1>Curtain CSS Shader</h1>
+	<p>Click on the curtain below to toggle it open or closed.</p>
+	<div id="container">
+	    <div id="content">
+		<div id="multi-col">
+		    <h2>The Creative Web</h2>
+
+		    <p>
+		    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+		    dapibus volutpat mi id condimentum. Duis vel massa quis arcu
+		    eleifend condimentum a nec libero. Vestibulum consequat.
+		    </p>
+
+		    <img id="png-img" src="../resources/planes.jpg"  />
+
+		    <p>
+		    Mauris at mauris urna. Donec a risus quis metus rhoncus aliquet quis non
+		    urna. Curabitur sed pharetra dui. Donec varius est euismod nisl
+		    faucibus elementum. Suspendisse in diam id nibh elementum ornare.
+		    Aliquam sit amet tempor lectus. Nunc ornare ornare tellus, vitae
+		    gravida metus dignissim lobortis. Integer consequat elit eu augue
+		    consectetur sodales.
+		    </p>
+
+		    <img id="svg-img" src="../resources/picture.svg" />
+
+		    <p>
+		    Morbi congue ultricies risus, quis laoreet dolor placerat vel.
+		    Mauris dignissim, diam sit amet dapibus fringilla, sem massa
+		    rhoncus mauris, non viverra nisl ipsum eu neque. Cras sollicitudin,
+		    leo et dapibus mattis, erat quam aliquam nisi, at dictum sapien
+		    sapien in libero. Pellentesque euismod pulvinar sem, sed
+		    condimentum purus consectetur eget.
+		    </p>
+
+		    <img id="css3-img" src="../resources/html5_css3_styling.svg" />
+		</div>
+	    </div>
+	    <div class="courtain left">
+		CSS S
+	    </div>
+	    <div class="courtain right">
+		haders
+	    </div>
+	</div>
+
+	<p class="license">Unless otherwise noted, code and content is licensed under a <a href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain License</a>.</p>
+
+	<script>
+	    document.querySelector("#container").addEventListener("click", function() {
+		event.currentTarget.classList.toggle("open");
+	    });
+	</script>
+    </body>
+</html>
