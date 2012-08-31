@@ -117,6 +117,7 @@ $(function () {
             module("CSS OM", { "setup": setup, "teardown": teardown });
             var flowByNameSupported = true;
             
+
             test("JS document.getFlowByName()", function(){
                 flowByNameSupported =  !!Util.prefixMethod(document, "getFlowByName");
                 if (!flowByNameSupported) {
@@ -126,6 +127,20 @@ $(function () {
 
                 ok(Util.prefixMethod(document, "getFlowByName")("article"), "getFlowByName() returns an object");
             }) 
+
+            test("JS document.getNamedFlows()", function() {
+                if (!flowByNameSupported) {
+                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+                    return;
+                }
+
+                var flowsCollection = Util.prefixMethod(document, "getNamedFlows")();
+
+                ok(flowsCollection, "getFlowByName() returns an object"); 
+                equal(flowsCollection.length, 1, "NamedFlowCollection.length");
+                ok(flowsCollection[0], "NamedFlowCollection indexable by number");
+                ok(flowsCollection["article"], "NamedFlowCollection indexable by name");
+            })
             
             test("JS NamedFlow.overset", function(){
                 if (!flowByNameSupported) {
