@@ -131,7 +131,7 @@ $(function () {
             test("JS document.getNamedFlows()", function() {
                 var getNamedFlowsMethod = Util.prefixMethod(document, "getNamedFlows");
                 if (!getNamedFlowsMethod) {
-                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+                    ok(false, "getNamedFlow() not supported");
                     return;
                 }
                 var flowsCollection = getNamedFlowsMethod();
