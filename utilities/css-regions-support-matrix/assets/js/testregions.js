@@ -129,12 +129,12 @@ $(function () {
             }) 
 
             test("JS document.getNamedFlows()", function() {
-                if (!flowByNameSupported) {
+                var getNamedFlowsMethod = Util.prefixMethod(document, "getNamedFlows");
+                if (!getNamedFlowsMethod) {
                     ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
                     return;
                 }
-
-                var flowsCollection = Util.prefixMethod(document, "getNamedFlows")();
+                var flowsCollection = getNamedFlowsMethod();
 
                 ok(flowsCollection, "getFlowByName() returns an object"); 
                 equal(flowsCollection.length, 1, "NamedFlowCollection.length");
