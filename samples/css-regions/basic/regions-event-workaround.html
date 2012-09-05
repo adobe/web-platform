@@ -10,8 +10,12 @@
         font-size: 1.3em;
     }        
     
-    p{
+    article p{
         margin: 0 0 2em;
+    }
+    
+    article p:last-child{
+        color: blue;
     }
     
     .region{
@@ -27,10 +31,19 @@
         margin-left: 40px;
     }
     
+    .highlight{
+        background: yellow;
+    }
+    
     </style>
 </head>                 
 <body>   
     <h1>Click events on CSS Regions - workaround</h1>
+    
+    <p>
+        Click the text content to toggle a yellow highlight on its corresponding region. Resize the page to see content flowing across regions. <br />If the text content node is broken across both regions they both respond to highlight.
+         
+    </p>
     
     <div class="region" id="region1"></div>
     <div class="region" id="region2"></div>
@@ -52,11 +65,11 @@
                                    
         
         region1.addEventListener("click", function(e){
-            console.log("#region1 ", e)
+            e.target.classList.toggle('highlight')
         }) 
         
         region2.addEventListener("click", function(e){
-            console.log("#region2 ", e)
+            e.target.classList.toggle('highlight')
         })
         
         document.addEventListener("click", function(e){
@@ -66,9 +79,6 @@
             if (regionsByContent){
                 Array.prototype.forEach.call(regionsByContent, function(region){ 
                     
-                    var computedStyle = window.getComputedStyle(region, null)
-                    console.log(computedStyle)
- 
                     // create a new event
                     var event = document.createEvent("MouseEvents")
 
