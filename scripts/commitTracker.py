@@ -93,10 +93,8 @@ class Config(object):
     def read_people(self):
         with open(self.people_file,'r') as f:
             self.people = json.load(f)['people']
-            print "People: ",
             for k in self.people.itervalues(): 
                 arr = k['emails']
-                print arr
         return True
 
     def set_config(self):
@@ -202,12 +200,10 @@ class Counter(object):
             matched = match.group(0)
             selector = matched
             if self._config.people.has_key(selector):
-                print "Matched on Name", selector
                 return selector
             else:
                 for (k,v) in self._config.people.iteritems():
                     if matched in v['emails']:
-                        print "Matched on", matched, "returning", k
                         return k
                 raise StandardError, "Unexpected match of unknown value: {0}".format(matched)
         else:
