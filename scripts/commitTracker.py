@@ -93,8 +93,18 @@ class Config(object):
     def read_people(self):
         with open(self.people_file,'r') as f:
             self.people = json.load(f)['people']
+
+            # replace date string with real dates
             for k in self.people.itervalues(): 
-                arr = k['emails']
+                if 'ranges' in k:
+                    for r in k['ranges']:
+                        if 'start' in r:
+                            r['start'] = _parse_date(r['start'])
+                        if 'end' in r:
+                            r['end'] = _parse_date(r['end'])
+
+
+
         return True
 
     def set_config(self):
@@ -177,10 +187,17 @@ class Counter(object):
                     self._next_commit()
             elif line.startswith('commit'):
                 if self._config.verbose: print line
+            elif line.startswith('Date:'):
+                self.commit_date = _parse_git_date( line[5:-6].strip())
+
+
+
 
     def _next_commit(self):
         for line in self.data:
             if line.startswith('commit'):
+                #clear the commit date for later validation
+                self.commit_date = None
                 if self._config.verbose: print line
                 return
 
@@ -188,8 +205,9 @@ class Counter(object):
         person = self._line_has_person(line)
         if person:
             if self._config.verbose: print line
-            self.count += 1
-            self.count_by_person[person] += 1
+            if self._commit_in_date_range(person):
+                self.count += 1
+                self.count_by_person[person] += 1
             return True
         else:
             return False
@@ -208,6 +226,33 @@ class Counter(object):
                 raise StandardError, "Unexpected match of unknown value: {0}".format(matched)
         else:
             return None
+
+    def _commit_in_date_range(self, person):
+        rec = self._config.people[person]
+        if 'ranges' not in rec:
+            return True
+        if self.commit_date is None:
+            for line in self.data:
+                if line.startswith('Date:'):
+                    self.commit_date = _parse_git_date( line[5:])
+                    break
+        if self.commit_date is None:
+            raise StandardError, "Could not find commit date"
+
+        for r in rec['ranges']:
+            if self._date_in_range(r):
+                return True
+
+        return False
+
+    def _date_in_range(self, r):
+        if 'start' in r:
+            if self.commit_date < r['start']:
+                return False
+        if 'end' in r:
+            if self.commit_date > r['end']:
+                return False
+        return True
 
     def _json_struct(self):
         json_struct = {}
@@ -234,7 +279,14 @@ def _parse_date(date_string, desc=None):
         try:
             d = datetime.strptime( date_string, '%m/%d/%Y')
         except ValueError:
-            print 'Error parsing "{0}" date: {1}'.format(desc, date_string)
+            try:
+                d = datetime.strptime( date_string, '%Y-%m-%d')
+            except ValueError:
+                print 'Error parsing "{0}" date: {1}'.format(desc, date_string)
+    return d
+
+def _parse_git_date(date_string, desc=None):
+    d = datetime.strptime( date_string, '%Y-%m-%d %H:%M:%S')
     return d
 
 config = Config()
@@ -252,7 +304,7 @@ if config.do_fetch:
 
 while True:
 
-    git_log_command = ['git', 'log', 'origin/master']
+    git_log_command = ['git', 'log', '--date=iso', 'origin/master']
     if config.since:
         git_log_command.append('--since="{0}"'.format(config.since))
     if config.until:
