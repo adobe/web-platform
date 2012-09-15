@@ -46,8 +46,6 @@ class Config(object):
             self.repository_root = None
 
         self.scriptdir = os.path.abspath( os.path.dirname(sys.argv[0]) )
-        print "scriptdir = ", self.scriptdir
-
 
         self.verbose = False
         # should we fetch the latest?

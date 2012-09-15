@@ -1,22 +1,135 @@
 { 
 	"people" : {
-	"Victor Carbune" :
-	{
-		"emails":
-			["victor@rosedu.org"],
-		"ranges":
+		"Alan Stearns" : 
+		{
+			"emails": ["stearns@adobe.com"]
+		},
+		"Alexandru Chiculita" :
+		{
+			"emails": ["achicu@adobe.com"]
+		},
+		"Andrei Bucur" : 
+		{
+			"emails": ["abucur@adobe.com"]
+		},
+		"Andrei Poenaru" : 
+		{
+			"emails" : ["poenaru@adobe.com"]
+		},
+		"Andrei Valentin Onea" : 
+		{
+			"emails" : ["onea@adobe.com"]
+		},
+		"Anish Bhayani" : 
+		{
+			"emails" : ["bhayani@adobe.com"]
+		},
+		"Arno Gourdol" : 
+		{
+			"emails" : ["agourdol@adobe.com"]
+		},
+		"Bear Travis" : 
+		{
+			"emails" : ["betravis@adobe.com"]
+		},
+		"Bem Jones-Bey" : 
+		{
+			"emails" : ["bjonesbe@adobe.com"]
+		},
+		"Catalin Grigoroscuta" : 
+		{
+			"emails" : ["cataling@adobe.com"]
+		},
+		"Christian Cantrell" : 
+		{
+			"emails" : ["ccantrel@adobe.com"]
+		},
+		"David Alcala" : 
+		{
+			"emails" : ["dalcala@adobe.com"]
+		},
+		"Dirk Schulze" : 
+		{
+			"emails" : ["krit@webkit.org"]
+		},
+		"Ethan Malasky" : 
+		{
+			"emails" : ["emalasky@adobe.com"]
+		},
+		"Hans Muller" : 
+		{
+			"emails" : ["hmuller@adobe.com"]
+		},
+		"Horia Olaru" : 
+		{
+			"emails" : ["olaru@adobe.com"]
+		},
+		"Ion Rosca" : 
+		{
+			"emails" : ["rosca@adobe.com"]
+		},
+		"Jacob Goldstein" : 
+		{
+			"emails" : ["jacobg@adobe.com"]
+		},
+		"Larry McLister" : 
+		{
+			"emails" : ["lmcliste@adobe.com"]
+		},
+		"Max Vujovic" : 
+		{
+			"emails" : ["mvujovic@adobe.com"]
+		},
+		"Michelangelo De Simone" : 
+		{
+			"emails" : ["michelangelo@webkit.org"]
+		},
+		"Mihai Balan" : 
+		{
+			"emails" : ["mibalan@adobe.com"]
+		},
+		"Mihai Maerean" : 
+		{
+			"emails" : ["mmaerean@adobe.com"]
+		},
+		"Mihai Tica" : 
+		{
+			"emails" : ["mitica@adobe.com"]
+		},
+		"Mihnea Ovidenie" : 
+		{
+			"emails" : ["mihnea@adobe.com"]
+		},
+		"Mirela Budaes" : 
+		{
+			"emails" : ["mbudaes@adobe.com"]
+		},
+		"Raul Hudea" : 
+		{
+			"emails" : ["rhudea@adobe.com"]
+		},
+		"Razvan Caliman" : 
+		{
+			"emails" : ["rcaliman@adobe.com"]
+		},
+		"Rebecca Hauck" : 
+		{
+			"emails" : ["rhauck@adobe.com"]
+		},
+		"Stefan Craciun" : 
+		{
+			"emails" : ["scraciun@adobe.com"]
+		},
+		"Victor Carbune" : 
+		{
+			"emails" : ["victor@rosedu.org"],
+			"ranges":
 			[
 				{
 					"start": "2012-01-01",
 					"end": "2012-09-01"
 				}
 			]
-	},
-	"Ethan Malasky" :
-	{
-		"emails":
-			["emalasky@adobe.com"]
-	}
-
+		}
 }
 }
