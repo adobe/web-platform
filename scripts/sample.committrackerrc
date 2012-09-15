@@ -33,43 +33,11 @@ repository_root=/Users/bjonesbe/Code/WebKit
 # Not set by default.
 # json_file=commit_results.json
 
-# The people section is important, this is how the script knows who to look for
-# in the commit history.
-# The format is "Full Name=email address".
-# Use the name and email address that the person uses when they commit to the
-# WebKit tree.
-# Note that due to the way that Python parses this file, the Full Names will be
-# turned to lowercase in the script output, and all checks against the git log
-# output are case insensitive.
-[People]
-Alan Stearns=stearns@adobe.com
-Alexandru Chiculita=achicu@adobe.com
-Andrei Bucur=abucur@adobe.com
-Andrei Poenaru=poenaru@adobe.com
-Andrei Valentin Onea=onea@adobe.com
-Anish Bhayani=bhayani@adobe.com
-Arno Gourdol=
-Bear Travis=betravis@adobe.com
-Bem Jones-Bey=bjonesbe@adobe.com
-Catalin Grigoroscuta=cataling@adobe.com
-Christian Cantrell=ccantrel@adobe.com
-David Alcala=dalcala@adobe.com
-Dirk Schulze=krit@webkit.org
-Ethan Malasky=emalasky@adobe.com
-Hans Muller=hmuller@adobe.com
-Horia Olaru=olaru@adobe.com
-Ion Rosca=rosca@adobe.com
-Jacob Goldstein=jacobg@adobe.com
-Larry McLister=lmcliste@adobe.com
-Max Vujovic=mvujovic@adobe.com
-Michelangelo De Simone=michelangelo@webkit.org
-Mihai Balan=mibalan@adobe.com
-Mihai Maerean=mmaerean@adobe.com
-Mihai Tica=mitica@adobe.com
-Mihnea Ovidenie=mihnea@adobe.com
-Mirela Budaes=mbudaes@adobe.com
-Raul Hudea=rhudea@adobe.com
-Razvan Caliman=rcaliman@adobe.com
-Rebecca Hauck=rhauck@adobe.com
-Stefan Craciun=scraciun@adobe.com
-Victor Carbune=victor@rosedu.org
+# The people_file provides a JSON-formatted input list of the people we
+# want to track, the potentially-multiple email addresses they've used,
+# and the ranges of time that we want to count towards our tracking, for
+# cases where project assignment or employment status are relevant
+#
+# If no people_file is listed, it defaults to people.json in the script
+# directory. Look there for an example of the accepted format
+#people_file=~/.commit_people.json
