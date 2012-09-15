@@ -91,7 +91,6 @@ class Config(object):
             self.file.read(self.config_file)
 
     def read_people(self):
-        pdb.set_trace()
         with open(self.people_file,'r') as f:
             self.people = json.load(f)['people']
             print "People: ",
@@ -151,9 +150,7 @@ class Config(object):
         def helper(l):
             return '|'.join([ re.escape(i) for i in l if len(i) > 0 ])
         def email_helper(l):
-            pdb.set_trace()
-            foo = '|'.join([helper(i['emails']) for i in l])
-            return foo
+            return '|'.join([helper(i['emails']) for i in l])
 
         return helper(self.people.iterkeys()) + '|' + email_helper(self.people.itervalues())
 
@@ -212,7 +209,6 @@ class Counter(object):
                     if matched in v['emails']:
                         print "Matched on", matched, "returning", k
                         return k
-                pdb.set_trace()
                 raise StandardError, "Unexpected match of unknown value: {0}".format(matched)
         else:
             return None
