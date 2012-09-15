@@ -145,11 +145,7 @@ class Config(object):
 
         self.read_people()
 
-#        if self.file.has_section('People'):
-#            self.people = { person[0] : person[1] for person in self.file.items('People') }
-
-        # This is case insensitive because ConfigParser throws away the case of all of it's keys.
-        self.people_matcher = re.compile(self.people_regexp(), re.IGNORECASE)
+        self.people_matcher = re.compile(self.people_regexp())
 
     def people_regexp(self):
         def helper(l):
