@@ -32,6 +32,7 @@ class Config(object):
         self.read_config()
         self.set_config()
 
+
     def set_defaults(self):
         home = os.getenv('HOME')
         now = time.localtime()
@@ -43,6 +44,11 @@ class Config(object):
         else:
             self.config_file = None
             self.repository_root = None
+
+        self.scriptdir = os.path.abspath( os.path.dirname(sys.argv[0]) )
+        print "scriptdir = ", self.scriptdir
+
+
         self.verbose = False
         # should we fetch the latest?
         self.do_fetch = True
@@ -60,6 +66,8 @@ class Config(object):
 
         self.json_file = None
 
+        self.people_file = None
+
     def parse_args(self):
         parser = argparse.ArgumentParser(description='Count commits by the Adobe Web Platform Team')
         parser.add_argument('--config', default=None, help='Path to config file, default is {0}'.format(self.config_file))
@@ -70,6 +78,7 @@ class Config(object):
         parser.add_argument('--repo', dest='repository_root', default=None, help='Path to WebKit git repository')
         parser.add_argument('--weekly', dest='weekly', action='store_true', default=None, help='Query for every week between since and until, inclusive')
         parser.add_argument('--json-file', dest='json_file', default=None, help='File for writing JSON output')
+        parser.add_argument('--people-file', dest='people_file', default=None, help='JSON input file for descripting people to track')
         self.args = parser.parse_args()
 
     def read_config(self):
@@ -80,6 +89,16 @@ class Config(object):
                 self.file.readfp(fp, self.config_file)
         else:
             self.file.read(self.config_file)
+
+    def read_people(self):
+        pdb.set_trace()
+        with open(self.people_file,'r') as f:
+            self.people = json.load(f)['people']
+            print "People: ",
+            for k in self.people.itervalues(): 
+                arr = k['emails']
+                print arr
+        return True
 
     def set_config(self):
         if self.args.verbose:
@@ -112,13 +131,22 @@ class Config(object):
         elif self.file.has_option('Options', 'json_file'):
             self.json_file = self.file.get('Options', 'json_file')
 
+        if self.args.people_file:
+            self.people_file = self.args.people_file
+        elif self.file.has_option('Options', 'people_file'):
+            self.people_file = self.file.get('Options', 'people_file')
+        else:
+            self.people_file = os.path.join(self.scriptdir, 'people.json')
+
         if self.args.weekly:
             self.weekly = self.args.weekly
         elif self.file.has_option('Options', 'weekly'):
             self.weekly = self.file.get('Options', 'weekly')
 
-        if self.file.has_section('People'):
-            self.people = { person[0] : person[1] for person in self.file.items('People') }
+        self.read_people()
+
+#        if self.file.has_section('People'):
+#            self.people = { person[0] : person[1] for person in self.file.items('People') }
 
         # This is case insensitive because ConfigParser throws away the case of all of it's keys.
         self.people_matcher = re.compile(self.people_regexp(), re.IGNORECASE)
@@ -126,7 +154,12 @@ class Config(object):
     def people_regexp(self):
         def helper(l):
             return '|'.join([ re.escape(i) for i in l if len(i) > 0 ])
-        return helper(self.people.iterkeys()) + '|' + helper(self.people.itervalues())
+        def email_helper(l):
+            pdb.set_trace()
+            foo = '|'.join([helper(i['emails']) for i in l])
+            return foo
+
+        return helper(self.people.iterkeys()) + '|' + email_helper(self.people.itervalues())
 
 class Counter(object):
     def __init__(self, data, config, since, until):
@@ -174,13 +207,16 @@ class Counter(object):
         match = self._config.people_matcher.search(line)
         if match:
             matched = match.group(0)
-            selector = matched.lower()
+            selector = matched
             if self._config.people.has_key(selector):
+                print "Matched on Name", selector
                 return selector
             else:
                 for (k,v) in self._config.people.iteritems():
-                    if v == matched:
+                    if matched in v['emails']:
+                        print "Matched on", matched, "returning", k
                         return k
+                pdb.set_trace()
                 raise StandardError, "Unexpected match of unknown value: {0}".format(matched)
         else:
             return None

@@ -1,0 +1,21 @@
+{ 
+	"people" : {
+	"Victor Carbune" :
+	{
+		"emails":
+			["victor@rosedu.org"],
+		"ranges":
+			[
+				{
+					"start": "2012-01-01",
+					"end": "2012-03-01"
+				}
+			]
+	},
+	"Ethan Malasky" :
+	{
+		"emails":
+			["emalasky@adobe.com"]
+	}
+}
+}
