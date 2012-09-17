@@ -50,7 +50,8 @@
 		},
 		"Dirk Schulze" : 
 		{
-			"emails" : ["krit@webkit.org"]
+			"emails" : ["krit@webkit.org", 
+						"vbs85@gmx.de"]
 		},
 		"Ethan Malasky" : 
 		{
@@ -82,7 +83,13 @@
 		},
 		"Michelangelo De Simone" : 
 		{
-			"emails" : ["michelangelo@webkit.org"]
+			"emails" : ["michelangelo@webkit.org",
+						"micdesim@gmail.com",
+						"m.des@mac.com"],
+			"ranges" : 
+			[{
+					"start" : "2012-06-11"
+			}]
 		},
 		"Mihai Balan" : 
 		{
@@ -130,6 +137,19 @@
 					"end": "2012-09-01"
 				}
 			]
+		},
+		"Zoltan Horvath" :
+		{
+			"emails" : ["zoltan@webkit.org",
+						"hzoltan@inf.u-szeged.hu",
+						"horvath.zoltan.6@stud.u-szeged.hu"],
+			"ranges" :
+			[
+				{
+					"start": "2012-10-07"
+				}
+			]
 		}
+
 }
 }
