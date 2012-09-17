@@ -87,9 +87,11 @@
 						"micdesim@gmail.com",
 						"m.des@mac.com"],
 			"ranges" : 
-			[{
+			[
+				{
 					"start" : "2012-06-11"
-			}]
+				}
+			]
 		},
 		"Mihai Balan" : 
 		{
