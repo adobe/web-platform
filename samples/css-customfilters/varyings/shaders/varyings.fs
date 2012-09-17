@@ -10,5 +10,5 @@ varying float shadow;
 
 void main()
 {
-    css_BlendColor = vec4(shadow);
+    css_MixColor = vec4(shadow);
 }
