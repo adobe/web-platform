@@ -232,7 +232,7 @@ class Counter(object):
         if self.commit_date is None:
             for line in self.data:
                 if line.startswith('Date:'):
-                    self.commit_date = _parse_git_date( line[5:])
+                    self.commit_date = _parse_git_date( line[5:-6].strip())
                     break
         if self.commit_date is None:
             raise StandardError, "Could not find commit date"
