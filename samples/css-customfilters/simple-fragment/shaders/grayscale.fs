@@ -6,7 +6,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 
 precision mediump float;
 
-// This uniform values is passed in using CSS.
+// This uniform value is passed in using CSS.
 uniform float amount;
 
 void main()
