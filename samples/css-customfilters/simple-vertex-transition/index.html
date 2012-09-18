@@ -13,12 +13,12 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     <style type="text/css">
 
     .shader{
-	-webkit-filter: custom(url(shaders/flag.vs), 20 20, phase 270.0, amplitude 40.0, txf rotateX(30deg));
+	-webkit-filter: custom(url(shaders/flag.vs) mix(url(shaders/flag.fs) normal source-atop), 20 20, phase 270.0, amplitude 40.0, txf rotateX(30deg));
 	-webkit-transition: -webkit-filter ease-in-out 1s;
     }
 
     .shader:hover{
-	-webkit-filter: custom(url(shaders/flag.vs), 20 20, phase 0.0, amplitude 0.0, txf rotateX(0deg));
+	-webkit-filter: custom(url(shaders/flag.vs) mix(url(shaders/flag.fs) normal source-atop), 20 20, phase 0.0, amplitude 0.0, txf rotateX(0deg));
     }
 
     </style>

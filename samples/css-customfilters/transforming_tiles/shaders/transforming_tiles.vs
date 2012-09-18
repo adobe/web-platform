@@ -46,16 +46,16 @@ void main()
     // a_triangleCoord.x is the coordinate of the current triangle. It goes from 0 to u_meshSize.x.
     // For the left page we just need to compare check that a_triangleCoord.x is in the first half of that interval.
     if (a_triangleCoord.x < u_meshSize.x / 2.0) {
-	pageTransform = page1Transform;
-	depth = page1Depth;
+        pageTransform = page1Transform;
+        depth = page1Depth;
     } else {
-	pageTransform = page2Transform;
-	depth = page2Depth;
+        pageTransform = page2Transform;
+        depth = page2Depth;
     }
 
     vec4 pos = a_position;
     float curve = abs(cos(a_meshCoord.x * PI));
     pos.z = curve * depth / 500.0;
 
-    gl_Position = u_projectionMatrix * perspectiveMatrix(1.0) * transform * pageTransform * pos;
+    gl_Position = u_projectionMatrix * perspectiveMatrix(1000.0) * transform * pageTransform * pos;
 }

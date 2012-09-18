@@ -11,9 +11,15 @@ uniform float amount;
 
 void main()
 {
-    float oneMinusAmount = 1.0 - amount;
-    css_ColorMatrix = mat4((0.2126 + 0.7874 * oneMinusAmount), (0.7152 - 0.7152 * oneMinusAmount), (0.0722 - 0.0722 * oneMinusAmount), 0.0,
-			   (0.2126 - 0.2126 * oneMinusAmount), (0.7152 + 0.2848 * oneMinusAmount), (0.0722 - 0.0722 * oneMinusAmount), 0.0,
-			   (0.2126 - 0.2126 * oneMinusAmount), (0.7152 - 0.7152 * oneMinusAmount), (0.0722 + 0.9278 * oneMinusAmount), 0.0,
-			   0.0, 0.0, 0.0, 1.0);
+    const mat4 identityMatrix = mat4(1.0);
+
+    const mat4 grayscaleMatrix = mat4(0.33, 0.33, 0.33, 0.0,
+                                      0.33, 0.33, 0.33, 0.0,
+                                      0.33, 0.33, 0.33, 0.0,
+                                       0.0,  0.0,  0.0, 1.0);
+
+    css_ColorMatrix[0] = mix(identityMatrix[0], grayscaleMatrix[0], amount);
+    css_ColorMatrix[1] = mix(identityMatrix[1], grayscaleMatrix[1], amount);
+    css_ColorMatrix[2] = mix(identityMatrix[2], grayscaleMatrix[2], amount);
+    css_ColorMatrix[3] = mix(identityMatrix[3], grayscaleMatrix[3], amount);
 }

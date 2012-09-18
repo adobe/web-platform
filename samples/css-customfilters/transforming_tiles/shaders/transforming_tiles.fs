@@ -13,5 +13,5 @@ uniform float backColor;
 void main()
 {
     // Use gl_FrontFacing to hide the back face.
-    css_BlendColor = vec4(gl_FrontFacing ? frontColor : backColor);
+    css_MixColor = vec4(gl_FrontFacing ? frontColor : backColor);
 }

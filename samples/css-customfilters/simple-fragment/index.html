@@ -13,12 +13,12 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     <style type="text/css">
 
     .shader{
-	-webkit-filter: custom(none url(shaders/grayscale.fs), amount 0);
+	-webkit-filter: custom(none mix(url(shaders/grayscale.fs) normal source-atop), amount 0);
 	-webkit-transition: -webkit-filter linear 1s;
     }
 
     .shader:hover{
-	-webkit-filter: custom(none url(shaders/grayscale.fs), amount 1);
+	-webkit-filter: custom(none mix(url(shaders/grayscale.fs) normal source-atop), amount 1);
     }
 
     </style>

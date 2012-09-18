@@ -15,17 +15,17 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     @-webkit-keyframes wave{
 
 	0%, 100% {
-	    -webkit-filter: custom(url(shaders/flag.vs), 20 20, phase 270.0, amplitude 40, txf rotateX(30deg));
+	    -webkit-filter: custom(url(shaders/flag.vs) mix(url(shaders/flag.fs) normal source-atop), 20 20, phase 270.0, amplitude 40, txf rotateX(30deg));
 	}
 
 	50% {
-	    -webkit-filter: custom(url(shaders/flag.vs), 20 20, phase -90.0, amplitude 80, txf rotateX(75deg));
+	    -webkit-filter: custom(url(shaders/flag.vs) mix(url(shaders/flag.fs) normal source-atop), 20 20, phase -90.0, amplitude 80, txf rotateX(75deg));
 	}
 
     }
 
     .shader{
-	-webkit-filter: custom(url(shaders/flag.vs), 20 20, phase 270.0, amplitude 40, txf rotateX(30deg));
+	-webkit-filter: custom(url(shaders/flag.vs) mix(url(shaders/flag.fs) normal source-atop), 20 20, phase 270.0, amplitude 40, txf rotateX(30deg));
     }
 
     .shader:hover{
