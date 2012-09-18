@@ -131,7 +131,7 @@ $(function () {
             test("JS document.getNamedFlows()", function() {
                 var getNamedFlowsMethod = Util.prefixMethod(document, "getNamedFlows");
                 if (!getNamedFlowsMethod) {
-                    ok(false, "getNamedFlow() not supported");
+                    ok(false, "getNamedFlows() not supported");
                     return;
                 }
                 var flowsCollection = getNamedFlowsMethod();
@@ -280,6 +280,14 @@ $(function () {
                 );    
                 
                 setFlowContents("M");
+
+                //Must also check that NamedFlow is an EventTarget
+                ok(namedFlow.addEventListener, "NamedFlow should be an EventTarget");
+                if (!namedFlow.addEventListener) {
+                    //We break here - the test will timeout
+                    return;
+                }
+
                 namedFlow.addEventListener(Util.prefixOM("regionLayoutUpdate"), handler);
                 setFlowContents("Long text long text long text long long long longer very longe text");
             })
