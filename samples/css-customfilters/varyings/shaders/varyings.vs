@@ -36,10 +36,10 @@ mat4 perspective(float p) {
 void main()
 {
     float curve = abs(cos(a_meshCoord.x * PI * 3.0));
-    shadow = min(1.0, curve + 0.2);
+    shadow = min(0.8, curve + 0.1);
 
     vec4 pos = a_position;
-    pos.z = curve * 0.1;
+    pos.z = curve * 50.0;
 
-    gl_Position = u_projectionMatrix * perspective(0.9) * transform * pos;
+    gl_Position = u_projectionMatrix * perspective(500.0) * transform * pos;
 }

@@ -24,7 +24,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     }
 
     .inside_shader {
-	-webkit-filter: custom(url(shaders/transforming_tiles.vs) url(shaders/transforming_tiles.fs), 1 50 border-box detached,
+	-webkit-filter: custom(url(shaders/transforming_tiles.vs) mix(url(shaders/transforming_tiles.fs) normal source-atop), 1 50 border-box detached,
 				transform rotateY(15deg) rotateX(45deg) rotateZ(-20deg) scale(0.7),
 				page1Transform rotateY(179deg),
 				page1Depth -100,
@@ -35,7 +35,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     }
 
     .parent:hover .inside_shader {
-	-webkit-filter: custom(url(shaders/transforming_tiles.vs) url(shaders/transforming_tiles.fs), 1 50 border-box detached,
+	-webkit-filter: custom(url(shaders/transforming_tiles.vs) mix(url(shaders/transforming_tiles.fs) normal source-atop), 1 50 border-box detached,
 				transform rotateY(15deg) rotateX(25deg) rotateZ(0deg) scale(0.7),
 				page1Transform rotateY(0deg),
 				page1Depth 100,
@@ -55,7 +55,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 	height: 100%;
 	overflow: hidden;
 	background: -webkit-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%);
-	-webkit-filter: custom(url(shaders/transforming_tiles.vs) url(shaders/transforming_tiles.fs), 1 50 border-box detached,
+	-webkit-filter: custom(url(shaders/transforming_tiles.vs) mix(url(shaders/transforming_tiles.fs) normal source-atop), 1 50 border-box detached,
 				transform rotateY(15deg) rotateX(45deg) rotateZ(-20deg) scale(0.7),
 				page1Transform rotateY(179deg),
 				page1Depth -100,
@@ -66,7 +66,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     }
 
     .parent:hover .outside_shader {
-	-webkit-filter: custom(url(shaders/transforming_tiles.vs) url(shaders/transforming_tiles.fs), 1 50 border-box detached,
+	-webkit-filter: custom(url(shaders/transforming_tiles.vs) mix(url(shaders/transforming_tiles.fs) normal source-atop), 1 50 border-box detached,
 				transform rotateY(15deg) rotateX(25deg) rotateZ(0deg) scale(0.7),
 				page1Transform rotateY(0deg),
 				page1Depth 100,
