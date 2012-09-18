@@ -258,6 +258,26 @@ $(function () {
                 equal($region[0][Util.prefixOM("regionOverset")], "empty", "regionOverset is 'empty'");
             })
 
+            test("JS element.getRegionFlowRanges()", function() {
+                $region.css(
+                    {
+                        "width": "50px",
+                        "height": "50px"
+                    }
+                );
+                setFlowContents("Just some text here");
+
+                var regionFlowRangeSupported = !!Util.prefixMethod($region[0], "getRegionFlowRanges");
+                ok(regionFlowRangeSupported, "getRegionFlowRanges() method on Element");
+                if (!regionFlowRangeSupported) {
+                    return;
+                }
+
+                var ranges = Util.prefixMethod($region[0], "getRegionFlowRanges")();
+                ok(ranges instanceof Array, "getRegionFlowRanges() actually returns an Array")
+                ok(ranges[0] instanceof Range, "the returned Array contains Range objects")
+            })
+
             asyncTest("JS regionLayoutUpdate event", function(){
                 if (!flowByNameSupported) {
                     ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
