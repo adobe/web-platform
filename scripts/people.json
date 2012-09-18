@@ -14,11 +14,25 @@
 		},
 		"Andrei Poenaru" : 
 		{
-			"emails" : ["poenaru@adobe.com"]
+			"emails" : ["poenaru@adobe.com"],
+			"ranges":
+			[
+				{
+					"start": "2012-06-18",
+					"end": "2012-09-24"
+				}
+			]
 		},
 		"Andrei Valentin Onea" : 
 		{
-			"emails" : ["onea@adobe.com"]
+			"emails" : ["onea@adobe.com"],
+			"ranges":
+			[
+				{
+					"start": "2012-06-11",
+					"end": "2012-09-28"
+				}
+			]
 		},
 		"Anish Bhayani" : 
 		{
@@ -135,8 +149,8 @@
 			"ranges":
 			[
 				{
-					"start": "2012-01-01",
-					"end": "2012-09-01"
+					"start": "2012-02-23",
+					"end": "2012-05-18"
 				}
 			]
 		},
