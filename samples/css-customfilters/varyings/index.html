@@ -13,12 +13,12 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     <style type="text/css">
 
     .shader{
-	-webkit-filter: custom(url(shaders/varyings.vs) mix(url(shaders/varyings.fs) normal source-atop), 1 50 filter-box, transform rotateY(15deg) rotateX(45deg) rotateZ(-20deg) scale(0.6));
+	-webkit-filter: custom(url(shaders/varyings.vs) mix(url(shaders/varyings.fs) multiply source-atop), 1 50 filter-box, transform perspective(500) rotateY(15deg) rotateX(45deg) rotateZ(-20deg) scale(0.5));
 	-webkit-transition: -webkit-filter ease-in-out 1s;
     }
 
     .shader:hover{
-	-webkit-filter: custom(url(shaders/varyings.vs) mix(url(shaders/varyings.fs) normal source-atop), 1 50 filter-box, transform rotateY(-5deg) rotateX(45deg) rotateZ(15deg) scale(0.8));
+	-webkit-filter: custom(url(shaders/varyings.vs) mix(url(shaders/varyings.fs) multiply source-atop), 1 50 filter-box, transform perspective(500) rotateY(-5deg) rotateX(45deg) rotateZ(15deg) scale(0.7));
     }
 
     </style>

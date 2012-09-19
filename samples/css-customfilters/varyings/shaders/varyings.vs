@@ -10,7 +10,6 @@ attribute vec4 a_position;
 attribute vec2 a_texCoord;
 attribute vec2 a_meshCoord;
 
-uniform vec2 u_meshSize;
 uniform mat4 u_projectionMatrix;
 
 // This uniform value are passed in using CSS.
@@ -24,22 +23,12 @@ const float PI = 3.1415;
 // which contains the fragment.
 varying float shadow;
 
-mat4 perspective(float p) {
-    float perspective = - 1.0 / p;
-    return mat4(
-	1.0, 0.0, 0.0, 0.0,
-	0.0, 1.0, 0.0, 0.0,
-	0.0, 0.0, 1.0, perspective,
-	0.0, 0.0, 0.0, 1.0);
-}
-
 void main()
 {
-    float curve = abs(cos(a_meshCoord.x * PI * 3.0));
-    shadow = min(0.8, curve + 0.1);
+    float curve = abs(sin(a_meshCoord.x * PI * 1.75 + PI/8.0));
+    shadow = abs(a_position.x) < 0.25 ? min(1.0, curve + 0.2) : 1.0;
 
     vec4 pos = a_position;
-    pos.z = curve * 50.0;
-
-    gl_Position = u_projectionMatrix * perspective(500.0) * transform * pos;
+    pos.z = 40.0 * curve;
+    gl_Position = u_projectionMatrix * transform * pos;
 }
