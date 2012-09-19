@@ -12,7 +12,7 @@ function checkSupportForCustomFilter() {
 }
 
 function addBrowserVersionWarning() {
-    var text = "Your browser does not implement Custom Filters using Shaders yet, please download <a href=\"https://tools.google.com/dlpage/chromesxs\">Chrome Canary</a> or a <a href=\"http://www.chromium.org/getting-involved/dev-channel\">Chrome Dev Build</a> and enable <a href=\"http://blogs.adobe.com/cantrell/archives/2012/07/all-about-chrome-flags.html\">CSS Shaders flag</a>, or download the latest <a href=\"http://nightly.webkit.org/\">WebKit Nightly Build</a> to see this sample in action.";
+    var text = "Your browser does not implement Custom Filters using Shaders yet, please download <a href=\"https://tools.google.com/dlpage/chromesxs\">Chrome Canary</a> or a <a href=\"https://www.google.com/chrome/eula.html?extra=devchannel\">Chrome Dev Build</a> and enable <a href=\"http://blogs.adobe.com/cantrell/archives/2012/07/all-about-chrome-flags.html\">CSS Shaders flag</a>, or download the latest <a href=\"http://nightly.webkit.org/\">WebKit Nightly Build</a> to see this sample in action.";
     var div = document.createElement("div");
     div.innerHTML = text;
     div.className = "BrowserDetectorNote";
