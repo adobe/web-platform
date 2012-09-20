@@ -8,17 +8,18 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 <html>
 <head>
 	<title>CSS Custom Filters - Simple fragment shader</title>
-    <script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
+    <script type="text/javascript" src="../resources/js/third_party/jquery/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../resources/js/BrowserDetector.js"></script>
     <link rel="stylesheet" type="text/css" href="../resources/template-style.css" media="all" />
     <style type="text/css">
 
     .shader{
-	-webkit-filter: custom(none url(shaders/grayscale.fs), amount 0);
+	-webkit-filter: custom(none mix(url(shaders/grayscale.fs) normal source-atop), amount 0);
 	-webkit-transition: -webkit-filter linear 1s;
     }
 
     .shader:hover{
-	-webkit-filter: custom(none url(shaders/grayscale.fs), amount 1);
+	-webkit-filter: custom(none mix(url(shaders/grayscale.fs) normal source-atop), amount 1);
     }
 
     </style>

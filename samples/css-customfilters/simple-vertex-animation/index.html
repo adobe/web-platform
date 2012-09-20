@@ -8,24 +8,25 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 <html>
 <head>
 	<title>CSS Custom Filters - Vertex shader with CSS animation</title>
-    <script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
+    <script type="text/javascript" src="../resources/js/third_party/jquery/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../resources/js/BrowserDetector.js"></script>
     <link rel="stylesheet" type="text/css" href="../resources/template-style.css" media="all" />
     <style type="text/css">
 
     @-webkit-keyframes wave{
 
 	0%, 100% {
-	    -webkit-filter: custom(url(shaders/flag.vs), 20 20, phase 270.0, amplitude 40, txf rotateX(30deg));
+	    -webkit-filter: custom(url(shaders/flag.vs) mix(url(shaders/flag.fs) normal source-atop), 20 20, phase 270.0, amplitude 40, txf rotateX(30deg));
 	}
 
 	50% {
-	    -webkit-filter: custom(url(shaders/flag.vs), 20 20, phase -90.0, amplitude 80, txf rotateX(75deg));
+	    -webkit-filter: custom(url(shaders/flag.vs) mix(url(shaders/flag.fs) normal source-atop), 20 20, phase -90.0, amplitude 80, txf rotateX(75deg));
 	}
 
     }
 
     .shader{
-	-webkit-filter: custom(url(shaders/flag.vs), 20 20, phase 270.0, amplitude 40, txf rotateX(30deg));
+	-webkit-filter: custom(url(shaders/flag.vs) mix(url(shaders/flag.fs) normal source-atop), 20 20, phase 270.0, amplitude 40, txf rotateX(30deg));
     }
 
     .shader:hover{

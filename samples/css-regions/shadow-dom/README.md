@@ -31,7 +31,7 @@ At the time of this writing Google Chrome Dev channel and Google Chrome Canary b
 
 * type `about:flags` into the address bar of the browser;
 
-* find the "Enable CSS Regions" flag and toggle it on;
+* find the "Enable CSS Regions" flag and toggle it on; if you're running Chrome 23+, search for the "Enable experimental WebKit features" and toggle it on
 
 * restart the browser;
 

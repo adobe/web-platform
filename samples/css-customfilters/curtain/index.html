@@ -7,7 +7,8 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 <html>
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
+    <script type="text/javascript" src="../resources/js/third_party/jquery/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../resources/js/BrowserDetector.js"></script>
 	<link rel="stylesheet" type="text/css" href="../resources/template-style.css" media="all" />
 	<style>
 	    body {
@@ -44,32 +45,32 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 	    }
 
 	    .courtain.left {
-		-webkit-filter: custom(url(shaders/curtain.vs) url(shaders/multiply.fs), 40 8 detached, t 0.0, direction -1);
+		-webkit-filter: custom(url(shaders/curtain.vs) mix(url(shaders/multiply.fs) multiply source-atop), 40 8 detached, t 0.0, direction -1);
 		text-align: right;
 		padding-right: 10px;
 	    }
 
 	    .open .courtain.left {
-		-webkit-filter: custom(url(shaders/curtain.vs) url(shaders/multiply.fs), 40 8 detached, t 1.0, direction -1);
+		-webkit-filter: custom(url(shaders/curtain.vs) mix(url(shaders/multiply.fs) multiply source-atop), 40 8 detached, t 1.0, direction -1);
 	    }
 
 	    .courtain.right {
-		-webkit-filter: custom(url(shaders/curtain.vs) url(shaders/multiply.fs), 40 8 detached, t 0.0, direction 1);
+		-webkit-filter: custom(url(shaders/curtain.vs) mix(url(shaders/multiply.fs) multiply source-atop), 40 8 detached, t 0.0, direction 1);
 		text-align: left;
 		padding-left: 10px;
 	    }
 
 	    .open .courtain.right {
-		-webkit-filter: custom(url(shaders/curtain.vs) url(shaders/multiply.fs), 40 8 detached, t 1.0, direction 1);
+		-webkit-filter: custom(url(shaders/curtain.vs) mix(url(shaders/multiply.fs) multiply source-atop), 40 8 detached, t 1.0, direction 1);
 	    }
 
 	    #content {
-		-webkit-filter: custom(url(shaders/flag.vs) url(shaders/grayscale.fs), 20 20, phase 50.0, amplitude 100.0, txf rotateX(45deg), amount 1);
+		-webkit-filter: custom(url(shaders/flag.vs) mix(url(shaders/grayscale.fs) normal source-atop), 20 20, phase 50.0, amplitude 100.0, txf rotateX(45deg), amount 1);
 		-webkit-transition: -webkit-filter linear 1s;
 	    }
 
 	    .open #content {
-		-webkit-filter: custom(url(shaders/flag.vs) url(shaders/grayscale.fs), 20 20, phase 270.0, amplitude 40.0, txf rotateX(0deg), amount 0);
+		-webkit-filter: custom(url(shaders/flag.vs) mix(url(shaders/grayscale.fs) normal source-atop), 20 20, phase 270.0, amplitude 40.0, txf rotateX(0deg), amount 0);
 	    }
 
 	</style>

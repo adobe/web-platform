@@ -16,7 +16,7 @@ we [propose](https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html) with C
 Requirements
 ------------
 
-All the samples in this folder require [Adobe's prototype build](https://github.com/adobe/webkit/tree/may2012-f2f-prototype). We are looking forward to upstreaming the changes to WebKit in the following weeks.
+[Chrome Canary](https://tools.google.com/dlpage/chromesxs) or a [Chrome Dev Build](https://www.google.com/chrome/eula.html?extra=devchannel) (with [CSS Shaders flag](http://blogs.adobe.com/cantrell/archives/2012/07/all-about-chrome-flags.html) enabled), or the latest [WebKit Nightly Build](http://nightly.webkit.org/).
 
 License information
 -------------------
