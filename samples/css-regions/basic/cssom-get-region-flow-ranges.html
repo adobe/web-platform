@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - Regions API</title>
+    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
+    <meta charset="UTF-8">
+    <style type="text/css">
+
+    article.flowed {
+        -webkit-flow-into: article;
+    }
+
+    .page{
+        width: 70%;
+        margin: 5% auto;
+        padding: 50px;
+        min-width: 500px;
+    }
+    .page div {
+        box-sizing: border-box;
+    }
+    
+    .regions {
+        width: 60%;
+        float: left;
+    }
+
+    .region{
+        -webkit-flow-from: article; 
+        float: left;
+        padding-right: 1em;
+    }
+
+    #region1{
+        width: 100%;
+        height: 250px;
+    }
+
+    #placeholder {
+        border: 1px solid black;
+        float: left;
+        background-color: #cee9d3;
+        width: -webkit-calc(40% - 2px);
+        height: 250px;
+        text-align: center;
+        padding: 75px 1em 0 1em;
+    }
+
+    #region2 {
+        width: 60%;
+        height: 250px;
+        padding-left: 1em;
+        background: url('thatch.png');
+    }
+
+    #region3 {
+        width: 100%;
+        min-height: 200px;
+    }
+    
+    #dropbox {
+        float: right;
+        min-height: 750px;
+        width: 40%;
+        padding-left: 1em;
+        color: gray;
+        border-left: 1px solid lightgray;
+    }
+
+    .rip-rule {
+        width: 100%;
+        height: 32px;
+        background: url('rip.png');
+    }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="regions">
+            <div id="region1" class="region"></div>
+            <div id="placeholder">
+                Click this box to clone the content in the thatched region to the right.
+            </div>
+            <div id="region2" class="region"></div>
+            <div id="region3" class="region"></div>
+        </div>
+        <div id="dropbox">
+            <article>
+                <h1>Cloned contents below</h1>
+            </article>
+        </div>
+    </div>
+
+
+    <article class="flowed">
+        <h1>Working with JavaScript and regions</h1>
+            <p class="tip">
+                <strong>Hint:</strong> resize the browser window to change the content that flows in the thatched region, click on the designated box to clone the content, reload the page to clear the cloned content column.
+            </p>
+        <h2>The getRegionFlowRanges() method</h2>
+        <section>
+            <p>
+                Using the <code>getRegionFlowRanges()</code> method of a region, you can find out exactly what pieces of the content flow in a region. This method returns an array of <code>Range</code> objects corresponding to the ranges of the content currently flowing in the region. You can find a description of the <code>Range</code> interface on the <a href="http://www.w3.org/TR/dom/#interface-range">W3C site</a>.
+            </p>
+        </section>
+        
+        <section>
+            <h2>Code sample</h2>
+<pre>
+var myRegion = document.querySelector('#region')
+var ranges = myRegion.getRegionFlowRanges()
+ranges.forEach(function(range) {
+    // the magic happens here
+})
+</pre>
+        <p class="caption">
+            'myRegion' is a DOM element that has content flowed into it
+        </p> 
+        </section>
+    </article>
+    <script type="text/javascript" src="shared-script.js"></script>
+    <script type="text/javascript">
+    function createSeparator() {
+        var ruler = document.createElement("div");
+        ruler.classList.add("rip-rule");
+        return ruler;
+    }
+    document.addEventListener("DOMContentLoaded", function(){
+        document.getElementById("placeholder").addEventListener("click", function() {
+            var destination = document.querySelector("#dropbox article");
+            var ranges = document.getElementById("region2").webkitGetRegionFlowRanges();
+            ranges.forEach(function(range) {
+                destination.appendChild(range.cloneContents());
+            })
+            destination.appendChild(createSeparator());
+        })
+    })
+    </script>
+</body>
+</html>

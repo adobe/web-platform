@@ -46,10 +46,10 @@ void main()
     vec3 tc = a_triangleCoord;
 
     if (mod(tc.x + tc.y, 2.0) == 0.0) {
-	dz = amount * t * r;
+	    dz = amount * t * r;
     }
 
     pos.z += dz;
 
-    gl_Position = u_projectionMatrix * perspectiveMatrix(0.9) * transform * pos;
+    gl_Position = u_projectionMatrix * perspectiveMatrix(1000.0) * transform * pos;
 }

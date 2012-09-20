@@ -8,17 +8,18 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 <html>
 <head>
 	<title>CSS Custom Filters - Simple vertex shader with varyings passed to the fragment shader</title>
-    <script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
+    <script type="text/javascript" src="../resources/js/third_party/jquery/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../resources/js/BrowserDetector.js"></script>
     <link rel="stylesheet" type="text/css" href="../resources/template-style.css" media="all" />
     <style type="text/css">
 
     .shader{
-	-webkit-filter: custom(url(shaders/varyings.vs) url(shaders/varyings.fs), 1 50 filter-box, transform rotateY(15deg) rotateX(45deg) rotateZ(-20deg) scale(0.6));
+	-webkit-filter: custom(url(shaders/varyings.vs) mix(url(shaders/varyings.fs) multiply source-atop), 1 50 filter-box, transform perspective(500) rotateY(15deg) rotateX(45deg) rotateZ(-20deg) scale(0.5));
 	-webkit-transition: -webkit-filter ease-in-out 1s;
     }
 
     .shader:hover{
-	-webkit-filter: custom(url(shaders/varyings.vs) url(shaders/varyings.fs), 1 50 filter-box, transform rotateY(-5deg) rotateX(45deg) rotateZ(15deg) scale(0.8));
+	-webkit-filter: custom(url(shaders/varyings.vs) mix(url(shaders/varyings.fs) multiply source-atop), 1 50 filter-box, transform perspective(500) rotateY(-5deg) rotateX(45deg) rotateZ(15deg) scale(0.7));
     }
 
     </style>

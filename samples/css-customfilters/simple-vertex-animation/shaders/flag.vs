@@ -30,7 +30,7 @@ void main()
     vec4 pos = vec4(a_position, 1.0);
 
     float phi = degToRad * phase;
-    pos.z = (amplitude / 1000.0) * cos(pos.x * PI * 2.0 + phi);
+    pos.z = amplitude * cos(pos.x * PI * 2.0 + phi);
 
     gl_Position = u_projectionMatrix * txf * pos;
 }

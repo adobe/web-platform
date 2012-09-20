@@ -8,18 +8,19 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 <html>
 <head>
     <title>CSS Custom Filters - Vertex shader - using detached tiles</title>
-    <script type="text/javascript" src="http://adobe.github.com/web-platform-assets/js/BrowserDetector.js"></script>
+    <script type="text/javascript" src="../resources/js/third_party/jquery/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../resources/js/BrowserDetector.js"></script>
     <link rel="stylesheet" type="text/css" href="../resources/template-style.css" media="all" />
     <style type="text/css">
 
     .shader{
-	-webkit-filter: custom(url(shaders/detached_tiles.vs), 10 10 border-box detached, amount 0.5, t 0.0, transform rotateX(0deg));
+	-webkit-filter: custom(url(shaders/detached_tiles.vs) mix(url(shaders/detached_tiles.fs) normal source-atop), 10 10 border-box detached, amount 75.0, t 0.0, transform rotateX(0deg));
 	-webkit-filter-margin: 40%;
 	-webkit-transition: -webkit-filter linear 1s;
     }
 
     .shader:hover {
-	-webkit-filter: custom(url(shaders/detached_tiles.vs), 10 10 border-box detached, amount 0.5, t 1.0, transform rotateX(75deg) rotateZ(-20deg));
+	-webkit-filter: custom(url(shaders/detached_tiles.vs) mix(url(shaders/detached_tiles.fs) normal source-atop), 10 10 border-box detached, amount 75.0, t 1.0, transform rotateX(45deg) rotateZ(-20deg));
     }
 
     </style>
