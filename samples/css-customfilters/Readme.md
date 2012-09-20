@@ -5,8 +5,8 @@ About
 -----
 
 CSS Custom Filters bring cinematic visual effects to HTML, using simple CSS syntax.
-They expand the visual effects and interactivity possible with Web content.
-We think CSS shaders can be both visually pleasing and, perhaps more importantly,
+They expand the visual effects and interactivity possible with web content.
+We think CSS Custom Filters can be both visually pleasing and, perhaps more importantly,
 provide enhanced user experience by offering very organic and natural user
 interaction feedback.
 
