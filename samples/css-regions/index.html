@@ -36,11 +36,11 @@ Permissions beyond the scope of this license, pertaining to the examples of code
         letter-spacing: -1px;
     }
 
-    p{
+    p, li{
         color: #333;
         line-height: 1.4em;
     }
-
+    
     a{
         color: purple;
     }
@@ -97,7 +97,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
         padding: 10px 20px;
     }
 
-    .demos{
+    .demos ul{
         padding: 0;
         list-style: none;
     }
@@ -119,8 +119,22 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     .demos li:last-child{
         border: none;
         margin: 0;
-    }
+    }    
 
+    .demos .preview{
+        border:1px solid #aaa;
+        display: block;
+        box-shadow: 0 0 5px  rgba(0,0,0,0.3);
+        margin: 1em 0;
+    }                           
+    
+    .demos .preview:hover{
+        border-color: gray;
+    }
+    .demos .preview img{
+        width: 100%;
+    }
+    
     @media all and (min-width: 640px){
          .wrapper{
              padding: 50px 0;
@@ -166,15 +180,17 @@ Permissions beyond the scope of this license, pertaining to the examples of code
     
         <p>You'll find basic samples that demonstrate individual CSS properties, as well as more complex ideas 
         that highlight how they work together.</p>
-	
         <div class="col demos">
-            <h2>Demos</h2>
-            <ul>
-                <li class="divider">
-                    <div class="build-note">These samples require a <a href="http://nightly.webkit.org/">WebKit
+            <h2>Samples</h2>
+            
+            <div class="build-note">
+                <p>These samples require a <a href="http://nightly.webkit.org/">WebKit
                     Nightly build</a> or <a href="https://tools.google.com/dlpage/chromesxs">Google Chrome Canary</a>
-                    with the <em>experimental WebKit features</em> flag <a href="#enable-regions">enabled</a></div>
-                </li>
+                    with the <em>experimental WebKit features</em> flag <a href="#enable-regions">enabled</a>
+                </p>
+            </div>
+            
+            <ul>
                 <li>
                     <a href="basic/single-flow.html" target="_blank">Simple content thread</a>
                 </li>
@@ -216,14 +232,34 @@ Permissions beyond the scope of this license, pertaining to the examples of code
                 <li>
                     <a href="spec-intro-example.html" target="_blank">Auto-size regions</a>
                 </li>
-            </ul> 
+            </ul>
+            
+            <h2>Demos</h2> 
+            
+            <ul>
+                <li>
+                    <a href="../../demos/css-regions/road-trip/index.html" target="_blank">"Road Trip" Demo</a>
+                    <p>CSS Regions may be used to reflow content across layouts adapted to different devices and orientations. Open the demo and move your cursor to the upper-right corner of the screen to discover other layouts.</p>
+                    <a href="../../demos/css-regions/road-trip/index.html" target="_blank" class="preview">
+                        <img src="../../demos/css-regions/road-trip/screenshot.jpg" alt="Road Trip demo screenshot" />
+                    </a>
+                </li>
+            </ul>
         </div>
         
         <div class="col chrome">
             <h2 id="enable-regions">Enable CSS Regions in Google Chrome</h2>
             <ol>
-                <li>Using the browser bar navigate to <code>chrome://flags</code></li>
-                <li>If you're running Chrome 21 or Chrome 22 (currently beta), find the "Enable CSS Regions" flag and enable it. If you're running Chrome 23 (currently Canary) find the "Enable experimental WebKit features" flag and enable it.</li>
+                <li>Using the browser bar navigate to <code>chrome://flags</code>
+                    <ul>
+                        <li>
+                            If you're running Chrome 21 or Chrome 22, find the "Enable CSS Regions" flag and enable it
+                        </li>
+                        <li>
+                            If you're running Chrome 23 or newer, find the "Enable experimental WebKit features" flag and enable it.
+                        </li>
+                    </ul>
+                </li>
                 <li>Restart your browser by clicking the "Relaunch Now" button on the lower left corner.</li>
             </ol>
         </div>  
