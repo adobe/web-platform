@@ -34,7 +34,7 @@
 
         // Make sure we don't bork if regions methods are missing
         try {
-            flow = document.webkitGetFlowByName('testflow')    
+            flow = document.webkitGetNamedFlows()['testflow']
             // older implementations used to have overflow not overset
             hasOverset = (typeof flow.overset !== 'undefined')
         } catch(e) {

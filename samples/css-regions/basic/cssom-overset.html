@@ -102,7 +102,7 @@ var flow = document.getFlowByName('article')
         document.addEventListener("DOMContentLoaded", function(){
             
             var tripWire = document.querySelector("#tripWire"),
-                namedFlow = document.webkitGetFlowByName("article"),
+                namedFlow = document.webkitGetNamedFlows()["article"],
                 updateTripWire = function(){
                     tripWire.style.display = (namedFlow.overset === false)? "none" : "inline"
                 }
