@@ -89,7 +89,7 @@
         <section>
             <h2>Code sample</h2>
 <pre>
-flow = document.getFlowByName('article')
+flow = document.getNamedFlows()['article']
 flow.addEventListener('regionLayoutUpdate', handler)
 
 function handler(e){   

@@ -75,7 +75,7 @@
         <section>
             <h2>Code sample</h2>
 <pre>
-var flow = document.getFlowByName('article')
+var flow = document.getNamedFlows()['article']
     flow.contentNodes // NodeList
     flow.overset // boolean
 </pre>
@@ -86,7 +86,7 @@ var flow = document.getFlowByName('article')
 
         <section>
             <p>
-                A named flow is respresented in the DOM by a <code>NamedFlow</code> object. It can be retreived with the <code>document.getFlowByName()</code> method which accepts a single string parameter - the name of the flow.</p>
+                A named flow is represented by a <code>NamedFlow</code> object. The <code>document.getNamedFlows()</code> method returns a <code>NamedFlowCollection</code> object &ndash; individual named flows can be retrieved either by index or by name from this collection.
             </p>
             <p>
                 The <code>contentNodes</code> property references a <code>NodeList</code> of elements which are collected into the named flow.
