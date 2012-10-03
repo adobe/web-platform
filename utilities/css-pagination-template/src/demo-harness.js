@@ -54,9 +54,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         test.style['-webkit-flow-into'] = 'testflow'
             
         document.body.appendChild(test) 
-        
-        flow = document.webkitGetFlowByName('testflow')
-        
+
+        flow = document.webkitGetNamedFlows().namedItem('testflow')
+
         // older implementations used to have overflow not overset
         hasOverset = (typeof flow.overset !== 'undefined')
                                                

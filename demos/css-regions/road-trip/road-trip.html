@@ -96,7 +96,7 @@ Unless otherwise noted, code and content is licensed under a <a rel="license" hr
 
                 document.body.appendChild(test) 
 
-                flow = document.webkitGetFlowByName('testflow')
+                var flow = document.webkitGetNamedFlows().namedItem('testflow')
 
                 // older implementations used to have overflow not overset
                 hasOverset = (typeof flow.overset !== 'undefined')
@@ -169,7 +169,7 @@ Unless otherwise noted, code and content is licensed under a <a rel="license" hr
     }
     
     function getNamedFlow(flowName){
-        return document.webkitGetFlowByName(flowName)
+        return document.webkitGetNamedFlows().namedItem(flowName)
     }
     
     function getAllPages(){
@@ -203,7 +203,7 @@ Unless otherwise noted, code and content is licensed under a <a rel="license" hr
             return  
         }                     
          
-        document.addEventListener("keyup", function(e){
+        document.addEventListener("keydown", function(e){
             switch (e.keyCode){ 
                 
                 // right arrowkey 
