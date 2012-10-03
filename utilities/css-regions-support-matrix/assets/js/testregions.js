@@ -115,21 +115,10 @@ $(function () {
         
         function testCSSOM() {
             module("CSS OM", { "setup": setup, "teardown": teardown });
-            var flowByNameSupported = true;
-            
 
-            test("JS document.getFlowByName()", function(){
-                flowByNameSupported =  !!Util.prefixMethod(document, "getFlowByName");
-                if (!flowByNameSupported) {
-                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
-                    return;
-                }
-
-                ok(Util.prefixMethod(document, "getFlowByName")("article"), "getFlowByName() returns an object");
-            }) 
+            var getNamedFlowsMethod = Util.prefixMethod(document, "getNamedFlows");            
 
             test("JS document.getNamedFlows()", function() {
-                var getNamedFlowsMethod = Util.prefixMethod(document, "getNamedFlows");
                 if (!getNamedFlowsMethod) {
                     ok(false, "getNamedFlows() not supported");
                     return;
@@ -143,43 +132,44 @@ $(function () {
             })
             
             test("JS NamedFlow.overset", function(){
-                if (!flowByNameSupported) {
-                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+                if (!getNamedFlowsMethod) {
+                    ok(false, "getNamedFlows() not supported, cannot retrieve NamedFlow");
                     return;
                 }
-                ok(Util.prefixMethod(document, "getFlowByName")("article").overset === false,
+                ok(getNamedFlowsMethod()["article"].overset === false,
                     "Initial value for NamedFlow.overset");
+                //FIXME Add test for other values, too.
             })
             
             test("JS NamedFlow.name", function(){
-                if (!flowByNameSupported) {
-                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+                if (!getNamedFlowsMethod) {
+                    ok(false, "getNamedFlows() not supported, cannot retrieve NamedFlow");
                     return;
                 }
-                ok(Util.prefixMethod(document, "getFlowByName")("article").name === "article",
+                ok(getNamedFlowsMethod()["article"].name === "article",
                     "NamedFlow.name returns the name of the flow");
             })
 
             test("JS NamedFlow.getContent()", function() {
-                if (!flowByNameSupported) {
-                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+                if (!getNamedFlowsMethod) {
+                    ok(false, "getNamedFlows() not supported, cannot retrieve NamedFlow");
                     return;
                 }
 
-                var namedFlow = Util.prefixMethod(document, "getFlowByName")("article");
-                equal(typeof(namedFlow.getContent), "function", "NamedFlow.getContent() is a function");
+                var namedFlow = getNamedFlowsMethod()["article"];
+                ok(namedFlow.getContent instanceof Function, "NamedFlow.getContent() is a function");
                 //very shallow duck-typing inference :)
                 equal(namedFlow.getContent().length, 1, "NamedFlow.getContent() returns a NodeList");
             })
 
             test("JS NamedFlow.getRegionsByContent()", function() {
-                if (!flowByNameSupported) {
-                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+                if (!getNamedFlowsMethod) {
+                    ok(false, "getNamedFlows() not supported, cannot retrieve NamedFlow");
                     return;
                 }
 
-                var namedFlow = Util.prefixMethod(document, "getFlowByName")("article");
-                equal(typeof(namedFlow.getRegionsByContent), "function", "NamedFlow.getRegionsByContent() is a function");
+                var namedFlow = getNamedFlowsMethod()["article"];
+                ok(namedFlow.getRegionsByContent instanceof Function, "NamedFlow.getRegionsByContent() is a function");
                 
                 setFlowContents("Foo");
                 var theRegions = namedFlow.getRegionsByContent($flow[0]);
@@ -188,13 +178,13 @@ $(function () {
             })
 
             test("JS NamedFlow.getRegions()", function() {
-                if (!flowByNameSupported) {
-                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+                if (!getNamedFlowsMethod) {
+                    ok(false, "getNamedFlows() not supported, cannot retrieve NamedFlow");
                     return;
                 }
 
-                var namedFlow = Util.prefixMethod(document, "getFlowByName")("article");
-                equal(typeof(namedFlow.getRegions), "function", "NamedFlow.getRegions() is a function");
+                var namedFlow = getNamedFlowsMethod()["article"];
+                ok(namedFlow.getRegions instanceof Function, "NamedFlow.getRegions() is a function");
                 
                 setFlowContents("Foo");
                 var theRegions = namedFlow.getRegions($flow[0]);
@@ -203,11 +193,11 @@ $(function () {
             })
 
             test("JS NamedFlow.firstEmptyRegionIndex", function(){
-                if (!flowByNameSupported) {
-                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+                if (!getNamedFlowsMethod) {
+                    ok(false, "getNamedFlows() not supported, cannot retrieve NamedFlow");
                     return;
                 }
-                var namedFlow = Util.prefixMethod(document, "getFlowByName")("article");
+                var namedFlow = getNamedFlowsMethod()["article"];
                 
                 // no regions - but namedFlow still exists because we have content
                 $region.css("flow-from", "none");
@@ -279,12 +269,12 @@ $(function () {
             })
 
             asyncTest("JS regionLayoutUpdate event", function(){
-                if (!flowByNameSupported) {
-                    ok(false, "getFlowByName() not present, cannot retrieve NamedFlow");
+                if (!getNamedFlowsMethod) {
+                    ok(false, "getNamedFlows() not supported, cannot retrieve NamedFlow");
                     return;
                 }
 
-                var namedFlow = Util.prefixMethod(document, "getFlowByName")("article");
+                var namedFlow = getNamedFlowsMethod()["article"];
                 
                 function handler(ev) {
                     equal(ev.target, namedFlow, "Event.target points to the named flow");
