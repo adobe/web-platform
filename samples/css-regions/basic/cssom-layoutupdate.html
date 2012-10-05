@@ -89,7 +89,7 @@
         <section>
             <h2>Code sample</h2>
 <pre>
-flow = document.getFlowByName('article')
+flow = document.getNamedFlows()['article']
 flow.addEventListener('regionLayoutUpdate', handler)
 
 function handler(e){   
@@ -126,7 +126,7 @@ function handler(e){
     <script type="text/javascript" src="shared-script.js"></script>
     <script type="text/javascript">                                                      
     
-            var namedFlow = document.webkitGetFlowByName("article"),
+            var namedFlow = document.webkitGetNamedFlows()["article"],
 
                 updateLayout = function(e){     
                     var lastRegion, newRegion, emptyRegion,

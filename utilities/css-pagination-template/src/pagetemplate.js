@@ -326,7 +326,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         template.rule.cssRules.forEach(function(slotRule){ 
                    
             var flowName = slotRule.style['-webkit-flow-from'], 
-                flow = document.webkitGetFlowByName(flowName)
+                flow = document.webkitGetNamedFlows().namedItem(flowName)
                 
             if (!flowName || !flow){
                 return
