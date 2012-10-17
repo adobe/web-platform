@@ -6,7 +6,7 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Adobe CSS Exclusions Prototype</title>
+	<title>CSS Exclusions</title>
 	<meta charset="UTF-8">
 	<style type="text/css">
 		
@@ -182,15 +182,13 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 
 	<p>The current set provide basic samples that demonstrate individual CSS Exclusions properties. </p>
 	
-	<h2 id="runs">Runs In</h2>
+	<h2 id="runs-in">Try out Exclusions in Google Chrome</h2>
 	<p>Currently CSS Exclusions is not fully implemented in any browsers though we are starting to contribute the early parsing and geometry pieces to WebKit.</p> 
 	
-	<p>Check back for details on implementation progress.</p>
-	
-	<p>In the meantime, to run the samples shared here, you will need to use a mini-browser which uses a specifically modified version of WebKit that includes support for 
-	CSS Exclusions. This experimental mini-browser will allow you to experiment with the samples, and are a way for us to explore the implementation options for these features.<p>
-	
-	<p>To run the samples in the mini-browser, download the ZIP for <a href="https://github.com/downloads/adobe/web-platform/CSSExclusions_mac_050511.zip">Mac</a> or <a href="https://github.com/downloads/adobe/web-platform/CSSExclusions_p1_win_051011.zip">Windows</a>. </p>
+	<p>We have made some progress on the shape-inside property, and invite you to take the feature for a test drive.
+	To try out exclusions, you will need to use <a href="https://tools.google.com/dlpage/chromesxs">Google Chrome Canary</a>, with the "Experimental WebKit features" flag under <code>chrome://flags</code>.
+	After enabling the flag, you will be prompted to restart your browser for the new settings to take effect.
+	For more info on enabling experimental features in Chrome, check out <a href="http://blogs.adobe.com/cantrell/archives/2012/07/all-about-chrome-flags.html">this article</a>.</p>
 	
 	<h2 id="benefits">Why use CSS Exclusions</h2>
 	
@@ -210,90 +208,21 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 
 	<h2 id="samples_basic">Basic samples</h2>
 
-	<p>Note: To run the samples in the mini-browser, download the ZIP for <a href="https://github.com/downloads/adobe/web-platform/CSSExclusions_mac_050511.zip">Mac</a> or <a href="https://github.com/downloads/adobe/web-platform/CSSExclusions_p1_win_051011.zip">Windows</a>. </p>
-
 	<ul class="samples">
-		
 		<li>
-			<h4>
-				Content shape
-			</h4>
-				<img src="images/screenshots/simple_shape.png" alt="" />		
-			<p>
-				<strong>Demonstrates:</strong> custom shape for text container.
-			</p>
-			<p>
-				<strong>CSS Exclusions properties used:</strong> 
-				<code>-webkit-wrap-shape</code>, <code>-webkit-wrap-shape-mode</code>
-			</p>
+		    <a href="basic/shape-inside-simple.html">Simple shape insides</a>
 		</li>
-		
-		<li>
-			<h4>
-				Text exclusion
-			</h4>
-			
-			<img src="images/screenshots/simple_exclusion.png" alt="" />
-			
-			<p>
-				<strong>Demonstrates:</strong> exclusion shape affecting text layout.
-			</p>
-			<p>
-				<strong>CSS Exclusions properties used:</strong> 
-				<code>-webkit-wrap-shape</code>, <code>-webkit-wrap-shape-mode</code>
-			</p>
-		</li>
-		
-		<li>
-			<h4>
-				Dynamic exclusion
-			</h4>
-			
-			<img src="images/screenshots/simple_interactive.png" alt="" />
-			
-			<p>
-				<strong>Demonstrates:</strong> text flowing around an exclusion.
-			</p>
-			<p>
-				<strong>CSS Exclusion properties used:</strong> 
-				<code>-webkit-wrap-shape</code>, <code>-webkit-wrap-shape-mode</code>
-			</p>
-		</li>
-		
-		<li>
-			<h4>
-				Shape order
-			</h4>
-			
-			<img src="images/screenshots/simple_shape-order.png" alt="" />
-			
-			<p>
-				<strong>Demonstrates:</strong> shapes affecting each other
-			</p>
-			<p>
-				<strong>CSS Exclusions properties used:</strong> 
-				<code>-webkit-wrap-shape</code>, <code>-webkit-wrap-shape-mode</code>, <code>-webkit-wrap-shape-order</code>
-			</p>
-		</li>
-	
 	</ul>
-
 	
 	<h2 id="documentation">Documentation</h2>
 	<p>
 		Are you ready to roll up your sleeves and experiment with CSS Exclusions? The 
-		<a href="Documentation.html">documentation</a> covers the properties that 
-		have been prototyped so far.
+		<a href="http://dev.w3.org/csswg/css3-exclusions/#shape-inside-property">specification</a> the shape inside.
 	</p>
-	<p>
-		Using this documentation, you'll learn how to render text inside or around custom shapes using only CSS. 
-	</p>	
-		
-	</p>
-	
+
 	<h2 id="feedback">Feedback</h2>
 	<p>
-		Please keep in mind that the CSS Exclusions prototype is a work in progress. 
+		Please keep in mind that the CSS Exclusions implementation is very much a work in progress.
 	</p>
 	<p>
 		The development so far has been done following the <a href="http://dev.w3.org/csswg/css3-exclusions/">CSS Exclusions</a>  editor's draft.
@@ -303,9 +232,6 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 	<ul>
 		<li>
 			For comments on the <a href="http://dev.w3.org/csswg/css3-exclusions/">CSS Exclusions editor's draft</a> proposal please use the <a href="http://lists.w3.org/Archives/Public/www-style/">www-style@w3.org</a> mailing list on the W3C website. Please use an identifier such as "[CSS Exclusions]" in the subject of your email.
-		</li>
-		<li>
-			If you have any questions or comments about the current prototype or the samples please drop us a message on the <a href="http://www.adobe.com/go/cssregions_forum">CSS Regions & Exclusions Forum</a>.
 		</li>
 	</ul>
 	
