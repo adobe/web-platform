@@ -2,14 +2,51 @@
 <html>
 <head>
     <title>CSS Exclusions - Shape inside demo</title>
-    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
     <meta charset="UTF-8">
     <style type="text/css">
-        body, html {
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
+        html,
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica, Arial, sans-serif;
         }
+
+        article h1{
+            font-size: 2.5em;
+            font-weight: bold;
+            letter-spacing: -0.05em;
+            margin: 0;
+            padding: 0 0 1em;
+        }
+
+        article p{
+            margin: 0 0 2em;
+            font-family: Palatino, Georgia, serif;
+            text-align: justify;
+            line-height: 1.4em;
+        }
+
+        article .error{
+            background: pink;
+            color: black;
+            padding: 1em;
+        }
+
+        article code,
+        article pre{
+            background: #eee;
+            border: 1px solid #d7d7d7;
+            padding: 2px 5px;
+            font-weight: bold;
+            -webkit-hyphens: none;
+        }
+
+        article pre{
+            padding:1em;
+            margin-bottom: 2em;
+            overflow-x: hidden;
+        }
+
         #workspace {
             position: relative;
             font-size: 10px; /* used for relative sizing */
@@ -18,6 +55,7 @@
             width: 100em;
             margin: 0 auto;
         }
+
         #rectangle {
             float: left;
             margin: 2.68em;
@@ -27,6 +65,7 @@
             -webkit-shape-inside: rectangle(0, 0, 100%, 100%, 25%, 25%);
             overflow: hidden;
         }
+
         #hexagon {
             float: right;
             margin-top: 2.68em;
@@ -70,6 +109,48 @@
                 <p>Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Vi&shy;va&shy;mus ac nul&shy;la ac nunc ves&shy;ti&shy;b&shy;u&shy;lum sod&shy;ales sed eget pu&shy;rus. In&shy;te&shy;ger tris&shy;tique neque at urna eleif&shy;end por&shy;ta. Mau&shy;ris a sa&shy;pi&shy;en augue, ve&shy;hic&shy;u&shy;la rutrum augue. Sus&shy;pend&shy;isse pre&shy;tium pulvi&shy;nar tris&shy;tique. Nul&shy;la el&shy;e&shy;men&shy;tum blan&shy;dit mas&shy;sa, pel&shy;len&shy;tesque el&shy;e&shy;men&shy;tum orci tem&shy;pus sed. Cur&shy;a&shy;bi&shy;tur eget est neque, nec pel&shy;len&shy;tesque enim. Sed blan&shy;dit do&shy;lor et neque tin&shy;ci&shy;dunt rutrum. Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Nul&shy;lam tin&shy;ci&shy;dunt do&shy;lor vel neque eleif&shy;end frin&shy;g&shy;il&shy;la. Prae&shy;sent et orci nec jus&shy;to vulpu&shy;tate ul&shy;tri&shy;c&shy;ies ac in leo. In nec ip&shy;sum enim. Donec sus&shy;cip&shy;it plac&shy;er&shy;at ad&shy;ipisc&shy;ing. Nul&shy;la a nunc mi. Sed ve&shy;hic&shy;u&shy;la sus&shy;cip&shy;it mag&shy;na sed con&shy;val&shy;lis. Donec ul&shy;trices con&shy;se&shy;quat tor&shy;tor, at fer&shy;men&shy;tum augue mal&shy;esua&shy;da in. Ut cur&shy;sus, odio non port&shy;ti&shy;tor var&shy;i&shy;us, dui neque luc&shy;tus la&shy;cus, in rhon&shy;cus dui odio eges&shy;tas libe&shy;ro. Mae&shy;ce&shy;nas po&shy;s&shy;u&shy;ere con&shy;sec&shy;te&shy;tur lec&shy;tus, vi&shy;tae con&shy;sec&shy;te&shy;tur lig&shy;u&shy;la con&shy;sec&shy;te&shy;tur eu.</p>
         </div>
     </div>
-    <script type="text/javascript" src="shared-script.js"></script>
+    <script type="text/javascript">
+        !function(){
+
+            function CSSExclusions(){}
+
+            // basic feature detection
+            CSSExclusions.prototype.isSupported = (function(prop){
+                var el = document.createElement("div"),
+                    style = el.style;
+
+                if (!el)
+                    return false
+
+                // intentional bias towards -webkit because the prototype uses
+                // code under prefixed notation that is still being debated in the W3C
+                style.setProperty("-webkit-shape-inside", "rectangle(0, 0, 100%, 100%)");
+                return (style.getPropertyValue("-webkit-shape-inside") != null);
+            })()
+
+            var CSSExclusions = new CSSExclusions()
+
+            var checkSupport = function(){
+                if (CSSExclusions.isSupported)
+                    return
+                var target = document.querySelector('article section')
+                if (target)
+                    target.innerHTML = createWarning()
+            }
+
+            var createWarning = function(){
+                var h = [],
+                    p = function(){ h.push.apply(h, arguments) }
+
+                p('<p class="unsupported error">')
+                    p('<strong>Warning:</strong> You need to use the Chrome Canary browser with experimental WebKit features enabled to see this example working correctly. See <a href="../index.html#runs-in">here</a> for more info.')
+                p('</p>')
+
+                return h.join('')
+            }
+
+            document.addEventListener("DOMContentLoaded", checkSupport)
+        }()
+    </script>
 </body>
 </html>
