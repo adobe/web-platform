@@ -1,0 +1,95 @@
+html,
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+article h1{
+    font-size: 2.5em;
+    font-weight: bold;
+    letter-spacing: -0.05em;
+    margin: 0;
+    padding: 0 0 1em;
+}
+
+article h2{
+    margin: 0 0 0.5em;
+    padding: 0 0 0.25em;
+    font-size: 1.2em;
+    letter-spacing: -0.05em;
+}
+
+article p{
+    margin: 0 0 2em;
+}
+
+article p,
+article li{
+    font-family: Palatino, Georgia, serif;
+    -webkit-hyphens: auto; 
+    text-align: justify;
+    line-height: 1.4em;
+}
+
+article .tip{
+    background: #ffffcc;
+
+}
+
+article .error{
+    background: pink;
+}
+article .unsupported {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+article .info{
+    background: lightblue;
+}
+
+article .tip,
+article .error,
+article .info{
+    color: black;
+    padding: 1em;
+}
+
+article code, 
+article pre{
+    background: #eee;
+    border: 1px solid #d7d7d7;
+    padding: 2px 5px;
+    font-weight: bold;
+    -webkit-hyphens: none;
+}
+
+article pre{
+    padding:1em;
+    margin-bottom: 2em;  
+    overflow-x: hidden;
+}
+
+article ul{
+    margin: 0;
+    padding: 0;
+}  
+
+article li{
+    padding: 0 0 0.5em;
+    
+}
+
+article pre + .caption{
+    margin-top: -1.5em;
+    margin-bottom: 1.5em;
+}
+
+article .caption{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.8em;
+    color: gray;
+}
