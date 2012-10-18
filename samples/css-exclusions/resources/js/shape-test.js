@@ -38,7 +38,7 @@
             p = function(){ h.push.apply(h, arguments) }
             
         p('<p class="unsupported error">')
-            p('<strong>Warning:</strong> You need to use the Chrome Canary browser with experimental WebKit features enabled to see this example working correctly. See <a href="../index.html#runs-in">here</a> for more info.')
+            p('<strong>Warning:</strong> You need to use the Chrome Canary browser with experimental WebKit features enabled to see this example working correctly. See <a href="../index.html#browser-support">here</a> for more info.')
         p('</p>')
 
         return h.join('')
