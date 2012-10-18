@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+Copyright 2012 Adobe Systems Incorporated. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+-->
+<html>
+<head>
+    <title>CSS Exclusions - Shape inside demo</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../resources/sample-template.css" />
+    <style type="text/css">
+        #workspace {
+            position: relative;
+            font-size: 10px; /* used for relative sizing */
+            padding: 2.5em;
+            height: 40em;
+            width: 100em;
+            margin: 0 auto;
+        }
+
+        #rectangle {
+            float: left;
+            margin: 2.68em;
+            width: 34.64em;
+            height: 34.64em;
+            -webkit-hyphens: auto;
+            overflow: hidden;
+        }
+
+        #rectangle.wrap {
+            -webkit-shape-inside: rectangle(0, 0, 100%, 100%, 25%, 25%);
+        }
+
+        #hexagon {
+            float: right;
+            margin-top: 2.68em;
+            width: 40em;
+            height: 34.64em;
+            -webkit-hyphens: auto;
+            overflow: hidden;
+        }
+
+        #hexagon.wrap {
+            -webkit-shape-inside: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+        }
+    </style>
+    <!-- dat-gui widget: http://code.google.com/p/dat-gui/ -->
+    <script type="text/javascript" src="../resources/js/third_party/dat.gui.min.js"></script>
+    <script>
+        window.onload = function() {
+            var gui = new dat.GUI();
+            var obj = {
+                scale: 10,
+                shapeEnabled: true
+            };
+            gui.add(obj, "scale").min(5).max(20).step(1).onChange(
+                function(newValue) {
+                    var workspace = document.getElementById("workspace");
+                    workspace.style.setProperty("font-size", newValue.toFixed(0) + "px");
+                }
+            );
+            gui.add(obj, "shapeEnabled").onChange(
+                function(newValue) {
+                    var rectangle = document.getElementById("rectangle");
+                    var hexagon = document.getElementById("hexagon");
+                    rectangle.setAttribute("class", newValue ? "wrap" : "");
+                    hexagon.setAttribute("class", newValue ? "wrap" : "");
+                }
+            );
+        }
+    </script>
+</head>
+<body>
+    <article>
+        <h1>Flowing content with CSS Exclusions: Shape Inside</h1>
+        <section><!-- warning placeholder --></section>
+        <section>
+            <p>With CSS Exclusions, you can set an element's content area to be an arbitrary shape using shape-inside. Use the controls in the upper right to dynamically resize the shapes and the text.</p>
+            <pre>
+#rectangle {
+    shape-inside: rectangle(0, 0, 100%, 100%, 25%, 25%);
+}
+#hexagon {
+    shape-inside: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+}
+        </pre>
+        </section>
+    </article>
+    <div id="workspace">
+        <div id="rectangle" class="wrap">
+                Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Vi&shy;va&shy;mus ac nul&shy;la ac nunc ves&shy;ti&shy;b&shy;u&shy;lum sod&shy;ales sed eget pu&shy;rus. In&shy;te&shy;ger tris&shy;tique neque at urna eleif&shy;end por&shy;ta. Mau&shy;ris a sa&shy;pi&shy;en augue, ve&shy;hic&shy;u&shy;la rutrum augue. Sus&shy;pend&shy;isse pre&shy;tium pulvi&shy;nar tris&shy;tique. Nul&shy;la el&shy;e&shy;men&shy;tum blan&shy;dit mas&shy;sa, pel&shy;len&shy;tesque el&shy;e&shy;men&shy;tum orci tem&shy;pus sed. Cur&shy;a&shy;bi&shy;tur eget est neque, nec pel&shy;len&shy;tesque enim. Sed blan&shy;dit do&shy;lor et neque tin&shy;ci&shy;dunt rutrum. Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Nul&shy;lam tin&shy;ci&shy;dunt do&shy;lor vel neque eleif&shy;end frin&shy;g&shy;il&shy;la. Prae&shy;sent et orci nec jus&shy;to vulpu&shy;tate ul&shy;tri&shy;c&shy;ies ac in leo. In nec ip&shy;sum enim. Donec sus&shy;cip&shy;it plac&shy;er&shy;at ad&shy;ipisc&shy;ing. Nul&shy;la a nunc mi. Sed ve&shy;hic&shy;u&shy;la sus&shy;cip&shy;it mag&shy;na sed con&shy;val&shy;lis. Donec ul&shy;trices con&shy;se&shy;quat tor&shy;tor, at fer&shy;men&shy;tum augue mal&shy;esua&shy;da in. Ut cur&shy;sus, odio non port&shy;ti&shy;tor var&shy;i&shy;us, dui neque luc&shy;tus la&shy;cus, in rhon&shy;cus dui odio eges&shy;tas libe&shy;ro. Mae&shy;ce&shy;nas po&shy;s&shy;u&shy;ere con&shy;sec&shy;te&shy;tur lec&shy;tus, vi&shy;tae con&shy;sec&shy;te&shy;tur lig&shy;u&shy;la con&shy;sec&shy;te&shy;tur eu.
+                Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Vi&shy;va&shy;mus ac nul&shy;la ac nunc ves&shy;ti&shy;b&shy;u&shy;lum sod&shy;ales sed eget pu&shy;rus. In&shy;te&shy;ger tris&shy;tique neque at urna eleif&shy;end por&shy;ta. Mau&shy;ris a sa&shy;pi&shy;en augue, ve&shy;hic&shy;u&shy;la rutrum augue. Sus&shy;pend&shy;isse pre&shy;tium pulvi&shy;nar tris&shy;tique. Nul&shy;la el&shy;e&shy;men&shy;tum blan&shy;dit mas&shy;sa, pel&shy;len&shy;tesque el&shy;e&shy;men&shy;tum orci tem&shy;pus sed. Cur&shy;a&shy;bi&shy;tur eget est neque, nec pel&shy;len&shy;tesque enim. Sed blan&shy;dit do&shy;lor et neque tin&shy;ci&shy;dunt rutrum. Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Nul&shy;lam tin&shy;ci&shy;dunt do&shy;lor vel neque eleif&shy;end frin&shy;g&shy;il&shy;la. Prae&shy;sent et orci nec jus&shy;to vulpu&shy;tate ul&shy;tri&shy;c&shy;ies ac in leo. In nec ip&shy;sum enim. Donec sus&shy;cip&shy;it plac&shy;er&shy;at ad&shy;ipisc&shy;ing. Nul&shy;la a nunc mi. Sed ve&shy;hic&shy;u&shy;la sus&shy;cip&shy;it mag&shy;na sed con&shy;val&shy;lis. Donec ul&shy;trices con&shy;se&shy;quat tor&shy;tor, at fer&shy;men&shy;tum augue mal&shy;esua&shy;da in. Ut cur&shy;sus, odio non port&shy;ti&shy;tor var&shy;i&shy;us, dui neque luc&shy;tus la&shy;cus, in rhon&shy;cus dui odio eges&shy;tas libe&shy;ro. Mae&shy;ce&shy;nas po&shy;s&shy;u&shy;ere con&shy;sec&shy;te&shy;tur lec&shy;tus, vi&shy;tae con&shy;sec&shy;te&shy;tur lig&shy;u&shy;la con&shy;sec&shy;te&shy;tur eu.
+                Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Vi&shy;va&shy;mus ac nul&shy;la ac nunc ves&shy;ti&shy;b&shy;u&shy;lum sod&shy;ales sed eget pu&shy;rus. In&shy;te&shy;ger tris&shy;tique neque at urna eleif&shy;end por&shy;ta. Mau&shy;ris a sa&shy;pi&shy;en augue, ve&shy;hic&shy;u&shy;la rutrum augue. Sus&shy;pend&shy;isse pre&shy;tium pulvi&shy;nar tris&shy;tique. Nul&shy;la el&shy;e&shy;men&shy;tum blan&shy;dit mas&shy;sa, pel&shy;len&shy;tesque el&shy;e&shy;men&shy;tum orci tem&shy;pus sed. Cur&shy;a&shy;bi&shy;tur eget est neque, nec pel&shy;len&shy;tesque enim. Sed blan&shy;dit do&shy;lor et neque tin&shy;ci&shy;dunt rutrum. Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Nul&shy;lam tin&shy;ci&shy;dunt do&shy;lor vel neque eleif&shy;end frin&shy;g&shy;il&shy;la. Prae&shy;sent et orci nec jus&shy;to vulpu&shy;tate ul&shy;tri&shy;c&shy;ies ac in leo. In nec ip&shy;sum enim. Donec sus&shy;cip&shy;it plac&shy;er&shy;at ad&shy;ipisc&shy;ing. Nul&shy;la a nunc mi. Sed ve&shy;hic&shy;u&shy;la sus&shy;cip&shy;it mag&shy;na sed con&shy;val&shy;lis. Donec ul&shy;trices con&shy;se&shy;quat tor&shy;tor, at fer&shy;men&shy;tum augue mal&shy;esua&shy;da in. Ut cur&shy;sus, odio non port&shy;ti&shy;tor var&shy;i&shy;us, dui neque luc&shy;tus la&shy;cus, in rhon&shy;cus dui odio eges&shy;tas libe&shy;ro. Mae&shy;ce&shy;nas po&shy;s&shy;u&shy;ere con&shy;sec&shy;te&shy;tur lec&shy;tus, vi&shy;tae con&shy;sec&shy;te&shy;tur lig&shy;u&shy;la con&shy;sec&shy;te&shy;tur eu.
+                Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Vi&shy;va&shy;mus ac nul&shy;la ac nunc ves&shy;ti&shy;b&shy;u&shy;lum sod&shy;ales sed eget pu&shy;rus. In&shy;te&shy;ger tris&shy;tique neque at urna eleif&shy;end por&shy;ta. Mau&shy;ris a sa&shy;pi&shy;en augue, ve&shy;hic&shy;u&shy;la rutrum augue. Sus&shy;pend&shy;isse pre&shy;tium pulvi&shy;nar tris&shy;tique. Nul&shy;la el&shy;e&shy;men&shy;tum blan&shy;dit mas&shy;sa, pel&shy;len&shy;tesque el&shy;e&shy;men&shy;tum orci tem&shy;pus sed. Cur&shy;a&shy;bi&shy;tur eget est neque, nec pel&shy;len&shy;tesque enim. Sed blan&shy;dit do&shy;lor et neque tin&shy;ci&shy;dunt rutrum. Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Nul&shy;lam tin&shy;ci&shy;dunt do&shy;lor vel neque eleif&shy;end frin&shy;g&shy;il&shy;la. Prae&shy;sent et orci nec jus&shy;to vulpu&shy;tate ul&shy;tri&shy;c&shy;ies ac in leo. In nec ip&shy;sum enim. Donec sus&shy;cip&shy;it plac&shy;er&shy;at ad&shy;ipisc&shy;ing. Nul&shy;la a nunc mi. Sed ve&shy;hic&shy;u&shy;la sus&shy;cip&shy;it mag&shy;na sed con&shy;val&shy;lis. Donec ul&shy;trices con&shy;se&shy;quat tor&shy;tor, at fer&shy;men&shy;tum augue mal&shy;esua&shy;da in. Ut cur&shy;sus, odio non port&shy;ti&shy;tor var&shy;i&shy;us, dui neque luc&shy;tus la&shy;cus, in rhon&shy;cus dui odio eges&shy;tas libe&shy;ro. Mae&shy;ce&shy;nas po&shy;s&shy;u&shy;ere con&shy;sec&shy;te&shy;tur lec&shy;tus, vi&shy;tae con&shy;sec&shy;te&shy;tur lig&shy;u&shy;la con&shy;sec&shy;te&shy;tur eu.
+                Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Vi&shy;va&shy;mus ac nul&shy;la ac nunc ves&shy;ti&shy;b&shy;u&shy;lum sod&shy;ales sed eget pu&shy;rus. In&shy;te&shy;ger tris&shy;tique neque at urna eleif&shy;end por&shy;ta. Mau&shy;ris a sa&shy;pi&shy;en augue, ve&shy;hic&shy;u&shy;la rutrum augue. Sus&shy;pend&shy;isse pre&shy;tium pulvi&shy;nar tris&shy;tique. Nul&shy;la el&shy;e&shy;men&shy;tum blan&shy;dit mas&shy;sa, pel&shy;len&shy;tesque el&shy;e&shy;men&shy;tum orci tem&shy;pus sed. Cur&shy;a&shy;bi&shy;tur eget est neque, nec pel&shy;len&shy;tesque enim. Sed blan&shy;dit do&shy;lor et neque tin&shy;ci&shy;dunt rutrum. Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Nul&shy;lam tin&shy;ci&shy;dunt do&shy;lor vel neque eleif&shy;end frin&shy;g&shy;il&shy;la. Prae&shy;sent et orci nec jus&shy;to vulpu&shy;tate ul&shy;tri&shy;c&shy;ies ac in leo. In nec ip&shy;sum enim. Donec sus&shy;cip&shy;it plac&shy;er&shy;at ad&shy;ipisc&shy;ing. Nul&shy;la a nunc mi. Sed ve&shy;hic&shy;u&shy;la sus&shy;cip&shy;it mag&shy;na sed con&shy;val&shy;lis. Donec ul&shy;trices con&shy;se&shy;quat tor&shy;tor, at fer&shy;men&shy;tum augue mal&shy;esua&shy;da in. Ut cur&shy;sus, odio non port&shy;ti&shy;tor var&shy;i&shy;us, dui neque luc&shy;tus la&shy;cus, in rhon&shy;cus dui odio eges&shy;tas libe&shy;ro. Mae&shy;ce&shy;nas po&shy;s&shy;u&shy;ere con&shy;sec&shy;te&shy;tur lec&shy;tus, vi&shy;tae con&shy;sec&shy;te&shy;tur lig&shy;u&shy;la con&shy;sec&shy;te&shy;tur eu.
+        </div>
+        <div id="hexagon" class="wrap">
+                Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Vi&shy;va&shy;mus ac nul&shy;la ac nunc ves&shy;ti&shy;b&shy;u&shy;lum sod&shy;ales sed eget pu&shy;rus. In&shy;te&shy;ger tris&shy;tique neque at urna eleif&shy;end por&shy;ta. Mau&shy;ris a sa&shy;pi&shy;en augue, ve&shy;hic&shy;u&shy;la rutrum augue. Sus&shy;pend&shy;isse pre&shy;tium pulvi&shy;nar tris&shy;tique. Nul&shy;la el&shy;e&shy;men&shy;tum blan&shy;dit mas&shy;sa, pel&shy;len&shy;tesque el&shy;e&shy;men&shy;tum orci tem&shy;pus sed. Cur&shy;a&shy;bi&shy;tur eget est neque, nec pel&shy;len&shy;tesque enim. Sed blan&shy;dit do&shy;lor et neque tin&shy;ci&shy;dunt rutrum. Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Nul&shy;lam tin&shy;ci&shy;dunt do&shy;lor vel neque eleif&shy;end frin&shy;g&shy;il&shy;la. Prae&shy;sent et orci nec jus&shy;to vulpu&shy;tate ul&shy;tri&shy;c&shy;ies ac in leo. In nec ip&shy;sum enim. Donec sus&shy;cip&shy;it plac&shy;er&shy;at ad&shy;ipisc&shy;ing. Nul&shy;la a nunc mi. Sed ve&shy;hic&shy;u&shy;la sus&shy;cip&shy;it mag&shy;na sed con&shy;val&shy;lis. Donec ul&shy;trices con&shy;se&shy;quat tor&shy;tor, at fer&shy;men&shy;tum augue mal&shy;esua&shy;da in. Ut cur&shy;sus, odio non port&shy;ti&shy;tor var&shy;i&shy;us, dui neque luc&shy;tus la&shy;cus, in rhon&shy;cus dui odio eges&shy;tas libe&shy;ro. Mae&shy;ce&shy;nas po&shy;s&shy;u&shy;ere con&shy;sec&shy;te&shy;tur lec&shy;tus, vi&shy;tae con&shy;sec&shy;te&shy;tur lig&shy;u&shy;la con&shy;sec&shy;te&shy;tur eu.
+                Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Vi&shy;va&shy;mus ac nul&shy;la ac nunc ves&shy;ti&shy;b&shy;u&shy;lum sod&shy;ales sed eget pu&shy;rus. In&shy;te&shy;ger tris&shy;tique neque at urna eleif&shy;end por&shy;ta. Mau&shy;ris a sa&shy;pi&shy;en augue, ve&shy;hic&shy;u&shy;la rutrum augue. Sus&shy;pend&shy;isse pre&shy;tium pulvi&shy;nar tris&shy;tique. Nul&shy;la el&shy;e&shy;men&shy;tum blan&shy;dit mas&shy;sa, pel&shy;len&shy;tesque el&shy;e&shy;men&shy;tum orci tem&shy;pus sed. Cur&shy;a&shy;bi&shy;tur eget est neque, nec pel&shy;len&shy;tesque enim. Sed blan&shy;dit do&shy;lor et neque tin&shy;ci&shy;dunt rutrum. Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Nul&shy;lam tin&shy;ci&shy;dunt do&shy;lor vel neque eleif&shy;end frin&shy;g&shy;il&shy;la. Prae&shy;sent et orci nec jus&shy;to vulpu&shy;tate ul&shy;tri&shy;c&shy;ies ac in leo. In nec ip&shy;sum enim. Donec sus&shy;cip&shy;it plac&shy;er&shy;at ad&shy;ipisc&shy;ing. Nul&shy;la a nunc mi. Sed ve&shy;hic&shy;u&shy;la sus&shy;cip&shy;it mag&shy;na sed con&shy;val&shy;lis. Donec ul&shy;trices con&shy;se&shy;quat tor&shy;tor, at fer&shy;men&shy;tum augue mal&shy;esua&shy;da in. Ut cur&shy;sus, odio non port&shy;ti&shy;tor var&shy;i&shy;us, dui neque luc&shy;tus la&shy;cus, in rhon&shy;cus dui odio eges&shy;tas libe&shy;ro. Mae&shy;ce&shy;nas po&shy;s&shy;u&shy;ere con&shy;sec&shy;te&shy;tur lec&shy;tus, vi&shy;tae con&shy;sec&shy;te&shy;tur lig&shy;u&shy;la con&shy;sec&shy;te&shy;tur eu.
+                Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Vi&shy;va&shy;mus ac nul&shy;la ac nunc ves&shy;ti&shy;b&shy;u&shy;lum sod&shy;ales sed eget pu&shy;rus. In&shy;te&shy;ger tris&shy;tique neque at urna eleif&shy;end por&shy;ta. Mau&shy;ris a sa&shy;pi&shy;en augue, ve&shy;hic&shy;u&shy;la rutrum augue. Sus&shy;pend&shy;isse pre&shy;tium pulvi&shy;nar tris&shy;tique. Nul&shy;la el&shy;e&shy;men&shy;tum blan&shy;dit mas&shy;sa, pel&shy;len&shy;tesque el&shy;e&shy;men&shy;tum orci tem&shy;pus sed. Cur&shy;a&shy;bi&shy;tur eget est neque, nec pel&shy;len&shy;tesque enim. Sed blan&shy;dit do&shy;lor et neque tin&shy;ci&shy;dunt rutrum. Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Nul&shy;lam tin&shy;ci&shy;dunt do&shy;lor vel neque eleif&shy;end frin&shy;g&shy;il&shy;la. Prae&shy;sent et orci nec jus&shy;to vulpu&shy;tate ul&shy;tri&shy;c&shy;ies ac in leo. In nec ip&shy;sum enim. Donec sus&shy;cip&shy;it plac&shy;er&shy;at ad&shy;ipisc&shy;ing. Nul&shy;la a nunc mi. Sed ve&shy;hic&shy;u&shy;la sus&shy;cip&shy;it mag&shy;na sed con&shy;val&shy;lis. Donec ul&shy;trices con&shy;se&shy;quat tor&shy;tor, at fer&shy;men&shy;tum augue mal&shy;esua&shy;da in. Ut cur&shy;sus, odio non port&shy;ti&shy;tor var&shy;i&shy;us, dui neque luc&shy;tus la&shy;cus, in rhon&shy;cus dui odio eges&shy;tas libe&shy;ro. Mae&shy;ce&shy;nas po&shy;s&shy;u&shy;ere con&shy;sec&shy;te&shy;tur lec&shy;tus, vi&shy;tae con&shy;sec&shy;te&shy;tur lig&shy;u&shy;la con&shy;sec&shy;te&shy;tur eu.
+                Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Vi&shy;va&shy;mus ac nul&shy;la ac nunc ves&shy;ti&shy;b&shy;u&shy;lum sod&shy;ales sed eget pu&shy;rus. In&shy;te&shy;ger tris&shy;tique neque at urna eleif&shy;end por&shy;ta. Mau&shy;ris a sa&shy;pi&shy;en augue, ve&shy;hic&shy;u&shy;la rutrum augue. Sus&shy;pend&shy;isse pre&shy;tium pulvi&shy;nar tris&shy;tique. Nul&shy;la el&shy;e&shy;men&shy;tum blan&shy;dit mas&shy;sa, pel&shy;len&shy;tesque el&shy;e&shy;men&shy;tum orci tem&shy;pus sed. Cur&shy;a&shy;bi&shy;tur eget est neque, nec pel&shy;len&shy;tesque enim. Sed blan&shy;dit do&shy;lor et neque tin&shy;ci&shy;dunt rutrum. Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Nul&shy;lam tin&shy;ci&shy;dunt do&shy;lor vel neque eleif&shy;end frin&shy;g&shy;il&shy;la. Prae&shy;sent et orci nec jus&shy;to vulpu&shy;tate ul&shy;tri&shy;c&shy;ies ac in leo. In nec ip&shy;sum enim. Donec sus&shy;cip&shy;it plac&shy;er&shy;at ad&shy;ipisc&shy;ing. Nul&shy;la a nunc mi. Sed ve&shy;hic&shy;u&shy;la sus&shy;cip&shy;it mag&shy;na sed con&shy;val&shy;lis. Donec ul&shy;trices con&shy;se&shy;quat tor&shy;tor, at fer&shy;men&shy;tum augue mal&shy;esua&shy;da in. Ut cur&shy;sus, odio non port&shy;ti&shy;tor var&shy;i&shy;us, dui neque luc&shy;tus la&shy;cus, in rhon&shy;cus dui odio eges&shy;tas libe&shy;ro. Mae&shy;ce&shy;nas po&shy;s&shy;u&shy;ere con&shy;sec&shy;te&shy;tur lec&shy;tus, vi&shy;tae con&shy;sec&shy;te&shy;tur lig&shy;u&shy;la con&shy;sec&shy;te&shy;tur eu.
+                Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Vi&shy;va&shy;mus ac nul&shy;la ac nunc ves&shy;ti&shy;b&shy;u&shy;lum sod&shy;ales sed eget pu&shy;rus. In&shy;te&shy;ger tris&shy;tique neque at urna eleif&shy;end por&shy;ta. Mau&shy;ris a sa&shy;pi&shy;en augue, ve&shy;hic&shy;u&shy;la rutrum augue. Sus&shy;pend&shy;isse pre&shy;tium pulvi&shy;nar tris&shy;tique. Nul&shy;la el&shy;e&shy;men&shy;tum blan&shy;dit mas&shy;sa, pel&shy;len&shy;tesque el&shy;e&shy;men&shy;tum orci tem&shy;pus sed. Cur&shy;a&shy;bi&shy;tur eget est neque, nec pel&shy;len&shy;tesque enim. Sed blan&shy;dit do&shy;lor et neque tin&shy;ci&shy;dunt rutrum. Lo&shy;rem ip&shy;sum do&shy;lor sit amet, con&shy;sec&shy;te&shy;tur ad&shy;ipisc&shy;ing elit. Nul&shy;lam tin&shy;ci&shy;dunt do&shy;lor vel neque eleif&shy;end frin&shy;g&shy;il&shy;la. Prae&shy;sent et orci nec jus&shy;to vulpu&shy;tate ul&shy;tri&shy;c&shy;ies ac in leo. In nec ip&shy;sum enim. Donec sus&shy;cip&shy;it plac&shy;er&shy;at ad&shy;ipisc&shy;ing. Nul&shy;la a nunc mi. Sed ve&shy;hic&shy;u&shy;la sus&shy;cip&shy;it mag&shy;na sed con&shy;val&shy;lis. Donec ul&shy;trices con&shy;se&shy;quat tor&shy;tor, at fer&shy;men&shy;tum augue mal&shy;esua&shy;da in. Ut cur&shy;sus, odio non port&shy;ti&shy;tor var&shy;i&shy;us, dui neque luc&shy;tus la&shy;cus, in rhon&shy;cus dui odio eges&shy;tas libe&shy;ro. Mae&shy;ce&shy;nas po&shy;s&shy;u&shy;ere con&shy;sec&shy;te&shy;tur lec&shy;tus, vi&shy;tae con&shy;sec&shy;te&shy;tur lig&shy;u&shy;la con&shy;sec&shy;te&shy;tur eu.
+        </div>
+    </div>
+        <script type="text/javascript" src="../resources/js/shape-test.js"></script>
+</body>
+</html>
