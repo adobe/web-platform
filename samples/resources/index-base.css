@@ -1,0 +1,133 @@
+body{
+    margin: 0;
+    font-size: 1.2em;
+    font-family: Palatino, Georgia, serif;
+}
+
+h1{
+    color: white;
+    margin: 0;
+    padding-right: 60px;
+    text-shadow: rgba(0, 0, 0, 0.347656) 0px 1px 2px;
+}
+
+h1 em{
+    display: block;
+    font: 0.55em / 1.5em normal;
+    color: #ccc;
+}
+
+h2{
+    margin: 60px 0 20px;
+    letter-spacing: -1px;
+}
+
+p, li{
+    color: #333;
+    line-height: 1.4em;
+}
+
+a{
+    color: purple;
+}
+
+a:hover{
+    color: black;
+}
+
+a:visited{
+    color: #8560A8;
+}
+
+header{
+    background: #6F518F;
+}
+
+header .logo{
+    height: 62px;
+    width: 38px;
+    display: block;
+    position: absolute;
+    top: -1px;
+    right: 32px;
+    line-height: 200px;
+    overflow: hidden;
+    background: url("http://adobe.github.com/web-platform-assets/images/adobe_small_logo.gif") top left no-repeat;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .35);
+}
+
+header .logo:hover{
+    top: 0px;
+}
+
+.wrapper{
+    width: 90%;
+    margin: 0 auto;
+    padding: 25px 0;
+}
+
+header + .wrapper{
+    padding: 0 0 50px;
+
+}
+
+code{
+    background: #eee;
+    border: 1px solid #d7d7d7;
+    padding: 0 3px;
+}
+
+#check_support.false{
+    background: #ffc;
+    border: 1px solid yellow;
+    padding: 10px 20px;
+}
+
+.demos ul{
+    padding: 0;
+    list-style: none;
+}
+
+.demos li{
+    padding: 0 0 5px;
+    margin: 0 0 20px;
+}
+.demos li.divider{ 
+    font-weight: bold;
+    font-size: 1.1em;
+    list-style: none;
+}
+.demos li .build-note{
+    font-weight: 100;
+    font-size: 0.9em;
+    font-style: italic;
+}
+.demos li:last-child{
+    border: none;
+    margin: 0;
+}    
+
+.demos .preview{
+    border:1px solid #aaa;
+    display: block;
+    box-shadow: 0 0 5px  rgba(0,0,0,0.3);
+    margin: 1em 0;
+}                           
+
+.demos .preview:hover{
+    border-color: gray;
+}
+.demos .preview img{
+    width: 100%;
+}
+
+@media all and (min-width: 640px){
+     .wrapper{
+         padding: 50px 0;
+         width: 600px;
+     }
+
+     header .logo{
+         right: 52px;
+     }
+}
