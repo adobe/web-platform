@@ -77,48 +77,29 @@ code{
     padding: 0 3px;
 }
 
-#check_support.false{
-    background: #ffc;
-    border: 1px solid yellow;
-    padding: 10px 20px;
+ul {
+    list-style-type: disc;
 }
 
-.demos ul{
+.demos{
     padding: 0;
-    list-style: none;
 }
 
 .demos li{
     padding: 0 0 5px;
-    margin: 0 0 20px;
+    margin: 0 0 30px;
 }
-.demos li.divider{ 
+
+.demos li.divider{
     font-weight: bold;
     font-size: 1.1em;
     list-style: none;
+    list-style-type: none;
 }
-.demos li .build-note{
-    font-weight: 100;
-    font-size: 0.9em;
-    font-style: italic;
-}
+
 .demos li:last-child{
     border: none;
     margin: 0;
-}    
-
-.demos .preview{
-    border:1px solid #aaa;
-    display: block;
-    box-shadow: 0 0 5px  rgba(0,0,0,0.3);
-    margin: 1em 0;
-}                           
-
-.demos .preview:hover{
-    border-color: gray;
-}
-.demos .preview img{
-    width: 100%;
 }
 
 @media all and (min-width: 640px){
