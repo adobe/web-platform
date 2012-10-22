@@ -1,0 +1,427 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Test the Web Forward</title>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+		<link rel="stylesheet" href="lib/textmate.css">
+		<link rel="stylesheet" href="css/adobe.css">
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>Test the Web Forward</h2>
+					<h3>How to Write a Javascript Test</h3>
+					<img src="assets/images/W3C_logo.jpg">
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				<section>
+					<h2>JavaScript Test Overview</h2>
+					<br>
+					<ul>
+					    <li>JavaScript tests programmatically verify functionality</li>
+					    <li>JavaScript tests have some advantages over Reftests
+					        <ul>
+					            <li>Robust</li>
+					            <li>Flexible</li>
+					            <li>Performant</li>
+					            <li>Powerful</li>
+					        </ul>
+					    </li>
+					    <li>Reftests have some advantages over JavaScript tests
+					        <ul>
+					            <li>Verify complete rendering</li>
+					            <li>Easy to understand</li>
+					            <li>Works for clients that don't support JavaScript</li>
+					            <li>Avoid introducing additional technologies (JS)</li>
+					        </ul>
+					    </li>
+					</ul>
+			    </section>
+			    
+				<section>
+				    <h2>JavaScript Test Overview (cont'd)</h2>
+				    <br>
+                    <ul>
+    					<li>JavaScript can be used in conjunction with Reftests
+    					    <ul>
+    				            <li>Test can have both a reference file and a JavaScript section</li>
+    				            <li>Reftest portion supports clients without script engines</li>
+    				        </ul>
+    				    </li>
+    				    <li>Self-describing Reftests are the preferred test format</li>
+    				    <li>JavaScript tests should be used in the following scenarios:
+    				        <ul>
+    				            <li>Testing a JS API or behavior (ex: CSSOM spec)</li>
+    				            <li>Adding automation to Reftests</li>
+    				        </ul>
+    				    </li>
+    				    <li>W3C provides a framework (<tt>testharness.js</tt>) to simplify and standardize JS test creation</li>
+					</ul>
+				</section>	    
+
+
+    				<section>
+    			        <h3>testharness</h3>
+    			        <p><tt>testharness.js</tt> and <tt>testharnessreport.js</tt></p>
+    			        <pre>
+    			            <code class="html">
+    &lt;<span class="styleTag">script src</span>="/resources/testharness.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
+
+    &lt;<span class="styleTag">script src</span>="/resources/testharnessreport.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
+                            </code>
+                        </pre>    
+    				    <ul>
+    				        <li>JavaScript API for making common test assertions</li>
+    				        <li>Should be used by all JavaScript tests</li>
+    				        <li>Path must be to <tt>/resources</tt> directory at root level</li>
+    				        <li>Element with <code>id="log"</code> should exist in test file
+    				            <ul>
+    				                <li>Test results table will be added to this element, if it exists</li>
+    				            </ul>
+    				        </li>
+    				    </ul>
+    				</section>
+
+    				<section>
+    			        <section>
+        			        <h2>The test function</h2>
+            			    <br>
+            			    <pre>
+            			        <code class="html">
+            test(test_function, name, properties)
+            			        </code>
+            			    </pre>
+            			    <ul>
+            			        <li>Used for synchronous tests
+            			            <ul>
+            			                <li><code>async_test()</code> is also provided by testharness for asychronous testing</li>
+            			            </ul>
+            			        </li>
+            			        <li>Documented and implemented in <tt>testharness.js</tt></li>
+            			        <li>Used to define an individual test case in a file
+            			            <ul>
+            			                <li>Common for a file to have multiple calls to <code>test()</code></li>
+            			            </ul>
+            			        </li>   
+            			        <li>testharness will display PASS/FAIL for each call to <code>test()</code></li>
+
+            			    </ul>
+                        </section>
+
+                        <section>
+                            <h2>test() Argument 1: test_function</h2>
+            			    <pre>
+            			        <code class="html">
+            test(<span style="color:red">test_function</span>, name, properties)
+            			        </code>
+            			    </pre>                        
+                            <ul>
+                                <li><code>test_function</code> must be an object, not a function call</li>
+                                <li><code>test_function</code> will typically be one of the assert methods supplied by testharness
+                                    <ul>
+                                        <li>Can also be user defined if no assert method provides the needed functionality</li>
+                                    </ul>
+                                </li>
+                                <li>Result from the assertion will determine PASS/FAIL</li>
+                                <li>Usage example:
+                                    <pre style="font-size:18px">
+                                        <code>
+            test(<span class="highlight">function() {assert_true(true)}</span>, name, properties)
+                                        </code>
+                                    </pre>  
+                                </li>                            
+        			        </ul>                   
+                        </section>
+
+                       <section>
+                            <h2>test() Argument 2: Name</h2>
+                            <pre>
+                                <code class="html">
+            test(test_function,<span style="color:red"> name</span>, properties)
+                                </code>
+                            </pre>                        
+                            <ul>
+                                <li><code>name</code> is a string that identifies the test</li> 
+                                <li><code>name</code> should be short, unique, and must not change</li>
+            			        <li><code>name</code> will be displayed in the test results table</li>
+                                <li>Usage example:
+                                    <pre style="font-size:18px">
+                                        <code class="html">
+        test(function() {assert_true(true)}, <span class="highlight">"test_name"</span>, properties)
+                                        </code>
+                                    </pre>  
+                                </li>
+                            </ul>       			                                   
+                        </section>
+
+                        <section>
+                            <h2>test() Argument 3: Properties</h2>
+                            <pre>
+                                <code class="html">
+            test(test_function, name,<span style="color:red"> properties</span>)
+                                </code>
+                            </pre>                        
+                            <ul>
+                                <li><code>properties</code> is an object that overrides defaults</li>
+                                <li>This argument is optional</li>
+                                <li>Recognized properties include <code>timeout</code> and metadata</li>
+                                <li>Usage example:
+                                    <pre style="font-size:18px">
+                                        <code class="html">
+ test(function() { assert_true(true) }, "test_name", <br><br> <span class="highlight">{timeout:1000,</span> <br><br> <span class="highlight">help: 'http://www.w3.org/TR/spec#section',</span> <br><br> <span class="highlight">author: ['Bill Gates &lt;bgates@msn.com&gt;', 'Steve Jobs http://apple.com/sjobs'],</span><br><br> <span class="highlight">assert: 'This test something.', 'This also tests something else.'}</span>)
+                                        </code>
+                                    </pre>                                
+                                </li>    			                    
+        			        </ul>
+                        </section>                        
+                    </section>
+
+            	    <section>
+            	        <section>
+        			        <h2>Assert methods</h2>
+            			    <ul>
+            			        <li><tt>testharness.js</tt> provides multiple assert methods
+            			            <ul>
+            			                <li>Full list is provided in the comment section of <tt>testharness.js</tt></li>
+            			                <li>Typically supplied as the <code>test_function</code> for <code>test()</code></li>
+            			            </ul>
+            			        </li>
+            			        <li>All assert methods contain an optional <code>description</code> argument that is only output if the assertion fails
+            			            <ul>
+            			                <li>Used to provide additional debug information</li>
+            			            </ul>
+            			        </li>
+            			        <li>All asserts must be located in a call to <code>test()</code>
+            			            <ul>
+            			                <li>asserts outside won't be detected correctly by the harness and may cause a file to stop testing</li>
+            			            </ul>
+            			        </li>
+            			    </ul>
+        			    </section>
+
+        			    <section>
+        			        <h2>Assert Example</h2>
+                            <pre>
+                                <code class="html">
+        assert_equals(actual, expected, description)
+                                </code>
+                            </pre>
+                            <ul>
+                                <li><code>actual</code>: The actual value from the functionality being tested</li>
+                                <li><code>expected</code>: The expected value</li>
+                                <li><code>description</code> (optional): Output only if the assertion fails</li>
+                                <li>Usage example:
+                                    <pre style="font-size:18px">
+                                        <code class="html">
+ assert_equals(getActualData("myElement"), 100, "Expected value for myElement is 100")
+                                        </code>
+                                    </pre>                                
+                                </li>                            
+                            </ul>    			        
+        			    </section>
+    				</section>
+
+                	<section>
+        				<h2>Sample Test Case</h2>
+        				<section>
+        					<br>
+        					<p>API test for the transform property described in the CSS3 Transforms spec using the <code>translate()</code> function</p>
+        					<br><br>
+        					<p>Spec Links:</p>
+        					<p style="font-size: 16pt">
+        					    <a href="http://www.w3.org/TR/css3-transforms/#transform-property" target="top">http://www.w3.org/TR/css3-transforms/#transform-property</a>
+        					    <br>
+        					    <a href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions" target="top">http://www.w3.org/TR/css3-transforms/#two-d-transform-functions</a>
+    					    </p>
+    					</section>
+    					<section>
+    					    <img src="assets/images/specAssertion.png">
+    					</section>
+    	            </section>			
+
+    			    <section>
+    			        <h3>Metadata</h3>
+    			        <section>
+        			        <pre style="width:975px">
+        			            <code class="html" style="line-height:26px; font-size:18px">
+&lt;head&gt;
+  &lt;title&gt;CSS Transforms API Test: transform translate&lt;/title&gt;
+  &lt;link rel="author" title="Your Name" href="mailto:youremail@address.com"&gt;
+  &lt;link rel="help" href="http://www.w3.org/TR/css3-transforms/#transform-property"&gt;
+  &lt;link rel="help" 
+    href="http://www.w3.org/TR/css3-transforms/#two-d-transform-functions"&gt;
+  &lt;meta name="flags" content="dom"&gt;
+  &lt;meta name="assert" content="The transform should be translate(100px,100px)"&gt;	
+...    
+&lt;/head&gt;                
+        			            </code>
+        			        </pre>
+        			        <ul style="line-height:60px">
+        			            <li>JavaScript tests have similar requirements as Reftests</li>
+        			            <li><code>dom</code> token in <code>flags</code> metadata specifies that JavaScript is required</li>
+        			    </section>
+        			    <section>
+        			        <pre>
+        			            <code class="html" style="line-height:26px; font-size:24px">
+&lt;head&gt;
+...    
+    &lt;<span class="styleTag">script src</span>="/resources/testharness.js"&gt;&lt;/<span class="styleTag">script</span>&gt;
+    &lt;<span class="styleTag">script src</span>="/resources/testharnessreport.js"&gt;&lt;/<span class="styleTag">script</span>&gt;    
+&lt;/head&gt;    			                
+    			            </code>
+        			        </pre>
+        			        <ul>
+        			            <li><tt>testharness.js</tt> and <tt>testharnessreport.js</tt> imported</li>
+        			            <li>Path to both scripts points at <code>/resources</code> directory at root level
+        			                <ul>
+        			                    <li>This is the required path before submitting to CSSWG Test Repository</li>
+        			                </ul>
+        			            </li>
+        			        </ul>
+        			    </section>
+    			    </section>				
+
+			    
+			    <section data-state="largePage" style="left:-5%">
+			        <h3>Body</h3>
+			        <pre style="width:1150px">
+			            <code class="html" style="line-height:22px; font-size:18px">
+&lt;body&gt;
+    &lt;div id="myDiv"&gt;&lt;/div&gt;
+    &lt;div id="log"&gt;&lt;/div&gt;    
+
+    &lt;<span class="styleTag">script</span>&gt;
+        // Set the transform 
+        document.getElementById("myDiv").style.transform = "translate(100px,100px)";
+
+        // Verify that the transform was set as expected
+        test(function() {assert_equals(
+            document.getElementById("myDiv").style.getPropertyCSSValue("transform").cssText, //Actual
+            "translate(100px, 100px)",  //Expected
+            "transform should be translate(100px,100px)")}, //Description
+            "Transform_Translate_100px_100px"); //name
+    &lt;<span class="styleTag">/script</span>&gt;
+&lt;/body&gt;			                
+			            </code>
+			        </pre>
+			        <ul style="font-size:28px">
+			            <li><code>myDiv</code> div used as test element - translate applied in JS</li>
+			            <li><code>log</code> div used as container for test results</li>
+			            <li><code>test()</code> uses <code>assert_equals</code> as <code>test_function</code></li>
+                        <li></code>assert_equals</code> actual argument supplied by API call</li>
+			        </ul>			        
+			    </section>
+ 			    
+    			<section data-state="largePage">
+    			    <section>
+    				    <h3>Test Results</h3>
+    				    <p>PASS</p>
+    				    <img src="assets/images/jsTest_PASS.png"/>
+    			    </section>
+    			    
+                    <section>
+    				    <h3>Test Results</h3>
+    				    <p>FAIL</p>
+    				    <img src="assets/images/jsTest_FAIL.png"/>
+    			    </section>    			    
+                </section>                                                    
+    			
+    			<section>
+    			    <h1>Questions & Answers</h1>
+    			</section>
+    			
+    			<section data-state="expandPageWide">
+    			    <img src="assets/images/TTWF_Map.png" ßwidth="900" height="900">
+    			</section>
+		
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="lib/highlight.js"></script>
+		<script src="lib/classList.js"></script>
+		
+		<script src="js/reveal.js"></script>
+		
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			// Fires when a slide with data-state=customevent is activated
+			Reveal.addEventListener( 'customevent', function() {
+				alert( '"customevent" has fired' );
+			} );
+
+			// Fires each time a new slide is activated
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+				// event.indexh & event.indexv
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Loops the presentation, defaults to false
+				loop: false,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: true,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'default', // default/neon
+
+				// Transition style
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+		</script>
+
+	</body>
+</html>
