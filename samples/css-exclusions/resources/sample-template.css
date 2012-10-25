@@ -34,18 +34,18 @@ article li{
 
 article .tip{
     background: #ffffcc;
-
 }
 
-article .error{
+.error {
+    font: 1em/1 Palatino, Georgia, serif;
+    padding: 1em;
     background: pink;
-}
-article .unsupported {
-    position: fixed;
+    color: black;
     width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
+}
+
+.error p {
+    margin: 0;
 }
 
 article .info{
@@ -53,7 +53,6 @@ article .info{
 }
 
 article .tip,
-article .error,
 article .info{
     color: black;
     padding: 1em;
@@ -81,7 +80,6 @@ article ul{
 
 article li{
     padding: 0 0 0.5em;
-    
 }
 
 article pre + .caption{
