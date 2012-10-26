@@ -22,7 +22,7 @@
 
         var content = [];
         content.push('<p>');
-        content.push('<strong>Warning:</strong> You need to use the Chrome Canary browser with experimental WebKit features enabled to see this example working correctly. See <a href="../index.html#browser-support">here</a> for more info.')
+        content.push('<strong>Warning:</strong> You need to use the Chrome Canary browser with experimental WebKit features enabled to see this example working correctly. See <a href="http://adobe.github.com/web-platform/samples/css-exclusions/index.html#browser-support">here</a> for more info.')
         content.push('</p>');
         warning.innerHTML = content.join('');
         document.body.insertBefore(warning, document.body.children[0]);
