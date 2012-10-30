@@ -1,0 +1,42 @@
+/**
+ * @author Vincent Hardy
+ */
+
+
+/*********************************************
+ * SPECIFIC ELEMENTS STYLE
+ *********************************************/
+.manager {
+    font-size: 80%;
+    opacity: 0.5;
+}
+
+h1 > span.repeat {
+    color: white;
+    opacity: 0.7;
+    display: block;
+    font-size: 70%;
+}
+
+h1 > span.sub {
+    color: #95B9C7;
+    opacity: 0.7;
+    display: block;
+    font-size: 60%;
+}
+
+
+.thoughts {
+	display: block;
+	font-size: 75%;
+	font-style: italic;
+}
+
+.thoughts-list {
+	margin-left: -5%;
+}
+
+ul li li {
+	font-size: 75%;
+	line-height: 1em;
+}
