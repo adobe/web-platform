@@ -1,0 +1,176 @@
+/**
+ * @author Vincent Hardy
+ */
+
+ /*********************************************
+  * DEFAULT STYLE OVERRIDES
+  *********************************************/
+  html, body {
+  	padding: 0;
+  	margin: 0;
+  	overflow: hidden;
+
+  	font-family: 'Adobe Clean', 'Vollkorn', Georgia, Times, serif;
+  	font-weight: normal;
+  	font-size: 36px;
+
+  	background: none;
+  	color: #1f1f1f;
+
+  	width: 100%;
+  	height: 100%;
+  }
+
+  html {
+  	background-image: none;
+  	background-color: white;
+
+  }
+
+  body {
+      background-image: none;
+  }
+
+  body:after {
+      content: url(../assets/images/logo-red.svg);
+      width: 74px;
+      height: 126px;
+      position: fixed;
+      top: 0px;
+      right: 2em;
+      box-shadow: 0em 0em 0.5em rgba(0, 0, 0, 0.45);
+      border: 0.5px solid rgba(255, 255, 255, 0.5);
+      border-top: none;
+  }
+  
+  h1, h2, h3, h4 {
+  	color: #1f1f1f;
+  }  
+  
+  #main>section,
+  #main>section>section {
+      border: 0px solid #a0a0a0;
+  	-webkit-transform-style: preserve-3d;
+
+  	-webkit-transition: all 1200ms cubic-bezier(0.260, 0.860, 0.440, 0.985); 
+  	   -moz-transition: all 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985); 
+  	     -o-transition: all 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985); 
+  	        transition: all 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+  }
+  
+  #main>section,
+  #main>section>section {
+    -webkit-filter-margin: 200px 200px 200px 200px;
+    -webkit-filter: custom(url(shaders/vertex/quad-shuffle.vs) url(shaders/fragment/quad-shuffle.fs), 100 100 filter-box detached, matrix rotateX(0deg) rotateY(0deg) rotateZ(0deg), perspective 1000, amount 0, t 0);
+  }
+
+  #main section.past {
+    -webkit-filter: custom(url(shaders/vertex/quad-shuffle.vs) url(shaders/fragment/quad-shuffle.fs), 100 100 filter-box detached, matrix rotateX(0deg) rotateY(-45deg) rotateZ(0deg), perspective 1000, amount 500, t 1);
+    -webkit-transform: none;
+  }
+
+  #main section.future {
+      -webkit-filter: custom(url(shaders/vertex/quad-shuffle.vs) url(shaders/fragment/quad-shuffle.fs), 100 100 filter-box detached, matrix rotateX(0deg) rotateY(45deg) rotateZ(0deg), perspective 1000, amount 500, t 1);
+      -webkit-transform: none;
+  }
+   
+
+/*********************************************
+ * SPECIFIC ELEMENTS STYLE
+ *********************************************/
+ 
+#talk-title {
+    font-size: 1.3em;
+}
+
+#talk-title-highlight {
+    display: block;
+    color: #ce0000;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 1.5em;
+}
+
+#slide-counter {
+    display: none;
+    position: absolute;
+    bottom: 0.5em;
+    right: 0.5em;
+    font-size: 0.4em;
+    font-family: 'Adobe Clean', 'Ubuntu';
+    font-weight: bold;
+    color: white;
+    text-shadow: 0em 0em 0.3em black;
+    text-align: right;
+}
+
+#navigation-hint {
+    position: absolute;
+    bottom: 0.5em;
+    left: 0.5em;
+    font-weight: normal;
+    font-size: 50%;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 25px;
+}
+
+#navigation-hint img {
+    margin-left: 1em;
+    margin-right: 1em;
+    opacity: 0.3;
+    -webkit-transition: opacity 0.2s linear;
+}
+
+#navigation-hint img:hover {
+    opacity: 1;
+}
+
+#thanks li {
+    list-style: none;
+    text-align: center;
+}
+
+#thanks {
+    color: #4f4f4f;
+    font-size: 1.5em;
+    line-height: 1.3em;
+}
+
+#agenda {
+    box-shadow: 0px 0px 0.5em rgba(0, 0, 0, 0.5);
+}
+
+#agenda tr:nth-child(odd) {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+#agenda tr:nth-child(even) {
+    color: #666;
+}
+
+#agenda th, #agenda td {
+    text-align: center;
+}
+#agenda th {
+    color: #a0a0a0;
+    text-align: middle;
+}
+
+#agenda td, #agenda th {
+    padding-left: 1ex;
+    padding-right: 1ex;
+    padding-top: 1.2ex;
+    padding-bottom: 0.5ex;
+}
+
+#agenda th {
+    padding-top: 2.2ex;
+    padding-bottom: 1.5ex;
+}
+
+
+#agenda td:first-child {
+    color: #808080;
+}
