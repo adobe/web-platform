@@ -106,10 +106,22 @@ $(function () {
             })
 
             test("CSS region-overflow", function() {
-                equal($region.css('region-overflow'), 'auto', 'Initial default value for region-overflow');
+                equal($region.css("region-overflow"), "auto", "Initial default value for region-overflow");
                 
-                $region.css('region-overflow', 'break');
-                equal($region.css('region-overflow'), 'break', 'Correct parsing for region-overflow CSS property');
+                $region.css("region-overflow", "break");
+                equal($region.css("region-overflow"), "break", "Correct parsing for region-overflow CSS property");
+            })
+
+            test("CSS region auto-width", function() {
+                setFlowContents("This is a<br>two line text.");
+                $region.css("width", "auto");
+                notEqual($region.width(), 0, "Regions auto-width support");
+            })
+
+            test("CSS region auto-height", function() {
+                setFlowContents("This is a<br>two line text.");
+                $region.css("height", "auto");
+                notEqual($region.height(), 0, "Regions auto-height support");
             })
         }
         
