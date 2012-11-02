@@ -113,15 +113,15 @@ $(function () {
             })
 
             test("CSS region auto-width", function() {
-                setFlowContents("This is a<br>two line text.");
+                setFlowContents("<div style='width: 42px; height: 42px;'></div>");
                 $region.css("width", "auto");
-                notEqual($region.width(), 0, "Regions auto-width support");
+                ok($region.width() >= 42, "Regions auto-width support");
             })
 
             test("CSS region auto-height", function() {
-                setFlowContents("This is a<br>two line text.");
+                setFlowContents("<div style='width: 42px; height: 42px;'></div>");
                 $region.css("height", "auto");
-                notEqual($region.height(), 0, "Regions auto-height support");
+                ok($region.height() >= 42, "Regions auto-height support");
             })
         }
         
