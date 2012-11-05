@@ -112,17 +112,16 @@ $(function () {
                 equal($region.css("region-overflow"), "break", "Correct parsing for region-overflow CSS property");
             })
 
-            test("CSS region auto-width", function() {
+            test("CSS regions auto-size", function() {
                 setFlowContents("<div style='width: 42px; height: 42px;'></div>");
-                $region.css("width", "auto");
-                ok($region.width() >= 42, "Regions auto-width support");
-            })
-
-            test("CSS region auto-height", function() {
-                setFlowContents("<div style='width: 42px; height: 42px;'></div>");
-                $region.css("height", "auto");
-                ok($region.height() >= 42, "Regions auto-height support");
-            })
+                $region.css({
+                    "width" : "auto",
+                    "height": "auto",
+                    "float" : "left"
+                });
+                equal($region.height(), 42, "Regions auto-height support");
+                equal($region.width(), 42, "Regions auto-width support");
+            });
         }
         
         function testCSSOM() {
