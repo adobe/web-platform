@@ -17,7 +17,7 @@ Samples
 * CSS Object Model
   * `NamedFlow` interface
   * `Element` additions
-  * `regionLayoutUpdate` event
+  * `regionlayoutupdate` event
 * Combining CSS regions and other layout modes:
   * CSS regions and flex-box
   * CSS regions and grid layout

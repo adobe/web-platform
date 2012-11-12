@@ -90,7 +90,7 @@
             <h2>Code sample</h2>
 <pre>
 flow = document.getNamedFlows()['article']
-flow.addEventListener('regionLayoutUpdate', handler)
+flow.addEventListener('regionlayoutupdate', handler)
 
 function handler(e){   
      
@@ -114,7 +114,7 @@ function handler(e){
 
         <section>
             <p>
-                Named flow trigger <code>regionLayoutUpdate</code> events as a result of reflowing their content through regions. 
+                Named flow trigger <code>regionlayoutupdate</code> events as a result of reflowing their content through regions. 
             </p>                                                                                                                  
         </section> 
         <section>
@@ -156,7 +156,7 @@ function handler(e){
                 }
 
         // handle layout changes if necessary        
-        namedFlow.addEventListener("webkitRegionLayoutUpdate", updateLayout)
+        namedFlow.addEventListener("webkitregionlayoutupdate", updateLayout)
         
         // boostrap layout
         document.addEventListener("DOMContentLoaded", function(){
