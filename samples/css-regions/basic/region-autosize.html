@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - Autosize</title>
+    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
+    <meta charset="UTF-8">
+    <style type="text/css">
+    
+    body{
+        width: 500px;
+        margin: 5% auto;
+        padding: 50px;
+        min-width: 500px;
+    }
+    
+    .tip{
+        margin-bottom: 1em;
+    }
+    
+    .tip p{
+        margin-bottom: 0;
+    }
+
+    article h2{
+        margin: 0;
+        padding: 0;
+        font-size: 1.8em;
+
+        /* move headings into a separate flow */
+        -webkit-flow-into: title-flow;
+        
+        /* make sure the title is the only content in its region */
+        -webkit-region-break-after: always;
+    }
+
+    .region + section{
+        clear: both;
+        padding-top: 40px;
+    }
+    
+    .region{
+        max-width: 40%;
+        padding: 2.5%;
+        float: left;
+        -webkit-flow-from: title-flow;
+    }
+    
+    .region + .region{
+        margin-left: 10%;
+    }
+    
+    #region1{
+        outline: 3px solid lightgreen;
+        
+        /* height is auto by default; mentioned here for illustration pourposes */
+        height: auto;
+    }
+    
+    #region2{
+        outline: 3px solid pink;
+        
+        /* forced height on the region causes content to be cut off*/
+        height: 3em;
+    }
+    
+    </style>
+</head>
+<body>
+
+    <article>
+        <h1>Automatic size for regions</h1>
+        
+        <section>
+            <p>
+                Regions are able to calculate their own dimensions based on the content that flows inside them.
+            </p>            
+        </section>
+
+        <h2>Title in a region with auto-size dimensions</h2>
+        <h2>Title in a region with fixed dimensions</h2>
+        
+        <div id="region1" class="region"></div>
+        <div id="region2" class="region"></div>
+        
+        <section>
+            <p>
+                Both titles in the boxes above come from the flow called <code>title-flow</code>. Each title is forced to render individually in the region by using <code>region-break-after: always</code>. 
+                This aspect allows the regions to calculate the necessary height for their content as seen on the region with the green outline.
+            </p>
+            <p>
+                The region with the pink outline has an explicit height defined. Because of this, its content is cut off by the fixed dimension.
+            </p>
+            <p>
+                The algorithm used to compute automatic region dimensions is explained in the <a href="http://www.w3.org/TR/css3-regions/#regions-visual-formatting-details">CSS Regions W3C specification</a>.
+            </p>
+        </section>
+        
+    </article>
+    <script type="text/javascript" src="shared-script.js"></script>
+</body>
+</html>
