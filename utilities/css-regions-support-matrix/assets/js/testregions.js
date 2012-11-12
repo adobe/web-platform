@@ -289,7 +289,7 @@ $(function () {
                 
                 function handler(ev) {
                     equal(ev.target, namedFlow, "Event.target points to the named flow");
-                    namedFlow.removeEventListener(Util.prefixOM("regionLayoutUpdate"), handler);
+                    namedFlow.removeEventListener(PrefixFree.Prefix.toLowerCase() + "regionlayoutupdate", handler);
                     start();     
                 }
 
@@ -309,7 +309,7 @@ $(function () {
                     return;
                 }
 
-                namedFlow.addEventListener(Util.prefixOM("regionLayoutUpdate"), handler);
+                namedFlow.addEventListener(PrefixFree.Prefix.toLowerCase() + "regionlayoutupdate", handler);
                 setFlowContents("Long text long text long text long long long longer very longe text");
             })
         }
