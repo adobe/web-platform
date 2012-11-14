@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'ahem';
+    src: url('ahem.eot');
+    src: url('ahem.eot?#iefix') format('embedded-opentype'),
+         url('ahem.woff') format('woff'),
+         url('ahem.ttf') format('truetype'),
+         url('ahem.svg#ahem') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
