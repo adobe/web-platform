@@ -113,13 +113,13 @@ $(function () {
     }
 
     function testShapeInsideLayoutSimple() {
-        module('Shape Inside layout', { 'setup': setup, 'teardown': teardown });
+        module('Shape Inside Layout', { 'setup': setup, 'teardown': teardown });
 
-        test('Rectangle shape inside', function(){
+        test('Shape-inside layout rectangle', function(){
             runSimpleLayoutTest('200px', 'auto', '50px', 'rectangle(50px, 50px, 50px, 50px)', { left: 50, top: 50 }, '100px');
         })
 
-        test('Rounded rectangle shape inside', function(){
+        test('Shape-inside layout rounded rectangle', function(){
             var positions = [
                 { left: 50, top: 0 }
                 , { left: 0, top: 50 }
@@ -130,15 +130,15 @@ $(function () {
             runSimpleLayoutTest('200px', 'auto', '50px', 'rectangle(0, 0, 150px, 150px, 50px, 50px)', positions, '150px');
         })
 
-        test('Circle shape inside', function(){
+        test('Shape-inside layout circle', function(){
             ok(false, 'Circle test is unimplemented');
         })
 
-        test('Ellipse shape inside', function(){
+        test('Shape-inside layout ellipse', function(){
             ok(false, 'Ellipse test is unimplemented');
         })
 
-        test('Polygon shape inside', function() {
+        test('Shape-inside layout polygon', function() {
             runSimpleLayoutTest('200px', 'auto', '50px', 'polygon(50px 50px, 100px 50px, 100px 100px, 50px 100px)', [{ left: 50, top: 50 }], '100px');
         })
     }
