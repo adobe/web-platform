@@ -41,6 +41,3 @@ When they run the tests:
 * We report the general results as a percentage in the #action-well.
 * We will also highlight the results on the browser table matching their browser.
 * We provide a toggle at the bottom to display the raw Qunit tests.
-
-If they choose to report their scores:
-* We flag Qunit to report scores to Browserscope. 
