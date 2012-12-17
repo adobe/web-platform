@@ -27,8 +27,12 @@ $(function () {
         $div = $('<div>&nbsp;</div>').appendTo($('body'));
     }
 
+    function teardown(){
+        $div.remove();
+    }
+
     function testCSSExclusionBasics() {
-        module('CSS Exclusions basic', { 'setup': setup });
+        module('CSS Exclusions basic', { 'setup': setup, 'teardown': teardown });
 
         test('CSS wrap-flow', function(){
             equal($div.css('wrap-flow'), 'auto', 'Initial default value for wrap-flow');
@@ -89,8 +93,56 @@ $(function () {
         test('CSS shape-padding', function(){
             equal($div.css('shape-padding'), '0', 'Initial default value for shape-padding');
         })
-   }
+    }
 
-   testCSSExclusionBasics();
+    function runSimpleLayoutTest(width, height, fontSize, shape, positions, finalHeight) {
+        $div.css('font', fontSize + '/1 ahem')
+        .css('shape-inside', shape)
+        .css('width', width)
+        .css('height', height)
+        .css('word-wrap', 'break-word')
+        .css('position', 'relative')
+        .html('');
+        for (var i = 0; i < positions.length; i++) {
+            var span = $('<span>X</span>');
+            $div.append(span);
+            var position = span.position();
+            equal(positions[i].left, position.left, 'Character position left delta: ' + (position.left - positions[i].left));
+            equal(positions[i].top, position.top, 'Character position top delta: ' + (position.top - positions[i].top));
+        }
+    }
 
-})   
+    function testShapeInsideLayoutSimple() {
+        module('Shape Inside Layout', { 'setup': setup, 'teardown': teardown });
+
+        test('Shape-inside layout rectangle', function(){
+            runSimpleLayoutTest('200px', 'auto', '50px', 'rectangle(50px, 50px, 50px, 50px)', { left: 50, top: 50 }, '100px');
+        })
+
+        test('Shape-inside layout rounded rectangle', function(){
+            var positions = [
+                { left: 50, top: 0 }
+                , { left: 0, top: 50 }
+                , { left: 50, top: 50 }
+                , { left: 100, top: 50 }
+                , { left: 50, top: 100 }
+            ];
+            runSimpleLayoutTest('200px', 'auto', '50px', 'rectangle(0, 0, 150px, 150px, 50px, 50px)', positions, '150px');
+        })
+
+        test('Shape-inside layout circle', function(){
+            ok(false, 'Circle test is unimplemented');
+        })
+
+        test('Shape-inside layout ellipse', function(){
+            ok(false, 'Ellipse test is unimplemented');
+        })
+
+        test('Shape-inside layout polygon', function() {
+            runSimpleLayoutTest('200px', 'auto', '50px', 'polygon(50px 50px, 100px 50px, 100px 100px, 50px 100px)', [{ left: 50, top: 50 }], '100px');
+        })
+    }
+
+    testCSSExclusionBasics();
+    testShapeInsideLayoutSimple();
+})

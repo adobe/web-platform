@@ -90,9 +90,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         }
 
         function runTests() {
-            if ($('#publish-results').is(':checked')) {
-                QUnit.config.publishresults = true;  
-            }
             QUnit.start();
             return false;
         }
@@ -140,17 +137,12 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     // key = string test name
     // value = numeric value (1 means pass, 0 means fail)
     var _bTestResults = {}
-     
-    // Add option in Qunit to toggle publishing results to BrowserScope.org
-    QUnit.config.urlConfig.push('publishresults')
     
     // Timeout for async tests
     QUnit.config.testTimeout = 1000
 
     //Setting tests to start on user input 
     QUnit.config.autostart = false;
-
-    QUnit.config.publishresults = false;
 
     // Build-up the test results beacon for BrowserScope.org
     QUnit.testDone = function(obj){   
@@ -166,15 +158,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     
     // If the user agreed to publish results to BrowserScope.org, go for it!
     QUnit.done = function(obj){
-        if (QUnit.config.publishresults){
-            
-            var newScript = document.createElement('script'),
-                firstScript = document.getElementsByTagName('script')[0]
-                
-            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey;
-            firstScript.parentNode.insertBefore(newScript, firstScript)
-        }
-            
         var container = document.querySelector('#qunit-testrunner-toolbar'),
             resultsLink = document.createElement('a'),
             runsLink = document.createElement('a') 
@@ -217,11 +200,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <h2>Check CSS Regions Support in your browser</h2>
 
                 <form id="run-tests">
-                    <input class="btn btn-primary btn-large" type="submit" name="submit" value="Run Tests" /><br />
-                    <label class="checkbox">
-                        <input type="checkbox" name="publish" value="publish" id="publish-results">
-                        Publish my results
-                      </label>
+                    <input class="btn btn-primary btn-large" type="submit" name="submit" value="Run Tests" />
                 </form>    
             </div>
         </div>
