@@ -107,7 +107,7 @@ window.onload = function(){
         X = (width - leftgutter - rightgutter) / columncount,
         max = Math.max.apply(Math, data),
         committarget = 300,
-        max = Math.max( max, committarget ),
+        max = Math.max( 450, committarget ),
         Y = (height - bottomgutter - topgutter) / max;
 
         r.textattr = textattr;
