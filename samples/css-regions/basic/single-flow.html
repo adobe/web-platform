@@ -7,7 +7,7 @@
     <style type="text/css">
 
     article{
-        -webkit-flow-into: article;
+        -webkit-flow-into: myArticle;
     }
 
     article h1 em{
@@ -16,7 +16,7 @@
     }
 
     .region{
-        -webkit-flow-from: article;
+        -webkit-flow-from: myArticle;
         float: left;
         height: 600px;
     }
@@ -72,7 +72,7 @@ article{
     flow-into: myArticle
 }
 
-#region1, #region2{
+#region1, #region2, #region3{
     flow-from: myArticle
 } 
 </pre>
