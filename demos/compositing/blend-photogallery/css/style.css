@@ -45,20 +45,20 @@ section{
 
 #page1{
     display: block;
-    background-image: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/photo/yellowstone1.png);
+    background-image: url(../img/photo/yellowstone1.png);
     -webkit-transform: translateZ(0px) rotateX(0deg);
 }
 
 #page2{
-    background-image: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/photo/yellowstone4.png);
+    background-image: url(../img/photo/yellowstone4.png);
 }
 
 #page3{
-    background-image: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/photo/yellowstone2.png);
+    background-image: url(../img/photo/yellowstone2.png);
 }
 
 #page4{
-    background-image: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/photo/yellowstone3.png);
+    background-image: url(../img/photo/yellowstone3.png);
 }
 
 #grid{
@@ -109,39 +109,39 @@ section{
 
 #down-btn{
     position: fixed;
-    top: 0px;
-    right: 0px;
+    top: 5px;
+    right: 5px;
     width: 66px;
     height: 66px;
     cursor: pointer;
     z-index: 100;
-    background: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/down.png);
+    background: url(../img/down.png);
 }
 
 #left-btn{
     position: fixed;
-    top: 42%;
-    left: 0px;
+    bottom: 5px;
+    left: 5px;
     width: 66px;
     height: 66px;
     cursor: pointer;
     z-index: 100;
-    background: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/left.png);
+    background: url(../img/left.png);
 }
 
 #right-btn{
     position: fixed;
-    top: 42%;
-    right: 0px;
+    bottom: 5px;
+    left: 75px;
     width: 66px;
     height: 66px;
     cursor: pointer;
     z-index: 100;
-    background: url(http://adobe.github.com/web-platform-assets/blend-gallery/img/right.png);
+    background: url(../img/right.png);
 }
 
 .arrow-btn{
-    opacity: .2;
+    opacity: 1;
     -webkit-transition: opacity .2s ease-in;
 }
 
