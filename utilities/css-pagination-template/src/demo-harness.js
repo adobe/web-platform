@@ -51,6 +51,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             hasOverset,
             flow
             
+        if (typeof document.webkitGetNamedFlows !== 'function'){
+            return false
+        }
+            
         test.style['-webkit-flow-into'] = 'testflow'
             
         document.body.appendChild(test) 
