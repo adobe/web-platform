@@ -26,7 +26,7 @@ $(function () {
     function setupFloatShapeOutside() {
         // Set up a 4x4 grid of content spans
         $div = $(
-            '<div style=\'font: 10px/1 ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
+            '<div style=\'font: 10px/1 Ahem, ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
             '<div class=\'shape-outside\' style=\'float: left; width: 40px; height: 40px\'></div>' +
             '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
             '</div>'
@@ -36,7 +36,7 @@ $(function () {
     function setupExclusionShapeOutside() {
         // Set up a 4x4 grid of content spans
         $div = $(
-            '<div style=\'font: 10px/1 ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
+            '<div style=\'font: 10px/1 Ahem, ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
             '<div class=\'shape-outside\' style=\'position:absolute; top:0; left: 0; width: 40px; height: 40px; wrap-flow: end\'></div>' +
             '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
             '</div>'
@@ -46,7 +46,7 @@ $(function () {
     function setupShapeInside(){
         // Set up a 4x4 grid of content spans
         $div = $(
-            '<div style=\'font: 10px/1 ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
+            '<div style=\'font: 10px/1 Ahem, ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
             '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
             '</div>'
         ).appendTo($('body'));
@@ -66,7 +66,6 @@ $(function () {
                 return;
             var left = positions[index] % 4 * 10;
             var top = Math.floor(positions[index] / 4) * 10;
-            //var position = element.position();
             if (tolerance) {
                 roughEqual(element.offsetLeft, left, tolerance, 'left should be ' + left + ' for child ' + index + ', was ' + element.offsetLeft);
                 roughEqual(element.offsetTop, top, tolerance, 'top should be ' + top + ' for child ' + index + ', was ' + element.offsetTop);

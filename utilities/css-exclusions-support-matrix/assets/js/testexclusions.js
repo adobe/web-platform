@@ -26,7 +26,7 @@ $(function () {
 
     function setup() {
         $div = $(
-            '<div style=\'font: 10px/1 ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
+            '<div style=\'font: 10px/1 Ahem, ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
                 '<div class=\'exclusion\' style=\'position: absolute; top: 10px; right: 10px; width: 10px; height: 10px\'></div>' +
                 '<div class=\'exclusion\' style=\'position: absolute; bottom: 10px; left: 10px; width: 10px; height: 10px\'></div>' +
                 '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
@@ -56,7 +56,6 @@ $(function () {
                     return;
                 var left = (positions[index]) % 4 * 10;
                 var top = Math.floor(positions[index] / 4) * 10;
-                // var position = element.position();
                 equal(element.offsetLeft, left, 'left should be ' + left + ' for child ' + index + ', was ' + element.offsetLeft);
                 equal(element.offsetTop, top, 'top should be ' + top + ' for child ' + index + ', was ' + element.offsetTop);
             })
