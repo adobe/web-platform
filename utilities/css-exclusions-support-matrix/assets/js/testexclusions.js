@@ -29,7 +29,7 @@ $(function () {
             '<div style=\'font: 10px/1 Ahem, ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
                 '<div class=\'exclusion\' style=\'position: absolute; top: 10px; right: 10px; width: 10px; height: 10px\'></div>' +
                 '<div class=\'exclusion\' style=\'position: absolute; bottom: 10px; left: 10px; width: 10px; height: 10px\'></div>' +
-                '<div class=\'container\'>' +
+                '<div class=\'exclusion-container\'>' +
                     '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
                     '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
                 '</div>' +
@@ -52,7 +52,7 @@ $(function () {
             if (wrapflow)
                 $('.exclusion', $div).css('wrap-flow', wrapflow);
             if (wrapthrough)
-                $('.container', $div).css('wrap-through', wrapthrough);
+                $('.exclusion-container', $div).css('wrap-through', wrapthrough);
             $('span', $div).each(function(index, element) {
                 if (index >= positions.length)
                     return;
