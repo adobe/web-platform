@@ -26,7 +26,7 @@ $(function () {
     function setupFloatShapeOutside() {
         // Set up a 4x4 grid of content spans
         $div = $(
-            '<div style=\'font: 10px/1 Ahem, ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
+            '<div style=\'font: 10px/1 Ahem, ahem-wf; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
             '<div class=\'shape-outside\' style=\'float: left; width: 40px; height: 40px\'></div>' +
             '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
             '</div>'

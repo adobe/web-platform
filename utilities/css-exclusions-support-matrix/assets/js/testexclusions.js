@@ -26,7 +26,7 @@ $(function () {
 
     function setup() {
         $div = $(
-            '<div style=\'font: 10px/1 Ahem, ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
+            '<div style=\'font: 10px/1 Ahem, ahem-wf; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
                 '<div class=\'exclusion\' style=\'position: absolute; top: 10px; right: 10px; width: 10px; height: 10px\'></div>' +
                 '<div class=\'exclusion\' style=\'position: absolute; bottom: 10px; left: 10px; width: 10px; height: 10px\'></div>' +
                 '<div class=\'exclusion-container\'>' +
