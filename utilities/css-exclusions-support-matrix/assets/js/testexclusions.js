@@ -29,8 +29,10 @@ $(function () {
             '<div style=\'font: 10px/1 Ahem, ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
                 '<div class=\'exclusion\' style=\'position: absolute; top: 10px; right: 10px; width: 10px; height: 10px\'></div>' +
                 '<div class=\'exclusion\' style=\'position: absolute; bottom: 10px; left: 10px; width: 10px; height: 10px\'></div>' +
-                '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
-                '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
+                '<div class=\'container\'>' +
+                    '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
+                    '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
+                '</div>' +
             '</div>'
         ).appendTo($('body'));
     }
@@ -50,7 +52,7 @@ $(function () {
             if (wrapflow)
                 $('.exclusion', $div).css('wrap-flow', wrapflow);
             if (wrapthrough)
-                $div.css('wrap-through', wrapthrough);
+                $('.container', div).css('wrap-through', wrapthrough);
             $('span', $div).each(function(index, element) {
                 if (index >= positions.length)
                     return;
@@ -91,7 +93,7 @@ $(function () {
             equal($div.css('wrap-through'), 'wrap', 'Initial default value for wrap-through');
         })
 
-        testExclusionLayout('wrap-through wrap', 'both', 'wrap', [0, 1, 2, 3, 4, 5, 6, 8, 9, 11, 12, 13, 14, 15]);
+        testExclusionLayout('wrap-through wrap', 'both', 'wrap', [0, 1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 13, 14, 15]);
 
         testExclusionLayout('wrap-through none', 'both', 'none', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
     }
