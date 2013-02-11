@@ -52,7 +52,7 @@ $(function () {
             if (wrapflow)
                 $('.exclusion', $div).css('wrap-flow', wrapflow);
             if (wrapthrough)
-                $('.container', div).css('wrap-through', wrapthrough);
+                $('.container', $div).css('wrap-through', wrapthrough);
             $('span', $div).each(function(index, element) {
                 if (index >= positions.length)
                     return;
