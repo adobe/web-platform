@@ -143,10 +143,10 @@ $(function () {
 
         testShapeInsideLayout('shape-inside rectangle', 'rectangle(10px, 10px, 20px, 20px)', [5, 6, 9, 10]);
 
-        // create a circle that circumscribes the center 4 squares
-        testShapeInsideLayout('shape-inside circle', 'circle(20px, 20px, 14.14214px)', [5, 6, 9, 10], .1);
+        // create a circle that circumscribes a plus shape in the upper left
+        testShapeInsideLayout('shape-inside circle', 'circle(15px, 15px, 15.812px)', [1, 4, 5, 6, 9], .1);
 
-        testShapeInsideLayout('shape-inside ellipse', 'ellipse(20px, 20px, 14.14214px, 14.14214px)', [5, 6, 9, 10], .1);
+        testShapeInsideLayout('shape-inside ellipse', 'ellipse(15px, 15px, 15.812px, 15.812px)', [1, 4, 5, 6, 9], .1);
 
         testShapeInsideLayout('shape-inside polygon', 'polygon(0 10px, 10px 0, 30px 0, 40px 10px, 40px 30px, 30px 40px, 10px 40px, 0 30px)', [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14]);
 
