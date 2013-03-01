@@ -6,13 +6,13 @@ Permissions beyond the scope of this license, pertaining to the examples of code
 
 precision mediump float;
 
-attribute vec3 a_position;
+attribute vec4 a_position;
 attribute vec2 a_texCoord;
 
 uniform mat4 u_projectionMatrix;
-uniform mat4 txf;
 
 // These uniform values are passed in using CSS.
+uniform mat4 txf;
 uniform float phase;
 uniform float amplitude;
 
@@ -24,7 +24,7 @@ const float degToRad = PI / 180.0;
 void main()
 {
     v_texCoord = a_texCoord;
-    vec4 pos = vec4(a_position, 1.0);
+    vec4 pos = a_position;
 
     float phi = degToRad * phase;
     pos.z = amplitude * cos(pos.x * PI * 2.0 + phi);
