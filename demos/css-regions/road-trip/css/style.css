@@ -1,4 +1,4 @@
-/*     
+/*
 Copyright (C) 2012 Adobe Systems, Incorporated. All rights reserved.
 
 The contents of this package are subject to various licenses. 
@@ -16,7 +16,7 @@ h1 {
 
 blockquote:nth-of-type(2) {
   font-size: 2.6em;
-  font-family: 'myriad-pro-condensed', Arial, sans-serif;
+  font-family: 'myriad-pro-condensed', Helvetica, Arial, sans-serif;
   font-weight: lighter;
   color: #ae805e;
   line-height: 1em; }
@@ -26,7 +26,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   margin: 0;
-  background: url(../thirdparty/images/black_linen_v2.png) top left repeat; }
+  background: url(../thirdparty/images/black_linen_v2.png); }
 
 #viewport, #viewport > div, #viewport .page {
   width: 100%;
@@ -34,6 +34,9 @@ html, body {
 
 #viewport > div {
   display: table; }
+#viewport .hidden-error {
+    display: none;
+}
 #viewport .error {
   font-family: Helvetica, Arial, sans-serif;
   background: #ffc;
@@ -45,7 +48,8 @@ html, body {
   -moz-flow-into: article;
   -ms-flow-into: article;
   -o-flow-into: article;
-  flow-into: article; }
+  flow-into: article;
+}
   #content::first-letter {
     font-size: 2.5em; }
   #content h1 {
@@ -86,11 +90,11 @@ html, body {
     padding-top: 1em;
     -webkit-region-break-inside: avoid; }
   #content p {
-    font-size: 1.1em;
+    font: 1.1em/1.6 "Hoefler Text", Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
     padding: 0;
     margin: 0 0 2ex;
     color: #7e8083;
-    text-align: justify; }
+    text-align: left; }
   #content p:last-of-type {
     margin-bottom: 0; }
 
@@ -189,7 +193,7 @@ html, body {
 
 .page:nth-child(2),
 .page:nth-child(3) {
-  background: url(../images/route_2.png) center top repeat-x, url(../images/footer-medium.jpg) center bottom no-repeat;
+  background: url(../images/roadpath.svg) center top repeat-x, url(../images/footer-medium.jpg) center bottom no-repeat;
   background-color: white; }
   .page:nth-child(2) .region:nth-child(1),
   .page:nth-child(2) .region:nth-child(2),
@@ -215,7 +219,7 @@ html, body {
     display: none; }
 
 .page:nth-child(3) {
-  background: url(../images/route_2.png) center top repeat-x;
+  background: url(../images/roadpath.svg) center top repeat-x;
   background-color: white; }
 
 @media screen and (min-width: 1300px) {
@@ -223,7 +227,7 @@ html, body {
     background-image: url(../images/cover-full.jpg); }
 
   .page:nth-child(2) {
-    background: url(../images/route_2.png) center top repeat-x, url(../images/footer-full.jpg) center bottom no-repeat;
+    background: url(../images/roadpath.svg) center top repeat-x, url(../images/footer-full.jpg) center bottom no-repeat;
     -webkit-background-size: auto auto, 100% auto;
     background-color: white; }
 
@@ -329,7 +333,7 @@ html, body {
     width: 42.5%;
     top: 40%;
     height: 10%; } }
-@media screen and (max-width: 480px) {
+@media screen and (max-height: 320px), screen and (max-width: 480px) {
   #content h1 {
     font-size: 2.5em; }
     #content h1 span,
