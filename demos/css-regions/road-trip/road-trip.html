@@ -19,13 +19,13 @@ href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution
     <link rel="stylesheet" href="css/style.css" media="all">
 </head>
 <body>
+    <p class="hidden-error">
+        <strong>Warning:</strong>
+        You need to use a
+        <a href="http://nightly.webkit.org/" target="_blank">WebKit nightly</a>
+        browser build to see this example working correctly.
+    </p>
     <div id="viewport">
-        <p class="hidden-error">
-            <strong>Warning:</strong>
-            You need to use a
-            <a href="http://nightly.webkit.org/" target="_blank">WebKit nightly</a>
-            browser build to see this example working correctly.
-        </p>
         <div>
             <div class="page" style="display:block">
                 <div class="region"></div>
@@ -148,19 +148,16 @@ href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution
                 if (!("webkitGetNamedFlows" in document)) {
                     return false;
                 }
-                var test = document.createElement("span"),
+                var head = document.getElementsByTagName("head")[0],
                     hasOverset,
                     flow;
 
-                    // head
-                test.style["-webkit-flow-into"] = "testflow";
-                document.body.appendChild(test);
+                head.style["-webkit-flow-into"] = "testflow";
                 flow = document.webkitGetNamedFlows().namedItem("testflow");
                 // older implementations used to have overflow not overset
                 hasOverset = "overset" in flow;
                 // cleanup
-                test.style["-webkit-flow-into"] = "none";
-                test.parentNode.removeChild(test);
+                head.style["-webkit-flow-into"] = "none";
                 return hasOverset;
             }())
         };

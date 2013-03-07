@@ -34,10 +34,10 @@ html, body {
 
 #viewport > div {
   display: table; }
-#viewport .hidden-error {
+p.hidden-error {
     display: none;
 }
-#viewport .error {
+p.error {
   font-family: Helvetica, Arial, sans-serif;
   background: #ffc;
   padding: 15px 30px;
