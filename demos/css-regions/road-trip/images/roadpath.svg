@@ -1,0 +1,34 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--
+Copyright (C) 2013 Adobe Systems, Incorporated. All rights reserved.
+
+The contents of this package are subject to various licenses.
+You will find the license information either directly in the files
+or the directory will contain the appropriate license for the components of that
+directory.
+
+Unless otherwise noted, code and content is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution
+3.0 Unported License</a>.
+-->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="1064px" height="99px">
+<polyline fill="none" stroke="#b4b5b4" stroke-linecap="round"
+    stroke-linejoin="round" points="0 80.833 130.119 80.833 153.631 57.321
+    175.953 57.321 198.423 34.851 224.762 34.851 265.238 49.5 265.238 70.715
+    275.654 81.131 296.19 81.131 320 57.991 352.738 57.991 377.143 34.851
+    411.667 34.851 456.435 60.698 456.435 81.131 471.19 80.833 507.5 57.991
+    532.5 57.991 547.381 80.833 573.571 81.131 587.262 57.991 612.262 57.991
+    636.071 34.851 672.381 34.851 695.596 57.991 720 57.991 743.215 80.833
+    767.619 80.833 792.023 71.31 792.023 49.5 812.262 32.024 837.857 32.024
+    860.477 56.577 895.596 56.577 921.786 80.833 1064 80.833"/>
+<path fill="#b4b5b4" d="M265.135,32.024c-2.542,0-4.604,2.061-4.604,4.603c0,2.543
+    4.604,11.123,4.604,11.123s4.603-8.58,4.603-11.122C269.738,34.085,267.677
+    32.024,265.135,32.024zM265.135,38.826c-1.215,0-2.2-0.984-2.2-2.2s0.985-2.199
+    2.2-2.199c1.214,0,2.2,0.984,2.2,2.2C267.335,37.843,266.35,38.826,265.135
+    38.826zM838.013,13.5c-2.542,0-4.604,2.061-4.604,4.603c0,2.543,4.604,11.123
+    4.604,11.123s4.603-8.58,4.603-11.122C842.615,15.562,840.555,13.5,838.013
+    13.5zM838.013,20.302c-1.215,0-2.2-0.984-2.2-2.2s0.985-2.199,2.2-2.199c1.214
+    0,2.2,0.984,2.2,2.2C840.213,19.319,839.227,20.302,838.013,20.302z"/>
+</svg>
