@@ -13,7 +13,7 @@ html,body{
     height:100%;
     overflow:hidden; 
     margin:0; 
-    background: url(../thirdparty/images/black_linen_v2.png) top left repeat;
+    background: url(../thirdparty/images/black_linen_v2.png);
 }   
 
 @mixin transition($property, $duration: 0.2s, $easing: ease-in-out){
