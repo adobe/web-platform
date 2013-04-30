@@ -434,10 +434,11 @@ body {
  * ROLLING LINKS
  *********************************************/
 
+
 .reveal .roll {
 	display: inline-block;
-	line-height: 1.2;
-	overflow: hidden;
+	line-height: 1.7em;
+	overflow: visible;
 
 	vertical-align: top;
 

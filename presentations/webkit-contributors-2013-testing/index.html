@@ -39,26 +39,101 @@
 					<h1 style="margin-top: -250px;">W3C/Webkit Test Integration</h1>
 					
 					<section>
-					    <h3 style="margin-top: 300px;">Part 2</h3>
+					    <h3 style="margin-top: 350px;">Part 2</h3>
 					    <p>Webkit Contributors Meeting, May 2-3, 2013</p>
 					    <p>
 						    <small>Rebecca Hauck &amp; Alan Stearns, Adobe</small>
 					    </p>
+					    <p style="color: #eee8d5; font-size: 1.5em"<strong>http://bit.ly/11RKxmb</strong></p>
 					</section>
 					<section>
-					    <h3 style="margin-top: 300px;">Part 1</h3>
+					    <h3 style="margin-top: 350px;">Part 1</h3>
         				<p>Webkit Contributors Meeting, April 19-20, 2012</p>
         				<p>
         					<small>Jacob Goldstein &amp; Alan Stearns, Adobe</small>
         				</p>
-        				<a href="http://adobe.github.io/web-platform/presentations/webkit-contributors-2012-testing/#/" target="top">Slides</a>
-        				<br />
-        				<a href="http://trac.webkit.org/wiki/ImportingThirdPartyTests" target="top">Minutes</a>
+        				Slides:<br />
+        				<a href="http://adobe.github.io/web-platform/presentations/webkit-contributors-2012-testing/#/" target="top">http://bit.ly/10Sf7zv</a>
+        				
+        				<br /><br />
+        				Notes from the meeting:<br />
+        				<a href="http://trac.webkit.org/wiki/ImportingThirdPartyTests" target="top">http://trac.webkit.org/wiki/ImportingThirdPartyTests</a> 
 					</section>
 				</section>
 
              	<section>
-	
+             	    <section>
+             	        <h1>Importing W3C Tests into Webkit</hi>
+             	    </section>
+				</section>
+				
+				<section>
+				    <section>
+    				    <h1>Context</h1>
+    				    <h2>Where am I coming from?</h2>
+    				    <ul>
+    				        <li>Member of the CSSWG </li>
+    				        <li>Active with the W3C (Testing Task Forces, TestTWF)</li>
+    				        <li>Working on a team advancing a W3C Spec</li>
+    				        <li>The team is also implementing it in Webkit</li>
+    				        <li>Writing new tests to contribute to both Webkit &amp; W3C</li>
+    				        <li>Continuing the dialog start here on this topic last year</li>
+    				    </ul>
+    				</section>
+    				<section>
+    				    <p style="font-size: 1.6em">
+    				       I'm writing new tests that should (will) live in two repos and I don't 
+    				       want to create a situation where (nearly) identical tests need to be maintained
+    				       in two different places.
+    				    </p>
+    				       
+    				    <p style="font-size: 1.5em;" class="fragment">
+    				        Basically, I want to do the right thing.
+    				    </p>
+    				</section>
+				</section>
+				
+				<section>
+				    <section>
+    				    <p style="font-size: 1.6em;">Hence, </p>
+    				        <a href="https://bugs.webkit.org/show_bug.cgi?id=111513" target="top">Bug #111513</a>
+    				    <br /><br />
+				    
+    				    <p style="font-size: 1.6em;">See #8:</p>
+				    
+    				    <a href="http://trac.webkit.org/wiki/ImportingThirdPartyTests" target="top">http://trac.webkit.org/wiki/ImportingThirdPartyTests</a>
+				    </section>
+				    <section>
+				        <h2>What it does</h2>
+				        <h4>(High Level)</h4>
+				        <ul>
+				            <li>Imports everything into LayoutTests/csswg</li>
+				            <li>Only imports approved or submitted tests</li>
+				            <li>Only imports automatable tests (reftests, testharness.js tests)</li>
+				            <li>Converts files to work in Webkit
+				                <ul>
+				                    <li>Refest filenaming convention</li>
+				                    <li>Paths to testharness.js</li>
+				                </ul>
+				            </li>
+				            <li>Adds vendor prefixes to CSS properties that require them</li>
+				            <li>Logs the import</li>
+				        </ul>
+				    </section>
+				        
+				</section>
+
+                <section>
+					<h1>Proposal</h1>
+					<ul style="width: 150%;">
+					    <li>Review the patch <span class="fragment" style="color: red; font-weight: bold;">(Needs a reviewer!)</span></li>
+					    <li>Incorporate feedback from review (and hopefully this discussion)</li>
+					    <li>Land the patch &amp; document</li>
+					    <li>Run it manually to import the CSS2.1 approved tests</li>
+					    <li>Get a handle on the results (log bugs, test_expectations, etc.)</li>
+					    <li>Run manually to import the CSS2.1 &amp; CSS3 submitted tests</li>
+					    <li>Work out details &amp; process for running it regularly</li>
+					<ul>
 				</section>
 
 				<section>
