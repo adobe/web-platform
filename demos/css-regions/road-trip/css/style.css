@@ -84,11 +84,8 @@ html, body {
   text-transform: uppercase;
 }
 #content h1 span:last-child {
-  position: absolute;
-  top: 60%;
   color: #769eb3;
   font-style: italic;
-  text-shadow: none;
 }
 #content blockquote {
   padding: 0;
