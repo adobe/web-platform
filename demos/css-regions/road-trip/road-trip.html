@@ -117,13 +117,14 @@ href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution
         <blockquote>
             “To anyone we inspired, thank you!”
         </blockquote>
+        
+        <div id="license">
+            Text from <a href="http://en.wikipedia.org/wiki/Road_trip">Road Trip</a>
+            on Wikipedia. <a
+            href="http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">License</a>
+        </div>
     </div>
 
-    <div id="license">
-        Text from <a href="http://en.wikipedia.org/wiki/Road_trip">Road Trip</a>
-        on Wikipedia. <a
-        href="http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">License</a>
-    </div>
 
     <script src="thirdparty/js/swipe/swipe.min.js"></script>
     <script src="http://use.typekit.com/yyf0ttn.js"></script>
@@ -174,6 +175,7 @@ href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution
             pageSelector: ".page",
             regionSelector: ".region"
         },
+        maxPages = 30,
         debounce = function (f) {
             var timer;
             return function () {
@@ -188,6 +190,10 @@ href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution
             var flow = getNamedFlow(conf.flow),
                 pages = getAllPages(),
                 page = pages.pop();
+                
+            if (pages.length > maxPages || !flow){
+              return
+            }
 
             if (flow.overset) {
                 // duplicate the DOM nodes of the last page

@@ -9,8 +9,6 @@ Unless otherwise noted, code and content is licensed under a
 <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
 */
 
-@import 'typography';   
-
 @mixin flowfrom($name){    
     -webkit-flow-from: #{$name};
     -moz-flow-from: #{$name};
@@ -37,10 +35,6 @@ $pageBackground: white;
     }
 }
 
-@mixin helperfont(){
-    font-family: Helvetica, Arial, sans-serif;
-}
-
 html,body{
     width:100%;
     height:100%;
@@ -51,8 +45,8 @@ html,body{
 
 #viewport, #viewport > div, #viewport .page{
     width: 100%;
-    height: 100%;  
-} 
+    height: 100%;
+}
 
 
 #viewport {
@@ -61,7 +55,7 @@ html,body{
     }
     
     .error{ 
-        @include helperfont();
+        font-family: Helvetica, Arial, sans-serif;
         background: #ffc;
         padding: 15px 30px;
         margin: 0;
@@ -72,73 +66,8 @@ html,body{
     display: none;
 }
 
-#content{  
-    @include flowinto(article); 
-    
-    &::first-letter{
-        font-size:3em;
-        float: left;
-        line-height: 1.25em;
-        margin-right: 0.3em;
-        color: #444;
-    };
-    
-    h1{   
-        @include flowinto(title);
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 100%;
-        line-height: 1em;  
-        color: #ceccc5;   
-        text-shadow:2px 2px 5px #333;
-    } 
-    
-    h1 span{
-        display:block;
-        width:100%;             
-        text-transform:uppercase; 
-    }  
-    
-    
-    h1 span:last-child{
-        color:#769eb3;   
-        font-style:italic;
-    }  
-    
-    blockquote{
-        padding:0;
-        margin:0;
-    }
-    
-    blockquote:nth-of-type(1){
-        @include flowinto(quote-start);
-        font-weight:light;
-        font-size:1.6em;
-    }
-    
-    blockquote:nth-of-type(2){
-        padding-top:1em;   
-        -webkit-region-break-inside: avoid;
-    }
-    
-    p{  
-        font: 1.1em/1.6 "Hoefler Text", Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
-        padding:0;
-        margin:0 0 2ex;  
-        color:#7e8083;  
-        text-align: left;
-    }
-    
-    p:last-of-type{
-        margin-bottom:0;
-    }
-}
-
 #license{  
-    @include flowinto(article);  
-    @include helperfont();
-    
+    font-family: Helvetica, Arial, sans-serif;
     display: block;
     background: whitesmoke;
     color: gray;  
@@ -156,128 +85,225 @@ html,body{
 }   
 
 .region{    
-    @include flowfrom("article"); 
     overflow: auto;
     -webkit-region-overflow: break;
 }
 
-/* region assignment */       
-.page:nth-child(1){     
-    
-    .region:nth-child(2),
-    .region:nth-child(4){  
-        @include flowfrom("article"); 
-    }
-    
-    .region:nth-child(1){
-        @include flowfrom("title"); 
-        overflow: visible;
-    }
-    
-    .region:nth-child(3){
-        @include flowfrom("quote-start"); 
-    }
-}  
-
+/* region assignment */
 .page{           
     position:relative;
     width: 100%;
     height: 100%;
-    background-color: $pageBackground;      
+    background-color: $pageBackground;
+    
+    & > *{
+      box-sizing: border-box;
+    }
 } 
 
 .region{   
-    position:absolute;  
-}   
-
-.page:nth-child(1){
-    
-    &:before{       
-        position: absolute;    
-        overflow: hidden;
-        width: 100%;
-        height: 55%;
-        content: ".";     
-        background: black right bottom url(../images/cover-medium.jpg) no-repeat;
-        -webkit-background-size: 100% auto;
-        top: 0;
-        left: 0;
-    }      
-
-    .region:nth-child(1){
-        width: 25%;
-        height: 90%; 
-        top: 5%;
-        left: 2%;
-        
-        @media screen and (max-width: 500px) {
-            width: 90%;
-            height: 50%;
-        }
-    } 
-    
-    .region:nth-child(2),
-    .region:nth-child(3),
-    .region:nth-child(4){
-        left:31.5%;  
-        width:30%;  
-    }  
-    
-    .region:nth-child(2){ 
-        height: 15%;
-        bottom: 25%;       
-        padding:1% 1% 0;
-    }
-    
-    .region:nth-child(3){
-        height: 15%;  
-        left: 28%; 
-        width: 35%;
-        bottom: 5%;  
-    }  
-    
-    .region:nth-child(4){
-        height: 35%; 
-        padding:1% 1% 0 3%; 
-        left: 63%; 
-        bottom: 5%;
-    }
+    position:absolute;
 }
 
-.page:nth-child(2),
-.page:nth-child(3){        
-    background: url(../images/roadpath.svg) center top repeat-x, url(../images/footer-medium.jpg) center bottom no-repeat;
-    background-color: $pageBackground;
-    
-    .region:nth-child(1),
-    .region:nth-child(2),
-    .region:nth-child(3){
-        width:30%;
-        height:60%; 
-        top:19%;
-    }
-    
-    .region:nth-child(1){
-        left:4%;
-    } 
-    
-    .region:nth-child(2){
-        left: 37%;
-    }   
-    
-    .region:nth-child(3){
-        left: 70%;
-        width: 25%;
-    }
-    
-    .region:nth-child(4){ 
-        display:none;
-    }
-}  
+.page:nth-child(1){
+  .region:nth-child(1){
+    background: url(../images/cover-medium.jpg) no-repeat;
+  }
+}
 
-.page:nth-child(3){
-    background: url(../images/roadpath.svg) center top repeat-x;
-    background-color: $pageBackground;
+/* baby bear */
+@media screen and (min-width: 100px) and (min-height: 200px){
+
+  
+  #content{
+    @include flowinto(article); 
+    
+    h1 {
+      @include flowinto(title);
+      font: 4em/0.9em 'myriad-pro', Helvetica, Arial, sans-serif; 
+      color: #ceccc5;
+      margin: 0;
+      padding: 0;
+      text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
+      
+      span{
+        display: block;
+        text-transform: uppercase;
+        
+        &:last-child{
+          color: #769eb3;
+          font-style: italic;
+        }
+      }
+    }
+    
+    p {
+      font: 1em/1.5 "Hoefler Text", Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", Georgia, serif;
+      padding: 0;
+      margin: 0 0 2ex;
+      color: #7e8083;
+      
+      &:first-of-type::first-letter {
+        font-size: 6em;
+        float: left;
+        line-height: 1.2em;
+        margin-right: 0.2em;
+        color: #444;
+      }
+      
+      &:last-of-type {
+        margin-bottom:0;
+      }
+    }
+    
+    blockquote{
+      padding: 0;
+      margin: 1em 0;
+      font-size: 2em;
+      font-family: 'myriad-pro-condensed', Helvetica, Arial, sans-serif;
+      font-weight: lighter; 
+      color: #ae805e;
+    }
+  }
+  
+  // small viewport; hide all regions then decide what to show
+  .region{
+    display: none
+  }
+  
+  .page{
+    .region:nth-child(1){
+      display: block;
+      width: 100%;
+      height: 100%;
+      @include flowfrom("article");
+      padding: 2em;
+    }
+  }
+  
+  .page:nth-child(1) {
+    // show only title on first page
+    .region:nth-child(1) {
+      @include flowfrom("title"); 
+      background-position: bottom right;
+      background-size: cover;
+      padding: 1em 0 0 2em;
+    }
+  }
+}
+
+@media screen and (min-width: 500px) and (min-height: 500px){
+  #content {
+    
+    h1{
+      font-size: 4em;
+      
+      color: lime;
+    }
+    p{
+      font-size: 1.1em;
+      line-height: 1.6em
+    }
+  }
+}
+
+@media screen and (min-width: 700px) and (min-height: 700px){
+  #content {
+    h1{
+      font-size: 5em;
+    }
+    h1 span{
+      color: red;
+    }
+  }
+}
+
+/*@media all and (min-width: 1024px) and (min-height: 768px){
+  
+
+  .page:nth-child(1){
+    
+      .region:nth-child(2),
+      .region:nth-child(4){  
+          @include flowfrom("article"); 
+      }
+
+      .region:nth-child(3){
+          @include flowfrom("quote-start"); 
+      }
+    
+      .region:nth-child(1){
+          @include flowfrom("title"); 
+          width: 100%;
+          height: 60%;
+          background-position: bottom center;
+          background-size: cover;
+          padding: 2em 0 0 2em;
+      } 
+    
+      .region:nth-child(2),
+      .region:nth-child(3),
+      .region:nth-child(4){
+          left:31.5%;  
+          width:30%;
+          background: white;  
+      }  
+    
+      .region:nth-child(2){ 
+          height: 15%;
+          bottom: 25%;
+      }
+    
+      .region:nth-child(3){
+          height: 15%;  
+          left: 28%; 
+          width: 35%;
+          bottom: 5%;  
+      }  
+    
+      .region:nth-child(4){
+          height: 35%; 
+          padding:1% 1% 0 3%; 
+          left: 63%; 
+          bottom: 5%;
+      }
+  }
+
+  .page:nth-child(2),
+  .page:nth-child(3){        
+      background: url(../images/roadpath.svg) center top repeat-x, url(../images/footer-medium.jpg) center bottom no-repeat;
+      background-color: $pageBackground;
+    
+      .region:nth-child(1),
+      .region:nth-child(2),
+      .region:nth-child(3){
+          width:30%;
+          height:60%; 
+          top:19%;
+      }
+    
+      .region:nth-child(1){
+          left:4%;
+      } 
+    
+      .region:nth-child(2){
+          left: 37%;
+      }   
+    
+      .region:nth-child(3){
+          left: 70%;
+          width: 25%;
+      }
+    
+      .region:nth-child(4){ 
+          display:none;
+      }
+  }  
+
+  .page:nth-child(3){
+      background: url(../images/roadpath.svg) center top repeat-x;
+      background-color: $pageBackground;
+  }
 }
 
 @media screen and (min-width: 1300px){      
@@ -302,15 +328,6 @@ html,body{
     }
 } 
 
-@media screen and (orientation:portrait) and (min-width: 650px){
-    #content{
-        h1{
-            font-size:7em;  
-            line-height:0.9em;
-        }
-    }  
-}
-
 @media screen and (orientation:portrait){ 
     
     #content{
@@ -331,7 +348,7 @@ html,body{
     }  
     
     .page:nth-child(1){
-        &:before{       
+        &:before{
             height: 55%;
             -webkit-background-size: cover;
         }
@@ -536,3 +553,4 @@ html,body{
         }        
     }  
 }
+   */
