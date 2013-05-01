@@ -337,7 +337,6 @@ html, body {
     display: block;
   }
   .page:nth-child(1) .region:nth-child(1) {
-    width: 50%;
     height: 90%;
     top: 5%;
     left: 2%;
