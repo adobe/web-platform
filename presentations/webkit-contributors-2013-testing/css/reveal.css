@@ -73,9 +73,9 @@ body {
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-	-webkit-hyphens: auto;
-	   -moz-hyphens: auto;
-	        hyphens: auto;
+	-webkit-hyphens: none;
+	   -moz-hyphens: none;
+	        hyphens: none;
 
 	word-wrap: break-word;
 }
@@ -434,11 +434,10 @@ body {
  * ROLLING LINKS
  *********************************************/
 
-
 .reveal .roll {
 	display: inline-block;
-	line-height: 1.7em;
-	overflow: visible;
+	line-height: 1.2;
+	overflow: hidden;
 
 	vertical-align: top;
 
