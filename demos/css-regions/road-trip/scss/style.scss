@@ -60,16 +60,16 @@ html,body{
         display: table;
     }
     
-    .hidden-error {
-        display: none;
-    }
-    
     .error{ 
         @include helperfont();
         background: #ffc;
         padding: 15px 30px;
         margin: 0;
     }
+}
+
+.hidden-error {
+    display: none;
 }
 
 #content{  

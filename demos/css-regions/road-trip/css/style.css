@@ -39,14 +39,15 @@ html, body {
 #viewport > div {
   display: table;
 }
-#viewport .hidden-error {
-  display: none;
-}
 #viewport .error {
   font-family: Helvetica, Arial, sans-serif;
   background: #ffc;
   padding: 15px 30px;
   margin: 0;
+}
+
+.hidden-error {
+  display: none;
 }
 
 #content {
