@@ -1,6 +1,6 @@
 /*jslint plusplus: true, sloppy: true, vars: true, browser: true, devel: true */ /*global  $, UAParser*/
 /*
-Copyright (C) 2012 Adobe Systems, Incorporated. All rights reserved.
+Copyright (C) 2013 Adobe Systems, Incorporated. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -216,7 +216,7 @@ function changeActionWell(browserVersionDepth) {
 
     var htmlContent = '<div id="test-results">';
     htmlContent += '<p>We think that you are using <strong>' + browserBeingUsed + '</strong> for your browser.  <a href="#">No?</a></p>';
-    htmlContent += '<p id="support-results">Your Browser supports<br /> <span id="support-precentage"></span> of CSS Regions features</p>';
+    htmlContent += '<p id="support-results">Your Browser supports<br /> <span id="support-precentage"></span> of CSS Custom Filters features</p>';
 
     if ($('#publish-results').is(':checked')) {
         htmlContent += '<p>Thank you for sharing your results</p>';

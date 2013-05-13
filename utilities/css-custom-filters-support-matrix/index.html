@@ -1,5 +1,5 @@
 <!--
-Copyright (C) 2012 Adobe Systems, Incorporated. All rights reserved.
+Copyright (C) 2013 Adobe Systems, Incorporated. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,7 +24,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>CSS Regions Support Matrix - Browserscope Results</title>
+	<title>CSS Custom Filters Support Matrix - Browserscope Results</title>
     <link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css" media="screen">
     <link rel="stylesheet" href="assets/css/results.css" type="text/css" media="screen">
@@ -35,7 +35,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <script type="text/javascript" src="assets/js/results.js"></script>
 
     <script type="text/javascript">
-        var browserscopeURL = "http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBjwpLATDA?o=json&v=";
+        var browserscopeURL = "http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBjs4MoUDA?o=json&v=";
         var currentBrowserChoice = "browsers-major";
         var browserscopeV = browserScopeVersionTranslate(currentBrowserChoice);
         var bscope_results;
@@ -131,7 +131,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <script type="text/javascript"> 
     
     // Test key for BrowserScope test suite
-    var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjwpLATDA'
+    var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjs4MoUDA'
     
     // Beacon object with test results for Browserscope.
     // key = string test name
@@ -180,24 +180,24 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <script type="text/javascript" src="prefix-free/prefixfree.js"></script>
     <!-- <script type="text/javascript" src="prefix-free/prefixfree.min.js"></script> -->
     <script type="text/javascript" src="prefix-free/prefixfree.jquery.js"></script>
-    <script type="text/javascript" src="assets/js/testregions.js"></script>
+    <script type="text/javascript" src="assets/js/testcustomfilters.js"></script>
 	
 </head>
 <body>
     <div class="container">
         <div class="row">
             <header class="span6">
-                <h1 id="bscope-test-title">CSS Regions Support</h1>
-                <div id="bscope-test-desc">Check the support for CSS Regions across browsers. The matrix below contains the features in the latest CSS Regions Working Draft from the W3C.</div>
+                <h1 id="bscope-test-title">CSS Custom Filters Support</h1>
+                <div id="bscope-test-desc">Check the support for CSS Custom Filters across browsers. The matrix below contains the features in the latest CSS Custom Filters Working Draft from the W3C.</div>
 
                 <ul>
-                    <li><a href="http://dev.w3.org/csswg/css3-regions/" target="_blank">CSS Regions W3C Specification →</a></li>
-                    <li><a href="http://www.adobe.com/devnet/html5/articles/css3-regions.html" target="_blank">CSS Regions: Rich Page Layouts with HTML &amp; CSS3 →</a></li>
-                    <li><a href="http://adobe.github.com/web-platform/samples/css-regions/" target="_blank">CSS Regions Demos →</a></li>
+                    <li><a href="https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html" target="_blank">Filter Effects W3C Specification →</a></li>
+                    <li><a href="http://www.adobe.com/devnet/html5/articles/css-shaders.html" target="_blank">Introducing CSS shaders: Cinematic effects for the web →</a></li>
+                    <li><a href="http://adobe.github.io/web-platform/samples/css-customfilters/" target="_blank">CSS Custom Filters Demos →</a></li>
                     </ul>
             </header>
             <div id="action-well" class="alert alert-info span5">
-                <h2>Check CSS Regions Support in your browser</h2>
+                <h2>Check CSS Custom Filters Support in your browser</h2>
 
                 <form id="run-tests">
                     <input class="btn btn-primary btn-large" type="submit" name="submit" value="Run Tests" />
