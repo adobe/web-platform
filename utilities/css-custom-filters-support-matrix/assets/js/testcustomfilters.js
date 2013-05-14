@@ -30,7 +30,7 @@ $(function () {
     }
 
     var $div;
-    var filterProperty = "BOHBOH"; // Fallback value - TODO: This must be "filter"
+    var filterProperty = "-webkit-filter"; // Fallback value - TODO: This must be "filter"
 
     function setup() {
         var prefixedProperties = ['-webkit-filter', '-moz-filter', '-ms-filter', '-o-filter'];
@@ -43,13 +43,30 @@ $(function () {
     }
 
     function testCustomFiltersInline() {
-        module('CSS Custom Filters', { 'setup': setup });
+        module('CSS Custom Filters - Inline Syntax', { 'setup': setup });
 
         test('Inline Syntax', function() {
-            equal($div.css(filterProperty), 'custom(none mix(url(http://www.example.com/) normal source-atop))', 'Simple Inline Filter');
-            console.log('---- Stiamo usando: ' + filterProperty);
+            equal($div.css(filterProperty), 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1)', 'Simple Inline Filter');
+            console.log('---- Property name: ' + filterProperty);
+        })
+    }
+
+    function testCustomFiltersAtRule() {
+        module('CSS Custom Filters - @filter syntax', { 'setup': setup });
+
+        // There's no real need to use a new setup method here.
+        test('Syntax', function() {
+//            var $sheet = $('style');
+//            $sheet.appendTo($('head'));
+//
+//            if (prova.styleSheet)
+//                console.log('EVVAIIIIIII!!!!!!');
+//            stylesheet.insertRule("@-webkit-filter test-filter {}", 0);
+//            var cssRule = stylesheet.cssRules.item(0);
+//            console.log('CSSRULE ==================== ' + cssRule);
         })
     }
 
     testCustomFiltersInline();
+    testCustomFiltersAtRule();
 })   
