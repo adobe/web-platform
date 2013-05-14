@@ -30,16 +30,18 @@ $(function () {
     }
 
     var $div;
-    var filterProperty = "-webkit-filter"; // Fallback value - TODO: This must be "filter"
+    var filterProperty = "filter"; // Fallback value
 
     function setup() {
-        var prefixedProperties = ['-webkit-filter', '-moz-filter', '-ms-filter', '-o-filter'];
-        var customFilterValue = 'custom(none mix(url(http://www.example.com/) normal source-atop))';
+        var prefixedProperties = ['-webkit-filter', '-ms-filter', '-o-filter', '-moz-filter'];
+        var customFilterValue = 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1)';
         $div = $('<div></div>').appendTo($('body'));
 
-        for (var i = 0; i < prefixedProperties.length; ++i)
-            if ($div.css(prefixedProperties[i], customFilterValue).css(prefixedProperties[i]) == customFilterValue)
+        for (var i = 0; i < prefixedProperties.length; ++i) {
+            $div.css(prefixedProperties[i], customFilterValue);
+            if ($div.css(prefixedProperties[i]) == customFilterValue)
                 filterProperty = prefixedProperties[i];
+        }
     }
 
     function testCustomFiltersInline() {
@@ -47,15 +49,14 @@ $(function () {
 
         test('Inline Syntax', function() {
             equal($div.css(filterProperty), 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1)', 'Simple Inline Filter');
-            console.log('---- Property name: ' + filterProperty);
         })
     }
 
-    function testCustomFiltersAtRule() {
-        module('CSS Custom Filters - @filter syntax', { 'setup': setup });
-
-        // There's no real need to use a new setup method here.
-        test('Syntax', function() {
+//    function testCustomFiltersAtRule() {
+//        module('CSS Custom Filters - @filter syntax', { 'setup': setup });
+//
+//        // There's no real need to use a new setup method here.
+//        test('Syntax', function() {
 //            var $sheet = $('style');
 //            $sheet.appendTo($('head'));
 //
@@ -64,9 +65,9 @@ $(function () {
 //            stylesheet.insertRule("@-webkit-filter test-filter {}", 0);
 //            var cssRule = stylesheet.cssRules.item(0);
 //            console.log('CSSRULE ==================== ' + cssRule);
-        })
-    }
+//        })
+//    }
 
     testCustomFiltersInline();
-    testCustomFiltersAtRule();
+//    testCustomFiltersAtRule();
 })   
