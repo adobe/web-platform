@@ -1,13 +1,13 @@
-CSS Regions basic feature testing
-=================================
+CSS Custom Filters basic feature testing
+========================================
                                                                                                          
-This set of unit tests helps determine the level of support for CSS Regions in a browser.
+This set of unit tests helps determine the level of support for CSS Custom Filters in a browser.
 
-It is not meant to be a full test suite or to have a broad code coverage. For that please refer to the [CSS Regions WebKit Layout Tests](http://trac.webkit.org/browser/trunk/LayoutTests/fast/regions).
+It is not meant to be a full test suite or to have a broad code coverage. For that please refer to the [CSS Custom Filters WebKit Layout Tests](http://trac.webkit.org/browser/trunk/LayoutTests/css3/filters/custom).
     
 How to use
 ----------
-Open index.html in your CSS Regions-enabled browser.                        
+Open index.html in your CSS Custom Filters-enabled browser.                        
 
 A passing test means that the feature is supported by the browser.
 A failing test means that the feature is not yet supported by the browser.
