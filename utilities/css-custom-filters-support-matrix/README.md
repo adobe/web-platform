@@ -1,13 +1,13 @@
 CSS Custom Filters basic feature testing
-========================================
+=================================
                                                                                                          
 This set of unit tests helps determine the level of support for CSS Custom Filters in a browser.
 
-It is not meant to be a full test suite or to have a broad code coverage. For that please refer to the [CSS Custom Filters WebKit Layout Tests](http://trac.webkit.org/browser/trunk/LayoutTests/css3/filters/custom).
+It is not meant to be a full test suite or to have a broad code coverage. For that please refer to the [CSS Custom Filters WebKit Layout Tests](http://trac.webkit.org/browser/trunk/LayoutTests/css3/filters/custom/).
     
 How to use
 ----------
-Open index.html in your CSS Custom Filters-enabled browser.                        
+Open index.html in your CSS Custom Filters-enabled browser.
 
 A passing test means that the feature is supported by the browser.
 A failing test means that the feature is not yet supported by the browser.
@@ -24,7 +24,7 @@ The CSS that powers the results table and chart are powered by assets/css/result
 [Sass](http://sass-lang.com/) on results.scss.  It's not required, and futher changes can be done by editing the CSS, but 
 Sass is recommended here as it makes the CSS a lot easier to write.
 
-The chart data comes from [Browserscope](http://www.browserscope.org/). The main documentation for how to pull down tests is on their [API Documention](http://www.browserscope.org/user/tests/howto). The data comes from [our test results page](http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBjwpLATDA?o=html&v=3&highlight=1).  By using the various [url flags](http://www.browserscope.org/user/tests/howto#urlparams) for their api, you can control what ranges of data you pull down and format. 
+The chart data comes from [Browserscope](http://www.browserscope.org/). The main documentation for how to pull down tests is on their [API Documention](http://www.browserscope.org/user/tests/howto). The data comes from [our test results page](http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBiAutMUDA?o=html&v=3&highlight=1).  By using the various [url flags](http://www.browserscope.org/user/tests/howto#urlparams) for their api, you can control what ranges of data you pull down and format.
 
 The project has an ANT file for publishing to an FTP server. To use, copy sample.properties to build.properties and fill with approriate values.
 
@@ -41,3 +41,6 @@ When they run the tests:
 * We report the general results as a percentage in the #action-well.
 * We will also highlight the results on the browser table matching their browser.
 * We provide a toggle at the bottom to display the raw Qunit tests.
+
+If they choose to report their scores:
+* We flag Qunit to report scores to Browserscope. 

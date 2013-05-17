@@ -23,19 +23,21 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8" />
-	<title>CSS Custom Filters Support Matrix - Browserscope Results</title>
+    <meta charset="UTF-8" />
+    <title>CSS Custom Filters Support Matrix - Browserscope Results</title>
     <link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css" media="screen">
     <link rel="stylesheet" href="assets/css/results.css" type="text/css" media="screen">
 
-	<script type="text/javascript" src="qunit/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="qunit/jquery-1.7.1.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap-dropdown.js"></script>
     <script type="text/javascript" src="ua-parser/ua-parser.js"></script>
     <script type="text/javascript" src="assets/js/results.js"></script>
 
     <script type="text/javascript">
-        var browserscopeURL = "http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBjs4MoUDA?o=json&v=";
+        var browserscopeTestKey = "agt1YS1wcm9maWxlcnINCxIEVGVzdBjs4MoUDA";
+        var browserscopeURL = "http://www.browserscope.org/user/tests/table/" +
+            browserscopeTestKey + "?o=json&v=";
         var currentBrowserChoice = "browsers-major";
         var browserscopeV = browserScopeVersionTranslate(currentBrowserChoice);
         var bscope_results;
@@ -90,6 +92,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         }
 
         function runTests() {
+            if ($('#publish-results').is(':checked')) {
+                QUnit.config.publishresults = true;  
+            }
             QUnit.start();
             return false;
         }
@@ -122,42 +127,56 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             changeActionWell(browserLabelDepth);
             $("#support-precentage").html(percent + "%");
             $("#test-display-toggle").css("display","block");
-            
+
         }
 
     </script>
 
     <script type="text/javascript" src="qunit/qunit.js"></script>
-    <script type="text/javascript"> 
-    
+    <script type="text/javascript">
+
     // Test key for BrowserScope test suite
-    var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjs4MoUDA'
-    
+    var _bTestKey = browserscopeTestKey;
+
     // Beacon object with test results for Browserscope.
     // key = string test name
     // value = numeric value (1 means pass, 0 means fail)
     var _bTestResults = {}
-    
+
+    // Add option in Qunit to toggle publishing results to BrowserScope.org
+    QUnit.config.urlConfig.push('publishresults')
+
     // Timeout for async tests
     QUnit.config.testTimeout = 1000
 
-    //Setting tests to start on user input 
+    //Setting tests to start on user input
     QUnit.config.autostart = false;
 
+    QUnit.config.publishresults = false;
+
     // Build-up the test results beacon for BrowserScope.org
-    QUnit.testDone = function(obj){   
-        var testName = obj.module + " : " + obj.name 
+    QUnit.testDone = function(obj){
+        var testName = obj.module + " : " + obj.name
 
         if (!obj.failed && obj.total === obj.passed){
             _bTestResults[testName] = 1
-        } 
+        }
         else{
             _bTestResults[testName] = 0
         }
-    }  
-    
+    }
+
     // If the user agreed to publish results to BrowserScope.org, go for it!
     QUnit.done = function(obj){
+        if (QUnit.config.publishresults){
+            
+            var newScript = document.createElement('script'),
+                firstScript = document.getElementsByTagName('script')[0]
+                
+            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey;
+            firstScript.parentNode.insertBefore(newScript, firstScript)
+        }
+            
         var container = document.querySelector('#qunit-testrunner-toolbar'),
             resultsLink = document.createElement('a'),
             runsLink = document.createElement('a') 
@@ -178,7 +197,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }
     </script>
     <script type="text/javascript" src="prefix-free/prefixfree.js"></script>
-    <!-- <script type="text/javascript" src="prefix-free/prefixfree.min.js"></script> -->
     <script type="text/javascript" src="prefix-free/prefixfree.jquery.js"></script>
     <script type="text/javascript" src="assets/js/testcustomfilters.js"></script>
 	
@@ -200,7 +218,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <h2>Check CSS Custom Filters Support in your browser</h2>
 
                 <form id="run-tests">
-                    <input class="btn btn-primary btn-large" type="submit" name="submit" value="Run Tests" />
+                    <input class="btn btn-primary btn-large" type="submit" name="submit" value="Run Tests" /><br />
+                    <label class="checkbox"> <!-- style='display:none'> -->
+                        <input type="checkbox" name="publish" value="publish" id="publish-results">
+                        Publish my results
+                      </label>
                 </form>    
             </div>
         </div>
