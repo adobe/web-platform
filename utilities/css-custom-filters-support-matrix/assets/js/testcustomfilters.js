@@ -109,7 +109,7 @@ $(function () {
             equal($div.css(filterProperty), filterValue, 'Destination-over alpha-compositing');
         })
 
-        test('alpha-compositing" lighter', function() {
+        test('alpha-compositing: lighter', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) normal lighter), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Lighter alpha-compositing');
