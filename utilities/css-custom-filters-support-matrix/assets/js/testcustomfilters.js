@@ -51,15 +51,15 @@ $(function () {
     }
 
     function testCustomFiltersInline() {
-        module('CSS Custom Filters', { 'setup': setup, 'teardown': teardown });
+        module('CSS Custom Filters - Inline Syntax', { 'setup': setup, 'teardown': teardown });
 
-        test('custom() - fragment shader and mix()', function() {
+        test('custom() - fragment shader with alpha-compositing and blend mode', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Minimal shader with mix');
         })
 
-        test('custom() - fragment shader', function() {
+        test('custom() - fragment shader with no alpha-compositing or blend mode', function() {
             filterValue = 'custom(none url(http://www.example.com/), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Minimal shader with no mix');
@@ -141,91 +141,91 @@ $(function () {
 
         /*** BLEND MODES ***/
 
-        test('Blend mode - color', function() {
+        test('blend mode - color', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) color source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Color blend-mode');
         })
 
-        test('Blend mode - color-burn', function() {
+        test('blend mode - color-burn', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) color-burn source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Color-burn blend-mode');
         })
 
-        test('Blend mode - color-dodge', function() {
+        test('blend mode - color-dodge', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) color-dodge source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Color-dodge blend-mode');
         })
 
-        test('Blend mode - darken', function() {
+        test('blend mode - darken', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) darken source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Darken blend-mode');
         })
 
-        test('Blend mode - difference', function() {
+        test('blend mode - difference', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) difference source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Difference blend-mode');
         })
 
-        test('Blend mode - exclusion', function() {
+        test('blend mode - exclusion', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) exclusion source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Exclusion blend-mode');
         })
 
-        test('Blend mode - hard-light', function() {
+        test('blend mode - hard-light', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) hard-light source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Hard-light blend-mode');
         })
 
-        test('Blend mode - hue', function() {
+        test('blend mode - hue', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) hue source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Hue blend-mode');
         })
 
-        test('Blend mode - lighten', function() {
+        test('blend mode - lighten', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) lighten source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Lighten blend-mode');
         })
 
-        test('Blend mode - luminosity', function() {
+        test('blend mode - luminosity', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) luminosity source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Luminosity blend-mode');
         })
 
-        test('Blend mode - multiply', function() {
+        test('blend mode - multiply', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) multiply source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Multiply blend-mode');
         })
 
-        test('Blend mode - overlay', function() {
+        test('blend mode - overlay', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) overlay source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Overlay blend-mode');
         })
 
-        test('Blend mode - saturation', function() {
+        test('blend mode - saturation', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) saturation source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Saturation blend-mode');
         })
 
-        test('Blend mode - screen', function() {
+        test('blend mode - screen', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) screen source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Screen blend-mode');
         })
 
-        test('Blend mode - soft-light', function() {
+        test('blend mode - soft-light', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) soft-light source-atop), 1 1)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Soft-light blend-mode');
@@ -233,74 +233,80 @@ $(function () {
 
         /*** PARAMETERS ***/
 
-        test('Parameter - array()', function() {
+        test('parameter - array()', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1, testArray array(1, 2, 3))';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Array');
         })
 
-        test('Parameter - color', function() {
+        test('parameter - color', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1, c rgb(0, 128, 0))';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Color parameter');
         })
 
-        test('Parameter - mat2()', function() {
+        test('parameter - mat2()', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1, test mat2(1, 2, 3, 4))';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'mat2()');
         })
 
-        test('Parameter - mat3()', function() {
+        test('parameter - mat3()', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1, test mat3(1, 2, 3, 4, 5, 6, 7, 8, 9))';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'mat3()');
         })
 
-        test('Parameter - mat4()', function() {
+        test('parameter - mat4()', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1, test mat4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16))';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'mat4()');
         })
 
-        test('Parameter - number', function() {
+        test('parameter - number', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1, number 1 2 3)';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), filterValue, 'Number parameter');
         })
 
-        test('Parameter - transform', function() {
+        test('parameter - transform', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1, t rotate(0deg))';
             $div.css(filterProperty, filterValue);
             equal($div.css(filterProperty), 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1, t matrix(1, 0, 0, 1, 0, 0))', 'Transform parameter');
         })
-
-
-//        test('Number parameter', function() {
-//            filterValue = 'custom(none mix(url(http://www.example.com/) normal source-atop), 1 1, test (1, 2, 3, 4, 5, 6, 7, 8, 9))';
-//            $div.css(filterProperty, filterValue);
-//            equal($div.css(filterProperty), filterValue, 'mat3()');
-//        })
-
     }
 
-//    function testCustomFiltersAtRule() {
-//        module('CSS Custom Filters - @filter syntax', { 'setup': setup });
-//
-        // There's no real need to use a new setup method here.
-//        test('Syntax', function() {
-//            var filterRuleString = "@" + filterProperty + " test-filter {}";
-//            var docStyleSheets = document.styleSheets;
-//            var lastStyleSheet = docStyleSheets.length - 1;
-//            var lastCssRule = docStyleSheets.item(lastStyleSheet).cssRules.length - 1;
-//            var refSheet = docStyleSheets.item(lastStyleSheet);
-//
-//            test('@filter syntax', function() {
-//                equal(refSheet.insertRule(filterRuleString, lastCssRule), lastCssRule, 'Simple @filter');
-//            })
-//        })
-//    }
+    /*
+     * Returns a boolean indicating wether the *FilterRule is supported.
+     */
+    function addFilterRule() {
+        var filterRuleString = "@" + filterProperty + " test-filter {}";
+        var docStyleSheets = document.styleSheets;
+        var index_lastStyleSheet = docStyleSheets.length - 1;
+        var lastStyleSheet = docStyleSheets.item(index_lastStyleSheet);
+        var sheetRules = lastStyleSheet.cssRules ? lastStyleSheet.cssRules : lastStyleSheet.rules;
+
+        var index_lastCssRule = sheetRules.length - 1;
+        var retValue;
+        try { retValue = lastStyleSheet.insertRule(filterRuleString, index_lastCssRule); }
+        catch (ex) { return false; }
+
+        // We check whether the rule has been correctly added and that the type is 17.
+        var filterRule = sheetRules.item(retValue);
+        var filterType = filterRule.type;
+        return retValue == index_lastCssRule && filterType == 17;
+    }
+
+    function testCustomFiltersAtRule() {
+        module('CSS Custom Filters - @filter Syntax', { 'setup': setup, 'teardown': teardown });
+
+        /*
+         * This test is currently failing because of the current status of @filter syntax implementation
+         * in UAs.
+         */
+        test('at-rule syntax', function() { ok(addFilterRule(), 'at-rule syntax'); })
+    }
 
     testCustomFiltersInline();
-    //testCustomFiltersAtRule();
+    testCustomFiltersAtRule();
 })   
