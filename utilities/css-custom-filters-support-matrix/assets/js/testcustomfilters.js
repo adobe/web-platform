@@ -133,10 +133,10 @@ $(function () {
             equal($div.css(filterProperty), filterValue, 'Source-over alpha-compositing');
         })
 
-        test('alpha-compositing - XOR', function() {
+        test('alpha-compositing - xor', function() {
             filterValue = 'custom(none mix(url(http://www.example.com/) normal xor), 1 1)';
             $div.css(filterProperty, filterValue);
-            equal($div.css(filterProperty), filterValue, 'XOR alpha-compositing');
+            equal($div.css(filterProperty), filterValue, 'xor alpha-compositing');
         })
 
         /*** BLEND MODES ***/
