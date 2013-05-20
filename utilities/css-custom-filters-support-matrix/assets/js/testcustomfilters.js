@@ -293,8 +293,8 @@ $(function () {
 
         // We check whether the rule has been correctly added and that the type is 17.
         var filterRule = sheetRules.item(retValue);
-        var filterType = filterRule.type;
-        return retValue == index_lastCssRule && filterType == 17;
+        var ruleType = filterRule.type;
+        return retValue == index_lastCssRule && ruleType == 17;
     }
 
     function testCustomFiltersAtRule() {
