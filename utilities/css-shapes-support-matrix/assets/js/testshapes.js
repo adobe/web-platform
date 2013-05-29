@@ -24,21 +24,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 $(function () {
     var $div;
     function setupFloatShapeOutside() {
-        // Set up a 4x4 grid of content spans
+        // Set up a 4x4 grid of content span/space pairs
         $div = $(
-            '<div style=\'font: 10px/1 Ahem, ahem-wf; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
+            '<div style=\'font: 10px/1 Ahem; position: relative; width: 40px; height: 40px;\'>' +
             '<div class=\'shape-outside\' style=\'float: left; width: 40px; height: 40px\'></div>' +
-            '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
-            '</div>'
-        ).appendTo($('body'));
-    }
-
-    function setupExclusionShapeOutside() {
-        // Set up a 4x4 grid of content spans
-        $div = $(
-            '<div style=\'font: 10px/1 Ahem, ahem; position: relative; width: 40px; height: 40px; word-wrap: break-word; overflow-wrap: break-word\'>' +
-            '<div class=\'shape-outside\' style=\'position:absolute; top:0; left: 0; width: 40px; height: 40px; wrap-flow: end\'></div>' +
-            '<span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span><span>x</span>' +
+            '<span>x</span> <span>x</span> <span>x</span> <span>x</span> <span>x</span> <span>x</span> <span>x</span> <span>x</span>' +
             '</div>'
         ).appendTo($('body'));
     }
@@ -78,7 +68,7 @@ $(function () {
 
     function testShapeOutsideLayout(name, shapeoutside, positions, tolerance) {
         test(name, function() {
-            $div.css('shape-outside', shapeoutside);
+            $div.find('.shape-outside').css('shape-outside', shapeoutside);
             testLayoutPositions(positions, tolerance);
         })
     }
@@ -103,35 +93,17 @@ $(function () {
             equal($div.css('shape-outside'), 'auto', 'Initial default value for shape-outside');
         })
 
-        testShapeOutsideLayout('float shape-outside rectangle', 'rectangle(0, 0, 30px, 20px)', [3, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+        testShapeOutsideLayout('float shape-outside rectangle', 'rectangle(0, 0, 30px, 20px)', [3, 7, 8, 10, 12, 14]);
 
-        testShapeOutsideLayout('float shape-outside circle', 'circle(10px, 10px, 10px)', [2, 3, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+        testShapeOutsideLayout('float shape-outside circle', 'circle(10px, 10px, 10px)', [2, 6, 8, 10, 12, 14]);
 
-        testShapeOutsideLayout('float shape-outside ellipse', 'ellipse(15px, 10px, 15px, 10px)', [3, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+        testShapeOutsideLayout('float shape-outside ellipse', 'ellipse(15px, 10px, 15px, 10px)', [3, 7, 8, 10, 12, 14]);
 
-        testShapeOutsideLayout('float shape-outside polygon', 'polygon(0 10px, 10px 0, 20px 0, 30px 10px, 20px 20px, 10px 20px', [3, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+        testShapeOutsideLayout('float shape-outside polygon', 'polygon(0 10px, 10px 0, 20px 0, 30px 10px, 20px 20px, 10px 20px)', [3, 7, 8, 10, 12, 14]);
 
         notImplemented('float shape-outside url(svg)');
 
         notImplemented('float shape-outside url(img)');
-
-        module('4.4.1 exclusion shape-outside', { 'setup': setupExclusionShapeOutside, 'teardown': teardown });
-        
-        test('exclusion shape-outside default', function(){
-            equal($div.css('shape-outside'), 'auto', 'Initial default value for shape-outside');
-        })
-
-        testShapeOutsideLayout('exclusion shape-outside rectangle', 'rectangle(0, 0, 30px, 20px)', [3, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
-
-        testShapeOutsideLayout('exclusion shape-outside circle', 'circle(10px, 10px, 10px)', [2, 3, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
-
-        testShapeOutsideLayout('exclusion shape-outside ellipse', 'ellipse(15px, 10px, 15px, 10px)', [3, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
-
-        testShapeOutsideLayout('exclusion shape-outside polygon', 'polygon(0 10px, 10px 0, 20px 0, 30px 10px, 20px 20px, 10px 20px', [3, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
-
-        notImplemented('exclusion shape-outside url(svg)');
-
-        notImplemented('exclusion shape-outside url(img)');
     }
 
     function testShapeInside() {
@@ -170,7 +142,7 @@ $(function () {
 
         test('shape-margin default', function(){
             $div.css('float', 'left');
-            equal($div.css('shape-margin'), '0', 'Initial default value for shape-margin');
+            equal($div.css('shape-margin'), '0px', 'Initial default value for shape-margin');
         })
         
         notImplemented('shape-margin 10px');
@@ -180,7 +152,7 @@ $(function () {
         module('4.4.5 shape-padding', { 'setup': setupShapeInside, 'teardown': teardown });
 
         test('shape-padding default', function(){
-            equal($div.css('shape-padding'), '0', 'Initial default value for shape-padding');
+            equal($div.css('shape-padding'), '0px', 'Initial default value for shape-padding');
         })
         
         notImplemented('shape-padding 10px');
