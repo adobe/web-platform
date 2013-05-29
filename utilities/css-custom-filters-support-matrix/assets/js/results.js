@@ -139,7 +139,6 @@ function createTableRows(results) {
         var obj = results.results[i];
 
         for (j = 0; j < obj.results.length; j++) {
-			if (obj.results[j].name == null) continue; //quick workaround for some corrupted results - see https://github.com/adobe/web-platform/issues/15
             var row = '<tr><th>' + obj.results[j].name + '</th>';
 
             for (k = 0; k < results.results.length; k++) {
