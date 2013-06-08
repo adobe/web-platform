@@ -1,0 +1,269 @@
+/*
+Copyright (C) 2013 Adobe Systems, Incorporated. All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+@import 'all';
+
+body{
+	padding: 10px 20px;
+}
+nav{
+	background-color: #eee;
+	padding-top: 5px;
+
+	#browser-selector{
+		float: left;
+		margin: 4px 10px 0 10px;
+	}
+
+	.nav{
+		margin-left: 20px;
+	}
+}
+
+header{
+	h1{
+		margin-bottom: 20px;
+	}
+	ul{
+		margin-top: 20px;
+	}
+}
+
+
+
+#action-well{
+	height: 180px;
+	h2{
+		text-align: center;
+	}
+	form{
+		margin: 0 auto;
+		text-align: center;
+		display: block;
+			max-width: 150px;
+
+		.btn{
+			margin-top: 20px;
+		}
+
+		label{
+			max-width: 120px;
+			margin-top: 20px;
+		}
+
+	}
+	#test-results{
+		color: #000;
+		font-size: 120%;
+		#support-results{
+			font-size: 140%;
+			line-height: 1.2;
+			margin-top: 30px;
+			margin-bottom: 30px;
+			#support-precentage{
+				display:block;
+				float: right;
+				margin-top: -25px;
+				margin-right: 35px;
+				font-size: 200%;
+			}
+		}
+	}	
+
+}
+
+// .column-title-row{
+// 	th{
+// 		font-size: 20px;
+// 		vertical-align: bottom;
+// 		border-bottom: 5px solid #CCC;
+// 		&:first-child{
+// 			border: none;
+// 		}	
+// 	}
+// }
+
+
+
+tbody{
+	th{
+		white-space:nowrap;
+		border-right: 1px solid #CCC;
+	}
+}
+
+
+thead{
+	th{
+		padding: 0;
+		text-align: left;
+		vertical-align: top;
+		
+		white-space:nowrap;
+
+		div{
+			margin: 0;
+			padding: 0;
+			position: relative;
+			span{
+				position: absolute;
+				display: block;
+				width: 220px;
+				overflow: hidden;
+				left: -20px;
+				bottom: 60px;
+				@include transform(rotate(320deg));
+			}
+		}
+	}
+}
+
+.table{
+	table-layout:fixed;
+	width: auto;
+	border-right: none;
+	border-top: none;
+}
+.table-bordered thead th{
+	border-left: none;
+	width: 40px !important;
+	height: 140px !important;
+	position: relative;
+}
+
+.table-bordered tbody th{
+	border-left: none;
+}
+
+.table-bordered td{
+	border-left: none;
+	width: 40px !important;
+	text-align: center;
+}
+
+
+
+.table-bordered td{
+	 
+
+	&.count{
+		text-align: right;
+		padding-right: 20px;
+		width: 50px;
+	}
+
+	&.success{
+		background-color: #a3f687;
+
+
+		span{
+			color: #FFF;
+			font-size: 0;
+			@include user-select(none);
+		}
+		span:after{
+			color: #0A0;
+			content: '✓';
+			display: block;
+			font-size: 20px;
+		}
+	}
+	&.fail{
+		background-color: #f7d6d6;
+		span{
+			color: #FFF;
+			font-size: 0;
+			@include user-select(none);
+		}
+		span:after{
+			color: #999;
+			content: '✖';
+			display: block;
+			font-size: 20px;
+		}
+	}
+
+	&.blank{
+		span{
+			color: #FFF;
+			font-size: 0;
+			@include user-select(none);
+		}
+		span:after{
+			color: #555;
+			content: '-';
+			display: block;
+			font-size: 20px;
+		}
+	}
+}
+
+#qunit{
+	display:none;
+}
+
+#test-display-toggle{
+	display:none;
+}
+
+#chart{
+	position: relative;
+	top: 0;
+	height: 200px;
+	.bar{
+		background-color: #a3f687;
+		display: inline-block;
+		position: absolute;
+		bottom: 0;
+		width: 40px;
+		margin-right: 5px;
+		vertical-align: bottom;
+		@include border-radius(5px 5px 0 0 / 5px 5px 0 0);
+		span{
+			padding-left: 5px;
+			position: absolute;
+			bottom: 0;
+			text-align: center;
+		}
+
+	}
+}
+
+#legend{
+	font-weight: bold;
+	.legend{
+		width: 45px;
+		height: 150px;
+		display: inline-block;
+		position: relative;
+		span{
+			left: -30px;
+			position: relative;
+			display: inline-block;
+			top: 80px;
+			width: 200px;
+			@include transform(rotate(55deg));
+			text-align: left;
+		}
+	}
+}

@@ -39,10 +39,12 @@ html, body {
 #viewport > div {
   display: table;
 }
-#viewport .hidden-error {
+
+.hidden-error {
   display: none;
 }
-#viewport .error {
+
+.error {
   font-family: Helvetica, Arial, sans-serif;
   background: #ffc;
   padding: 15px 30px;
@@ -83,11 +85,8 @@ html, body {
   text-transform: uppercase;
 }
 #content h1 span:last-child {
-  position: absolute;
-  top: 60%;
   color: #769eb3;
   font-style: italic;
-  text-shadow: none;
 }
 #content blockquote {
   padding: 0;
@@ -196,16 +195,10 @@ html, body {
   left: 0;
 }
 .page:nth-child(1) .region:nth-child(1) {
-  width: 25%;
+  width: 100%;
   height: 90%;
   top: 5%;
   left: 2%;
-}
-@media screen and (max-width: 500px) {
-  .page:nth-child(1) .region:nth-child(1) {
-    width: 90%;
-    height: 50%;
-  }
 }
 .page:nth-child(1) .region:nth-child(2),
 .page:nth-child(1) .region:nth-child(3),
@@ -232,7 +225,10 @@ html, body {
 }
 
 .page:nth-child(2),
-.page:nth-child(3) {
+.page:nth-child(3),
+.page:nth-child(4),
+.page:nth-child(5),
+.page:nth-child(6) {
   background: url(../images/roadpath.svg) center top repeat-x, url(../images/footer-medium.jpg) center bottom no-repeat;
   background-color: white;
 }
@@ -241,30 +237,54 @@ html, body {
 .page:nth-child(2) .region:nth-child(3),
 .page:nth-child(3) .region:nth-child(1),
 .page:nth-child(3) .region:nth-child(2),
-.page:nth-child(3) .region:nth-child(3) {
+.page:nth-child(3) .region:nth-child(3),
+.page:nth-child(4) .region:nth-child(1),
+.page:nth-child(4) .region:nth-child(2),
+.page:nth-child(4) .region:nth-child(3),
+.page:nth-child(5) .region:nth-child(1),
+.page:nth-child(5) .region:nth-child(2),
+.page:nth-child(5) .region:nth-child(3),
+.page:nth-child(6) .region:nth-child(1),
+.page:nth-child(6) .region:nth-child(2),
+.page:nth-child(6) .region:nth-child(3) {
   width: 30%;
   height: 60%;
   top: 19%;
 }
 .page:nth-child(2) .region:nth-child(1),
-.page:nth-child(3) .region:nth-child(1) {
+.page:nth-child(3) .region:nth-child(1),
+.page:nth-child(4) .region:nth-child(1),
+.page:nth-child(5) .region:nth-child(1),
+.page:nth-child(6) .region:nth-child(1) {
   left: 4%;
 }
 .page:nth-child(2) .region:nth-child(2),
-.page:nth-child(3) .region:nth-child(2) {
+.page:nth-child(3) .region:nth-child(2),
+.page:nth-child(4) .region:nth-child(2),
+.page:nth-child(5) .region:nth-child(2),
+.page:nth-child(6) .region:nth-child(2) {
   left: 37%;
 }
 .page:nth-child(2) .region:nth-child(3),
-.page:nth-child(3) .region:nth-child(3) {
+.page:nth-child(3) .region:nth-child(3),
+.page:nth-child(4) .region:nth-child(3),
+.page:nth-child(5) .region:nth-child(3),
+.page:nth-child(6) .region:nth-child(3) {
   left: 70%;
   width: 25%;
 }
 .page:nth-child(2) .region:nth-child(4),
-.page:nth-child(3) .region:nth-child(4) {
+.page:nth-child(3) .region:nth-child(4),
+.page:nth-child(4) .region:nth-child(4),
+.page:nth-child(5) .region:nth-child(4),
+.page:nth-child(6) .region:nth-child(4) {
   display: none;
 }
 
-.page:nth-child(3) {
+.page:nth-child(3),
+.page:nth-child(4),
+.page:nth-child(5),
+.page:nth-child(6) {
   background: url(../images/roadpath.svg) center top repeat-x;
   background-color: white;
 }
@@ -317,7 +337,6 @@ html, body {
     display: block;
   }
   .page:nth-child(1) .region:nth-child(1) {
-    width: 50%;
     height: 90%;
     top: 5%;
     left: 2%;
@@ -477,6 +496,11 @@ html, body {
 
   .page:nth-child(3) {
     background-position: right bottom;
+  }
+}
+@media screen and (max-height: 350px) {
+  #content h1 {
+    font-size: 2em;
   }
 }
 @media screen and (orientation: portrait) and (max-width: 480px) {

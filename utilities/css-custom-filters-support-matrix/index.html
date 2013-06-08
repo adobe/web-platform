@@ -1,0 +1,262 @@
+<!--
+Copyright (C) 2013 Adobe Systems, Incorporated. All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>CSS Custom Filters Support Matrix - Browserscope Results</title>
+    <link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="assets/css/results.css" type="text/css" media="screen">
+
+    <script type="text/javascript" src="qunit/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="ua-parser/ua-parser.js"></script>
+    <script type="text/javascript" src="assets/js/results.js"></script>
+
+    <script type="text/javascript">
+        var browserscopeTestKey = "agt1YS1wcm9maWxlcnINCxIEVGVzdBimyNgUDA";
+        var browserscopeURL = "http://www.browserscope.org/user/tests/table/" +
+            browserscopeTestKey + "?o=json&v=";
+        var currentBrowserChoice = "browsers-major";
+        var browserscopeV = browserScopeVersionTranslate(currentBrowserChoice);
+        var bscope_results;
+
+        $(document).ready(function() {
+            getData(browserscopeV);
+
+            $('#run-tests').submit(runTests);
+            $('#browsers a').click(showChart);
+            $('#features a').click(showFeatures);
+            $('#test-display-toggle').click(showTests);
+            $("#browser-selector a").click(toggleBrowsers);
+        });
+
+        function showChart(e){
+            e.preventDefault();
+            $("#browsers").toggleClass("active");
+            $("#features").toggleClass("active");
+            drawChart(bscope_results);
+        }
+
+        function showFeatures(e){
+            e.preventDefault();
+            $("#browsers").toggleClass("active");
+            $("#features").toggleClass("active");
+            drawTable(bscope_results);
+        }
+
+        function getData(version) {
+            $("#waiting-indicator").show();
+            $.ajax({
+                    url: browserscopeURL + version, 
+                    cache: false,
+                    crossDomain: true,
+                    dataType: "jsonp"}
+                    ).done(getDataHandler);
+        }
+
+        function getDataHandler(result) {
+            bscope_results = massageTestResults(result);
+            $("#waiting-indicator").hide();
+            drawTable(bscope_results);
+        }
+
+        function toggleBrowsers (e) {
+            e.preventDefault();
+            currentBrowserChoice = e.currentTarget.id
+            var version = browserScopeVersionTranslate(e.currentTarget.id);
+            var label = browserScopeLabelTranslate(e.currentTarget.id);
+            getData(version);
+            $("#browser-current").html(label);
+        }
+
+        function runTests() {
+            if ($('#publish-results').is(':checked')) {
+                QUnit.config.publishresults = true;  
+            }
+            QUnit.start();
+            return false;
+        }
+
+        function calculatePercentage(results) {
+            var i = 0;
+            var resultsLength = Object.keys(results).length;
+            for (value in results) {
+                if (results[value] === 1){
+                    i++;
+                }
+            }
+            var percent = i/resultsLength * 100;
+            percent = percent.toString().split(".")[0];
+            return percent;
+        }
+
+        function showTests(e) {
+            e.preventDefault();
+            $("#qunit").css("display","block");
+        }
+
+        function processBrowserscopeCallback(e) {
+            console.log("Tests done");
+        }
+
+        function handleTestRun(results) {
+            var browserLabelDepth = browserScopeDepthTranslate(currentBrowserChoice);
+            var percent = calculatePercentage(results);
+            changeActionWell(browserLabelDepth);
+            $("#support-precentage").html(percent + "%");
+            $("#test-display-toggle").css("display","block");
+
+        }
+
+    </script>
+
+    <script type="text/javascript" src="qunit/qunit.js"></script>
+    <script type="text/javascript">
+
+    // Test key for BrowserScope test suite
+    var _bTestKey = browserscopeTestKey;
+
+    // Beacon object with test results for Browserscope.
+    // key = string test name
+    // value = numeric value (1 means pass, 0 means fail)
+    var _bTestResults = {}
+
+    // Add option in Qunit to toggle publishing results to BrowserScope.org
+    QUnit.config.urlConfig.push('publishresults')
+
+    // Timeout for async tests
+    QUnit.config.testTimeout = 1000
+
+    //Setting tests to start on user input
+    QUnit.config.autostart = false;
+
+    QUnit.config.publishresults = false;
+
+    // Build-up the test results beacon for BrowserScope.org
+    QUnit.testDone = function(obj){
+        var testName = obj.module + " : " + obj.name
+
+        if (!obj.failed && obj.total === obj.passed){
+            _bTestResults[testName] = 1
+        }
+        else{
+            _bTestResults[testName] = 0
+        }
+    }
+
+    // If the user agreed to publish results to BrowserScope.org, go for it!
+    QUnit.done = function(obj){
+        if (QUnit.config.publishresults){
+            
+            var newScript = document.createElement('script'),
+                firstScript = document.getElementsByTagName('script')[0]
+                
+            newScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey;
+            firstScript.parentNode.insertBefore(newScript, firstScript)
+        }
+            
+        var container = document.querySelector('#qunit-testrunner-toolbar'),
+            resultsLink = document.createElement('a'),
+            runsLink = document.createElement('a') 
+        
+        // Link to aggregated test results on Browserscope.org
+        resultsLink.href = 'http://www.browserscope.org/user/tests/table/' + _bTestKey + '?o=html&v=3'   
+        resultsLink.textContent = 'Results on Browserscope'  
+        
+        // Link to test runs table on Browserscope.org
+        runsLink.href = 'http://www.browserscope.org/browse?category=usertest_'+ _bTestKey  
+        runsLink.textContent = 'Test Runs on Browserscope'    
+        
+        container.appendChild(resultsLink)
+        container.appendChild(document.createElement('br'))
+        container.appendChild(runsLink)
+
+        handleTestRun(_bTestResults);
+    }
+    </script>
+    <script type="text/javascript" src="prefix-free/prefixfree.js"></script>
+    <script type="text/javascript" src="prefix-free/prefixfree.jquery.js"></script>
+    <script type="text/javascript" src="assets/js/testcustomfilters.js"></script>
+	
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <header class="span6">
+                <h1 id="bscope-test-title">CSS Custom Filters Support</h1>
+                <div id="bscope-test-desc">Check the support for CSS Custom Filters across browsers. The matrix below contains the features in the latest CSS Custom Filters Working Draft from the W3C.
+
+                <ul>
+                    <li><a href="https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html" target="_blank">Filter Effects W3C Specification →</a></li>
+                    <li><a href="http://www.adobe.com/devnet/html5/articles/css-shaders.html" target="_blank">Introducing CSS shaders: Cinematic effects for the web →</a></li>
+                    <li><a href="http://adobe.github.io/web-platform/samples/css-customfilters/" target="_blank">CSS Custom Filters Demos →</a></li>
+                </ul>
+                <div style="text-align: justify"><strong>Note</strong>: The CSS Custom Filters syntax specification has changed from an "inline" syntax to an "at-rule" syntax. The former inline syntax is deprecated and will be removed from implementations when the new at-rule syntax is fully functional. Both syntaxes expose similar functionality. The new at-rule syntax will make some additional functionality possible, such as filter margins and default values for parameters.</div>
+            </div>
+            </header>
+            <div id="action-well" class="alert alert-info span5">
+                <h2>Check CSS Custom Filters Support in your browser</h2>
+
+                <form id="run-tests">
+                    <input class="btn btn-primary btn-large" type="submit" name="submit" value="Run Tests" /><br />
+                    <label class="checkbox"> <!-- style='display:none'> -->
+                        <input type="checkbox" name="publish" value="publish" id="publish-results">
+                        Publish my results
+                      </label>
+                </form>    
+            </div>
+        </div>
+
+        <nav>
+            <div id="browser-selector" class="btn-group dropdown">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span id="browser-current">Major Versions</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a id="browsers-all" href="#">All Browsers</a></li>
+                    <li><a id="browsers-major" href="#">Major Versions</a></li>
+                    <li><a id="browsers-family" href="#">Browser Families</a></li>
+                </ul>
+            </div>
+            <ul class="nav nav-tabs">
+                <li id="features" class="active"><a href="#">Features</a></li>
+                <li id="browsers"><a  href="#">Browser Support</a></li>
+            </ul>
+        </nav>
+        <div id="waiting-indicator">
+            <img src="assets/img/throbber.gif" width="16" height="16"/>
+            Retrieving records from Browserscope
+        </div>
+        <div id="results_panel">
+
+        </div>
+        <p><a id="test-display-toggle" href="#">Show test results.</a>
+        <div id="qunit"></div>
+    </div>
+
+    
+</body>
+</html>
