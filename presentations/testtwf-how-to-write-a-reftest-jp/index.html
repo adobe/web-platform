@@ -29,7 +29,7 @@
 			<div class="slides">
 				<section>
 					<h2>Test the Web Forward</h2>
-					<h3>How to Write a Reftest</h3>
+					<h3>リファレンステストの書き方</h3>
 					<img class="plain" src="assets/images/w3cLogo.png">
 					<script>
 						// Delicously hacky. Look away.
@@ -39,21 +39,19 @@
 				
 				<section>
 					<h2>Reftest 概要</h2>
-                    <blockquote>					<ul>					    <li class="fragment">ファイルは２つ：テスト用とリ
-                    ファレンス用
-                    </li>					    <li class="fragment">テストファイルはテストされる機能を利用す
-                    る</li>					    <li
-                    class="fragment">リファレンスファイルはその機能を使わずに、同じ表示をす
-                    る</li>						<li
-                    class="fragment">手動・自動テスト両方を対応する</li>						<li
-                    class="fragment">ブラウザ・プラットフ
-                    ォームに依存しない</li>					</ul>
-                    
+                    <blockquote>
+                        <ul>
+                            <li class="fragment">ファイルは２つ：テスト用とリファレンス用</li>
+                            <li class="fragment">テスト用：テストされる機能を利用する</li>
+                            <li class="fragment">リファレンス用：別の機能で同じ表示をする</li>
+                            <li class="fragment">手動テストも自動テストも対応する</li>
+                            <li class="fragment">ブラウザ・プラットフォームに依存しない</li>
+                        </ul>
 					</blockquote>
 				</section>
 				
 				<section>
-    				<h2>Directory structure</h2>
+    				<h2>フォルダ構成</h2>
     				<section>
     				    <br>
     				    
@@ -80,12 +78,13 @@
     			</section>
     			
     			<section>
-    			    <h2>Test Caseのサンプル</h2>    				<section>    					<br><br>    					<p
-                    style="font-size: 28pt">Transformプロパティーの仕様を、
-                    <code>translate()</code> 関数を利用し
-                    てテストする</p>    					<br>
-                
-    					<p>Spec Links:</p>
+    			    <h2>Test Caseの事例</h2>
+                    <section>
+                        <br><br>
+                        <p style="font-size: 28pt">CSSトランスフォームの仕様を<br>
+                            <code>translate()</code>関数を利用してテストする事例</p>
+                        <br>
+    					<p>仕様リンク:</p>
     					<p style="font-size: 16pt">
     					    <a href="http://www.w3.org/TR/css3-transforms/#transform-property" target="top">http://www.w3.org/TR/css3-transforms/#transform-property</a>
     					    <br>
@@ -99,7 +98,7 @@
 				
 				<section data-state="screenshotPage">
 				    <br>
-				    <h3>Sample files</h3>
+				    <h3>テストケースのファイル</h3>
 				    <section>
     			        <img class="plain" src="assets/images/001a.png">
     			        <img class="plain" src="assets/images/001b.png">
@@ -112,9 +111,9 @@
 			
 				<section data-state="expandPageWide">
 				    <br>
-				    <h3>Required Metadata: Title</h3>
+				    <h3>必須メタデータ: Title</h3>
 				    <br>
-				    <p>Test file</p>
+				    <p>テストファイル</p>
 				    <pre>
 					<code class="html">
 <span class="expand">
@@ -126,7 +125,7 @@
     </span>		        
 				    </code>
 				    </pre>
-		            <p>Reference file</p>
+		            <p>リファレンスファイル</p>
 		            <pre>
                     <code>
 <span class="expand">
@@ -142,9 +141,9 @@
                 
                 <section  data-state="expandPageWide">
                     <br>
-    			    <h3>Required Metadata: Author</h3>
+    			    <h3>必須メタデータ: Author</h3>
                     <br>
-                    <p>Test file</p>
+                    <p>テストファイル</p>
                     <pre>
                     <code class="html">
 <span class="expand">
@@ -157,7 +156,7 @@
 </span>		        
 				    </code>
 				    </pre>
-		            <p>Reference file</p>
+		            <p>リファレンスファイル</p>
                     <pre>
                     <code>
 <span class="expand">
@@ -174,8 +173,8 @@
                 
                 <section  data-state="expandPageWide">
                     <br>
-    			    <h3>Required Metadata: Spec Links</h3>
-    			    <p>Test file only</p>
+    			    <h3>必須メタデータ: Spec Links</h3>
+    			    <p>テストファイル<b>のみ</b></p>
                     <pre>
                     <code>
 <span style="font-size: 16pt;" class="expand">
@@ -193,8 +192,8 @@
 
                 <section  data-state="expandPageWide">
                     <br>
-    			    <h3>Required Metadata: Reference File Path</h3>
-        		    <p>Test file only</p>
+    			    <h3>必須メタデータ: Reference File Path</h3>
+        		    <p>テストファイル<b>のみ</b></p>
                     <pre>
                     <code>
 <span class="expand">
@@ -211,9 +210,9 @@
     		    
     		    <section data-state="expandPageWide">
     		        <br>
-    		        <h3>Required Metadata: Assertion</h3>
+    		        <h3>必須メタデータ: Assertion</h3>
                     <section data-state="expandPageWide">
-            	        <p>Test file only</p>
+            	        <p>テストファイル<b>のみ</b></p>
                         <pre>
                         <code>
 <span style="font-size: 16pt;" class="expand">
@@ -236,9 +235,9 @@
     			
     			<section  data-state="expandPageWide">
     			    <br>
-    			    <h3>The Test</h3>
+    			    <h3>テストエレメント</h3>
     			    <section data-state="expandPageWide">
-    				    <p>Test element with the transform applied</p>
+    				    <p>トランスフォームかけられた状態のエレメント</p>
     				    <pre>
     				    <code class="html">
 <span class="expand2">
@@ -259,7 +258,7 @@
     			    </section>
 
     			    <section  data-state="expandPageWide">
-    				    <p>Reference element</p>
+    				    <p>トランスフォームをかけないリファレンス エレメント</p>
     				    <pre>
     				    <code class="html">
 <span class="expand2">
@@ -281,9 +280,9 @@
                 
                 <section  data-state="expandPageWide">
                     <br>
-    			    <h3>Visible failure</h3>
+    			    <h3>見た目でわかるフェールケース</h3>
     			    <section data-state="expandPageWide">
-    			        <p>Element is only visible when the test fails</p>
+    			        <p>テストがフェールする場合に見えるエレメント</p>
     			         <pre>
         				    <code class="html">
 <span class="expand2">
@@ -303,7 +302,7 @@
         				    </pre>
     			    </section>
     			    <section data-state="expandPageWide">
-    				    <p>Failing test example</p>
+    				    <p>テストがフェールした場合</p>
     				    <img src="assets/images/failingRefTest.png"/>
     			    </section>
     			</section>
@@ -311,10 +310,10 @@
     			<section data-state="expandPageWide">
     			    <section data-state="expandPageWide">
     			    <br>
-    			    <h3>Self Description</h3>
-    			    <p style="font-size: 24pt">Simple statement of how the page renders when the test passes</p>
+    			    <h3>説明文</h3>
+    			    <p style="font-size: 24pt">テストのパス条件を簡単に説明する文章</p>
     				<br>
-    				<p style="font-size: 24pt"> Test file & Reference file </p>
+    				<p style="font-size: 24pt"> テスト・リファレンスファイル両方</p>
     				 <pre>
     				 <code class="html">
 <span class="expand2">
@@ -330,8 +329,8 @@
                 
                 <section  data-state="expandPageWide">
                     <section data-state="expandPageWide">
-        		    <h3>Add the elements</h3>
-        		    <p>Test file</p>
+        		    <h3>エレメントの追加</h3>
+        		    <p>テストファイル</p>
         		     <pre>
     				 <code class="html">
 <span class="expand2">
@@ -343,7 +342,7 @@
 </span>    				        
     			    </code>
     			    </pre>
-    			    <p>Reference file</p>
+    			    <p>リファレンスファイル</p>
                      <pre>
     				 <code class="html">
 <span class="expand2">
@@ -359,14 +358,15 @@
                 
                 <section data-state="expandPageWide">
                     <br>
-                    <h2>ベンダー別 prefix</h2>                                  <section
-                    data-state="expandPageWide">                       <br>
-                       <blockquote>                       <ul>                           <li>テス
-                    トされる機能にベンダーprefixの追加が必要な場合がある</li>
-                    <li>Prefixがないと
-                    テストが通らないように見える</li>                           <li>ただし、テス
-                    トケースをW3Cへ渡す時にベンダー別
-                    prefixを入れないこと</li>                       </ul>
+                    <h2>ベンダープレフィックス</h2>
+                    <section data-state="expandPageWide">
+                        <br>
+                        <blockquote>
+                            <ul>
+                                <li>CSS機能によってベンダープレフィックスが必要</li>
+                                <li>プレフィックスがないとテストのパスケースが確認できない場合に使う</li>
+                                <li>ただし、テストケースをW3Cに提出する前にプレフィックスを外すこと</li>
+                            </ul>
                        </blockquote> 
                        <br>
                        
@@ -394,11 +394,11 @@
                   
                   <section data-state="expandPageWide">
                       <br>
-                      <p>We recommend a script to use during test development:</p>
+                      <p>テスト作りの間にはこのスクリプトがお勧め:</p>
                       <p style="font-size: 18pt">
                           <a href="http://leaverou.github.com/prefixfree/">http://leaverou.github.com/prefixfree</a>
                       </p>
-                      <p>The prefixfree.jsapi.js extension can be used for unprefixed JS APIs tests:</p>
+                      <p>prefixfree.jsapi.js はプレフィックスを付けないJS APIsのテストに使える:</p>
                       <p style="font-size: 18pt">
                           <a href="https://github.com/LeaVerou/prefixfree/tree/gh-pages/plugins">https://github.com/LeaVerou/prefixfree/tree/gh-pages/plugins</a>
                       </p>
@@ -407,7 +407,7 @@
   <span class="expand2">
         . . .
         
-        &lt;-- Remember to remove before pushing to W3C test suite --&gt;
+        &lt;-- W3C テストスイートへの提出する前に外すことはお忘れなく --&gt;
             
         &lt;script src="prefixfree.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
         &lt;script src="plugins/prefixfree.jsapi.js"&gt;&lt;<span class="styleTag">/script</span>&gt;
