@@ -105,11 +105,11 @@ $(function () {
                 equal($region.css("flow-from"), "article", "Correct parsing for flow-from CSS property");
             })
 
-            test("CSS region-overflow", function() {
-                equal($region.css("region-overflow"), "auto", "Initial default value for region-overflow");
+            test("CSS region-fragment", function() {
+                equal($region.css("region-fragment"), "auto", "Initial default value for region-fragment");
                 
-                $region.css("region-overflow", "break");
-                equal($region.css("region-overflow"), "break", "Correct parsing for region-overflow CSS property");
+                $region.css("region-fragment", "break");
+                equal($region.css("region-fragment"), "break", "Correct parsing for region-fragment CSS property");
             })
 
             test("CSS regions auto-size", function() {
