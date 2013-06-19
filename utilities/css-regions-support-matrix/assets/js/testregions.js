@@ -319,6 +319,12 @@ $(function () {
 
             //FIXME Really Really really change this to something meaningful, ASAP!
             test("Basic @region rule support", function() {
+                //Dirty hack for Chrome 28+ - they made the CSS*Rule functions non-enumerable :(
+                if (window.WebKitCSSRegionRule) {
+                    ok(true, "Found CSSRegionRule constructor, @region rules seem to be supported");
+                    return;
+                }
+
                 for (var prop in window) {
                     if (window.hasOwnProperty(prop) && prop.indexOf("CSSRegionRule") != -1) {
                         ok(prop, "Found CSSRegionRule constructor, @region rules seem to be supported")
