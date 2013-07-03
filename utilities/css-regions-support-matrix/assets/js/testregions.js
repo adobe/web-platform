@@ -279,7 +279,7 @@ $(function () {
                 ok(ranges[0] instanceof Range, "the returned Array contains Range objects")
             })
 
-            asyncTest("JS regionLayoutUpdate event", function(){
+            asyncTest("JS regionoversetchange event", function(){
                 if (!getNamedFlowsMethod) {
                     ok(false, "getNamedFlows() not supported, cannot retrieve NamedFlow");
                     return;
@@ -289,7 +289,7 @@ $(function () {
                 
                 function handler(ev) {
                     equal(ev.target, namedFlow, "Event.target points to the named flow");
-                    namedFlow.removeEventListener(PrefixFree.Prefix.toLowerCase() + "regionlayoutupdate", handler);
+                    namedFlow.removeEventListener(PrefixFree.Prefix.toLowerCase() + "regionoversetchange", handler);
                     start();     
                 }
 
@@ -309,7 +309,7 @@ $(function () {
                     return;
                 }
 
-                namedFlow.addEventListener(PrefixFree.Prefix.toLowerCase() + "regionlayoutupdate", handler);
+                namedFlow.addEventListener(PrefixFree.Prefix.toLowerCase() + "regionoversetchange", handler);
                 setFlowContents("Long text long text long text long long long longer very longe text");
             })
         }
