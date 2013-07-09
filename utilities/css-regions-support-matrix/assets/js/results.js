@@ -181,9 +181,9 @@ function getUserBrowser(depth) {
     var result = "";
 
     var p = new UAParser();
-    var name = p.result.browser.name;
-    var version = p.result.browser.version;
-    var major = p.result.browser.major
+    var name = p.getBrowser().name;
+    var version = p.getBrowser().version;
+    var major = p.getBrowser().major
 
     if (name === "Safari") {
         var ua = navigator.userAgent;
