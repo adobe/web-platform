@@ -1,0 +1,58 @@
+
+.manual-test {
+    border: 1px solid #58D3F7;
+    border-radius: 10px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 5px;
+    background-color: #E0F8F7;
+}
+
+/* See how this looks:
+put both result and expected, non floating in two divs, and set auto
+margins on them. Then float the parent divs, and set each width to 50%
+*/
+.manual-test-actual,
+.manual-test-expected {
+    border: 1px solid gray;
+    width: 35%;
+}
+
+.manual-test-actual {
+    float:left;
+}
+.manual-test-expected {
+    float:right;
+}
+
+.manual-test-header,
+.manual-test-footer {
+    text-align: center;
+    margin: 5px;
+
+}
+
+.test-content-box{
+    background-color: #FFFFDD;
+    padding: 1.5%;
+    padding-left: 8%;
+    padding-right: 8%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.element-blending-test {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+}
+
+.eb-top-layer {
+    z-index: 10;
+}
+
+.eb-backdrop-layer {
+    z-index: 1;
+}
