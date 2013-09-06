@@ -351,7 +351,7 @@ $(function () {
         {
             var _result;
             _result = eval(_to_eval);
-            if (Math.abs(_result - _target) <= _tolerance) 
+            if (Math.abs(_result - _target) <= _tolerance)
                 ok(true, message + ": actual " + _to_eval + ": expected " + _target);
             else
                 ok(false, message + ": actual " + _to_eval + ": expected " + _target);
@@ -398,20 +398,19 @@ $(function () {
             runTests();
         }).appendTo($('body'));
     })();
-    
+
     function runTests() {
 
         function testCSSBlendingBasics(){
             module("CSS Blending basics", { "setup": setup, "teardown": teardown });
 
             function setup(){
-                $blended.css("background-blend-mode", "multiply");
+               $blended = $('<div>&nbsp;</div>').appendTo($('body'))
             }
             function teardown(){
                 $blended.remove();
             }
             test("Parsing - CSS background-blend-mode", function(){
-            blendModes = ["normal", "multiply", "screen", "overlay", "darken", "lighten","color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"]
             for( j=0; j<blendModes.length; j++ )
             {
                 $blended.css("background-blend-mode", blendModes[j]);
@@ -421,7 +420,6 @@ $(function () {
         });
 
         test("Parsing - CSS element blending", function(){
-            blendModes = ["normal", "multiply", "screen", "overlay", "darken", "lighten","color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"]
             for( j=0; j<blendModes.length; j++ )
             {
                 $blended.css("mix-blend-mode", blendModes[j]);
@@ -430,18 +428,14 @@ $(function () {
             }
         });
 
-        test("Rendering - CSS canvas blend-mode", function(){
+        test("Parsing - CSS canvas blend-mode", function(){
             $canvas = $('<canvas></canvas>').appendTo($('body'));
             $ctx = $canvas[0].getContext('2d');
 
-            blendModes = ["normal", "multiply", "screen", "overlay", "darken", "lighten","color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"]
-            
-            for( j=0; j<blendModes.length; j++ )
+            //Skipping the normal canvas blending since the globalCompositeOperation has the default value source-over
+            for( j=1; j<blendModes.length; j++ )
             {
                 $ctx.globalCompositeOperation = blendModes[j];
-                if ( blendModes[j] == "normal" )
-                    equal($ctx.globalCompositeOperation, "source-over", "Correct parsing for canvas blend-mode: " + blendModes[j]);
-                else
                     equal($ctx.globalCompositeOperation, blendModes[j], "Correct parsing for canvas blend-mode: " + blendModes[j]);
             }
         });
@@ -478,8 +472,8 @@ $(function () {
             function teardown(){
                 $canvas.remove();
             }
-        
-            for (var i = 0; i < blendModes.length; i++) (function(i){
+            //Skipping the normal canvas blending since the globalCompositeOperation has the default value source-over
+            for (var i = 1; i < blendModes.length; i++) (function(i){
                 var blendmode = blendModes[i];
                 test("Rendering - CSS canvas blend-mode - " + blendmode, function () {
                     $context.globalCompositeOperation = blendmode;
@@ -488,16 +482,16 @@ $(function () {
                 });
             })(i);
         }
-        
+
         function runManualTests() {
             module(kModuleName_ManualTests, { "teardown": teardown});
-            var blendModesExpected = ["Normal", "Multiply", "Screen", "Overlay", "Darken", "Lighten", "Color-dodge", "Color-burn",
+            var blendModesExpectedImages = ["Normal", "Multiply", "Screen", "Overlay", "Darken", "Lighten", "Color-dodge", "Color-burn",
                       "Hard-light", "Soft-light", "Difference", "Exclusion", "Hue", "Saturation", "Color", "Luminosity"];
             function teardown() {
                 // Clear the manual test panel
                 $("#manual-tests").empty();
             }
-    
+
             function getBlendingAsyncTest(blendModeIndex, testType) {
                 return function(){
                     var blendMode = blendModes[blendModeIndex];
@@ -508,9 +502,9 @@ $(function () {
                         return;
                     }
 
-                    var blendModeExpected = blendModesExpected[blendModeIndex] +".png"
+                    var blendModeExpectedImage = blendModesExpectedImages[blendModeIndex] +".png"
                     var title = blendMode + " rendering (" + (+blendModeIndex + 1) + "/" + blendModes.length + ")";
-                    var manualTest = new ManualTest(title, "assets/img/expected/" + blendModeExpected);
+                    var manualTest = new ManualTest(title, "assets/img/expected/" + blendModeExpectedImage);
 
                     switch(testType) {
                         case TestType.Background:
@@ -524,6 +518,7 @@ $(function () {
                     }
 
                     manualTest.element.appendTo("#manual-tests");
+
                     var clickHandler = function(event) {
                         QUnit.equal($(event.target).text(), manualTest.btnYes.text(), "Did the images match for "+blendModes[blendModeIndex]+" blending?");
                         start();
@@ -532,11 +527,15 @@ $(function () {
                     manualTest.btnNo.click(clickHandler);
 
                     var timeoutNotice = $('<div/>').appendTo("#manual-tests");
-                    timeoutNotice.text("This test will timeout (and fail) after " + 
+                    timeoutNotice.text("This test will timeout (and fail) after " +
                                 QUnit.config.testTimeout/1000 + " seconds.");
                     timeoutNotice.css("text-align", "center");
                 }
             }
+
+            // Preload expected images to avoid visible element resizing
+            for (var i in blendModesExpectedImages)
+                ManualTest.preloadImage("assets/img/expected/" + blendModesExpectedImages[i] + ".png");
 
             // add an async test for each blend mode;
             for (var i in blendModes) {
@@ -549,11 +548,11 @@ $(function () {
                     getBlendingAsyncTest(i, TestType.Element));
             }
         }
-    
+
         window.kModuleName_ManualTests = kModuleName_ManualTests;
 
         testCSSBlendingBasics();
         testCSSCanvasBlending();
         runManualTests();
     }
-})   
+})

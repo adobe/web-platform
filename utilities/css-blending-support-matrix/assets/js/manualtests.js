@@ -19,13 +19,13 @@ var ManualTest = function(title, expectedResultImage, assertion) {
 
     this.assertion = $("<span/>",
                 {
-                  text: this.assertionText, 
+                  text: this.assertionText,
                   style: "vertical-align:middle"
                 }).appendTo(this.footer);
 
     this.btnYes = $("<div/>",
                     { class: 'btn btn-success',
-                      text: 'YES', 
+                      text: 'YES',
                       style: "float:right"
                     }).appendTo(this.footer);
     this.btnNo = $("<div/>",
@@ -34,10 +34,26 @@ var ManualTest = function(title, expectedResultImage, assertion) {
                       style: "float:right"}).appendTo(this.footer);
     this.bottomLayer = this.defaultBackdropGradient;
 
-    this.expected.load(this,function(event) {
+    // Hide the results element to avoid some unpleasant visual (flicker) effects
+    // when it is resized, especially from its position:absolute children. It is
+    // made visible after the expected image is loaded, and the element gets its
+    // final size.
+    // This resize 'flicker' happens mostly for element blending tests
+    this.result.css("visibility", "hidden");
+    this.expected.load(this, function(event) {
         var self = event.data;
+
+        // Hack for IE to maintain the images aspect ratio, which is approximately
+        // 1:1 (give or take a few pixels). IE 9 makes the image height almost
+        // double the width of the image, for some reason I have yet to determine.
+        self.expected.height(self.expected.width() + "px");
+        // End Hack
+
+        // This element needs to have a fixed size set, especially for background
+        // blending tests, since backgrounds do not stretch the containing element.
         self.result.width(self.expected.width() + "px");
         self.result.height(self.expected.height() + "px");
+        self.result.css("visibility", "visible");
     });
 }
 
@@ -53,7 +69,7 @@ ManualTest.prototype = {
     asBackgroundBlendingTest: function(blendMode, imageToBlend) {
         this.title.text("Background Blending: " + this.title.text());
         this.topLayer = "url('" + imageToBlend + "') no-repeat 0 0 /100% 100%";
-        
+
         var backgroundStyle = this.topLayer + ", " + this.bottomLayer;
 
         this.result.css("background", backgroundStyle);
@@ -63,7 +79,7 @@ ManualTest.prototype = {
     // This test will overlap two elements, and set blending on the top one
     asElementBlendingTest : function(blendMode, imageToBlend) {
         this.title.text("Element Blending: " + this.title.text());
-        this.topElement = $("<img/>", {src: imageToBlend, 
+        this.topElement = $("<img/>", {src: imageToBlend,
                                        class: "element-blending-test eb-top-layer"})
                             .appendTo(this.result);
 
@@ -74,6 +90,15 @@ ManualTest.prototype = {
         this.result.css("mix-blend-mode", blendMode);
     }
 
+}
+
+// Utility function
+ManualTest.preloadImage = function(imageUrl) {
+    var img = $("<img/>",
+        { src: imageUrl,
+          style: "width:1px; height:1px; border:0;visibility: hidden"
+      });
+    img.appendTo($('body'));
 }
 
 window.ManualTest = ManualTest;
