@@ -23,6 +23,7 @@ margins on them. Then float the parent divs, and set each width to 50%
 .manual-test-actual {
     float:left;
 }
+
 .manual-test-expected {
     float:right;
 }
