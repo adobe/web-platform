@@ -1,0 +1,337 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Test The Web Forward Paris 2012 - Introduction</title>
+
+		<meta name="description" content="Welcome Note - Test The Web Forward Paris 2012">
+		<meta name="author" content="Vincent Hardy">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/theme/default.css">
+		<link rel="stylesheet" href="css/presentation.css">
+
+        <script type="text/javascript" src="js/prefixfree.js" defer></script>
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		
+
+		<!-- JQuery -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+		<script>
+			// If the query includes 'print-pdf' we'll use the PDF print sheet
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+        <!-- Typekit -->
+        <script type="text/javascript" src="//use.typekit.net/nxa0zzm.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <style type="text/css" media="screen">
+            .tk {
+                font-family: "source-sans-pro",sans-serif;
+                font-style: normal;
+                font-weight: 200; 
+            }
+        </style>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                		<section>
+                		    <h1>Test The Web Forward Paris 2012</h1>
+
+                            <p style="margin-top:3em">Vincent Hardy<br><span class="small">Director of Engineering<br>Adobe Web Platform</span></p>
+                		</section>
+                		
+                		<!--
+                		<section>
+                		    <h2>&nbsp;</h2>
+                		    <div style="transform:rotate(3deg);"><blockquote class="zoom rotate" style="box-shadow: 5px 5px 5px rgba(0,0,0,0.5);border-radius:10px;">
+                		      Love the web? Move it forward! Test it!
+                		    </blockquote></div>
+                		</section>
+                		
+                		<section>
+                		    <h2>It's fun to be back :-)</h2>
+                            
+                		</section>
+                		
+                		-->
+                		
+                		<section>
+                		    <h2>TestTWF Beijing<span class="subtitle fragment slide-in right">... just happened</span></h2>
+                		    
+                		    <img class="fragment plain" src="assets/images/slides/ttwf-beijing.jpg" width="700" 
+                		    style="-webkit-transform:scale(1) rotate(5deg);border:5px solid white;box-shadow:5px 10px 20px rgba(0, 0, 0, 0.5)"/>
+                		    
+                		</section>
+                		<section>
+                		    <h2>TestTWF Paris <span class='subtitle fragment slide-in right'>... now</span></h2>
+                		    
+                		    <ul>
+                		        <li class="fragment slide-in right"><strong>Attendees</strong>: moving the web forward</li>
+                		        <li class="fragment slide-in right"><strong>Experts</strong>: sharing your expertise</li>
+                		        <li class="fragment slide-in right"><strong>Our host</strong>: Telecom Paris Tech</li>
+                		        <li class="fragment slide-in right"><strong>Sponsors</strong>: making the event happen</li>
+                		    </ul>
+                		</section>
+                		
+                		<section>
+                		    <h2>About Telecom Paris Tech</h2>
+                		    
+                		    <img src="assets/images/slides/telecom-paris-tech.png" class="plain" width="300px" 
+                		            style="border:5px solid white;box-shadow: 5px 5px 20px 10px rgba(0, 0, 0, 0.5);position:absolute;
+                		                    -webkit-transform:rotateZ(-5deg)" />
+                		            
+                		    <ul style="margin-left:300px;margin-top:3em;">
+                		        <li class="fragment slide-in right">In 1904 invented a term...?</li>
+                		        <li class="fragment slide-in right">In 1878 as ...?</li>
+                		        <li class="fragment slide-in right">Grad school for ...?</li>
+                		    </ul>
+                		</section>
+                		
+                		<section>
+                		    <h2>Soooo... <span class="subtitle fragment slide-in right">what is this about??</span></h2>
+                		    
+                		    <ul>
+                		        <li class="fragment zoom slide-in right">Specification</li>
+                		        <li class="fragment zoom slide-in right">Testing</li>
+                		        <li class="fragment zoom slide-in right">Implementations</li>
+                		    </ul>
+                		    
+                		</section>
+                		
+                		<section>
+                		    <h2>Simple but ...</h2>
+                		    
+                		    <ul>
+                		        <li class="fragment slide-in right">Specifications are sophisticiated</li>
+                		        <li class="fragment slide-in right">Comprehensive tests are needed</li>
+                		        <li class="fragment slide-in right">~700 tests for the CSS Transform specification</li>
+                		        <li class="fragment slide-in right">~350 tests for HTML5</li>
+                		        <li class="fragment slide-in right">~627 tests for HTML5 Canvas 2D</li>
+                		        <li class="fragment slide-in right">~11000 tests for the CSS 2.1 test suite</li>
+                		        <li class="fragment slide-in right">~350 tests Backgrounds and Borders</li>
+                		    </ul>
+                		</section>
+                		
+                		<section>
+                		    <h2>How to help?</h2>
+                		    
+                		    <ul>
+                		        <li class="fragment slide-in right">Reporting bugs when found</li>
+                		        <li class="fragment slide-in right">Writing tests that isolate a particular issue</li>
+                		        <li class="fragment slide-in right">Writing tests for up and coming specifications</li>
+                		        <li class="fragment slide-in right">Teach others</li>
+                		        <li class="fragment slide-in right">Participate to Test The Web Forward!</li>
+                		    </ul>
+                		</section>
+                		
+                		<section>
+                		    <h2>Friday Agenda</h2>
+                		    
+                		    <table>
+                		        <tr>
+                		            <th>Time</th>
+                		            <th>Topic</th>
+                		        </tr>
+                		        <tr>
+                		            <td>5:00-5:30</td>
+                		            <td>Check-in</td>
+                		        </tr>
+                		        <tr>
+                		            <td>5:30-5:50</td>
+                		            <td>Welcome &amp; Introduction</td>
+                		        </tr>
+                		        <tr>
+                		            <td>5:50-6:10</td>
+                		            <td>How to Read a Spec - <span class="presenter">Robin Berjon, W3C</span></td>
+                		        </tr>
+                		        <tr>
+                		            <td>6:10-6:30</td>
+                		            <td>How to Create a W3C Reftest - <span class="presenter">Rebecca Hauck, Adobe</span></td>
+                		        </tr>
+                		        <tr>
+                		            <td>6:30-6:50</td>
+                		            <td>Overview of testharness.js - <span class="presenter">James Graham, Opera</span></td>
+                		        </tr>
+                		        <tr>
+                		            <td>6:50-7:10</td>
+                		            <td>File the Best Bug - <span class="presenter">fantasai, Mozilla</span></td>
+                		        </tr>
+                		        <tr>
+                		            <td>7:15-7-45</td>
+                		            <td>Lightning Talks</td>
+                		        </tr>
+                		        <tr>
+                		            <td>8:00-9:30</td>
+                		            <td>Dinner &amp; Meet the Experts</td>
+                		        </tr>
+                		    </table>
+                		</section>
+                		
+                		
+                		<section>
+                		    <h2>Saturday Agenda</h2>
+                		    
+                		    <table>
+                		        <tr>
+                		            <th>Time</th>
+                		            <th>Topic</th>
+                		        </tr>
+                		        <tr>
+                		            <td>9:30-10:00</td>
+                		            <td>Breakfast</td>
+                		        </tr>
+                		        <tr>
+                		            <td>10:00-12:00</td>
+                		            <td>Hack</td>
+                		        </tr>
+                		        <tr>
+                		            <td>12:00</td>
+                		            <td>Lunch is served</td>
+                		        </tr>
+                		        <tr>
+                		            <td>12:00-3:00</td>
+                		            <td>Hack</td>
+                		        </tr>
+                		        <tr>
+                		            <td>3:00</td>
+                		            <td>Snacks</td>
+                		        </tr>
+                		        <tr>
+                		            <td>3:00-5:30</td>
+                		            <td>Hack</td>
+                		        </tr>
+                		        <tr>
+                		            <td>5:30-6:00</td>
+                		            <td>Demos</td>
+                		        </tr>
+                		        <tr>
+                		            <td>6:00</td>
+                		            <td>Dinner/Drinks</td>
+                		        </tr>
+                		    </table>
+                		</section>
+                		
+                		<section>
+                		    <h1>Disoriented...</h1>
+                		    
+                		    <img class="plain fragment zoom-in" src="assets/images/slides/ttwf-paris-map.png" width="350px" 
+                		         style="-webkit-transform:rotate(-10deg);box-shadow: 5px 10px 20px 5px rgba(0, 0, 0, 0.5)" />
+                		</section>
+                		    
+                		<section>
+                		    <h1>... site and tweets</h1>
+                		    
+                		    <p class="fragment slide-in right"><a href="testthewebforward.org">testthewebforward.org</a></p>
+                		    <p class="fragment slide-in right">Twitter: #TestTWF</p>
+                		</section>
+                		
+                		<section>
+                		    <h1>Need anything?</h1>
+                		    
+                		    <div style="-webkit-transform:rotate(-3deg);">
+
+                    		    <ul style="list-style:none;">
+                    		        <li class="crew fragment" style="top:100px;right:80px;-webkit-transform:rotate(-5deg);">Frederique</li>
+                    		        <li class="crew fragment" style="top:105px;left:250px;-webkit-transform:rotate(5deg);">Rebecca</li>
+                    		        <li class="crew fragment" style="top:130px;right:280px;-webkit-transform:rotate(3deg);">Cyril</li>
+                    		        <li class="crew fragment" style="top:50px;left:120px;-webkit-transform:rotate(-8deg);">Israel</li>
+                    		        <li class="crew fragment" style="top:80px;right:430px;-webkit-transform:rotate(-10deg);">Larry</li>
+                    		    </ul>
+
+                		    <img class="plain" src="assets/images/slides/crew.png" width="900px"
+                		            style="-webkit-transform-origin: 50% 50%; box-shadow: 5px 10px 20px 5px rgba(0, 0, 0, 0.5);border: 5px solid white;" />
+                		    </div>
+                		    
+                		</section>
+                		
+                		<section>
+                		    <h1>Who is who?</h1>
+                		        
+                		    <div class="fragment slide-in shadow" style="position:relative;display:inline-block;">
+                		    <img class="plain" src="assets/images/slides/expert-tshirt.png" width="350px"
+                		            style="-webkit-transform-origin: 50% 50%;" />
+                		    <img class="plain" src="assets/images/slides/expert-badge.png" width="100px"
+                		            style="position:absolute;-webkit-transform:rotate(-0deg);" />
+                            </div>
+                            
+                            <div class="fragment slide-in shadow" style="position:relative;display:inline-block;">
+                		    <img class="plain" src="assets/images/slides/developer-tshirt.png" width="350px"
+                		            style="-webkit-transform-origin: 50% 50%;" />
+                		    <img class="plain" src="assets/images/slides/developer-badge.png" width="100px"
+                		            style="position:absolute;-webkit-transform-origin: 50% 50%;" />
+                		    </div>
+                		</section>
+                		
+                		<section>
+                		    <h1>Now, let the rubber hit the road..</h1>
+                		    
+                		    <img src="assets/images/slides/robin.png" width="600" 
+                		        class="plain fragment slide-in" style="border:5px solid white;box-shadow:5px 10px 20px rgba(0,0,0,0.5);transform:rotateZ(5deg);"/>
+                		    <p class="fragment slide-in right">Robin and reading specifications with testing in mind</p>
+                		</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+			
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+				]
+			});
+			
+		</script>
+	</body>
+</html>
