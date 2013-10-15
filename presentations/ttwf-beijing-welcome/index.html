@@ -1,0 +1,396 @@
+<!doctype html>   
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Test the Web Forward</title>
+
+		<meta name="author" content="Arno Gourdol">
+
+        <script src="js/coolclock.js"></script>
+
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu:500,300,700,400' rel='stylesheet' type='text/css'>
+
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700' rel='stylesheet' type='text/css'>
+		
+		<link href='http://fonts.googleapis.com/css?family=Bitter:700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+
+		<link rel="stylesheet" href="lib/zenburn.css">
+	</head>
+	
+	<body onload="CoolClock.findAndCreateClocks()">
+
+
+		<header>
+<!--			<img id="vignette" src="assets/vignette.png"> -->
+<!-- 			<img id="adobelogo" src="assets/adobe-vector.svg" alt="adobe">
+ -->            <canvas class="CoolClock:smallSwissOnBlack:20" 
+                style="position:absolute; right:10px; top:10px; z-index: 3;"></canvas>
+		</header>
+
+
+		<div id="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-state="home-page" class="home">
+						<h1>TEST<br>THE WEB<br>FORWARD</h1>
+                    <h3>Better tests for a better web</h3>
+<!--						<h3 class="inverted"><b>Arno</b> Gourdol
+						<span>Senior Director, Web Platform &amp; Authoring</span></h3>				
+-->						<div><script>
+							// Deliciously hacky. Look away.
+							if (navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)) {
+                                document.write('<p style="color: rgba(255,255,255,0.6); text-shadow: none; font-size:.5em; font-weight:bold; letter-spacing:0; background: rgba(255, 255, 255, .2); box-shadow: 0px 8px 8px rgba(0,0,0,0.2), inset 2px 2px 3px rgba(0,0,0,0.05); border-radius: 8px; border: 1px solid rgba(255, 255, 255, .2); margin-left:-8px; margin-right:-8px;"> TAP TO NAVIGATE <\/p>');
+                            }
+						</script></div>
+				</section>
+
+
+				<section data-state="no-logo">
+					<div>
+                            <div class="card" style="width:300px; height:500px; -webkit-transform:rotate(2deg); float: left;">
+                            <img src="assets/adobe-vector.svg" height="100" style="margin-top:-50px; margin-left:240px;">
+                            <img src="assets/blue-beanie.png" height="300" style="
+                                border-top: 1px solid #aaa; 
+                                border-left: 1px solid #aaa; 
+                                border-bottom:1px solid #333; 
+                                border-righ: 1px solid #333;">
+                            <ul>
+                                <li><b>Arno</b><br>Gourdol</li>
+                                <li ><a href="http://twitter.com/arnog"><small>@arnog</small></a></li>
+                            </ul>
+                            </div>
+                    		<div class="card" style="width:300px; height:500px; -webkit-transform:rotate(-3deg); float:right">
+                            <img src="assets/adobe-vector.svg" height="100" style="margin-top:-50px; margin-left:240px;">
+                            <img src="assets/ethan-grinning.jpg" height="280" style="
+                                border-top: 1px solid #aaa; 
+                                border-left: 1px solid #aaa; 
+                                border-bottom:1px solid #333; 
+                                border-righ: 1px solid #333;">
+                            <ul>
+                                <li><b>Ethan</b><br>Malasky</li>
+                                <li ><a href="http://twitter.com/emalasky"><small>@emalasky</small></a></li>
+                            </ul>
+							</div>
+					</div>
+
+				</section>   
+   <!-- 				
+             
+				<section data-state="second-page" >
+					<h1 class="large"><svg
+							 width="200px" height="200px" viewBox="0 0 400 400" style="position:absolute; top:-50px; left:50px">
+						<defs><linearGradient id="darkbg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#444; stop-opacity:1" /><stop offset="100%" style="stop-color:#555; stop-opacity:1" /></linearGradient></defs>
+						<path fill="url(#darkbg)" stroke="#000" stroke-width="4" stroke-opacity=".5" 	 d="M0.5,262.094c0,0,52.172,79.049,158.323,77.241c68.433-2.031,165.549-32.296,191.523-132.123
+c0,0,27.893,4.742,47.654-16.939c-26.99,3.727-44.944-4.743-44.944-4.743s35.346-1.017,43.137-21.908						c-20.89,9.035-46.751,1.355-46.751,1.355S337.245,90.22,262.939,87.51c0,0,39.713-8.093,33.502-17.24						c-4.968-6.663-32.597,5.722-32.597,5.722s15.396-6.776,15.057-14.003c-15.584,1.806-29.888,13.325-29.888,13.325						s4.365-7.001,4.44-9.937c-37.114,20.628-62.334,97.455-62.334,97.455s-9.411-10.427-25.07-21.72						C128.257,118.829,58.544,92.479,58.544,92.479s-4.668,28.759,32.522,49.838c-15.207,1.205-22.886,3.162-22.886,3.162						s0,30.565,44.342,40.503c-20.552,0.752-27.328,10.991-27.328,10.991s11.594,27.253,48.031,24.995						c-29.662,15.357-10.389,36.286,13.852,34.027C69.083,325.859,0.5,262.094,0.5,262.094z"/>
+					</svg>
+					<a href="http://twitter.com/arnog">@arnog</a></h1>
+				</section>
+
+
+
+				<section>
+					<h1 class="large"><a href="http://arno.org/br12">arno.org/br12</a></h1>
+				</section>
+
+				<section>
+					<div class="vertical-center"><h1 class="large">#br12</h1></div>
+				</section>
+
+
+
+
+				<section class="adobe-list">
+					<img src="assets/blue-beanie.png" height=600 style="margin-top:-300px">
+					<ul style="margin-left:100px">
+						<li class='fragment'><a href="http://twitter.com/arnog">@arnog</a></li>
+						<li class='fragment'><a href="http://arno.org/br12">arno.org/br12</a></li>
+						<li class='fragment'>#br12</li>
+					</ul>
+				</section>
+
+-->
+				<section data-state="birds-nest">
+					<div class="fragment inverted vignetted white">
+					<h2 class="large white">400,000</h2>
+					<h3 class="white">web developers in China</h3>
+				</div>
+
+					<!--
+					<h3>2 events/month in Beijing</h3>
+					<h3>HTML5 weibo accounts with > 10,000 followers</h3>
+					<h3>HTML5 Technology</h3>
+					<h3>Browser Users</h3>
+					-->
+				</section>
+
+				<section data-state="community">
+					<div class="fragment inverted vignetted">
+					<h2 class="white">草根推动web的发展</h2>
+					<h3 class="white">The web is defined by the community</h3>
+				</div>
+				</section>
+
+				<section data-state="starbust-page">
+					<svg class="webplatform-svg" viewBox="0 0 190 172" width="190" height="172">
+				  <defs>
+				    <path id="line-long" d="m-15.5,0v85a15.5,15.5 0 0 0 31,0v-85a15.5,15.5 0 0 0 -31,0zm9,0a6.5,6.5 0 0,0 13,0a6.5,6.5 0 0,0 -13,0zm0,85a6.5,6.5 0 0,0 13,0a6.5,6.5 0 0,0 -13,0z" fill-rule="evenodd"></path>
+				    <path id="line-short" d="m-15.5,0v60.81118318204309a15.5,15.5 0 0 0 31,0v-60.81118318204309a15.5,15.5 0 0 0 -31,0zm9,0a6.5,6.5 0 0,0 13,0a6.5,6.5 0 0,0 -13,0zm0,60.81118318204309a6.5,6.5 0 0,0 13,0a6.5,6.5 0 0,0 -13,0z" fill-rule="evenodd"></path>
+				    <clipPath id="clip-orange-red"><use transform="translate(52,19)" xlink:href="#line-long"></use></clipPath>
+				    <clipPath id="clip-red-purple"><use transform="translate(52,104)rotate(-135)" xlink:href="#line-short"></use></clipPath>
+				    <clipPath id="clip-purple-cyan"><use transform="translate(138,19)" xlink:href="#line-long"></use></clipPath>
+				  </defs>
+				  <g transform="translate(-.5,-.5)">
+				    <use transform="translate(52,19)" xlink:href="#line-long" class="orange"></use>
+				    <use transform="translate(52,104)rotate(-135)" xlink:href="#line-short" class="red"></use>
+				    <use transform="translate(138,19)" xlink:href="#line-long" class="cyan"></use>
+				    <use transform="translate(138,104)rotate(135)" xlink:href="#line-short" class="purple"></use>
+				    <g clip-path="url(#clip-orange-red)"><use transform="translate(52,104)rotate(-135)" xlink:href="#line-short" class="orange-red"></use></g>
+				    <g clip-path="url(#clip-red-purple)"><use transform="translate(138,104)rotate(135)" xlink:href="#line-short" class="red-purple"></use></g>
+				    <g clip-path="url(#clip-purple-cyan)"><use transform="translate(138,104)rotate(135)" xlink:href="#line-short" class="purple-cyan"></use></g>
+				    <text x="95" y="150" text-anchor="middle" font-family="Bitter" font-size="20" font-weight="bold" class="gray">WebPlatform<tspan class="lightgray">.org</tspan></text>
+				  </g>
+				</svg>
+				</section>
+
+				<section data-state="trafford-park">
+					<div class="fragment inverted vignetted">
+					<h2 class="white">web的标准化需要社区的力量</h2>
+					<h3 class="white">The community can make the web consistent</h3>
+					</div>
+				</section>
+
+<!--
+				<section data-state="tim-berners-lee">
+					<h3 class='fragment' style="position:absolute; bottom:0%; 
+background: rgba(0, 0, 0, 0.4); 
+box-shadow: 0px 8px 8px rgba(0,0,0,0.2), inset 2px 2px 3px rgba(0,0,0,0.05); 
+border-radius: 8px; 
+border: 1px solid rgba(255, 255, 255, 0.2); 
+margin-left:-8px; margin-right:-8px;
+padding:15px;
+color: white; 
+text-shadow: 0 0 5px #000; 
+text-align:left;
+font-weight:bold;">“The web as I envisaged it,<br>we have not seen yet.<br>The future is still<br>so much bigger than the past.”<br><br>"我设想的互联网,<br>我们还没看见.<br>未来可开拓的空间  <br>将会很大"<br><span style="text-align:right; font-size:0.5em; font-weight:100; letter-spacing:0;">—Tim Berners-Lee</span></h3>
+				</section>
+-->
+<!--
+				<section data-state="starbust-page">
+					<h1 class="large" style="margin-left:256px; overflow:none; width:500px;text-align:left; height:500px;">CSS<br>is awesome!</h1>
+				</section>
+				
+				<section data-state="starbust-page">
+					<h1 class="large" style="margin-left:256px; overflow:none; width:500px;text-align:left; height:500px;">CSS<br>非常好!</h1>
+				</section>
+
+				<section data-state="starbust-page">
+					<h2 class="large top" style="overflow:none ;text-align:center; height:300px;">CSS<br>is awesome!</h2>
+					<h2 class="large bottom" style=" overflow:none; text-align:center; height:300px;">CSS<br>非常好!</h2>
+				</section>
+
+				<section data-state="starbust-page">
+					<h2 class="large top" style="overflow:none ;text-align:center; height:300px;">Javascript<br>is awesome, too!</h2>
+					<h2 class="large bottom" style=" overflow:none; text-align:center; height:300px;">Javascript<br>也非常好!</h2>
+				</section>
+                                
+				<section class="two-col" data-state="starbust-page">
+                    <div class="left-col">
+                        <img src="assets/web.png" height="384">
+                        <h2>The Web</h2>
+                    </div>
+                    <div class="right-col">
+                        <ul class='bilingual'>
+                            <li class='fragment'>Ubiquitous<br/>无处不在</li>
+                            <li class='fragment'>Easy to learn<br/>容易上手</li>
+                            <li class='fragment'>Large community<br/>庞大的社区</li>
+                            <li class='fragment'>Designer friendly<br/>设计师的乐园</li>
+                        </ul>
+                    </div>
+				</section>
+-->
+                <!--
+				<section class="better-web" data-state="betterweb-page">
+                    <br>
+                    <h2>A Better Web</h2>
+                    <b class="amp">&amp;</b>
+                    <h2>Awesome Tools</h2>					
+				</section>
+
+
+				<section data-state="no-logo">
+					<img src="assets/adobe-vector.svg" width="357" height="600" style="margin-top:-150px" >							
+				</section>
+				-->
+
+
+
+				<!--
+					<aside class="notes">
+						Shipping container - http://commons.wikimedia.org/wiki/File:Container_01_KMJ.jpg
+						ISO6346
+						~17,000,000 containers worldwide
+
+						Telegraph - http://wyolife.com/Thank%20US/Thanks.htm
+
+						Beijing-Shanghai High-Speed Railway uses Standard Gauge for its track gauge. 1435mm.
+
+						Railroad Tracks Rustic: http://www.etsy.com/listing/94213170/railroad-tracks-train-tracks-rustic
+
+						High-speed: http://www.monica-tan.com/2011/07/beijing-shanghai-high-speed-rail-brings-two-cities-closer-together/
+
+						Birds Nest: http://www.creativeclass.com/_v3/creative_class/2008/08/07/beijings-birds-nest/
+
+						Community: http://pitchfork.com/festivals/chicago/2012/
+
+						Testing: http://en.wikipedia.org/wiki/File:Tape_measure_colored.jpeg
+
+						Audio scale: http://bizchicks.org/2012/03/tip-the-scale-of-worklife-balance/
+
+						Factory:http://intheklane.com/2008/03/16/helping-you-find-your-zenn-canada%E2%80%99s-electric-car/
+
+						Trafford Park: http://www.dovepublishing.co.uk/2011/03/trafford-park-manchester.html
+					</aside>
+				-->
+				
+				<section data-state="starbust-page" class="container">
+					<h3 class="fragment inverted vignetted white">
+						ISO6346
+					</h3>
+				</section>
+
+
+				<!-- NOTE: Vehicles Themselves -->
+				<section class="railroad" data-state="old-railroad">
+					<h3 class="fragment inverted vignetted white high">
+					19th Century Railroad<br>
+<!--					Standard Gauge<br> -->
+					1435mm
+				</h3>
+				</section>
+
+				<section class="railroad" data-state="new-railroad">
+					<h3 class="fragment inverted vignetted white high">
+					21st Century Railroad<br>
+<!--					Standard Gauge<br><a href="  -->
+					1435mm
+				</h3>
+				</section>
+
+				<section data-state="starbust-page">
+					<div class="bilingual fragment inverted vignetted high">
+						<h2 class="white">标准, 通讯之本！</h2>
+
+						<h3 class="white">Standards are the root of communication<h3>
+					</div>
+					<img src='assets/morse_telegraph.jpeg' class="telegraph" style="-webkit-transform: rotate(23deg)"/>
+					<img src='assets/International_Morse_Code.svg' class="telegraph" style="-webkit-transform: rotate(-19deg)"/>
+				</section>
+
+				<section data-state='starbust-page'>
+					<h2 class="large">
+						标准, 凝聚力量!
+					</h2>
+					<br />
+					<h2 class="">
+						Standards bring people together
+					</h2>
+					<br/><br/>
+
+				</section>
+
+				<section data-state="tape-measure">
+					<div class="bilingual fragment inverted vignetted white">
+						<h2 class="white">测试推动标准</h2>
+						<h3 class="white">Tests make standards real</h3>
+					</div>
+				</section>
+				<section data-state="starbust-page">
+
+					<div class="fragment inverted vignetted">
+						<h2 class="white">测试推动web的发展</h2>
+						<h3 class="white">Your tests move the web forward</h3>
+					</div>
+<!--						<img src='assets/ringmark.png'/> -->
+						<img src='assets/html5-logo.svg' width="284px" height="398px" />
+						<img src='assets/w3c.svg' width="512px" height="342px" />
+				</section>
+
+				<section class="adobe-list">
+					<h3>Colophon</h3>
+					<ul >
+						<li><b>reveal.js</b><br /> by <a href="http://hakim.se">Hakim El Hattab</a></li>
+						<li><b>Font</b><br /> Source Sans Pro</li>
+					</ul>
+				</section>
+
+
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#" style="-webkit-transform:rotate(180deg);"><svg  width="25px" height="21px" viewBox="0 0 100 84" xml:space="preserve">
+				<polygon points="58,0 100,42 58,84 31,84 62,52 0,52 0,32 62,32 31,0 58,0 "/>
+				</svg>
+				</a>
+				<a class="right" href="#"><svg  width="25px" height="21px" viewBox="0 0 100 84" xml:space="preserve">
+				<polygon points="58,0 100,42 58,84 31,84 62,52 0,52 0,32 62,32 31,0 58,0 "/>
+				</svg></a>
+				<a class="up" href="#"></a>
+				<a class="down" href="#"></a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+		
+		<script src="js/reveal.js"></script>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="lib/highlight.js"></script>
+		<script src="lib/classList.js"></script>
+		
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: !(query.controls === 'false'),
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: true,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: false,
+
+				// UI style
+				theme: query.theme || 'adobe', // default/neon
+
+				// Transition style
+				transition: query.transition || 'linear' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+		</script>
+
+	</body>
+</html>
