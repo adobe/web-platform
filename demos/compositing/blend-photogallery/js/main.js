@@ -7,6 +7,7 @@ var currentpage = 1,
     currentElement,
     nextElement,
     overlayBg,
+    overlayCntn,
     overlay,
     grid,
     blinder,
@@ -79,9 +80,13 @@ function populateGrid() {
 }
 
 function resetOverlay() {
-    overlay.style.height = window.innerHeight + 'px';
-    overlay.style.width = window.innerWidth + 'px';
-    overlay.style.marginTop =  - (window.innerHeight / 2) + 'px';
+    overlayBg.style.height = window.innerHeight + 'px';
+    overlayBg.style.width = window.innerWidth + 'px';
+    overlayBg.style.marginTop =  - (window.innerHeight / 2) + 'px';
+
+    overlayCntn.style.height = window.innerHeight + 'px';
+    overlayCntn.style.width = window.innerWidth + 'px';
+    overlayCntn.style.marginTop =  - (window.innerHeight / 2) + 'px';
 }
 
 /*
@@ -91,56 +96,87 @@ function handle_overlay_COMPLETE() {
 
     switch (currentpage) {
     case 1:
-        overlay.style.width = '100%';
+        overlayBg.style.width = '100%';
+
+        overlayCntn.style.width = '100%';
         break;
     case 2:
-        overlay.style.height = '100%';
-        overlay.style.width = '100%';
-        overlay.style.marginTop =  '-50%';
+        overlayBg.style.height = '100%';
+        overlayBg.style.width = '100%';
+
+        overlayCntn.style.height = '100%';
+        overlayCntn.style.width = '100%';
         break;
     case 3:
-        overlay.style.height = '100%';
-        overlay.style.marginTop =  '-50%';
+        overlayBg.style.height = '100%';
+
+        overlayCntn.style.height = '100%';
         break;
     case 4:
-        overlay.style.height = '100%';
-        overlay.style.width = '100%';
-        overlay.style.marginTop =  '-50%';
+        overlayBg.style.height = '100%';
+        overlayBg.style.width = '100%';
+
+        overlayCntn.style.height = '100%';
+        overlayCntn.style.width = '100%';
         break;
     }
-    
-    overlay.removeEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+
+    overlayBg.removeEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+    overlayBg.removeEventListener('transitionend', handle_overlay_COMPLETE);
+
+    overlayCntn.removeEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+    overlayCntn.removeEventListener('transitionend', handle_overlay_COMPLETE);
 }
 
 /*
  * transition overlay to new values
  */
 function updateOverlay() {
-        
+
     overlayBg.style.background = getOverlayColor();
     resetOverlay();
 
     if (currentpage === 2) {
 
-        overlay.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+        overlayBg.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+        overlayBg.addEventListener('transitionend', handle_overlay_COMPLETE);
+
+        overlayCntn.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+        overlayCntn.addEventListener('transitionend', handle_overlay_COMPLETE);
 
     } else if (currentpage === 3) {
-    
+
         setTimeout(function () {
-            overlay.style.width = '220px';
-            overlay.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+            overlayBg.style.width = '220px';
+            overlayBg.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+            overlayBg.addEventListener('transitionend', handle_overlay_COMPLETE);
+
+            overlayCntn.style.width = '220px';
+            overlayCntn.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+            overlayCntn.addEventListener('transitionend', handle_overlay_COMPLETE);
+
         }, 10);
 
     } else if (currentpage === 4) {
 
-        overlay.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+        overlayBg.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+        overlayBg.addEventListener('transitionend', handle_overlay_COMPLETE);
+
+        overlayCntn.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+        overlayCntn.addEventListener('transitionend', handle_overlay_COMPLETE);
 
     } else {
 
         setTimeout(function () {
-            overlay.style.height = '220px';
-            overlay.style.marginTop = '-150px';
-            overlay.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+            overlayBg.style.height = '220px';
+            overlayBg.style.marginTop = '-150px';
+            overlayBg.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+            overlayBg.addEventListener('transitionend', handle_overlay_COMPLETE);
+
+            overlayCntn.style.height = '220px';
+            overlayCntn.style.marginTop = '-150px';
+            overlayCntn.addEventListener('webkitTransitionEnd', handle_overlay_COMPLETE);
+            overlayCntn.addEventListener('transitionend', handle_overlay_COMPLETE);
         }, 10);
     }
 }
@@ -148,12 +184,14 @@ function updateOverlay() {
 function handle_animIn_COMPLETE(e) {
     animating = false;
     nextElement.removeEventListener('webkitTransitionEnd', handle_animIn_COMPLETE, true);
+    nextElement.removeEventListener('transitionend', handle_animIn_COMPLETE, true);
     updateOverlay();
 }
 
 function animIn() {
-    
+
     currentElement.removeEventListener('webkitTransitionEnd', animIn, true);
+    currentElement.removeEventListener('transitionend', animIn, true);
     currentpage = nextPage;
     nextElement = document.getElementById('page' + currentpage);
     nextElement.style.display = 'block';
@@ -161,7 +199,9 @@ function animIn() {
     setTimeout(function () {
 
         nextElement.style.webkitTransform = 'translateZ(0px) rotateX(0deg)';
+        nextElement.style.MozTransform = 'translateZ(0px) rotateX(0deg)';
         nextElement.addEventListener('webkitTransitionEnd', handle_animIn_COMPLETE, true);
+        nextElement.addEventListener('transitionend', handle_animIn_COMPLETE, true);
     }, 10);
 }
 
@@ -171,7 +211,9 @@ function gotoPage(newPage) {
 
     currentElement = document.getElementById('page' + currentpage);
     currentElement.style.webkitTransform = 'translateZ(-1000px) rotateX(90deg)';
+    currentElement.style.MozTransform = 'translateZ(-1000px) rotateX(90deg)';
     currentElement.addEventListener('webkitTransitionEnd', animIn, true);
+    currentElement.addEventListener('transitionend', animIn, true);
 }
 
 function showGrid() {
@@ -201,7 +243,7 @@ function handle_gridItem_CLICK(e) {
 }
 
 function handle_document_KEY_PRESS(e) {
-    
+
     if (animating === false) {
         var pageNumber;
 
@@ -250,6 +292,7 @@ function handle_rightBtn_CLICK(e) {
 
 window.onload = function () {
     overlayBg = document.getElementById('overlay-bg');
+    overlayCntn = document.getElementById('overlay-content');
     overlay = document.getElementById('overlay');
     container = document.getElementById('container');
     closeBtn = document.getElementById('down-btn');
