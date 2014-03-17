@@ -1,0 +1,196 @@
+body {
+  padding: 10px 20px; }
+
+nav {
+  background-color: #eee;
+  padding-top: 5px; }
+  nav #browser-selector {
+    float: left;
+    margin: 4px 10px 0 10px; }
+  nav .nav {
+    margin-left: 20px; }
+
+header h1 {
+  margin-bottom: 20px; }
+header ul {
+  margin-top: 20px; }
+
+#action-well {
+  height: 180px; }
+  #action-well h2 {
+    text-align: center; }
+  #action-well form {
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    max-width: 150px; }
+    #action-well form .btn {
+      margin-top: 20px; }
+    #action-well form label {
+      max-width: 120px;
+      margin-top: 20px; }
+  #action-well #test-results {
+    color: #000;
+    font-size: 120%; }
+    #action-well #test-results #support-results {
+      font-size: 140%;
+      line-height: 1.2;
+      margin-top: 30px;
+      margin-bottom: 30px; }
+      #action-well #test-results #support-results #support-precentage {
+        display: block;
+        float: right;
+        margin-top: -25px;
+        margin-right: 35px;
+        font-size: 200%; }
+
+tbody th {
+  white-space: nowrap;
+  border-right: 1px solid #CCC; }
+
+thead th {
+  padding: 0;
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap; }
+  thead th div {
+    margin: 0;
+    padding: 0;
+    position: relative; }
+    thead th div span {
+      position: absolute;
+      display: block;
+      width: 220px;
+      overflow: hidden;
+      left: -20px;
+      bottom: 60px;
+      -moz-transform: rotate(320deg);
+      -o-transform: rotate(320deg);
+      -ms-transform: rotate(320deg);
+      -webkit-transform: rotate(320deg);
+      transform: rotate(320deg); }
+
+.table {
+  table-layout: fixed;
+  width: auto;
+  border-right: none;
+  border-top: none; }
+
+.table-bordered thead th {
+  border-left: none;
+  width: 40px !important;
+  height: 140px !important;
+  position: relative; }
+
+.table-bordered tbody th {
+  border-left: none; }
+
+.table-bordered td {
+  border-left: none;
+  width: 40px !important;
+  text-align: center; }
+
+.table-bordered td.count {
+  text-align: right;
+  padding-right: 20px;
+  width: 50px; }
+.table-bordered td.success {
+  background-color: #a3f687; }
+  .table-bordered td.success span {
+    color: #FFF;
+    font-size: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  .table-bordered td.success span:after {
+    color: #0A0;
+    content: '✓';
+    display: block;
+    font-size: 20px; }
+.table-bordered td.fail {
+  background-color: #f7d6d6; }
+  .table-bordered td.fail span {
+    color: #FFF;
+    font-size: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  .table-bordered td.fail span:after {
+    color: #999;
+    content: '✖';
+    display: block;
+    font-size: 20px; }
+.table-bordered td.blank span {
+  color: #FFF;
+  font-size: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+.table-bordered td.blank span:after {
+  color: #555;
+  content: '-';
+  display: block;
+  font-size: 20px; }
+
+.filter-label {
+  cursor: auto;
+}
+
+#qunit {
+  display: none; }
+
+#test-display-toggle {
+  display: none; }
+
+#chart {
+  position: relative;
+  top: 0;
+  height: 200px; }
+  #chart .bar {
+    background-color: #a3f687;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    width: 40px;
+    margin-right: 5px;
+    vertical-align: bottom;
+    -moz-border-radius: 5px 5px 0 0/5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0/5px 5px 0 0;
+    border-radius: 5px 5px 0 0/5px 5px 0 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; }
+    #chart .bar span {
+      padding-left: 5px;
+      position: absolute;
+      bottom: 0;
+      text-align: center; }
+
+#legend {
+  font-weight: bold; }
+  #legend .legend {
+    width: 45px;
+    height: 150px;
+    display: inline-block;
+    position: relative; }
+    #legend .legend span {
+      left: -30px;
+      position: relative;
+      display: inline-block;
+      top: 80px;
+      width: 200px;
+      -moz-transform: rotate(55deg);
+      -o-transform: rotate(55deg);
+      -ms-transform: rotate(55deg);
+      -webkit-transform: rotate(55deg);
+      transform: rotate(55deg);
+      text-align: left; }
