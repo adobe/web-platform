@@ -46,28 +46,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         var browserscopeV = browserScopeVersionTranslate(currentBrowserChoice);
         var bscope_results;
 
-        function setFilterLabel() {
-            var filter = QUnit.config.filter;
-            if(filter) {
-                // QUnit internally uses its own urlParams to build the URL. Hack to temporarily
-                // remove the filter parameter, so that we can rebuild the entier URL without it
-                var oldFilterValue = QUnit.urlParams["filter"];
-                delete QUnit.urlParams["filter"];
-                var noFilterURL = QUnit.url();
-
-                // Set back the original params
-                QUnit.urlParams["filter"] = oldFilterValue;
-
-                var filterInnerHtml =
-                        ' (<a title="Clear filter" href="' +
-                        noFilterURL + '">filtered by \'' + filter + '\'</a>)';
-                $(".filter-label").each(function() {
-                        $(this).title="";
-                        $(this).html(filterInnerHtml);
-                    });
-            }
-        }
-
         $(document).ready(function() {
             getData(browserscopeV);
 
@@ -77,14 +55,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             $('#manual a').click(showManualTests);
             $('#test-display-toggle').click(showTests);
             $("#browser-selector a").click(toggleBrowsers);
-
-            var filter = QUnit.config.filter;
-            if(filter) {
-                setFilterLabel();
-                $("#publish-results").attr("disabled", true);
-                $("#publish-results").attr("title", "Publishing is disabled when filters are on");
-            }
-
         });
 
         function resetTabs() {
@@ -141,11 +111,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         function runTests() {
             if ($('#publish-results').is(':checked')) {
-                // The checkbox should be already disabled, but take extra care
-                // not to submit with filters on
-                var filter = filterFromQuerryString();
-                if (!filter)
-                    QUnit.config.publishresults = true;
+                QUnit.config.publishresults = true;
             }
             QUnit.start();
             return false;
@@ -177,7 +143,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             var browserLabelDepth = browserScopeDepthTranslate(currentBrowserChoice);
             var percent = calculatePercentage(results);
             changeActionWell(browserLabelDepth);
-            setFilterLabel();
             $("#support-precentage").html(percent + "%");
             $("#test-display-toggle").css("display","block");
 
@@ -257,6 +222,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <!-- <script type="text/javascript" src="prefix-free/prefixfree.min.js"></script> -->
     <script type="text/javascript" src="prefix-free/prefixfree.jquery.js"></script>
     <script type="text/javascript" src="assets/js/testmasking.js"></script>
+    <style type="text/css">
+    #publish { display: none; }
+    #publish:target { display: block; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -276,7 +245,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                 <form id="run-tests">
                     <input class="btn btn-primary btn-large" type="submit" name="submit" value="Run Tests" /><br />
-                    <label class="checkbox">
+                    <label class="checkbox" id="publish">
                         <input type="checkbox" name="publish" value="publish" id="publish-results">
                         Publish my results
                       </label>
